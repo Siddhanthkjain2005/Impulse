@@ -1,0 +1,181 @@
+{
+  "recorded_at_utc": "2026-10-01T06:47:07.686436+00:00",
+  "version": "1.0.0",
+  "backend_tests_passed": true,
+  "backend": {
+    "tests": 67,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "backend_test_record": "artifacts/qa/backend-tests.xml",
+  "frontend": {
+    "typecheck_passed": true,
+    "production_build_passed": true,
+    "verification": "Frontend worker executed final TypeScript check and production build after V2 mode and method-disclosure changes; root verified updated rendered views.",
+    "source_sha256": "91042cd7b354d46b391853bf0efd527166a14dae03b991707b638443d148ebb7",
+    "routes": [
+      "/",
+      "/model-lab/",
+      "/profiles/",
+      "/trial-calibrator/",
+      "/runs/",
+      "/compare/"
+    ],
+    "source_hash_method": "SHA256 of sorted JSON mapping relative source paths to file SHA256"
+  },
+  "browser": {
+    "tested_at": "2026-10-01",
+    "desktop_viewport": [
+      1440,
+      1000
+    ],
+    "mobile_viewport": [
+      390,
+      844
+    ],
+    "workflows_verified": [
+      "Default Lightning and golden workbook evidence",
+      "Constructible Switching preset: nominal pass, MARGINAL and ML disabled",
+      "Hardware-valid OOD preset: correction disabled",
+      "Out-of-range PDF voltage rejected, prior run clearly identified",
+      "PDF Lightning and Switching circuit presets with visible assumed-stock provenance",
+      "Synthetic CSV download/upload, metric extraction and raw-data provenance",
+      "Scoped calibration save/reoptimization, original-setting review retained outside top five",
+      "Candidate comparison and counted stock plans",
+      "Separate/incomplete profile inspection",
+      "Run history persistence",
+      "Model Lab final synthetic scores",
+      "Report and data audit rendering",
+      "Front-detail waveform chart",
+      "Mobile document width equals viewport; accessible nav labels included in final export"
+    ],
+    "console_errors_observed": [],
+    "observed_assets": {
+      "count": 40,
+      "nonlocal_assets": 0
+    },
+    "screenshot": "artifacts/qa/dashboard-desktop.jpg",
+    "mobile_navigation_accessible_labels_verified": true,
+    "final_report_screenshot": "artifacts/qa/report-preview.jpg",
+    "accuracy_update_verified": [
+      "Six frozen V1 error cards with correct units and saved Hidden Test default",
+      "Separate V2 evidence and historical-comparator method disclosure",
+      "Lightning tail 0.52% higher error remains visible",
+      "Switching peak 10.95% lower error",
+      "Try V2 link changes mode with visible experimental warning",
+      "V2 optimizer run saved with correct version and MARGINAL envelope after unsupported parasitic scenarios",
+      "Model Lab mobile document width equals 390px viewport",
+      "No console errors observed",
+      "Final benchmark panels explicitly distinguish residual scores from runtime support/scenario-gated optimizer predictions"
+    ],
+    "accuracy_screenshot": "artifacts/qa/model-lab-accuracy.png",
+    "v2_screenshot": "artifacts/qa/model-lab-v2.png"
+  },
+  "offline_static_assets": {
+    "html_pages": [
+      "index.html",
+      "404.html",
+      "model-lab/index.html",
+      "compare/index.html",
+      "trial-calibrator/index.html",
+      "_not-found/index.html",
+      "profiles/index.html",
+      "404/index.html",
+      "runs/index.html"
+    ],
+    "asset_count": 17,
+    "remote_assets": [],
+    "missing_assets": [],
+    "served_asset_status": {
+      "/_next/static/chunks/878-0d7dda84d5e831a6.js": 200,
+      "/_next/static/chunks/webpack-fe2cfd9fa929694f.js": 200,
+      "/_next/static/chunks/app/page-09ee5dbf606ceae1.js": 200,
+      "/_next/static/chunks/128-485fb63d75d09e6c.js": 200,
+      "/_next/static/chunks/main-app-f09dec10dbfe7fab.js": 200,
+      "/_next/static/chunks/polyfills-42372ed130431b0a.js": 200,
+      "/_next/static/chunks/app/trial-calibrator/page-5e4d3369cb72991d.js": 200,
+      "/_next/static/chunks/app/compare/page-b1721cf670469fdd.js": 200,
+      "/_next/static/chunks/app/profiles/page-d3ad848bcb6c4e08.js": 200,
+      "/_next/static/css/8f5d526ab3435715.css": 200,
+      "/_next/static/chunks/app/layout-abd55c7acf15ff34.js": 200,
+      "/_next/static/chunks/794-71ff2c1735abeddf.js": 200,
+      "/_next/static/chunks/app/model-lab/page-9c63e7efe162d4ba.js": 200,
+      "/_next/static/chunks/699-8cb61db040cec60b.js": 200,
+      "/icon.svg?d8f9cd8af1d4dce3": 200,
+      "/_next/static/chunks/4bd1b696-92152b0f5947070d.js": 200,
+      "/_next/static/chunks/app/runs/page-3349d0997e52138b.js": 200
+    },
+    "passed": true,
+    "scope": "Static exported HTML assets verified in process; no external network was used. Does not simulate a physically disconnected laptop."
+  },
+  "sources": {
+    "workbook_cached_case_and_1400_neighbors_verified": true,
+    "published_validation_table_parity": "Unresolved source discrepancy",
+    "lab_validation": "Pending actual measured data"
+  },
+  "fallback_reports": "Four self-contained reports, including labeled V2 candidate, plus generated CSVs/run snapshots in data/demo",
+  "cloud": {
+    "deployed": false,
+    "resources_created": false,
+    "spend_by_this_build_usd": 0,
+    "training_authorized": true,
+    "reason": "Local search completed in 55 seconds; user deferred deployment"
+  },
+  "not_verified": [
+    "Clean installation on a second laptop",
+    "Physically disconnected-network rehearsal",
+    "Container build/Cloud Run deployment",
+    "Real stock quantities, pulse ratings, mechanical mounting and laboratory accuracy"
+  ],
+  "accuracy_v2": {
+    "summary": "artifacts/experiments/v2/summary.json",
+    "protocol": "artifacts/experiments/v2/protocol.json",
+    "elapsed_seconds": 54.96005395799875,
+    "macro_normalized_rmse_improvement_pct": 5.365555163706571,
+    "evaluation": "Train nested CV development evidence; historical V1 refit parameters and explored Train features",
+    "hidden_test_evaluated": false,
+    "active_default": "residual-competition-v1",
+    "optional_mode": "experimental_v2",
+    "support_policy": "calculator-settings-and-envelope-v2",
+    "integrity_review": "artifacts/qa/freeze_and_release_review.json"
+  },
+  "previous_release_validation": {
+    "extracted_root": "/var/folders/1x/dbv5hr0j6q31yd6qf988kzqw0000gn/T/impulsetwin-release-check-ay0z18yz/ImpulseTwin_AI",
+    "verified_files": 172,
+    "zip_integrity_passed": true,
+    "sha_manifest_passed": true,
+    "live_history_and_raw_uploads_excluded": true,
+    "launch_scope": "Current machine, using existing installed pinned dependencies; not a fresh-machine installation.",
+    "archive_launch_passed": true,
+    "launch_command": "make demo PYTHON=/Library/Frameworks/Python.framework/Versions/3.12/bin/python3",
+    "browser_verified": [
+      "Offline API documentation",
+      "Fresh default optimizer run",
+      "Final printable report with visible model disagreement"
+    ],
+    "recorded_at_utc": "2026-10-01T05:13:39.390830+00:00",
+    "status": "passed",
+    "note": "Extracted payload verified and launched on this machine with existing dependencies. Final archive integrity/manifest is verified again after QA metadata is packaged."
+  },
+  "release_validation": {
+    "recorded_at_utc": "2026-10-01T06:48:04.294443+00:00",
+    "status": "passed",
+    "extracted_root": "/var/folders/1x/dbv5hr0j6q31yd6qf988kzqw0000gn/T/impulsetwin-v2-release-e45ckibv/ImpulseTwin_AI",
+    "verified_files": 204,
+    "zip_integrity_passed": true,
+    "sha_manifest_passed": true,
+    "live_history_and_raw_uploads_excluded": true,
+    "application_checks": {
+      "static_routes": 6,
+      "api_docs": true,
+      "frozen_registry": true,
+      "default_and_v2_optimizer": true,
+      "reports": true,
+      "xgboost_not_required_for_serving": true
+    },
+    "launch_scope": "Extracted application loaded through FastAPI TestClient on current machine with existing installed dependencies; no new hosting deployment or fresh-machine installation.",
+    "archive_launch_passed": true,
+    "note": "Extracted backend application checks passed. Backend code and model artifacts are unchanged in the final package; final UI wording and rebuilt assets verified separately in the browser and offline asset check. Final ZIP and per-file manifest are verified after packaging this QA record."
+  }
+}

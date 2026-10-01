@@ -1,0 +1,16 @@
+{
+  "extracted_root": "/var/folders/1x/dbv5hr0j6q31yd6qf988kzqw0000gn/T/impulsetwin-release-check-ay0z18yz/ImpulseTwin_AI",
+  "verified_files": 172,
+  "zip_integrity_passed": true,
+  "sha_manifest_passed": true,
+  "live_history_and_raw_uploads_excluded": true,
+  "launch_scope": "Current machine, using existing installed pinned dependencies; not a fresh-machine installation.",
+  "archive_launch_passed": true,
+  "launch_command": "make demo PYTHON=/Library/Frameworks/Python.framework/Versions/3.12/bin/python3",
+  "browser_verified": [
+    "Offline API documentation",
+    "Fresh default optimizer run",
+    "Final printable report with visible model disagreement"
+  ],
+  "recorded_at_utc": "2026-10-01T05:13:39.390830+00:00"
+}

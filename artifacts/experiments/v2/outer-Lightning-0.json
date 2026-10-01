@@ -1,0 +1,253 @@
+{
+  "fold": 0,
+  "selection": [
+    {
+      "name": "Ridge",
+      "basis": "minimal mechanism",
+      "relative": true,
+      "params": {
+        "alpha": 0.01
+      }
+    },
+    {
+      "name": "Ridge",
+      "basis": "minimal mechanism",
+      "relative": false,
+      "params": {
+        "alpha": 1.0
+      }
+    },
+    {
+      "name": "Ridge",
+      "basis": "physics interactions",
+      "relative": true,
+      "params": {
+        "alpha": 1.0
+      }
+    }
+  ],
+  "inner_leaders": [
+    [
+      {
+        "name": "Ridge",
+        "basis": "minimal mechanism",
+        "relative": true,
+        "params": {
+          "alpha": 0.01
+        },
+        "inner_normalized_mse": 0.00039571411180268037
+      },
+      {
+        "name": "Ridge",
+        "basis": "minimal mechanism",
+        "relative": true,
+        "params": {
+          "alpha": 1.0
+        },
+        "inner_normalized_mse": 0.0003957269063893488
+      },
+      {
+        "name": "Ridge",
+        "basis": "minimal mechanism",
+        "relative": false,
+        "params": {
+          "alpha": 0.01
+        },
+        "inner_normalized_mse": 0.0003969453800682444
+      },
+      {
+        "name": "Ridge",
+        "basis": "minimal mechanism",
+        "relative": false,
+        "params": {
+          "alpha": 1.0
+        },
+        "inner_normalized_mse": 0.0003969505783725517
+      },
+      {
+        "name": "Polynomial Ridge",
+        "basis": "minimal mechanism",
+        "relative": true,
+        "params": {
+          "alpha": 1.0
+        },
+        "inner_normalized_mse": 0.0004066668850778847
+      },
+      {
+        "name": "Polynomial Ridge",
+        "basis": "minimal mechanism",
+        "relative": false,
+        "params": {
+          "alpha": 1.0
+        },
+        "inner_normalized_mse": 0.0004074409033925424
+      },
+      {
+        "name": "Ridge",
+        "basis": "compact inputs",
+        "relative": true,
+        "params": {
+          "alpha": 1.0
+        },
+        "inner_normalized_mse": 0.00041002192614742204
+      },
+      {
+        "name": "Ridge",
+        "basis": "compact inputs",
+        "relative": false,
+        "params": {
+          "alpha": 1.0
+        },
+        "inner_normalized_mse": 0.00041155695301253015
+      }
+    ],
+    [
+      {
+        "name": "Ridge",
+        "basis": "minimal mechanism",
+        "relative": false,
+        "params": {
+          "alpha": 1.0
+        },
+        "inner_normalized_mse": 0.003923363394088974
+      },
+      {
+        "name": "Ridge",
+        "basis": "minimal mechanism",
+        "relative": false,
+        "params": {
+          "alpha": 0.01
+        },
+        "inner_normalized_mse": 0.003923466546013122
+      },
+      {
+        "name": "Ridge",
+        "basis": "minimal mechanism",
+        "relative": true,
+        "params": {
+          "alpha": 1.0
+        },
+        "inner_normalized_mse": 0.0039235160437558385
+      },
+      {
+        "name": "Ridge",
+        "basis": "minimal mechanism",
+        "relative": true,
+        "params": {
+          "alpha": 0.01
+        },
+        "inner_normalized_mse": 0.003923619764595021
+      },
+      {
+        "name": "Ridge",
+        "basis": "physics interactions",
+        "relative": false,
+        "params": {
+          "alpha": 1.0
+        },
+        "inner_normalized_mse": 0.003927389822444228
+      },
+      {
+        "name": "Ridge",
+        "basis": "physics interactions",
+        "relative": true,
+        "params": {
+          "alpha": 1.0
+        },
+        "inner_normalized_mse": 0.003927402078524787
+      },
+      {
+        "name": "Polynomial Ridge",
+        "basis": "minimal mechanism",
+        "relative": false,
+        "params": {
+          "alpha": 1.0
+        },
+        "inner_normalized_mse": 0.0039315767906732005
+      },
+      {
+        "name": "Polynomial Ridge",
+        "basis": "minimal mechanism",
+        "relative": true,
+        "params": {
+          "alpha": 1.0
+        },
+        "inner_normalized_mse": 0.003931635320826914
+      }
+    ],
+    [
+      {
+        "name": "Ridge",
+        "basis": "physics interactions",
+        "relative": true,
+        "params": {
+          "alpha": 1.0
+        },
+        "inner_normalized_mse": 0.013319759020767468
+      },
+      {
+        "name": "Ridge",
+        "basis": "physics interactions",
+        "relative": false,
+        "params": {
+          "alpha": 1.0
+        },
+        "inner_normalized_mse": 0.0134484792076205
+      },
+      {
+        "name": "Spline Ridge",
+        "basis": "physics interactions",
+        "relative": true,
+        "params": {
+          "alpha": 100.0
+        },
+        "inner_normalized_mse": 0.013693102883269085
+      },
+      {
+        "name": "Ridge",
+        "basis": "compact inputs",
+        "relative": true,
+        "params": {
+          "alpha": 1.0
+        },
+        "inner_normalized_mse": 0.013826365862891845
+      },
+      {
+        "name": "Extra Trees",
+        "basis": "physics interactions",
+        "relative": true,
+        "params": {
+          "min_samples_leaf": 15
+        },
+        "inner_normalized_mse": 0.013883080935290325
+      },
+      {
+        "name": "Ridge",
+        "basis": "compact inputs",
+        "relative": false,
+        "params": {
+          "alpha": 1.0
+        },
+        "inner_normalized_mse": 0.013901745042034
+      },
+      {
+        "name": "Extra Trees",
+        "basis": "physics interactions",
+        "relative": true,
+        "params": {
+          "min_samples_leaf": 5
+        },
+        "inner_normalized_mse": 0.014009414700441829
+      },
+      {
+        "name": "Ridge",
+        "basis": "V1 physics features",
+        "relative": true,
+        "params": {
+          "alpha": 1.0
+        },
+        "inner_normalized_mse": 0.014030896285868838
+      }
+    ]
+  ]
+}

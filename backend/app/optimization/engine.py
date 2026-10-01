@@ -1,0 +1,230 @@
+from pathlib import Path
+from itertools import product
+import json
+import math
+import numpy as np
+from scipy.stats import qmc
+from scipy.optimize import brentq
+from ..schemas import OptimizeRequest, GeneratorProfile
+from ..data.workbook_reference import predict
+from ..physics.circuit import simulate
+from ..physics.waveform_metrics import waveform_from_metrics
+from ..physics.compliance import check, RULES
+from ..ml.registry import infer
+from .networks import nearest_networks
+
+ROOT=Path(__file__).resolve().parents[3]
+PROFILES=[GeneratorProfile.model_validate(p).model_dump() for p in json.loads((ROOT/'config/generator_profiles.json').read_text())]
+WEIGHTS=json.loads((ROOT/'config/optimization.json').read_text())
+
+def profile_for(pid):
+    for p in PROFILES:
+        if p['id']==pid: return p
+    raise ValueError('Unknown generator profile.')
+
+def stock_for(req,p):
+    if req.inventory_override:
+        def stock(items):
+            if len({i.ohm for i in items})!=len(items): raise ValueError('Inventory contains duplicate resistance values; consolidate their counts.')
+            if len(items)>15: raise ValueError('At most 15 distinct resistance values per inventory.')
+            return {i.ohm:i.count_per_stage for i in items}
+        return stock(req.inventory_override.front),stock(req.inventory_override.tail),req.inventory_override.provenance
+    count=p['units_per_value_per_stage']
+    if count is None: raise ValueError('This hardware source gives resistor values but no stock quantities. Enter an explicit inventory with counts and provenance.')
+    tails=p['lightning_tail_values'] if req.impulse_type=='Lightning' else p['switching_tail_values']
+    return {r:count for r in p['front_values']},{r:count for r in tails},p['source']
+
+def physics(req,p,n,charge,rf,rt,include_waveform=False):
+    stray=req.stray_c_pf+(p['base_c_pf'] or 0 if req.include_base_c else 0)
+    if req.solver=='reference':
+        return predict(n,charge,rf,rt,req.load_c_pf,req.divider_c_pf,stray,req.l_uh,req.efficiency,p['stage_c_uf'])
+    return simulate(n,charge,rf,rt,p['stage_c_uf'],req.load_c_pf+req.divider_c_pf+stray,req.l_uh,req.efficiency,req.impulse_type,include_waveform)
+
+def ml_row(req,settings,phys):
+    return {'Impulse_Type':req.impulse_type,'Test_kV':req.test_kv,'Load_C_pF':req.load_c_pf,
+       'Divider_C_pF':req.divider_c_pf,'Stray_C_pF':req.stray_c_pf,'L_uH':req.l_uh,'Efficiency':req.efficiency,
+       'Stages':settings['stages'],'Charge_kV_Stage':settings['charge_kv_stage'],
+       'Front_R_Stage':settings['front_r_stage'],'Tail_R_Stage':settings['tail_r_stage'],
+       'Physics_FrontPeak_us':phys['front_us'],'Physics_Tail_us':phys['tail_us'],'Physics_Crest_kV':phys['crest_kv']}
+
+def score_candidate(c):
+    rows=c['compliance']['rows']; normalized=[abs(r['predicted']-r['target'])/((r['upper']-r['lower'])/2) for r in rows]
+    count=c['front_network']['count_per_stage']+c['tail_network']['count_per_stage']
+    terms={'front_deviation':normalized[0]*WEIGHTS['front_deviation'],'tail_deviation':normalized[1]*WEIGHTS['tail_deviation'],
+       'crest_deviation':normalized[2]*WEIGHTS['crest_deviation'],'setup_complexity':WEIGHTS['component_count']*count*c['settings']['stages'],
+       'ood_penalty':WEIGHTS['ood_penalty']*(1-c['ood']['trust_weight']),
+       'operating_margin_penalty':WEIGHTS['stage_utilization_penalty']*c['settings']['stage_utilization'],
+       'uncertainty_penalty':WEIGHTS['uncertainty_penalty']*sum(h/max(r['upper']-r['lower'],1e-9) for h,r in zip(c['uncertainty']['halfwidth'],rows))}
+    c['score_breakdown']=terms; c['score']=sum(terms.values()); c['accuracy_cost']=sum(normalized)
+    c['setup_component_count']=count*c['settings']['stages']
+    return (not c['compliance']['nominal_pass'],c['score'])
+
+def optimize(req:OptimizeRequest,calibration=None):
+    p=profile_for(req.profile_id)
+    if not p['enabled']: raise ValueError('Profile is incomplete. Verified capacitance, energy and inventory are required.')
+    if not p['voltage_min_kv']<=req.test_kv<=p['voltage_max_kv']:
+        raise ValueError(f"Requested {req.test_kv:g} kV is outside {p['voltage_min_kv']:g}–{p['voltage_max_kv']:g} kV for this profile. No recommendation generated.")
+    if req.equipment_reference_kv and abs(req.test_kv/req.equipment_reference_kv-1)>.03 and not req.confirm_reference_mismatch:
+        raise ValueError('Entered voltage differs from the supplied equipment reference by more than 3%. Confirm the applicable reference before proceeding. The requested voltage has not been changed.')
+    front_stock,tail_stock,inventory_source=stock_for(req,p)
+    if not any(front_stock.values()) or not any(tail_stock.values()):
+        raise ValueError('No constructible network: front or tail inventory is empty.')
+    rule=RULES[req.impulse_type]; min_n=max(p['min_stages'],req.stage_min or p['min_stages'])
+    max_n=min(p['max_stages'],req.stage_max or p['max_stages'])
+    if req.stage_min and req.stage_min>p['max_stages']: raise ValueError('Requested stage constraint exceeds profile capacity.')
+    candidates=[]; rejected={'stage_voltage_or_energy':0,'nonfinite_or_invalid_waveform':0}; examined=0
+    c2=(req.load_c_pf+req.divider_c_pf+req.stray_c_pf+((p['base_c_pf'] or 0) if req.include_base_c else 0))*1e-12
+    for n in range(min_n,max_n+1):
+        charge=req.test_kv/(req.efficiency*n)
+        # Circuit load transfer reduces crest, so solve charge from unit linear response
+        # individually below. Initial estimate is only used for network targeting.
+        if charge>p['stage_kv']: rejected['stage_voltage_or_energy']+=1; continue
+        rf_target=math.sqrt(max(1e-18,(rule['front_target_us']/1e6/1.67)**2-2.5*req.l_uh*1e-6*c2))/c2/n
+        if req.solver=='circuit':
+            rf_target=rule['front_target_us']/1e6/(3.2*c2*n) if req.impulse_type=='Lightning' else rf_target*.25
+        rt_target=rule['tail_target_us']/1e6/(.693*(p['stage_c_uf']*1e-6/n+c2))/n
+        if req.solver=='circuit':
+            # Continuous targeting only locates useful discrete stock networks.
+            # These values are never emitted as constructible recommendations.
+            # Iterate because front and tail resistors both influence both times.
+            for _ in range(2):
+                try:
+                    rf_target=math.exp(brentq(lambda lr:physics(req,p,n,charge,math.exp(lr),rt_target)['front_us']-rule['front_target_us'],math.log(max(rf_target*.15,.01)),math.log(rf_target*5),xtol=1e-5))
+                except ValueError: pass
+                try:
+                    rt_target=math.exp(brentq(lambda lr:physics(req,p,n,charge,rf_target,math.exp(lr))['tail_us']-rule['tail_target_us'],math.log(max(rt_target*.3,.01)),math.log(rt_target*3),xtol=1e-5))
+                except ValueError: pass
+        fronts=nearest_networks(front_stock,rf_target,req.max_components_per_network,5)
+        tails=nearest_networks(tail_stock,rt_target,req.max_components_per_network,5)
+        for fn,tn in product(fronts,tails):
+            examined+=1; rf=fn['equivalent_ohm']; rt=tn['equivalent_ohm']; q=charge
+            try:
+                ph=physics(req,p,n,q,rf,rt)
+                if req.solver=='circuit':
+                    q*=req.test_kv/ph['crest_kv']; ph=physics(req,p,n,q,rf,rt)
+                energy=n*.5*p['stage_c_uf']*1e-6*(q*1000)**2/1000
+                if q>p['stage_kv']+1e-9 or energy>p['energy_total_kj']+1e-9 or energy/n>p['energy_stage_kj']+1e-9:
+                    rejected['stage_voltage_or_energy']+=1; continue
+                if not all(math.isfinite(ph[k]) and ph[k]>0 for k in ['front_us','tail_us','crest_kv']): raise ValueError('Nonfinite metric')
+                settings={'stages':n,'charge_kv_stage':q,'front_r_stage':rf,'tail_r_stage':rt,
+                   'stage_utilization':q/p['stage_kv'],'stored_energy_kj':energy,
+                   'voltage_margin_kv_stage':p['stage_kv']-q,'energy_margin_kj':p['energy_total_kj']-energy,
+                   'energy_margin_pct':100*(1-energy/p['energy_total_kj'])}
+                def network(item):
+                    return {**item,'total_components':item['count_per_stage']*n,
+                        'components':[{**i,'total_required':i['count_per_stage']*n,'available_per_stage':(front_stock if item is fn else tail_stock)[i['ohm']]} for i in item['components']]}
+                candidates.append({'id':f'c{len(candidates)+1}','settings':settings,'front_network':network(fn),'tail_network':network(tn),'physics':ph})
+            except (ValueError,ArithmeticError,np.linalg.LinAlgError): rejected['nonfinite_or_invalid_waveform']+=1
+    if not candidates: raise ValueError('No settings satisfy stage-voltage, stored-energy and inventory constraints. Lower requested crest, change the verified inventory, or review the selected profile.')
+    mode=req.model_mode if req.solver=='reference' and not req.include_base_c else 'physics'
+    ml=infer([ml_row(req,c['settings'],c['physics']) for c in candidates],p['id'],mode)
+    for c,m in zip(candidates,ml):
+        c.update(m); c['calibration']=None
+        if calibration and calibration_matches(calibration,req,c):
+            bias=np.array(calibration['bias']); pred=np.array(c['prediction'])+bias
+            c['prediction']=pred.tolist(); c['uncertainty']['lower']=(np.array(c['uncertainty']['lower'])+bias).tolist(); c['uncertainty']['upper']=(np.array(c['uncertainty']['upper'])+bias).tolist()
+            c['calibration']={'id':calibration['id'],'bias':bias.tolist(),'source_type':calibration['source_type'],'method':'Local additive correction from one shot; not production model retraining'}
+            c['uncertainty']['coverage_claim']=None; c['uncertainty']['method']+='; one-shot calibration unvalidated'
+            c['ood']['lab_calibrated']=calibration['source_type']=='measured_lab'
+        c['hybrid']=dict(zip(['front_us','tail_us','crest_kv'],c['prediction']))
+        c['compliance']=check(req.impulse_type,req.test_kv,c['hybrid'],c['uncertainty'])
+        score_candidate(c)
+    candidates.sort(key=score_candidate)
+    selected=candidates[:10]
+    calibrated=[c for c in candidates if c.get('calibration')]
+    # Always compute the corrected original setting for the trial workflow, even
+    # if a different setting is ranked above it after feedback.
+    for c in calibrated:
+        if not any(s['id']==c['id'] for s in selected): selected.append(c)
+    for c in selected:
+        robustness(req,p,c,mode)
+        score_candidate(c)
+    selected.sort(key=lambda c:(not c['compliance']['nominal_pass'],not c['compliance']['robust_pass'],c['score']))
+    selected=selected[:5]
+    calibration_review=None
+    if calibration:
+        if calibrated:
+            cc=calibrated[0]
+            calibration_review={'id':calibration['id'],'applied':True,'matched_candidates':len(calibrated),
+                'source_type':calibration['source_type'],'settings':cc['settings'],'physics':cc['physics'],
+                'corrected_prediction':cc['hybrid'],'correction':cc['calibration']['bias'],
+                'compliance':cc['compliance'],'uncertainty':cc['uncertainty'],
+                'retained_in_top_five':any(c['id']==cc['id'] for c in selected),
+                'next_adjustment_note':'Compare the corrected original setting to the ranked alternatives. Correction is not extrapolated to different resistor networks.'}
+        else:
+            calibration_review={'id':calibration['id'],'applied':False,'matched_candidates':0,
+                'reason':'No candidate matches the saved profile, model, layout, settings and 1% input scope. No calibration correction was applied.'}
+    for rank,c in enumerate(selected,1):
+        c['rank']=rank; s=c['settings']
+        c['explanation']=[f"{s['stages']} stages keep charging at {s['charge_kv_stage']:.2f} kV/stage, below the {p['stage_kv']:g} kV limit.",
+            f"Every resistor is counted: {c['setup_component_count']} total parts across front and tail networks.",
+            f"Ranking combines tolerance-normalized waveform error, component count, uncertainty and operating margin. Score {c['score']:.3f}; lower is better.",
+            f"ML trust weight {c['ood']['trust_weight']:.2f}; {c['ood']['state'].replace('_',' ')}. No laboratory accuracy claim."]
+        if rank==1 and len(selected)>1:
+            runner=selected[1]
+            c['explanation'].append(f"Rank 1 versus rank 2: compliance is ordered first, then interval containment, then the weighted cost ({c['score']:.4f} versus {runner['score']:.4f}). This setup uses {c['setup_component_count']} parts versus {runner['setup_component_count']}; lower cost can trade waveform deviation against complexity and headroom.")
+        if req.solver=='reference':
+            try:
+                c['waveform']=waveform_from_metrics(*c['prediction'],req.impulse_type)
+                c['physics_waveform']=waveform_from_metrics(c['physics']['front_us'],c['physics']['tail_us'],c['physics']['crest_kv'],req.impulse_type)
+            except ValueError: c['waveform']=None; c['physics_waveform']=None
+            circuit=simulate(s['stages'],s['charge_kv_stage'],s['front_r_stage'],s['tail_r_stage'],p['stage_c_uf'],c2*1e12,req.l_uh,req.efficiency,req.impulse_type)
+            c['circuit_crosscheck']={**circuit,'compliance':check(req.impulse_type,req.test_kv,circuit)}
+        else:
+            circuit=physics(req,p,s['stages'],s['charge_kv_stage'],s['front_r_stage'],s['tail_r_stage'],True)
+            c['waveform']=circuit['waveform']; c['physics_waveform']=circuit['waveform']; c['circuit_crosscheck']=None
+        c['pareto_optimal']=not any(other is not c and other['accuracy_cost']<=c['accuracy_cost'] and other['setup_component_count']<=c['setup_component_count'] and other['settings']['stage_utilization']<=s['stage_utilization'] and (other['accuracy_cost']<c['accuracy_cost'] or other['setup_component_count']<c['setup_component_count']) for other in selected)
+    warnings=['Decision support only. Engineer verification and laboratory procedures remain required.',
+              'All trained models use supplied synthetic data. No measured laboratory validation has been completed.']
+    if mode=='experimental_v2': warnings.append('Experimental V2 candidate: Train cross-validation development evidence only. No V2 Hidden Test or laboratory evaluation. Frozen V1 remains the default model.')
+    if req.solver=='reference': warnings.append('Reference formulas assert crest = n × charge × efficiency. Curves reconstruct predicted metrics; the independent circuit cross-check can disagree.')
+    if any(c['ood']['trust_weight']<1 for c in selected): warnings.append('Some hardware settings lie outside training support. Their correction is reduced or disabled and intervals have no calibrated coverage claim.')
+    if not selected[0]['compliance']['nominal_pass']: warnings.append('No nominally compliant candidate was found in the bounded search. Listed settings are diagnostic alternatives, not recommended passes.')
+    return {'profile':p,'rules':RULES,'inputs':req.model_dump(),'model_version':ml[0]['model_version'],
+        'candidates':selected,'target_waveform':waveform_from_metrics(rule['front_target_us'],rule['tail_target_us'],req.test_kv,req.impulse_type),
+        'search':{'evaluated':examined,'hardware_feasible':len(candidates),'rejected':rejected,'search_kind':'Bounded series DP + up-to-three-part parallel/mixed networks; nearest five front/tail choices per stage, not exhaustive global optimization.'},
+        'inventory_provenance':inventory_source,'warnings':warnings,'source_type':'model_prediction','ranking_config':WEIGHTS,
+        'calibration_review':calibration_review}
+
+def calibration_matches(cal,req,c):
+    scope=cal['scope']; s=c['settings']
+    return (scope.get('generator_profile')==profile_for(req.profile_id)
+        and scope.get('rules_version')==RULES['version']
+        and scope.get('front_topology')==c['front_network']['topology']
+        and scope.get('tail_topology')==c['tail_network']['topology']
+        and scope.get('model_version')==c['model_version']
+        and all(scope.get(k)==getattr(req,k) for k in ['profile_id','impulse_type','layout_id','solver','model_mode','include_base_c'])
+        and all(abs(scope[k]-getattr(req,k))<=max(abs(scope[k])*.01,1e-8) for k in ['test_kv','load_c_pf','divider_c_pf','stray_c_pf','l_uh','efficiency'])
+        and all(abs(scope[k]-s[k])<1e-8 for k in ['stages','front_r_stage','tail_r_stage','charge_kv_stage']))
+
+def robustness(req,p,c,mode):
+    keys=['load_c_pf','divider_c_pf','stray_c_pf','l_uh']; s=c['settings']
+    samples=qmc.LatinHypercube(d=4,seed=73).random(req.monte_carlo_samples)
+    variations=[]; phys=[]; rows=[]
+    for sample in samples:
+        change={k:getattr(req,k)*(1+(2*u-1)*req.uncertainty_pct/100) for k,u in zip(keys,sample)}
+        r=req.model_copy(update=change); ph=physics(r,p,s['stages'],s['charge_kv_stage'],s['front_r_stage'],s['tail_r_stage'])
+        rows.append(ml_row(r,s,ph)); phys.append(ph); variations.append(r)
+    predictions=infer(rows,p['id'],mode)
+    bias=np.array(c['calibration']['bias']) if c.get('calibration') else np.zeros(3)
+    values=np.array([r['prediction'] for r in predictions])+bias
+    lows=np.array([r['uncertainty']['lower'] for r in predictions])+bias
+    highs=np.array([r['uncertainty']['upper'] for r in predictions])+bias
+    c['uncertainty']['lower']=np.minimum(lows.min(axis=0),c['uncertainty']['lower']).tolist()
+    c['uncertainty']['upper']=np.maximum(highs.max(axis=0),c['uncertainty']['upper']).tolist()
+    if any(r['ood']['trust_weight']<1 for r in predictions):
+        c['uncertainty']['coverage_claim']=None
+        c['uncertainty']['method']='Combined scenario envelopes include unsupported settings; no calibrated coverage guarantee'
+    c['uncertainty']['halfwidth']=np.maximum(np.array(c['prediction'])-c['uncertainty']['lower'],np.array(c['uncertainty']['upper'])-c['prediction']).tolist()
+    passed=[check(req.impulse_type,req.test_kv,dict(zip(['front_us','tail_us','crest_kv'],v)))['nominal_pass'] for v in values]
+    c['compliance']=check(req.impulse_type,req.test_kv,c['hybrid'],c['uncertainty'])
+    nominal=np.array([c['physics'][k] for k in ['front_us','tail_us','crest_kv']]); sensitivity={}
+    for k in keys:
+        r=req.model_copy(update={k:getattr(req,k)*1.05})
+        ph=physics(r,p,s['stages'],s['charge_kv_stage'],s['front_r_stage'],s['tail_r_stage'])
+        sensitivity[k]=float(np.max(abs(np.array([ph[x] for x in ['front_us','tail_us','crest_kv']])/nominal-1))*100)
+    c['robustness']={'samples':len(samples),'seed':73,'method':'Latin hypercube; independent uniform parasitic ranges',
+        'uncertainty_pct':req.uncertainty_pct,'parameters':keys,'nominal_scenario_pass_pct':float(np.mean(passed)*100),
+        'note':'Scenario fraction under stated assumptions, not probability of laboratory success. Intervals include finite sampled extremes; not a proof over continuous bounds.',
+        'minimum':values.min(axis=0).tolist(),'maximum':values.max(axis=0).tolist(),
+        'sensitivity_5pct':sensitivity,'most_sensitive_parameter':max(sensitivity,key=sensitivity.get)}

@@ -1,0 +1,253 @@
+{
+  "fold": 3,
+  "selection": [
+    {
+      "name": "Polynomial Ridge",
+      "basis": "minimal mechanism",
+      "relative": false,
+      "params": {
+        "alpha": 1.0
+      }
+    },
+    {
+      "name": "Spline Ridge",
+      "basis": "physics interactions",
+      "relative": true,
+      "params": {
+        "alpha": 100.0
+      }
+    },
+    {
+      "name": "Extra Trees",
+      "basis": "physics interactions",
+      "relative": true,
+      "params": {
+        "min_samples_leaf": 5
+      }
+    }
+  ],
+  "inner_leaders": [
+    [
+      {
+        "name": "Polynomial Ridge",
+        "basis": "minimal mechanism",
+        "relative": false,
+        "params": {
+          "alpha": 1.0
+        },
+        "inner_normalized_mse": 0.001145911197423765
+      },
+      {
+        "name": "Polynomial Ridge",
+        "basis": "minimal mechanism",
+        "relative": true,
+        "params": {
+          "alpha": 1.0
+        },
+        "inner_normalized_mse": 0.0011459128819553337
+      },
+      {
+        "name": "Ridge",
+        "basis": "minimal mechanism",
+        "relative": false,
+        "params": {
+          "alpha": 0.01
+        },
+        "inner_normalized_mse": 0.0011532553882963718
+      },
+      {
+        "name": "Ridge",
+        "basis": "minimal mechanism",
+        "relative": true,
+        "params": {
+          "alpha": 0.01
+        },
+        "inner_normalized_mse": 0.0011532649957932478
+      },
+      {
+        "name": "Ridge",
+        "basis": "minimal mechanism",
+        "relative": false,
+        "params": {
+          "alpha": 1.0
+        },
+        "inner_normalized_mse": 0.0011532841440464966
+      },
+      {
+        "name": "Ridge",
+        "basis": "minimal mechanism",
+        "relative": true,
+        "params": {
+          "alpha": 1.0
+        },
+        "inner_normalized_mse": 0.0011532936847230104
+      },
+      {
+        "name": "Ridge",
+        "basis": "physics interactions",
+        "relative": false,
+        "params": {
+          "alpha": 1.0
+        },
+        "inner_normalized_mse": 0.0011683066073440325
+      },
+      {
+        "name": "Ridge",
+        "basis": "physics interactions",
+        "relative": true,
+        "params": {
+          "alpha": 1.0
+        },
+        "inner_normalized_mse": 0.0011683090444451125
+      }
+    ],
+    [
+      {
+        "name": "Spline Ridge",
+        "basis": "physics interactions",
+        "relative": true,
+        "params": {
+          "alpha": 100.0
+        },
+        "inner_normalized_mse": 0.002604946602134486
+      },
+      {
+        "name": "XGBoost",
+        "basis": "physics interactions",
+        "relative": true,
+        "params": {
+          "max_depth": 2
+        },
+        "inner_normalized_mse": 0.002605643602003676
+      },
+      {
+        "name": "Polynomial Ridge",
+        "basis": "minimal mechanism",
+        "relative": false,
+        "params": {
+          "alpha": 1.0
+        },
+        "inner_normalized_mse": 0.002609120161964614
+      },
+      {
+        "name": "Extra Trees",
+        "basis": "physics interactions",
+        "relative": true,
+        "params": {
+          "min_samples_leaf": 15
+        },
+        "inner_normalized_mse": 0.0026098076724558354
+      },
+      {
+        "name": "Polynomial Ridge",
+        "basis": "minimal mechanism",
+        "relative": true,
+        "params": {
+          "alpha": 1.0
+        },
+        "inner_normalized_mse": 0.00260984038910182
+      },
+      {
+        "name": "XGBoost",
+        "basis": "compact inputs",
+        "relative": true,
+        "params": {
+          "max_depth": 2
+        },
+        "inner_normalized_mse": 0.0026119422972332865
+      },
+      {
+        "name": "Spline Ridge",
+        "basis": "compact inputs",
+        "relative": true,
+        "params": {
+          "alpha": 100.0
+        },
+        "inner_normalized_mse": 0.0026202147967593387
+      },
+      {
+        "name": "Ridge",
+        "basis": "physics interactions",
+        "relative": false,
+        "params": {
+          "alpha": 100.0
+        },
+        "inner_normalized_mse": 0.002626942895364983
+      }
+    ],
+    [
+      {
+        "name": "Extra Trees",
+        "basis": "physics interactions",
+        "relative": true,
+        "params": {
+          "min_samples_leaf": 5
+        },
+        "inner_normalized_mse": 0.013330970145652028
+      },
+      {
+        "name": "Histogram Boosting",
+        "basis": "physics interactions",
+        "relative": true,
+        "params": {
+          "max_leaf_nodes": 15
+        },
+        "inner_normalized_mse": 0.01389378492534775
+      },
+      {
+        "name": "Ridge",
+        "basis": "physics interactions",
+        "relative": true,
+        "params": {
+          "alpha": 1.0
+        },
+        "inner_normalized_mse": 0.013944634781680846
+      },
+      {
+        "name": "Ridge",
+        "basis": "physics interactions",
+        "relative": false,
+        "params": {
+          "alpha": 1.0
+        },
+        "inner_normalized_mse": 0.014042178018760286
+      },
+      {
+        "name": "Spline Ridge",
+        "basis": "compact inputs",
+        "relative": true,
+        "params": {
+          "alpha": 1.0
+        },
+        "inner_normalized_mse": 0.014061529776802303
+      },
+      {
+        "name": "Histogram Boosting",
+        "basis": "physics interactions",
+        "relative": true,
+        "params": {
+          "max_leaf_nodes": 7
+        },
+        "inner_normalized_mse": 0.014175544439931175
+      },
+      {
+        "name": "Extra Trees",
+        "basis": "physics interactions",
+        "relative": true,
+        "params": {
+          "min_samples_leaf": 15
+        },
+        "inner_normalized_mse": 0.014179307572191232
+      },
+      {
+        "name": "Spline Ridge",
+        "basis": "physics interactions",
+        "relative": true,
+        "params": {
+          "alpha": 100.0
+        },
+        "inner_normalized_mse": 0.014236906209664895
+      }
+    ]
+  ]
+}

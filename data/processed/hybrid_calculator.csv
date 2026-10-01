@@ -1,0 +1,21 @@
+HYBRID PHYSICS–MACHINE LEARNING IMPULSE GENERATOR OPTIMISER,,,,,,,
+400 kV Insulators · Lightning 1.2/50 µs and Switching 250/2500 µs · Original generator constraints + synthetic ML residual correction,,,,,,,
+,,,,,,,
+USER INPUT,VALUE,,PHYSICS LAYER,RESULT,,ML RESIDUAL CORRECTION,PREDICTION
+Maximum system voltage (kV),400,,Target front/peak time (µs),1.2,,Algorithm,kNN residual regression (k=7)
+Impulse type,Lightning,,Target tail time (µs),50,,ML front/peak time (µs),1.204896648838928
+Required test voltage (kV),1425,,Total load capacitance (pF),1500,,ML tail time (µs),51.963708586038585
+Insulator/load capacitance (pF),850,,Required stages,9,,ML crest voltage (kV),1432.94658495185
+Divider capacitance (pF),500,,Charging voltage/stage (kV),193.08943089430895,,Front/peak correction,-0.005133309467890035
+Stray capacitance (pF),150,,Stage utilization,0.9654471544715447,,Tail correction,-0.24517891396140357
+Stray inductance (µH),18.5,,Generator capacitance C1 (µF),0.3333333333333333,,Crest correction,7.9465849518499
+Expected efficiency,0.82,,Theoretical total front R (Ω),445.69925298597315,,Physics-feasible?,YES
+Maximum stages,15,,Theoretical front R/stage (Ω),49.52213922066368,,Waveform-compliant?,YES
+Maximum stage voltage (kV),200,,Selected front R/stage (Ω),50,,Hybrid recommendation,PASS — RECOMMENDED
+Stage capacitance (µF),3,,Theoretical total tail R (Ω),215.48055395740815,,,
+,,,Theoretical tail R/stage (Ω),23.94228377304535,,,
+SELECTED PRACTICAL RESISTORS,VALUE,,Selected tail R/stage (Ω),25,,,
+Front resistance per stage (Ω),50,,Physics front/peak time (µs),1.2100299583068181,,,
+Front units per stage,1,,Physics tail time (µs),52.20888749999999,,,
+Tail resistance per stage (Ω),25,,Physics crest voltage (kV),1425,,,
+Tail units per stage,1,,,,,,

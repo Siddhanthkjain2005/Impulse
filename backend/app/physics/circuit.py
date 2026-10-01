@@ -1,0 +1,44 @@
+"""Lumped Marx equivalent: generator C shunted by Rt, series Rf/L into load C."""
+import numpy as np
+from scipy.linalg import eig
+from scipy.optimize import brentq
+from .waveform_metrics import analyze
+
+def simulate(stages,charge_kv_stage,front_r_stage,tail_r_stage,stage_c_uf,
+             total_c_pf,l_uh,efficiency,impulse_type='Lightning',include_waveform=True):
+    cg=stage_c_uf*1e-6/stages; cl=total_c_pf*1e-12; rf=front_r_stage*stages; rt=tail_r_stage*stages
+    if min(cg,cl,rf,rt,charge_kv_stage,efficiency)<=0 or l_uh<0: raise ValueError('Nonphysical circuit inputs.')
+    initial=stages*charge_kv_stage*efficiency
+    if l_uh>1e-8:
+        l=l_uh*1e-6
+        a=np.array([[-1/(rt*cg),-1/cg,0],[1/l,-rf/l,-1/l],[0,1/cl,0]],float)
+        z=np.array([initial,0.,0.]); out_index=2
+    else:
+        a=np.array([[-(1/rt+1/rf)/cg,1/(rf*cg)],[1/(rf*cl),-1/(rf*cl)]])
+        z=np.array([initial,0.]); out_index=1
+    eigen,vectors=eig(a); coefficients=np.linalg.solve(vectors,z)
+    if np.any(eigen.real>=0): raise ValueError('Unstable equivalent circuit.')
+    slow=1/min(-eigen.real); fast=max(rf*cl,np.sqrt(l_uh*1e-6*cl),1e-10)
+    t=np.unique(np.r_[np.linspace(0,min(20*fast,slow),550),np.geomspace(max(fast*.001,1e-12),12*slow,650)])
+    v=np.real((vectors[out_index,:]*coefficients)@np.exp(eigen[:,None]*t[None,:]))
+    peak=int(np.argmax(v))
+    if 0<peak<len(t)-1:
+        derivative=lambda x:float(np.real(np.sum(vectors[out_index,:]*coefficients*eigen*np.exp(eigen*x))))
+        try:
+            tp=brentq(derivative,t[peak-1],t[peak+1],xtol=1e-15)
+            t=np.unique(np.r_[t,tp]); v=np.real((vectors[out_index,:]*coefficients)@np.exp(eigen[:,None]*t[None,:]))
+        except ValueError: pass
+    v[0]=0.; result=analyze(t*1e6,v,impulse_type)
+    states=np.real(vectors@(coefficients[:,None]*np.exp(eigen[:,None]*t[None,:])))
+    stored=.5*cg*(states[0]*1000)**2+.5*cl*(states[out_index]*1000)**2
+    if out_index==2: stored+=.5*l*(states[1]*1000)**2
+    initial_energy=.5*cg*(initial*1000)**2
+    energy_ratios=stored/initial_energy
+    result['diagnostics']={'model':'lumped RLC Marx equivalent v1','damping_ratio':float(rf/2*np.sqrt(cl/max(l_uh*1e-6,1e-18))),
+        'eigenvalues_per_second':[{'real':float(e.real),'imaginary':float(e.imag)} for e in eigen],
+        'efficiency_convention':'One voltage factor applied to erected initial voltage; includes assumed spark/connection loss.',
+        'limitations':'No spark-gap dynamics, distributed capacitances, electromagnetic fields or pulse-rating model. Needs lab validation.',
+        'maximum_energy_ratio':float(energy_ratios.max()),
+        'maximum_energy_increase_ratio':float(max(0,np.diff(energy_ratios).max()))}
+    if include_waveform: result['waveform']={'time_us':(t*1e6).tolist(),'voltage_kv':v.tolist(),'kind':'equivalent_circuit'}
+    return result

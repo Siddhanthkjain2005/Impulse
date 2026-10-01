@@ -1,0 +1,41 @@
+{
+  "checked_at": "2026-10-01T06:40:42.791173+00:00",
+  "scope": "Read-only hash and release-input inspection; no training, hidden predictions, packaging or cloud actions.",
+  "checks": {
+    "v1_artifacts_match_preregistered_hashes": true,
+    "dataset_matches_protocol": true,
+    "protocol_matches_summary": true,
+    "protocol_matches_freeze": true,
+    "candidate_matches_summary": true,
+    "candidate_matches_freeze": true,
+    "freeze_matches_final_selection": true,
+    "hidden_not_reevaluated_in_v2": true,
+    "no_cloud_resources": true,
+    "v1_remains_default": true,
+    "release_inputs_exclude_live_history_uploads": true
+  },
+  "v1_artifacts": {
+    "artifacts/models/residual_models.joblib": {
+      "expected": "026f7e1a3c3049bfed4ae1da99efbe5133f5a0e51625544e2477a997adc11e5a",
+      "actual": "026f7e1a3c3049bfed4ae1da99efbe5133f5a0e51625544e2477a997adc11e5a",
+      "matches": true
+    },
+    "artifacts/models/registry.json": {
+      "expected": "ae45602b534ef80a6cc55545cdff3d97aad5f4ee8879c9b4787b78f95208396e",
+      "actual": "ae45602b534ef80a6cc55545cdff3d97aad5f4ee8879c9b4787b78f95208396e",
+      "matches": true
+    },
+    "artifacts/models/hidden_test_evaluation.json": {
+      "expected": "2cebd28690a0a7d93a2e9e4302e3f5bb82d284ee60dad8de3bd97aa37dbfba99",
+      "actual": "2cebd28690a0a7d93a2e9e4302e3f5bb82d284ee60dad8de3bd97aa37dbfba99",
+      "matches": true
+    }
+  },
+  "protocol_sha256": "9881369852ae43f5ca7aadc35544d9bbb3ab75236d5ebd447591fdaba0cd5b61",
+  "frozen_configuration_sha256": "23ded54c4c9245edb555800baa5c9f4dedf67c168d949bd730df47bf7e491a5b",
+  "candidate_models_sha256": "024f5228fafbe6431d8252aec041c7a5c68642277fea6f1d7d3b9a005aee4105",
+  "calibrated_candidate_models_sha256": "9b76c82a1d5ebe564362517e6fc6e77b858726418baabbb31ad03577ca9cbf70",
+  "package_script_sha256": "a79a0d889d97123e82f914db5c17c301ebb06ddbb522da214819b4995ecce24c",
+  "packaging_private_files_included": [],
+  "passed": true
+}

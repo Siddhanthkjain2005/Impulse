@@ -1,0 +1,11 @@
+{
+  "source_type": "generated_stress_test",
+  "count": 120,
+  "seed": 20260930,
+  "reference_pass_count": 23,
+  "circuit_pass_count": 2,
+  "reference_pass_circuit_fail": 21,
+  "reference_fail_circuit_pass": 0,
+  "agreement_fraction": 0.825,
+  "limitations": "This is a deliberately broad synthetic model-disagreement diagnostic, not laboratory false-pass accuracy. The lumped circuit is also an unvalidated model. No rows used for fitting or official benchmark claims. Values are circuit stress settings, not recommendations; stock feasibility is tested separately by the optimizer."
+}

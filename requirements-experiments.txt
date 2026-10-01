@@ -1,0 +1,3 @@
+# Optional local V2 search only. The prepared candidate serves using core deps.
+-r requirements.txt
+xgboost==3.1.2

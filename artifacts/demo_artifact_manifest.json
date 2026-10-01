@@ -1,0 +1,82 @@
+{
+  "lightning_reference": {
+    "source_type": "generated_stress_test",
+    "run_id": "91640476f632",
+    "model_version": "residual-competition-v1",
+    "settings": {
+      "stages": 9,
+      "charge_kv_stage": 193.08943089430895,
+      "front_r_stage": 50.0,
+      "tail_r_stage": 25.0,
+      "stage_utilization": 0.9654471544715447,
+      "stored_energy_kj": 503.32763236168944,
+      "voltage_margin_kv_stage": 6.910569105691053,
+      "energy_margin_kj": 396.67236763831056,
+      "energy_margin_pct": 44.07470751536784
+    },
+    "nominal_pass": true,
+    "status": "MARGINAL",
+    "ml_trust": 1.0,
+    "circuit_crosscheck": "FAIL"
+  },
+  "lightning_circuit": {
+    "source_type": "generated_stress_test",
+    "run_id": "431bba0b82eb",
+    "model_version": "residual-competition-v1",
+    "settings": {
+      "stages": 9,
+      "charge_kv_stage": 199.9714832043248,
+      "front_r_stage": 35.0,
+      "tail_r_stage": 22.641509433962263,
+      "stage_utilization": 0.999857416021624,
+      "stored_energy_kj": 539.8460202816572,
+      "voltage_margin_kv_stage": 0.028516795675187723,
+      "energy_margin_kj": 360.15397971834284,
+      "energy_margin_pct": 40.017108857593655
+    },
+    "nominal_pass": true,
+    "status": "MARGINAL",
+    "ml_trust": 0.0,
+    "circuit_crosscheck": null
+  },
+  "switching_constructible_ood": {
+    "source_type": "generated_stress_test",
+    "run_id": "5317ef6960d0",
+    "model_version": "residual-competition-v1",
+    "settings": {
+      "stages": 15,
+      "charge_kv_stage": 83.33333333333334,
+      "front_r_stage": 4330.0,
+      "tail_r_stage": 1200.0,
+      "stage_utilization": 0.41666666666666674,
+      "stored_energy_kj": 156.25,
+      "voltage_margin_kv_stage": 116.66666666666666,
+      "energy_margin_kj": 743.75,
+      "energy_margin_pct": 82.63888888888889
+    },
+    "nominal_pass": true,
+    "status": "MARGINAL",
+    "ml_trust": 0.0,
+    "circuit_crosscheck": "FAIL"
+  },
+  "lightning_v2_candidate": {
+    "source_type": "generated_stress_test",
+    "run_id": "bd49d24a47db",
+    "model_version": "targetwise-physics-v2-experiment",
+    "settings": {
+      "stages": 9,
+      "charge_kv_stage": 193.08943089430895,
+      "front_r_stage": 50.0,
+      "tail_r_stage": 25.0,
+      "stage_utilization": 0.9654471544715447,
+      "stored_energy_kj": 503.32763236168944,
+      "voltage_margin_kv_stage": 6.910569105691053,
+      "energy_margin_kj": 396.67236763831056,
+      "energy_margin_pct": 44.07470751536784
+    },
+    "nominal_pass": true,
+    "status": "MARGINAL",
+    "ml_trust": 1.0,
+    "circuit_crosscheck": "FAIL"
+  }
+}

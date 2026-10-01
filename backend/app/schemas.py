@@ -1,0 +1,102 @@
+from typing import Literal
+from pydantic import BaseModel, Field, ConfigDict, model_validator
+
+class StockItem(BaseModel):
+    model_config=ConfigDict(extra='forbid',allow_inf_nan=False)
+    ohm:float=Field(gt=0,le=1e7)
+    count_per_stage:int=Field(ge=0,le=40)
+
+class InventoryOverride(BaseModel):
+    front:list[StockItem]
+    tail:list[StockItem]
+    provenance:str=Field(min_length=3,max_length=300)
+
+class OptimizeRequest(BaseModel):
+    model_config=ConfigDict(extra='forbid',allow_inf_nan=False)
+    profile_id:str='workbook_reference_profile'
+    impulse_type:Literal['Lightning','Switching']='Lightning'
+    test_kv:float=Field(default=1425,gt=0,le=10000)
+    load_c_pf:float=Field(default=850,gt=0,le=100000)
+    divider_c_pf:float=Field(default=500,ge=0,le=100000)
+    stray_c_pf:float=Field(default=150,ge=0,le=100000)
+    l_uh:float=Field(default=18.5,ge=0,le=10000)
+    efficiency:float=Field(default=.82,gt=.05,le=1)
+    solver:Literal['reference','circuit']='reference'
+    model_mode:Literal['hybrid','physics','experimental_v2']='hybrid'
+    connection_mode:Literal['series_marx_equivalent']='series_marx_equivalent'
+    layout_id:str=Field(default='default-layout',min_length=1,max_length=100)
+    stage_min:int|None=Field(default=None,ge=2,le=30)
+    stage_max:int|None=Field(default=None,ge=2,le=30)
+    inventory_override:InventoryOverride|None=None
+    max_components_per_network:int=Field(default=24,ge=1,le=40)
+    include_base_c:bool=False
+    uncertainty_pct:float=Field(default=5,ge=0,le=30)
+    monte_carlo_samples:int=Field(default=32,ge=8,le=128)
+    equipment_reference_kv:float|None=Field(default=None,gt=0,le=10000)
+    equipment_reference_source:str|None=Field(default=None,max_length=300)
+    confirm_reference_mismatch:bool=False
+    calibration_id:str|None=None
+    @model_validator(mode='after')
+    def ordered_stages(self):
+        if self.stage_min and self.stage_max and self.stage_min>self.stage_max:
+            raise ValueError('Minimum stages must not exceed maximum stages.')
+        if self.equipment_reference_kv and not self.equipment_reference_source:
+            raise ValueError('Provide a source for the equipment reference voltage.')
+        return self
+
+class GeneratorProfile(BaseModel):
+    model_config=ConfigDict(extra='allow',allow_inf_nan=False)
+    id:str
+    name:str
+    version:str
+    kind:Literal['synthetic_reference','specified_hardware','incomplete']
+    source:str
+    voltage_min_kv:float|None=Field(default=None,gt=0)
+    voltage_max_kv:float=Field(gt=0)
+    min_stages:int|None=Field(default=None,ge=2)
+    max_stages:int=Field(ge=2)
+    stage_kv:float=Field(gt=0)
+    stage_c_uf:float|None=Field(default=None,gt=0)
+    energy_stage_kj:float|None=Field(default=None,gt=0)
+    energy_total_kj:float|None=Field(default=None,gt=0)
+    front_values:list[float]
+    lightning_tail_values:list[float]
+    switching_tail_values:list[float]
+    units_per_value_per_stage:int|None=Field(default=None,ge=0)
+    base_c_pf:float|None=Field(default=None,ge=0)
+    enabled:bool
+    @model_validator(mode='after')
+    def consistent_profile(self):
+        if any(v<=0 for v in self.front_values+self.lightning_tail_values+self.switching_tail_values):
+            raise ValueError('Profile resistor values must be positive.')
+        if self.min_stages is not None and self.min_stages>self.max_stages:
+            raise ValueError('Invalid profile stage bounds.')
+        if self.voltage_min_kv and self.voltage_min_kv>self.voltage_max_kv:
+            raise ValueError('Invalid profile voltage bounds.')
+        if self.enabled and any(getattr(self,k) is None for k in ['stage_c_uf','energy_stage_kj','energy_total_kj','min_stages','voltage_min_kv']):
+            raise ValueError('Enabled profile must specify capacitance, energy and operating bounds.')
+        return self
+
+class SimulationSettings(BaseModel):
+    model_config=ConfigDict(extra='forbid',allow_inf_nan=False)
+    stages:int=Field(ge=2,le=30,strict=True)
+    charge_kv_stage:float=Field(gt=0,le=500)
+    front_r_stage:float=Field(gt=0,le=1e8)
+    tail_r_stage:float=Field(gt=0,le=1e8)
+
+class SimulationRequest(BaseModel):
+    model_config=ConfigDict(extra='forbid',allow_inf_nan=False)
+    inputs:OptimizeRequest
+    settings:SimulationSettings
+
+class MetricPrediction(BaseModel):
+    model_config=ConfigDict(extra='forbid',allow_inf_nan=False)
+    front_us:float=Field(gt=0)
+    tail_us:float=Field(gt=0)
+    crest_kv:float=Field(gt=0)
+
+class ComplianceRequest(BaseModel):
+    model_config=ConfigDict(extra='forbid',allow_inf_nan=False)
+    impulse_type:Literal['Lightning','Switching']
+    test_kv:float=Field(gt=0)
+    prediction:MetricPrediction

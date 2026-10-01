@@ -1,0 +1,45 @@
+{
+  "source_sha256": "e855eadbe4d6da2579316e89e025e6990f9ba3c522a5af96d1dd2a5522d77480",
+  "sheets": [
+    "Hybrid Calculator",
+    "Resistor Inventory",
+    "Synthetic Dataset",
+    "ML Helper",
+    "Model Validation",
+    "Model Card"
+  ],
+  "rows": 2000,
+  "columns": [
+    "ID",
+    "Split",
+    "Impulse_Type",
+    "Test_kV",
+    "Load_C_pF",
+    "Divider_C_pF",
+    "Stray_C_pF",
+    "L_uH",
+    "Efficiency",
+    "Stages",
+    "Charge_kV_Stage",
+    "Front_R_Stage",
+    "Tail_R_Stage",
+    "Physics_FrontPeak_us",
+    "Physics_Tail_us",
+    "Physics_Crest_kV",
+    "Observed_FrontPeak_us",
+    "Observed_Tail_us",
+    "Observed_Crest_kV",
+    "Residual_FrontPeak",
+    "Residual_Tail",
+    "Residual_Crest"
+  ],
+  "split_counts": {
+    "Train": 1400,
+    "Validation": 300,
+    "Hidden Test": 300
+  },
+  "impulse_counts": {
+    "Lightning": 1000,
+    "Switching": 1000
+  }
+}
