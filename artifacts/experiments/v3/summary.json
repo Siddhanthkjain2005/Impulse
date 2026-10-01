@@ -1,0 +1,1749 @@
+{
+  "version": "smooth-residual-v3-development",
+  "scope": "Train development ablation with previously explored features and historically selected V2 comparator. No independent test, calibration or laboratory evaluation.",
+  "protocol_sha256": "fdff4ac25fefacd05712803f767a03fce523b8de22c554ad4650ed5c2196bb23",
+  "nested_cv": {
+    "Lightning": {
+      "metrics": {
+        "V3 search": {
+          "mae": [
+            0.006334751859988108,
+            0.5495493534463008,
+            4.056018915778703
+          ],
+          "rmse": [
+            0.007227132380951072,
+            0.6332965475781446,
+            4.790584527787729
+          ],
+          "mape_pct": [
+            0.5284635569450178,
+            1.0511672964044696,
+            0.2848706847873548
+          ],
+          "r2": [
+            0.9552413260623487,
+            0.4060756381466868,
+            0.9888700003548239
+          ],
+          "normalized_rmse_tolerance": [
+            0.020075367724864103,
+            0.0633296547578144,
+            0.111806649493008
+          ],
+          "p95_absolute_error": [
+            0.012025948589869172,
+            1.039871253823416,
+            8.405157798775337
+          ]
+        },
+        "Historical V2 refit": {
+          "mae": [
+            0.006305396097250575,
+            0.5495493534463008,
+            4.124853169940148
+          ],
+          "rmse": [
+            0.007186798817917249,
+            0.6332965475781446,
+            4.873002331847097
+          ],
+          "mape_pct": [
+            0.5259820356914388,
+            1.0511672964044696,
+            0.28972936464601007
+          ],
+          "r2": [
+            0.9557395151668284,
+            0.4060756381466868,
+            0.9884837423177978
+          ],
+          "normalized_rmse_tolerance": [
+            0.019963330049770148,
+            0.0633296547578144,
+            0.1137289236416327
+          ],
+          "p95_absolute_error": [
+            0.011870580023657238,
+            1.039871253823416,
+            8.580201352057747
+          ]
+        },
+        "Physics only": {
+          "mae": [
+            0.008254012133765688,
+            0.6548209721119376,
+            9.00093466319295
+          ],
+          "rmse": [
+            0.010155176767075781,
+            0.8068829084851487,
+            11.200052373559906
+          ],
+          "mape_pct": [
+            0.6867732685990131,
+            1.2506988981845926,
+            0.6351566218443001
+          ],
+          "r2": [
+            0.9116268844069008,
+            0.03586481699851718,
+            0.939164337411525
+          ],
+          "normalized_rmse_tolerance": [
+            0.02820882435298828,
+            0.08068829084851488,
+            0.2626101611803209
+          ],
+          "p95_absolute_error": [
+            0.019842595804550712,
+            1.5580139025449136,
+            22.590174196125993
+          ]
+        }
+      },
+      "improvement_vs_v2_pct": [
+        -0.5612173661139419,
+        0.0,
+        1.6913146854195649
+      ],
+      "fold_choices": [
+        [
+          {
+            "selection": {
+              "name": "Historical V2 refit",
+              "blend": 0.0
+            },
+            "baseline_normalized_mse": 0.00039571411180268037,
+            "chosen_normalized_mse": 0.00039571411180268037,
+            "leaders": [
+              {
+                "name": "Ridge",
+                "relative": true,
+                "alpha": 0.1,
+                "blend": 0.5,
+                "normalized_mse": 0.0003957145181129962
+              },
+              {
+                "name": "Ridge",
+                "relative": true,
+                "alpha": 0.1,
+                "blend": 1.0,
+                "normalized_mse": 0.0003957149413401591
+              },
+              {
+                "name": "Huber",
+                "relative": true,
+                "alpha": 0.01,
+                "blend": 0.5,
+                "normalized_mse": 0.0003958182349015032
+              },
+              {
+                "name": "Ridge",
+                "relative": true,
+                "alpha": 10.0,
+                "blend": 0.5,
+                "normalized_mse": 0.000395854489389903
+              },
+              {
+                "name": "Huber",
+                "relative": true,
+                "alpha": 0.01,
+                "blend": 1.0,
+                "normalized_mse": 0.0003960000543712735
+              }
+            ]
+          },
+          {
+            "selection": {
+              "name": "Historical V2 refit",
+              "blend": 0.0
+            },
+            "baseline_normalized_mse": 0.003923363394088974,
+            "chosen_normalized_mse": 0.003923363394088974,
+            "leaders": [
+              {
+                "name": "RBF Kernel Ridge",
+                "relative": true,
+                "alpha": 1.0,
+                "gamma": 1.0,
+                "blend": 0.5,
+                "normalized_mse": 0.003906007237896618
+              },
+              {
+                "name": "RBF Kernel Ridge",
+                "relative": true,
+                "alpha": 0.1,
+                "gamma": 1.0,
+                "blend": 0.5,
+                "normalized_mse": 0.0039061338181455773
+              },
+              {
+                "name": "Spline Ridge",
+                "relative": false,
+                "alpha": 100.0,
+                "knots": 5,
+                "blend": 0.5,
+                "normalized_mse": 0.003908536052074844
+              },
+              {
+                "name": "Spline Ridge",
+                "relative": true,
+                "alpha": 100.0,
+                "knots": 5,
+                "blend": 0.5,
+                "normalized_mse": 0.003908556699453044
+              },
+              {
+                "name": "Spline Ridge",
+                "relative": false,
+                "alpha": 1.0,
+                "knots": 5,
+                "blend": 0.5,
+                "normalized_mse": 0.003909043021228866
+              }
+            ]
+          },
+          {
+            "selection": {
+              "name": "Spline Ridge",
+              "relative": true,
+              "alpha": 1.0,
+              "knots": 3,
+              "blend": 1.0
+            },
+            "baseline_normalized_mse": 0.013319759020767468,
+            "chosen_normalized_mse": 0.012650716258453043,
+            "leaders": [
+              {
+                "name": "Spline Ridge",
+                "relative": true,
+                "alpha": 1.0,
+                "knots": 3,
+                "blend": 1.0,
+                "normalized_mse": 0.012650716258453043
+              },
+              {
+                "name": "RBF Kernel Ridge",
+                "relative": true,
+                "alpha": 0.1,
+                "gamma": 0.1,
+                "blend": 1.0,
+                "normalized_mse": 0.0126570808257593
+              },
+              {
+                "name": "RBF Kernel Ridge",
+                "relative": true,
+                "alpha": 1.0,
+                "gamma": 0.1,
+                "blend": 1.0,
+                "normalized_mse": 0.012681640111504107
+              },
+              {
+                "name": "Polynomial Ridge",
+                "relative": true,
+                "alpha": 1.0,
+                "degree": 2,
+                "blend": 1.0,
+                "normalized_mse": 0.012711194175384783
+              },
+              {
+                "name": "Polynomial Ridge",
+                "relative": true,
+                "alpha": 1.0,
+                "degree": 3,
+                "blend": 1.0,
+                "normalized_mse": 0.012712865375127572
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "selection": {
+              "name": "Historical V2 refit",
+              "blend": 0.0
+            },
+            "baseline_normalized_mse": 0.00040127074413481156,
+            "chosen_normalized_mse": 0.00040127074413481156,
+            "leaders": [
+              {
+                "name": "RBF Kernel Ridge",
+                "relative": true,
+                "alpha": 1.0,
+                "gamma": 0.1,
+                "blend": 0.5,
+                "normalized_mse": 0.00040055195336976277
+              },
+              {
+                "name": "Polynomial Ridge",
+                "relative": true,
+                "alpha": 1.0,
+                "degree": 2,
+                "blend": 0.5,
+                "normalized_mse": 0.00040106712859543786
+              },
+              {
+                "name": "Ridge",
+                "relative": true,
+                "alpha": 0.1,
+                "blend": 1.0,
+                "normalized_mse": 0.0004012706200424802
+              },
+              {
+                "name": "Ridge",
+                "relative": true,
+                "alpha": 0.1,
+                "blend": 0.5,
+                "normalized_mse": 0.0004012706734728843
+              },
+              {
+                "name": "Ridge",
+                "relative": true,
+                "alpha": 10.0,
+                "blend": 0.5,
+                "normalized_mse": 0.00040136156857822246
+              }
+            ]
+          },
+          {
+            "selection": {
+              "name": "Historical V2 refit",
+              "blend": 0.0
+            },
+            "baseline_normalized_mse": 0.0041966378958880265,
+            "chosen_normalized_mse": 0.0041966378958880265,
+            "leaders": [
+              {
+                "name": "Spline Ridge",
+                "relative": false,
+                "alpha": 1.0,
+                "knots": 5,
+                "blend": 1.0,
+                "normalized_mse": 0.004115327089769063
+              },
+              {
+                "name": "Spline Ridge",
+                "relative": true,
+                "alpha": 1.0,
+                "knots": 5,
+                "blend": 1.0,
+                "normalized_mse": 0.004115456496553085
+              },
+              {
+                "name": "Spline Ridge",
+                "relative": false,
+                "alpha": 1.0,
+                "knots": 5,
+                "blend": 0.5,
+                "normalized_mse": 0.004123289540166697
+              },
+              {
+                "name": "Spline Ridge",
+                "relative": true,
+                "alpha": 1.0,
+                "knots": 5,
+                "blend": 0.5,
+                "normalized_mse": 0.004123354439576192
+              },
+              {
+                "name": "RBF Kernel Ridge",
+                "relative": true,
+                "alpha": 0.1,
+                "gamma": 1.0,
+                "blend": 1.0,
+                "normalized_mse": 0.004132956492119291
+              }
+            ]
+          },
+          {
+            "selection": {
+              "name": "Spline Ridge",
+              "relative": false,
+              "alpha": 1.0,
+              "knots": 3,
+              "blend": 0.5
+            },
+            "baseline_normalized_mse": 0.01305275930169915,
+            "chosen_normalized_mse": 0.012672368934674745,
+            "leaders": [
+              {
+                "name": "Spline Ridge",
+                "relative": false,
+                "alpha": 1.0,
+                "knots": 3,
+                "blend": 0.5,
+                "normalized_mse": 0.012672368934674745
+              },
+              {
+                "name": "Spline Ridge",
+                "relative": true,
+                "alpha": 1.0,
+                "knots": 3,
+                "blend": 0.5,
+                "normalized_mse": 0.01270045867705675
+              },
+              {
+                "name": "Polynomial Ridge",
+                "relative": false,
+                "alpha": 1.0,
+                "degree": 2,
+                "blend": 0.5,
+                "normalized_mse": 0.012716111878059157
+              },
+              {
+                "name": "RBF Kernel Ridge",
+                "relative": true,
+                "alpha": 0.1,
+                "gamma": 0.1,
+                "blend": 0.5,
+                "normalized_mse": 0.01271805921191267
+              },
+              {
+                "name": "Polynomial Ridge",
+                "relative": true,
+                "alpha": 1.0,
+                "degree": 2,
+                "blend": 0.5,
+                "normalized_mse": 0.012748347740134126
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "selection": {
+              "name": "Historical V2 refit",
+              "blend": 0.0
+            },
+            "baseline_normalized_mse": 0.00040703818815143153,
+            "chosen_normalized_mse": 0.00040703818815143153,
+            "leaders": [
+              {
+                "name": "Spline Ridge",
+                "relative": false,
+                "alpha": 1.0,
+                "knots": 3,
+                "blend": 0.5,
+                "normalized_mse": 0.00040228734322306843
+              },
+              {
+                "name": "Spline Ridge",
+                "relative": true,
+                "alpha": 1.0,
+                "knots": 3,
+                "blend": 0.5,
+                "normalized_mse": 0.00040232468911836867
+              },
+              {
+                "name": "Spline Ridge",
+                "relative": false,
+                "alpha": 1.0,
+                "knots": 3,
+                "blend": 1.0,
+                "normalized_mse": 0.00040395414527925487
+              },
+              {
+                "name": "Spline Ridge",
+                "relative": true,
+                "alpha": 1.0,
+                "knots": 3,
+                "blend": 1.0,
+                "normalized_mse": 0.00040413432102876363
+              },
+              {
+                "name": "Spline Ridge",
+                "relative": true,
+                "alpha": 100.0,
+                "knots": 5,
+                "blend": 0.5,
+                "normalized_mse": 0.0004043998805614651
+              }
+            ]
+          },
+          {
+            "selection": {
+              "name": "Historical V2 refit",
+              "blend": 0.0
+            },
+            "baseline_normalized_mse": 0.003994862719886884,
+            "chosen_normalized_mse": 0.003994862719886884,
+            "leaders": [
+              {
+                "name": "Spline Ridge",
+                "relative": false,
+                "alpha": 1.0,
+                "knots": 5,
+                "blend": 1.0,
+                "normalized_mse": 0.003925904808757823
+              },
+              {
+                "name": "Spline Ridge",
+                "relative": true,
+                "alpha": 1.0,
+                "knots": 5,
+                "blend": 1.0,
+                "normalized_mse": 0.003926043849750404
+              },
+              {
+                "name": "Spline Ridge",
+                "relative": false,
+                "alpha": 1.0,
+                "knots": 5,
+                "blend": 0.5,
+                "normalized_mse": 0.003936319726716741
+              },
+              {
+                "name": "Spline Ridge",
+                "relative": true,
+                "alpha": 1.0,
+                "knots": 5,
+                "blend": 0.5,
+                "normalized_mse": 0.003936383137210543
+              },
+              {
+                "name": "RBF Kernel Ridge",
+                "relative": true,
+                "alpha": 0.1,
+                "gamma": 1.0,
+                "blend": 1.0,
+                "normalized_mse": 0.003951230902996856
+              }
+            ]
+          },
+          {
+            "selection": {
+              "name": "RBF Kernel Ridge",
+              "relative": true,
+              "alpha": 0.1,
+              "gamma": 0.1,
+              "blend": 1.0
+            },
+            "baseline_normalized_mse": 0.012871356900064407,
+            "chosen_normalized_mse": 0.01216030291672152,
+            "leaders": [
+              {
+                "name": "RBF Kernel Ridge",
+                "relative": true,
+                "alpha": 0.1,
+                "gamma": 0.1,
+                "blend": 1.0,
+                "normalized_mse": 0.01216030291672152
+              },
+              {
+                "name": "Polynomial Ridge",
+                "relative": true,
+                "alpha": 1.0,
+                "degree": 3,
+                "blend": 1.0,
+                "normalized_mse": 0.012228954444877154
+              },
+              {
+                "name": "Spline Ridge",
+                "relative": true,
+                "alpha": 1.0,
+                "knots": 3,
+                "blend": 1.0,
+                "normalized_mse": 0.012294101773842523
+              },
+              {
+                "name": "Polynomial Ridge",
+                "relative": false,
+                "alpha": 1.0,
+                "degree": 3,
+                "blend": 1.0,
+                "normalized_mse": 0.012303519326899737
+              },
+              {
+                "name": "RBF Kernel Ridge",
+                "relative": true,
+                "alpha": 0.1,
+                "gamma": 0.1,
+                "blend": 0.5,
+                "normalized_mse": 0.0123168159659961
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "selection": {
+              "name": "RBF Kernel Ridge",
+              "relative": true,
+              "alpha": 1.0,
+              "gamma": 1.0,
+              "blend": 0.5
+            },
+            "baseline_normalized_mse": 0.00039037847687358834,
+            "chosen_normalized_mse": 0.0003825002026572713,
+            "leaders": [
+              {
+                "name": "RBF Kernel Ridge",
+                "relative": true,
+                "alpha": 1.0,
+                "gamma": 1.0,
+                "blend": 0.5,
+                "normalized_mse": 0.0003825002026572713
+              },
+              {
+                "name": "RBF Kernel Ridge",
+                "relative": true,
+                "alpha": 0.01,
+                "gamma": 0.1,
+                "blend": 0.5,
+                "normalized_mse": 0.0003859701966061071
+              },
+              {
+                "name": "RBF Kernel Ridge",
+                "relative": true,
+                "alpha": 0.1,
+                "gamma": 1.0,
+                "blend": 0.5,
+                "normalized_mse": 0.00038632885848172773
+              },
+              {
+                "name": "RBF Kernel Ridge",
+                "relative": true,
+                "alpha": 1.0,
+                "gamma": 1.0,
+                "blend": 1.0,
+                "normalized_mse": 0.00038756152753454765
+              },
+              {
+                "name": "RBF Kernel Ridge",
+                "relative": true,
+                "alpha": 0.1,
+                "gamma": 0.1,
+                "blend": 0.5,
+                "normalized_mse": 0.0003875962151204446
+              }
+            ]
+          },
+          {
+            "selection": {
+              "name": "Historical V2 refit",
+              "blend": 0.0
+            },
+            "baseline_normalized_mse": 0.0040124446307848545,
+            "chosen_normalized_mse": 0.0040124446307848545,
+            "leaders": [
+              {
+                "name": "RBF Kernel Ridge",
+                "relative": true,
+                "alpha": 1.0,
+                "gamma": 0.1,
+                "blend": 0.5,
+                "normalized_mse": 0.004010597052385813
+              },
+              {
+                "name": "Ridge",
+                "relative": false,
+                "alpha": 0.1,
+                "blend": 1.0,
+                "normalized_mse": 0.004012389253562536
+              },
+              {
+                "name": "Ridge",
+                "relative": false,
+                "alpha": 0.1,
+                "blend": 0.5,
+                "normalized_mse": 0.004012411474935573
+              },
+              {
+                "name": "Ridge",
+                "relative": true,
+                "alpha": 0.1,
+                "blend": 1.0,
+                "normalized_mse": 0.004012422382929475
+              },
+              {
+                "name": "Ridge",
+                "relative": true,
+                "alpha": 0.1,
+                "blend": 0.5,
+                "normalized_mse": 0.004012427736401745
+              }
+            ]
+          },
+          {
+            "selection": {
+              "name": "RBF Kernel Ridge",
+              "relative": true,
+              "alpha": 0.1,
+              "gamma": 0.1,
+              "blend": 1.0
+            },
+            "baseline_normalized_mse": 0.013512181503979436,
+            "chosen_normalized_mse": 0.01298631522827907,
+            "leaders": [
+              {
+                "name": "RBF Kernel Ridge",
+                "relative": true,
+                "alpha": 0.1,
+                "gamma": 0.1,
+                "blend": 1.0,
+                "normalized_mse": 0.01298631522827907
+              },
+              {
+                "name": "Spline Ridge",
+                "relative": false,
+                "alpha": 1.0,
+                "knots": 3,
+                "blend": 0.5,
+                "normalized_mse": 0.012998376091620958
+              },
+              {
+                "name": "RBF Kernel Ridge",
+                "relative": true,
+                "alpha": 0.1,
+                "gamma": 0.1,
+                "blend": 0.5,
+                "normalized_mse": 0.013001678850907495
+              },
+              {
+                "name": "RBF Kernel Ridge",
+                "relative": true,
+                "alpha": 1.0,
+                "gamma": 0.1,
+                "blend": 0.5,
+                "normalized_mse": 0.01300187826593442
+              },
+              {
+                "name": "Polynomial Ridge",
+                "relative": false,
+                "alpha": 1.0,
+                "degree": 2,
+                "blend": 1.0,
+                "normalized_mse": 0.013005868647600819
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "selection": {
+              "name": "Historical V2 refit",
+              "blend": 0.0
+            },
+            "baseline_normalized_mse": 0.00039687196346653374,
+            "chosen_normalized_mse": 0.00039687196346653374,
+            "leaders": [
+              {
+                "name": "Spline Ridge",
+                "relative": true,
+                "alpha": 1.0,
+                "knots": 5,
+                "blend": 0.5,
+                "normalized_mse": 0.0003916742493056252
+              },
+              {
+                "name": "Spline Ridge",
+                "relative": false,
+                "alpha": 1.0,
+                "knots": 5,
+                "blend": 0.5,
+                "normalized_mse": 0.0003919816852514084
+              },
+              {
+                "name": "Spline Ridge",
+                "relative": true,
+                "alpha": 1.0,
+                "knots": 3,
+                "blend": 0.5,
+                "normalized_mse": 0.00039233141782866554
+              },
+              {
+                "name": "Spline Ridge",
+                "relative": false,
+                "alpha": 1.0,
+                "knots": 3,
+                "blend": 0.5,
+                "normalized_mse": 0.0003926755872675402
+              },
+              {
+                "name": "Spline Ridge",
+                "relative": true,
+                "alpha": 100.0,
+                "knots": 5,
+                "blend": 0.5,
+                "normalized_mse": 0.00039324367701173274
+              }
+            ]
+          },
+          {
+            "selection": {
+              "name": "Historical V2 refit",
+              "blend": 0.0
+            },
+            "baseline_normalized_mse": 0.004016233451950166,
+            "chosen_normalized_mse": 0.004016233451950166,
+            "leaders": [
+              {
+                "name": "Spline Ridge",
+                "relative": false,
+                "alpha": 1.0,
+                "knots": 5,
+                "blend": 0.5,
+                "normalized_mse": 0.0039798630943545694
+              },
+              {
+                "name": "Spline Ridge",
+                "relative": true,
+                "alpha": 1.0,
+                "knots": 5,
+                "blend": 0.5,
+                "normalized_mse": 0.003979956386325384
+              },
+              {
+                "name": "RBF Kernel Ridge",
+                "relative": true,
+                "alpha": 0.01,
+                "gamma": 1.0,
+                "blend": 0.5,
+                "normalized_mse": 0.003979994168731695
+              },
+              {
+                "name": "RBF Kernel Ridge",
+                "relative": true,
+                "alpha": 0.1,
+                "gamma": 1.0,
+                "blend": 0.5,
+                "normalized_mse": 0.0039901555124609205
+              },
+              {
+                "name": "Spline Ridge",
+                "relative": false,
+                "alpha": 100.0,
+                "knots": 5,
+                "blend": 0.5,
+                "normalized_mse": 0.003995083267879926
+              }
+            ]
+          },
+          {
+            "selection": {
+              "name": "RBF Kernel Ridge",
+              "relative": true,
+              "alpha": 0.1,
+              "gamma": 0.1,
+              "blend": 0.5
+            },
+            "baseline_normalized_mse": 0.013003729323731785,
+            "chosen_normalized_mse": 0.012487477519865644,
+            "leaders": [
+              {
+                "name": "RBF Kernel Ridge",
+                "relative": true,
+                "alpha": 0.1,
+                "gamma": 0.1,
+                "blend": 0.5,
+                "normalized_mse": 0.012487477519865644
+              },
+              {
+                "name": "Spline Ridge",
+                "relative": false,
+                "alpha": 1.0,
+                "knots": 3,
+                "blend": 0.5,
+                "normalized_mse": 0.012512450857801992
+              },
+              {
+                "name": "Spline Ridge",
+                "relative": true,
+                "alpha": 1.0,
+                "knots": 3,
+                "blend": 0.5,
+                "normalized_mse": 0.01251419022403476
+              },
+              {
+                "name": "Spline Ridge",
+                "relative": true,
+                "alpha": 1.0,
+                "knots": 5,
+                "blend": 0.5,
+                "normalized_mse": 0.012535193900180455
+              },
+              {
+                "name": "RBF Kernel Ridge",
+                "relative": true,
+                "alpha": 1.0,
+                "gamma": 0.1,
+                "blend": 0.5,
+                "normalized_mse": 0.012538861016491761
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    "Switching": {
+      "metrics": {
+        "V3 search": {
+          "mae": [
+            1.4775169771882342,
+            22.07549170985247,
+            3.0114469793529404
+          ],
+          "rmse": [
+            1.7391253986187623,
+            25.607145202197852,
+            3.5232612851107263
+          ],
+          "mape_pct": [
+            0.5903522962964258,
+            0.8819853779084563,
+            0.29468336953575525
+          ],
+          "r2": [
+            0.479726043678677,
+            0.34920037820035266,
+            0.9937031808353769
+          ],
+          "normalized_rmse_tolerance": [
+            0.03478250797237527,
+            0.05121429040439572,
+            0.11462121743147888
+          ],
+          "p95_absolute_error": [
+            2.9696562269519355,
+            41.700469699409396,
+            6.014475808622376
+          ]
+        },
+        "Historical V2 refit": {
+          "mae": [
+            1.4775169771882342,
+            22.07549170985247,
+            3.0402365139580643
+          ],
+          "rmse": [
+            1.7391253986187623,
+            25.607145202197852,
+            3.5918398400491585
+          ],
+          "mape_pct": [
+            0.5903522962964258,
+            0.8819853779084563,
+            0.2975534411940356
+          ],
+          "r2": [
+            0.479726043678677,
+            0.34920037820035266,
+            0.9934556661767159
+          ],
+          "normalized_rmse_tolerance": [
+            0.03478250797237527,
+            0.05121429040439572,
+            0.11694601895110183
+          ],
+          "p95_absolute_error": [
+            2.9696562269519355,
+            41.700469699409396,
+            6.216945949395505
+          ]
+        },
+        "Physics only": {
+          "mae": [
+            1.9766921704260703,
+            26.92838594867171,
+            6.561366639260995
+          ],
+          "rmse": [
+            2.437426622889095,
+            32.65936066267482,
+            8.086987255664987
+          ],
+          "mape_pct": [
+            0.7884402768248036,
+            1.0756595155233089,
+            0.6430552528221741
+          ],
+          "r2": [
+            -0.021958810551673258,
+            -0.058620552277096394,
+            0.9668254504026014
+          ],
+          "normalized_rmse_tolerance": [
+            0.048748532457781886,
+            0.0653187213253496,
+            0.26352406359826686
+          ],
+          "p95_absolute_error": [
+            4.576966101398064,
+            62.2520476508019,
+            15.587924953329727
+          ]
+        }
+      },
+      "improvement_vs_v2_pct": [
+        0.0,
+        0.0,
+        1.9092876629347
+      ],
+      "fold_choices": [
+        [
+          {
+            "selection": {
+              "name": "Historical V2 refit",
+              "blend": 0.0
+            },
+            "baseline_normalized_mse": 0.0012399358398480938,
+            "chosen_normalized_mse": 0.0012399358398480938,
+            "leaders": [
+              {
+                "name": "RBF Kernel Ridge",
+                "relative": true,
+                "alpha": 1.0,
+                "gamma": 0.1,
+                "blend": 0.5,
+                "normalized_mse": 0.0012320808796002533
+              },
+              {
+                "name": "RBF Kernel Ridge",
+                "relative": true,
+                "alpha": 1.0,
+                "gamma": 1.0,
+                "blend": 0.5,
+                "normalized_mse": 0.001235992926804541
+              },
+              {
+                "name": "RBF Kernel Ridge",
+                "relative": true,
+                "alpha": 1.0,
+                "gamma": 0.1,
+                "blend": 1.0,
+                "normalized_mse": 0.0012389924497024525
+              },
+              {
+                "name": "Ridge",
+                "relative": false,
+                "alpha": 0.1,
+                "blend": 0.5,
+                "normalized_mse": 0.0012399380873991494
+              },
+              {
+                "name": "Ridge",
+                "relative": false,
+                "alpha": 0.1,
+                "blend": 1.0,
+                "normalized_mse": 0.0012399403840773998
+              }
+            ]
+          },
+          {
+            "selection": {
+              "name": "Historical V2 refit",
+              "blend": 0.0
+            },
+            "baseline_normalized_mse": 0.0027053055947437996,
+            "chosen_normalized_mse": 0.0027053055947437996,
+            "leaders": [
+              {
+                "name": "Ridge",
+                "relative": false,
+                "alpha": 0.1,
+                "blend": 0.5,
+                "normalized_mse": 0.002705305662700929
+              },
+              {
+                "name": "Ridge",
+                "relative": false,
+                "alpha": 0.1,
+                "blend": 1.0,
+                "normalized_mse": 0.002705313856763967
+              },
+              {
+                "name": "Ridge",
+                "relative": true,
+                "alpha": 0.1,
+                "blend": 0.5,
+                "normalized_mse": 0.0027054920386736783
+              },
+              {
+                "name": "Ridge",
+                "relative": true,
+                "alpha": 0.1,
+                "blend": 1.0,
+                "normalized_mse": 0.0027056889779478823
+              },
+              {
+                "name": "Ridge",
+                "relative": false,
+                "alpha": 10.0,
+                "blend": 0.5,
+                "normalized_mse": 0.002705725259207793
+              }
+            ]
+          },
+          {
+            "selection": {
+              "name": "Polynomial Ridge",
+              "relative": true,
+              "alpha": 1.0,
+              "degree": 3,
+              "blend": 1.0
+            },
+            "baseline_normalized_mse": 0.01392088646738271,
+            "chosen_normalized_mse": 0.012809034714870276,
+            "leaders": [
+              {
+                "name": "Polynomial Ridge",
+                "relative": true,
+                "alpha": 1.0,
+                "degree": 3,
+                "blend": 1.0,
+                "normalized_mse": 0.012809034714870276
+              },
+              {
+                "name": "Spline Ridge",
+                "relative": true,
+                "alpha": 1.0,
+                "knots": 3,
+                "blend": 1.0,
+                "normalized_mse": 0.012812049655069217
+              },
+              {
+                "name": "Polynomial Ridge",
+                "relative": false,
+                "alpha": 1.0,
+                "degree": 3,
+                "blend": 1.0,
+                "normalized_mse": 0.01291651188355779
+              },
+              {
+                "name": "Spline Ridge",
+                "relative": false,
+                "alpha": 1.0,
+                "knots": 3,
+                "blend": 1.0,
+                "normalized_mse": 0.012934256224022818
+              },
+              {
+                "name": "RBF Kernel Ridge",
+                "relative": true,
+                "alpha": 0.1,
+                "gamma": 0.1,
+                "blend": 1.0,
+                "normalized_mse": 0.012938702180787456
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "selection": {
+              "name": "Historical V2 refit",
+              "blend": 0.0
+            },
+            "baseline_normalized_mse": 0.0012011051419226345,
+            "chosen_normalized_mse": 0.0012011051419226345,
+            "leaders": [
+              {
+                "name": "Ridge",
+                "relative": false,
+                "alpha": 0.1,
+                "blend": 0.5,
+                "normalized_mse": 0.0012011052242928446
+              },
+              {
+                "name": "Ridge",
+                "relative": false,
+                "alpha": 0.1,
+                "blend": 1.0,
+                "normalized_mse": 0.0012011053564545435
+              },
+              {
+                "name": "Ridge",
+                "relative": true,
+                "alpha": 0.1,
+                "blend": 0.5,
+                "normalized_mse": 0.001201115575866412
+              },
+              {
+                "name": "Ridge",
+                "relative": true,
+                "alpha": 0.1,
+                "blend": 1.0,
+                "normalized_mse": 0.0012011260650142239
+              },
+              {
+                "name": "Ridge",
+                "relative": false,
+                "alpha": 10.0,
+                "blend": 0.5,
+                "normalized_mse": 0.0012013987413629127
+              }
+            ]
+          },
+          {
+            "selection": {
+              "name": "Historical V2 refit",
+              "blend": 0.0
+            },
+            "baseline_normalized_mse": 0.0026857689356954806,
+            "chosen_normalized_mse": 0.0026857689356954806,
+            "leaders": [
+              {
+                "name": "Spline Ridge",
+                "relative": false,
+                "alpha": 1.0,
+                "knots": 3,
+                "blend": 1.0,
+                "normalized_mse": 0.002657551755613882
+              },
+              {
+                "name": "Spline Ridge",
+                "relative": true,
+                "alpha": 1.0,
+                "knots": 3,
+                "blend": 1.0,
+                "normalized_mse": 0.0026578430830008666
+              },
+              {
+                "name": "Spline Ridge",
+                "relative": false,
+                "alpha": 1.0,
+                "knots": 3,
+                "blend": 0.5,
+                "normalized_mse": 0.0026582271940588974
+              },
+              {
+                "name": "Spline Ridge",
+                "relative": true,
+                "alpha": 1.0,
+                "knots": 3,
+                "blend": 0.5,
+                "normalized_mse": 0.0026583842463840717
+              },
+              {
+                "name": "RBF Kernel Ridge",
+                "relative": true,
+                "alpha": 0.01,
+                "gamma": 0.1,
+                "blend": 1.0,
+                "normalized_mse": 0.0026669984563818245
+              }
+            ]
+          },
+          {
+            "selection": {
+              "name": "Spline Ridge",
+              "relative": true,
+              "alpha": 1.0,
+              "knots": 3,
+              "blend": 0.5
+            },
+            "baseline_normalized_mse": 0.014305580749370009,
+            "chosen_normalized_mse": 0.013526185939762637,
+            "leaders": [
+              {
+                "name": "Spline Ridge",
+                "relative": true,
+                "alpha": 1.0,
+                "knots": 3,
+                "blend": 0.5,
+                "normalized_mse": 0.013526185939762637
+              },
+              {
+                "name": "Spline Ridge",
+                "relative": true,
+                "alpha": 1.0,
+                "knots": 3,
+                "blend": 1.0,
+                "normalized_mse": 0.013560214802366887
+              },
+              {
+                "name": "Polynomial Ridge",
+                "relative": true,
+                "alpha": 1.0,
+                "degree": 3,
+                "blend": 0.5,
+                "normalized_mse": 0.01356744840775718
+              },
+              {
+                "name": "Spline Ridge",
+                "relative": false,
+                "alpha": 1.0,
+                "knots": 3,
+                "blend": 0.5,
+                "normalized_mse": 0.01360084357925149
+              },
+              {
+                "name": "RBF Kernel Ridge",
+                "relative": true,
+                "alpha": 0.1,
+                "gamma": 0.1,
+                "blend": 0.5,
+                "normalized_mse": 0.01360810288009408
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "selection": {
+              "name": "Historical V2 refit",
+              "blend": 0.0
+            },
+            "baseline_normalized_mse": 0.0012287049876276517,
+            "chosen_normalized_mse": 0.0012287049876276517,
+            "leaders": [
+              {
+                "name": "Ridge",
+                "relative": false,
+                "alpha": 0.1,
+                "blend": 1.0,
+                "normalized_mse": 0.0012287011445055503
+              },
+              {
+                "name": "Ridge",
+                "relative": false,
+                "alpha": 0.1,
+                "blend": 0.5,
+                "normalized_mse": 0.0012287030432570002
+              },
+              {
+                "name": "Ridge",
+                "relative": true,
+                "alpha": 0.1,
+                "blend": 0.5,
+                "normalized_mse": 0.0012287155412575633
+              },
+              {
+                "name": "Ridge",
+                "relative": true,
+                "alpha": 0.1,
+                "blend": 1.0,
+                "normalized_mse": 0.0012287261445506439
+              },
+              {
+                "name": "Ridge",
+                "relative": false,
+                "alpha": 10.0,
+                "blend": 0.5,
+                "normalized_mse": 0.0012287515545956731
+              }
+            ]
+          },
+          {
+            "selection": {
+              "name": "Historical V2 refit",
+              "blend": 0.0
+            },
+            "baseline_normalized_mse": 0.0026271105700572486,
+            "chosen_normalized_mse": 0.0026271105700572486,
+            "leaders": [
+              {
+                "name": "RBF Kernel Ridge",
+                "relative": true,
+                "alpha": 1.0,
+                "gamma": 0.1,
+                "blend": 0.5,
+                "normalized_mse": 0.002621748394439728
+              },
+              {
+                "name": "Spline Ridge",
+                "relative": false,
+                "alpha": 1.0,
+                "knots": 3,
+                "blend": 0.5,
+                "normalized_mse": 0.0026218958329298566
+              },
+              {
+                "name": "Spline Ridge",
+                "relative": true,
+                "alpha": 1.0,
+                "knots": 3,
+                "blend": 0.5,
+                "normalized_mse": 0.0026220723730165543
+              },
+              {
+                "name": "RBF Kernel Ridge",
+                "relative": true,
+                "alpha": 1.0,
+                "gamma": 0.1,
+                "blend": 1.0,
+                "normalized_mse": 0.002624213594542808
+              },
+              {
+                "name": "Polynomial Ridge",
+                "relative": false,
+                "alpha": 1.0,
+                "degree": 3,
+                "blend": 0.5,
+                "normalized_mse": 0.0026246803567775458
+              }
+            ]
+          },
+          {
+            "selection": {
+              "name": "Polynomial Ridge",
+              "relative": true,
+              "alpha": 1.0,
+              "degree": 3,
+              "blend": 0.5
+            },
+            "baseline_normalized_mse": 0.013390757634391806,
+            "chosen_normalized_mse": 0.012668584603303178,
+            "leaders": [
+              {
+                "name": "Polynomial Ridge",
+                "relative": true,
+                "alpha": 1.0,
+                "degree": 3,
+                "blend": 0.5,
+                "normalized_mse": 0.012668584603303178
+              },
+              {
+                "name": "Spline Ridge",
+                "relative": true,
+                "alpha": 1.0,
+                "knots": 3,
+                "blend": 1.0,
+                "normalized_mse": 0.012676411735953158
+              },
+              {
+                "name": "Spline Ridge",
+                "relative": true,
+                "alpha": 1.0,
+                "knots": 3,
+                "blend": 0.5,
+                "normalized_mse": 0.012715728735069416
+              },
+              {
+                "name": "RBF Kernel Ridge",
+                "relative": true,
+                "alpha": 0.1,
+                "gamma": 0.1,
+                "blend": 1.0,
+                "normalized_mse": 0.012735315069136707
+              },
+              {
+                "name": "Polynomial Ridge",
+                "relative": true,
+                "alpha": 1.0,
+                "degree": 3,
+                "blend": 1.0,
+                "normalized_mse": 0.012736111141105705
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "selection": {
+              "name": "Historical V2 refit",
+              "blend": 0.0
+            },
+            "baseline_normalized_mse": 0.0011532553882963718,
+            "chosen_normalized_mse": 0.0011532553882963718,
+            "leaders": [
+              {
+                "name": "RBF Kernel Ridge",
+                "relative": true,
+                "alpha": 1.0,
+                "gamma": 0.1,
+                "blend": 0.5,
+                "normalized_mse": 0.0011440910052214791
+              },
+              {
+                "name": "Polynomial Ridge",
+                "relative": false,
+                "alpha": 1.0,
+                "degree": 2,
+                "blend": 0.5,
+                "normalized_mse": 0.0011451118187787033
+              },
+              {
+                "name": "Polynomial Ridge",
+                "relative": true,
+                "alpha": 1.0,
+                "degree": 2,
+                "blend": 0.5,
+                "normalized_mse": 0.0011451134342094524
+              },
+              {
+                "name": "Polynomial Ridge",
+                "relative": false,
+                "alpha": 1.0,
+                "degree": 2,
+                "blend": 1.0,
+                "normalized_mse": 0.001145911197423765
+              },
+              {
+                "name": "Polynomial Ridge",
+                "relative": true,
+                "alpha": 1.0,
+                "degree": 2,
+                "blend": 1.0,
+                "normalized_mse": 0.0011459128819553337
+              }
+            ]
+          },
+          {
+            "selection": {
+              "name": "Historical V2 refit",
+              "blend": 0.0
+            },
+            "baseline_normalized_mse": 0.0026277809693333247,
+            "chosen_normalized_mse": 0.0026277809693333247,
+            "leaders": [
+              {
+                "name": "Spline Ridge",
+                "relative": false,
+                "alpha": 1.0,
+                "knots": 5,
+                "blend": 0.5,
+                "normalized_mse": 0.0025957803408877184
+              },
+              {
+                "name": "Spline Ridge",
+                "relative": true,
+                "alpha": 1.0,
+                "knots": 5,
+                "blend": 0.5,
+                "normalized_mse": 0.002596067507221901
+              },
+              {
+                "name": "Spline Ridge",
+                "relative": false,
+                "alpha": 1.0,
+                "knots": 3,
+                "blend": 0.5,
+                "normalized_mse": 0.00259651122719209
+              },
+              {
+                "name": "Spline Ridge",
+                "relative": true,
+                "alpha": 1.0,
+                "knots": 3,
+                "blend": 0.5,
+                "normalized_mse": 0.0025968271974982325
+              },
+              {
+                "name": "RBF Kernel Ridge",
+                "relative": true,
+                "alpha": 1.0,
+                "gamma": 1.0,
+                "blend": 0.5,
+                "normalized_mse": 0.0025969683800833926
+              }
+            ]
+          },
+          {
+            "selection": {
+              "name": "Polynomial Ridge",
+              "relative": true,
+              "alpha": 1.0,
+              "degree": 3,
+              "blend": 0.5
+            },
+            "baseline_normalized_mse": 0.013330970145652028,
+            "chosen_normalized_mse": 0.012982655718964472,
+            "leaders": [
+              {
+                "name": "Polynomial Ridge",
+                "relative": true,
+                "alpha": 1.0,
+                "degree": 3,
+                "blend": 0.5,
+                "normalized_mse": 0.012982655718964472
+              },
+              {
+                "name": "Polynomial Ridge",
+                "relative": true,
+                "alpha": 1.0,
+                "degree": 2,
+                "blend": 0.5,
+                "normalized_mse": 0.012983167987278785
+              },
+              {
+                "name": "Polynomial Ridge",
+                "relative": false,
+                "alpha": 1.0,
+                "degree": 2,
+                "blend": 0.5,
+                "normalized_mse": 0.013033618481869184
+              },
+              {
+                "name": "Polynomial Ridge",
+                "relative": false,
+                "alpha": 1.0,
+                "degree": 3,
+                "blend": 0.5,
+                "normalized_mse": 0.013046876305573362
+              },
+              {
+                "name": "RBF Kernel Ridge",
+                "relative": true,
+                "alpha": 1.0,
+                "gamma": 0.1,
+                "blend": 0.5,
+                "normalized_mse": 0.013080919211879649
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "selection": {
+              "name": "Historical V2 refit",
+              "blend": 0.0
+            },
+            "baseline_normalized_mse": 0.0012073858595089367,
+            "chosen_normalized_mse": 0.0012073858595089367,
+            "leaders": [
+              {
+                "name": "Ridge",
+                "relative": false,
+                "alpha": 10.0,
+                "blend": 0.5,
+                "normalized_mse": 0.0012071133275035483
+              },
+              {
+                "name": "Ridge",
+                "relative": true,
+                "alpha": 10.0,
+                "blend": 0.5,
+                "normalized_mse": 0.0012071251873956306
+              },
+              {
+                "name": "Ridge",
+                "relative": false,
+                "alpha": 0.1,
+                "blend": 1.0,
+                "normalized_mse": 0.0012073758354779352
+              },
+              {
+                "name": "Ridge",
+                "relative": false,
+                "alpha": 0.1,
+                "blend": 0.5,
+                "normalized_mse": 0.001207380824037938
+              },
+              {
+                "name": "Ridge",
+                "relative": false,
+                "alpha": 10.0,
+                "blend": 1.0,
+                "normalized_mse": 0.0012073846906731102
+              }
+            ]
+          },
+          {
+            "selection": {
+              "name": "Historical V2 refit",
+              "blend": 0.0
+            },
+            "baseline_normalized_mse": 0.0025196354144008345,
+            "chosen_normalized_mse": 0.0025196354144008345,
+            "leaders": [
+              {
+                "name": "Polynomial Ridge",
+                "relative": false,
+                "alpha": 1.0,
+                "degree": 2,
+                "blend": 0.5,
+                "normalized_mse": 0.002509950043636168
+              },
+              {
+                "name": "Polynomial Ridge",
+                "relative": true,
+                "alpha": 1.0,
+                "degree": 2,
+                "blend": 0.5,
+                "normalized_mse": 0.0025102425618685684
+              },
+              {
+                "name": "Polynomial Ridge",
+                "relative": false,
+                "alpha": 1.0,
+                "degree": 2,
+                "blend": 1.0,
+                "normalized_mse": 0.0025116929486823274
+              },
+              {
+                "name": "Polynomial Ridge",
+                "relative": true,
+                "alpha": 1.0,
+                "degree": 2,
+                "blend": 1.0,
+                "normalized_mse": 0.0025122531283800742
+              },
+              {
+                "name": "RBF Kernel Ridge",
+                "relative": true,
+                "alpha": 1.0,
+                "gamma": 0.1,
+                "blend": 0.5,
+                "normalized_mse": 0.002515216630935887
+              }
+            ]
+          },
+          {
+            "selection": {
+              "name": "Polynomial Ridge",
+              "relative": true,
+              "alpha": 1.0,
+              "degree": 3,
+              "blend": 1.0
+            },
+            "baseline_normalized_mse": 0.014891638694557497,
+            "chosen_normalized_mse": 0.013821341630811921,
+            "leaders": [
+              {
+                "name": "Polynomial Ridge",
+                "relative": true,
+                "alpha": 1.0,
+                "degree": 3,
+                "blend": 1.0,
+                "normalized_mse": 0.013821341630811921
+              },
+              {
+                "name": "RBF Kernel Ridge",
+                "relative": true,
+                "alpha": 0.1,
+                "gamma": 0.1,
+                "blend": 1.0,
+                "normalized_mse": 0.013876741009786376
+              },
+              {
+                "name": "Polynomial Ridge",
+                "relative": true,
+                "alpha": 1.0,
+                "degree": 3,
+                "blend": 0.5,
+                "normalized_mse": 0.01396542119281123
+              },
+              {
+                "name": "Spline Ridge",
+                "relative": true,
+                "alpha": 1.0,
+                "knots": 3,
+                "blend": 1.0,
+                "normalized_mse": 0.013970406711233799
+              },
+              {
+                "name": "Polynomial Ridge",
+                "relative": false,
+                "alpha": 1.0,
+                "degree": 3,
+                "blend": 1.0,
+                "normalized_mse": 0.013989285855107099
+              }
+            ]
+          }
+        ]
+      ]
+    }
+  },
+  "macro_improvement_pct": 1.033850668985814,
+  "promotion_eligible": false,
+  "hidden_test_evaluated": false,
+  "calibration_evaluated": false,
+  "validation_evaluated": false,
+  "cloud_spend_usd": 0,
+  "elapsed_seconds": 7.282311041999492,
+  "decision": "No promotion: additional complexity did not meet the preregistered improvement threshold. V1/V2 unchanged.",
+  "preserved_artifacts_verified": true
+}

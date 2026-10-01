@@ -112,6 +112,7 @@
     "efficiency": 0.82,
     "solver": "reference",
     "model_mode": "hybrid",
+    "require_model_agreement": false,
     "connection_mode": "series_marx_equivalent",
     "layout_id": "default-layout",
     "stage_min": null,
@@ -129,7 +130,7 @@
   "model_version": "residual-competition-v1",
   "candidates": [
     {
-      "id": "c22",
+      "id": "c30",
       "settings": {
         "stages": 9,
         "charge_kv_stage": 193.08943089430895,
@@ -154,6 +155,7 @@
         ],
         "count_per_stage": 1,
         "inventory_feasible": true,
+        "legacy_catalog_value": true,
         "total_components": 9
       },
       "tail_network": {
@@ -169,6 +171,7 @@
         ],
         "count_per_stage": 1,
         "inventory_feasible": true,
+        "legacy_catalog_value": true,
         "total_components": 9
       },
       "physics": {
@@ -302,6 +305,8 @@
         "samples": 32,
         "seed": 73,
         "method": "Latin hypercube; independent uniform parasitic ranges",
+        "calibrated_scenarios": 0,
+        "outside_calibration_scope_scenarios": null,
         "uncertainty_pct": 5,
         "parameters": [
           "load_c_pf",
@@ -335,7 +340,7 @@
         "Every resistor is counted: 18 total parts across front and tail networks.",
         "Ranking combines tolerance-normalized waveform error, component count, uncertainty and operating margin. Score 0.255; lower is better.",
         "ML trust weight 1.00; in distribution. No laboratory accuracy claim.",
-        "Rank 1 versus rank 2: compliance is ordered first, then interval containment, then the weighted cost (0.2555 versus 0.2646). This setup uses 18 parts versus 36; lower cost can trade waveform deviation against complexity and headroom."
+        "Rank 1 versus rank 2: nominal compliance, then interval containment, then weighted cost (0.2555 versus 0.2646). This setup uses 18 parts versus 36; lower cost can trade waveform deviation against complexity and headroom."
       ],
       "waveform": {
         "time_us": [
@@ -3154,14 +3159,14 @@
         "note": "Double-exponential curve fitted to predicted metrics; not an independently predicted waveform."
       },
       "circuit_crosscheck": {
-        "front_us": 1.8193541463979312,
-        "tail_us": 56.21541993114424,
+        "front_us": 1.8192641882800449,
+        "tail_us": 56.2152177602942,
         "crest_kv": 1362.5837415266355,
         "peak_time_us": 3.077118307794522,
-        "t30_us": 0.25927542277959337,
-        "t90_us": 1.348709043377157,
-        "t50_us": 55.929978543625054,
-        "virtual_origin_us": -0.28544138751918846,
+        "t30_us": 0.25927105912030296,
+        "t90_us": 1.3486508125814076,
+        "t50_us": 55.92979894268395,
+        "virtual_origin_us": -0.2854188176102494,
         "polarity": 1,
         "local_maxima_count": 1,
         "ringing_detected": false,
@@ -3169,7 +3174,8 @@
         "time_origin_us": 0.0,
         "definition": "virtual front/origin",
         "diagnostics": {
-          "model": "lumped RLC Marx equivalent v1",
+          "model": "lumped RLC Marx equivalent v2",
+          "metric_extraction": "Continuous modal peak and bracketed 30/90/50% root refinement; plot samples are not the final crossing metrics.",
           "damping_ratio": 2.0260132600083667,
           "eigenvalues_per_second": [
             {
@@ -5607,11 +5613,11 @@
             {
               "name": "Front / peak time",
               "target": 1.2,
-              "predicted": 1.8193541463979312,
+              "predicted": 1.8192641882800449,
               "lower": 0.84,
               "upper": 1.56,
-              "deviation": 0.6193541463979313,
-              "deviation_pct": 51.61284553316094,
+              "deviation": 0.6192641882800449,
+              "deviation_pct": 51.60534902333709,
               "pass": false,
               "robust": false,
               "unit": "\u00b5s",
@@ -5620,11 +5626,11 @@
             {
               "name": "Time to half-value",
               "target": 50,
-              "predicted": 56.21541993114424,
+              "predicted": 56.2152177602942,
               "lower": 40,
               "upper": 60,
-              "deviation": 6.21541993114424,
-              "deviation_pct": 12.43083986228848,
+              "deviation": 6.215217760294202,
+              "deviation_pct": 12.4304355205884,
               "pass": true,
               "robust": false,
               "unit": "\u00b5s",
@@ -5651,10 +5657,65 @@
           "definition": "1.67 \u00d7 rising 30\u201390%; half-value relative to virtual origin"
         }
       },
+      "verification": {
+        "version": "fixed-settings-verification-v1",
+        "seed": 617,
+        "used_for_ranking": false,
+        "models_checked": [
+          "Primary prediction",
+          "Independent circuit"
+        ],
+        "parameters": [
+          "load_c_pf",
+          "divider_c_pf",
+          "stray_c_pf",
+          "l_uh"
+        ],
+        "uncertainty_pct": 5,
+        "fresh_samples": {
+          "total": 128,
+          "passed": 0,
+          "primary_passed": 128,
+          "circuit_passed": 0
+        },
+        "boundary_corners": {
+          "total": 16,
+          "passed": 0,
+          "primary_passed": 16,
+          "circuit_passed": 0
+        },
+        "total": 144,
+        "passed": 0,
+        "unique_scenarios": 144,
+        "nominal_all_models_pass": false,
+        "all_checks_pass": false,
+        "worst_case": {
+          "index": 143,
+          "group": "boundary_corners",
+          "inputs": {
+            "load_c_pf": 892.5,
+            "divider_c_pf": 525.0,
+            "stray_c_pf": 157.5,
+            "l_uh": 17.575
+          },
+          "primary_pass": true,
+          "circuit_pass": false,
+          "all_models_pass": false,
+          "minimum_margin_fraction": -0.984799540245072,
+          "limiting_model": "Independent circuit",
+          "limiting_metric": "Front / peak time",
+          "predicted": 1.914527834488226,
+          "allowed_lower": 0.84,
+          "allowed_upper": 1.56,
+          "unit": "\u00b5s"
+        },
+        "calibrated_scenarios": 0,
+        "scope": "Fixed hardware checked after ranking using 128 separate-seed Latin-hypercube scenarios and 16 boundary corners. These checks do not select or reorder candidates. Finite simulation evidence only: not continuous-bound certification, independent model-accuracy testing or a laboratory success probability. Efficiency and hardware tolerances are held fixed; no statistical coverage claim."
+      },
       "pareto_optimal": true
     },
     {
-      "id": "c17",
+      "id": "c25",
       "settings": {
         "stages": 9,
         "charge_kv_stage": 193.08943089430895,
@@ -5679,6 +5740,7 @@
         ],
         "count_per_stage": 1,
         "inventory_feasible": true,
+        "legacy_catalog_value": true,
         "total_components": 9
       },
       "tail_network": {
@@ -5706,6 +5768,7 @@
         ],
         "count_per_stage": 3,
         "inventory_feasible": true,
+        "legacy_catalog_value": true,
         "total_components": 27
       },
       "physics": {
@@ -5839,6 +5902,8 @@
         "samples": 32,
         "seed": 73,
         "method": "Latin hypercube; independent uniform parasitic ranges",
+        "calibrated_scenarios": 0,
+        "outside_calibration_scope_scenarios": null,
         "uncertainty_pct": 5,
         "parameters": [
           "load_c_pf",
@@ -8690,14 +8755,14 @@
         "note": "Double-exponential curve fitted to predicted metrics; not an independently predicted waveform."
       },
       "circuit_crosscheck": {
-        "front_us": 1.8131234409554278,
-        "tail_us": 54.00384844330522,
+        "front_us": 1.8129566645760797,
+        "tail_us": 54.00185566829798,
         "crest_kv": 1360.6764866848462,
         "peak_time_us": 3.051140922142552,
-        "t30_us": 0.2589360608551058,
-        "t90_us": 1.3446387201098529,
-        "t50_us": 53.719933174532954,
-        "virtual_origin_us": -0.2839152687722678,
+        "t30_us": 0.2589300989741901,
+        "t90_us": 1.3445328921335193,
+        "t50_us": 53.717984370692506,
+        "virtual_origin_us": -0.2838712976054745,
         "polarity": 1,
         "local_maxima_count": 1,
         "ringing_detected": false,
@@ -8705,7 +8770,8 @@
         "time_origin_us": 0.0,
         "definition": "virtual front/origin",
         "diagnostics": {
-          "model": "lumped RLC Marx equivalent v1",
+          "model": "lumped RLC Marx equivalent v2",
+          "metric_extraction": "Continuous modal peak and bracketed 30/90/50% root refinement; plot samples are not the final crossing metrics.",
           "damping_ratio": 2.0260132600083667,
           "eigenvalues_per_second": [
             {
@@ -11143,11 +11209,11 @@
             {
               "name": "Front / peak time",
               "target": 1.2,
-              "predicted": 1.8131234409554278,
+              "predicted": 1.8129566645760797,
               "lower": 0.84,
               "upper": 1.56,
-              "deviation": 0.6131234409554278,
-              "deviation_pct": 51.093620079618994,
+              "deviation": 0.6129566645760798,
+              "deviation_pct": 51.07972204800666,
               "pass": false,
               "robust": false,
               "unit": "\u00b5s",
@@ -11156,11 +11222,11 @@
             {
               "name": "Time to half-value",
               "target": 50,
-              "predicted": 54.00384844330522,
+              "predicted": 54.00185566829798,
               "lower": 40,
               "upper": 60,
-              "deviation": 4.003848443305223,
-              "deviation_pct": 8.00769688661045,
+              "deviation": 4.001855668297978,
+              "deviation_pct": 8.003711336595964,
               "pass": true,
               "robust": false,
               "unit": "\u00b5s",
@@ -11187,10 +11253,65 @@
           "definition": "1.67 \u00d7 rising 30\u201390%; half-value relative to virtual origin"
         }
       },
+      "verification": {
+        "version": "fixed-settings-verification-v1",
+        "seed": 617,
+        "used_for_ranking": false,
+        "models_checked": [
+          "Primary prediction",
+          "Independent circuit"
+        ],
+        "parameters": [
+          "load_c_pf",
+          "divider_c_pf",
+          "stray_c_pf",
+          "l_uh"
+        ],
+        "uncertainty_pct": 5,
+        "fresh_samples": {
+          "total": 128,
+          "passed": 0,
+          "primary_passed": 128,
+          "circuit_passed": 0
+        },
+        "boundary_corners": {
+          "total": 16,
+          "passed": 0,
+          "primary_passed": 16,
+          "circuit_passed": 0
+        },
+        "total": 144,
+        "passed": 0,
+        "unique_scenarios": 144,
+        "nominal_all_models_pass": false,
+        "all_checks_pass": false,
+        "worst_case": {
+          "index": 143,
+          "group": "boundary_corners",
+          "inputs": {
+            "load_c_pf": 892.5,
+            "divider_c_pf": 525.0,
+            "stray_c_pf": 157.5,
+            "l_uh": 17.575
+          },
+          "primary_pass": true,
+          "circuit_pass": false,
+          "all_models_pass": false,
+          "minimum_margin_fraction": -0.9657368346140136,
+          "limiting_model": "Independent circuit",
+          "limiting_metric": "Front / peak time",
+          "predicted": 1.907665260461045,
+          "allowed_lower": 0.84,
+          "allowed_upper": 1.56,
+          "unit": "\u00b5s"
+        },
+        "calibrated_scenarios": 0,
+        "scope": "Fixed hardware checked after ranking using 128 separate-seed Latin-hypercube scenarios and 16 boundary corners. These checks do not select or reorder candidates. Finite simulation evidence only: not continuous-bound certification, independent model-accuracy testing or a laboratory success probability. Efficiency and hardware tolerances are held fixed; no statistical coverage claim."
+      },
       "pareto_optimal": true
     },
     {
-      "id": "c18",
+      "id": "c26",
       "settings": {
         "stages": 9,
         "charge_kv_stage": 193.08943089430895,
@@ -11215,6 +11336,7 @@
         ],
         "count_per_stage": 1,
         "inventory_feasible": true,
+        "legacy_catalog_value": true,
         "total_components": 9
       },
       "tail_network": {
@@ -11236,6 +11358,7 @@
         ],
         "count_per_stage": 3,
         "inventory_feasible": true,
+        "legacy_catalog_value": true,
         "total_components": 27
       },
       "physics": {
@@ -11369,6 +11492,8 @@
         "samples": 32,
         "seed": 73,
         "method": "Latin hypercube; independent uniform parasitic ranges",
+        "calibrated_scenarios": 0,
+        "outside_calibration_scope_scenarios": null,
         "uncertainty_pct": 5,
         "parameters": [
           "load_c_pf",
@@ -14220,14 +14345,14 @@
         "note": "Double-exponential curve fitted to predicted metrics; not an independently predicted waveform."
       },
       "circuit_crosscheck": {
-        "front_us": 1.8133951561440438,
-        "tail_us": 54.10219400733694,
+        "front_us": 1.8132458343977582,
+        "tail_us": 54.10025249284305,
         "crest_kv": 1360.7642883987626,
         "peak_time_us": 3.052318754363765,
-        "t30_us": 0.25895178477235553,
-        "t90_us": 1.3448171477328608,
-        "t50_us": 53.818213110629046,
-        "virtual_origin_us": -0.2839808967078971,
+        "t30_us": 0.258945789135776,
+        "t90_us": 1.3447217378769487,
+        "t50_us": 53.816310307608234,
+        "virtual_origin_us": -0.28394218523481035,
         "polarity": 1,
         "local_maxima_count": 1,
         "ringing_detected": false,
@@ -14235,7 +14360,8 @@
         "time_origin_us": 0.0,
         "definition": "virtual front/origin",
         "diagnostics": {
-          "model": "lumped RLC Marx equivalent v1",
+          "model": "lumped RLC Marx equivalent v2",
+          "metric_extraction": "Continuous modal peak and bracketed 30/90/50% root refinement; plot samples are not the final crossing metrics.",
           "damping_ratio": 2.0260132600083667,
           "eigenvalues_per_second": [
             {
@@ -16673,11 +16799,11 @@
             {
               "name": "Front / peak time",
               "target": 1.2,
-              "predicted": 1.8133951561440438,
+              "predicted": 1.8132458343977582,
               "lower": 0.84,
               "upper": 1.56,
-              "deviation": 0.6133951561440438,
-              "deviation_pct": 51.11626301200365,
+              "deviation": 0.6132458343977583,
+              "deviation_pct": 51.103819533146535,
               "pass": false,
               "robust": false,
               "unit": "\u00b5s",
@@ -16686,11 +16812,11 @@
             {
               "name": "Time to half-value",
               "target": 50,
-              "predicted": 54.10219400733694,
+              "predicted": 54.10025249284305,
               "lower": 40,
               "upper": 60,
-              "deviation": 4.102194007336941,
-              "deviation_pct": 8.204388014673892,
+              "deviation": 4.1002524928430475,
+              "deviation_pct": 8.200504985686097,
               "pass": true,
               "robust": false,
               "unit": "\u00b5s",
@@ -16717,10 +16843,65 @@
           "definition": "1.67 \u00d7 rising 30\u201390%; half-value relative to virtual origin"
         }
       },
+      "verification": {
+        "version": "fixed-settings-verification-v1",
+        "seed": 617,
+        "used_for_ranking": false,
+        "models_checked": [
+          "Primary prediction",
+          "Independent circuit"
+        ],
+        "parameters": [
+          "load_c_pf",
+          "divider_c_pf",
+          "stray_c_pf",
+          "l_uh"
+        ],
+        "uncertainty_pct": 5,
+        "fresh_samples": {
+          "total": 128,
+          "passed": 0,
+          "primary_passed": 128,
+          "circuit_passed": 0
+        },
+        "boundary_corners": {
+          "total": 16,
+          "passed": 0,
+          "primary_passed": 16,
+          "circuit_passed": 0
+        },
+        "total": 144,
+        "passed": 0,
+        "unique_scenarios": 144,
+        "nominal_all_models_pass": false,
+        "all_checks_pass": false,
+        "worst_case": {
+          "index": 143,
+          "group": "boundary_corners",
+          "inputs": {
+            "load_c_pf": 892.5,
+            "divider_c_pf": 525.0,
+            "stray_c_pf": 157.5,
+            "l_uh": 17.575
+          },
+          "primary_pass": true,
+          "circuit_pass": false,
+          "all_models_pass": false,
+          "minimum_margin_fraction": -0.9666106275855155,
+          "limiting_model": "Independent circuit",
+          "limiting_metric": "Front / peak time",
+          "predicted": 1.9079798259307856,
+          "allowed_lower": 0.84,
+          "allowed_upper": 1.56,
+          "unit": "\u00b5s"
+        },
+        "calibrated_scenarios": 0,
+        "scope": "Fixed hardware checked after ranking using 128 separate-seed Latin-hypercube scenarios and 16 boundary corners. These checks do not select or reorder candidates. Finite simulation evidence only: not continuous-bound certification, independent model-accuracy testing or a laboratory success probability. Efficiency and hardware tolerances are held fixed; no statistical coverage claim."
+      },
       "pareto_optimal": false
     },
     {
-      "id": "c19",
+      "id": "c27",
       "settings": {
         "stages": 9,
         "charge_kv_stage": 193.08943089430895,
@@ -16745,6 +16926,7 @@
         ],
         "count_per_stage": 1,
         "inventory_feasible": true,
+        "legacy_catalog_value": true,
         "total_components": 9
       },
       "tail_network": {
@@ -16772,6 +16954,7 @@
         ],
         "count_per_stage": 3,
         "inventory_feasible": true,
+        "legacy_catalog_value": true,
         "total_components": 27
       },
       "physics": {
@@ -16905,6 +17088,8 @@
         "samples": 32,
         "seed": 73,
         "method": "Latin hypercube; independent uniform parasitic ranges",
+        "calibrated_scenarios": 0,
+        "outside_calibration_scope_scenarios": null,
         "uncertainty_pct": 5,
         "parameters": [
           "load_c_pf",
@@ -19756,14 +19941,14 @@
         "note": "Double-exponential curve fitted to predicted metrics; not an independently predicted waveform."
       },
       "circuit_crosscheck": {
-        "front_us": 1.8125782201423906,
-        "tail_us": 53.81384206663599,
+        "front_us": 1.8123956241015293,
+        "tail_us": 53.81176405378536,
         "crest_kv": 1360.5060363394086,
         "peak_time_us": 3.048859241874267,
-        "t30_us": 0.2589053707729112,
-        "t90_us": 1.3442815504988936,
-        "t50_us": 53.530059347545915,
-        "virtual_origin_us": -0.28378271909008,
+        "t30_us": 0.258899641313077,
+        "t90_us": 1.344166482092436,
+        "t50_us": 53.528030274708755,
+        "virtual_origin_us": -0.2837337790766024,
         "polarity": 1,
         "local_maxima_count": 1,
         "ringing_detected": false,
@@ -19771,7 +19956,8 @@
         "time_origin_us": 0.0,
         "definition": "virtual front/origin",
         "diagnostics": {
-          "model": "lumped RLC Marx equivalent v1",
+          "model": "lumped RLC Marx equivalent v2",
+          "metric_extraction": "Continuous modal peak and bracketed 30/90/50% root refinement; plot samples are not the final crossing metrics.",
           "damping_ratio": 2.0260132600083667,
           "eigenvalues_per_second": [
             {
@@ -22209,11 +22395,11 @@
             {
               "name": "Front / peak time",
               "target": 1.2,
-              "predicted": 1.8125782201423906,
+              "predicted": 1.8123956241015293,
               "lower": 0.84,
               "upper": 1.56,
-              "deviation": 0.6125782201423906,
-              "deviation_pct": 51.048185011865876,
+              "deviation": 0.6123956241015294,
+              "deviation_pct": 51.03296867512746,
               "pass": false,
               "robust": false,
               "unit": "\u00b5s",
@@ -22222,11 +22408,11 @@
             {
               "name": "Time to half-value",
               "target": 50,
-              "predicted": 53.81384206663599,
+              "predicted": 53.81176405378536,
               "lower": 40,
               "upper": 60,
-              "deviation": 3.813842066635992,
-              "deviation_pct": 7.627684133271995,
+              "deviation": 3.8117640537853603,
+              "deviation_pct": 7.623528107570721,
               "pass": true,
               "robust": false,
               "unit": "\u00b5s",
@@ -22253,10 +22439,65 @@
           "definition": "1.67 \u00d7 rising 30\u201390%; half-value relative to virtual origin"
         }
       },
+      "verification": {
+        "version": "fixed-settings-verification-v1",
+        "seed": 617,
+        "used_for_ranking": false,
+        "models_checked": [
+          "Primary prediction",
+          "Independent circuit"
+        ],
+        "parameters": [
+          "load_c_pf",
+          "divider_c_pf",
+          "stray_c_pf",
+          "l_uh"
+        ],
+        "uncertainty_pct": 5,
+        "fresh_samples": {
+          "total": 128,
+          "passed": 0,
+          "primary_passed": 128,
+          "circuit_passed": 0
+        },
+        "boundary_corners": {
+          "total": 16,
+          "passed": 0,
+          "primary_passed": 16,
+          "circuit_passed": 0
+        },
+        "total": 144,
+        "passed": 0,
+        "unique_scenarios": 144,
+        "nominal_all_models_pass": false,
+        "all_checks_pass": false,
+        "worst_case": {
+          "index": 143,
+          "group": "boundary_corners",
+          "inputs": {
+            "load_c_pf": 892.5,
+            "divider_c_pf": 525.0,
+            "stray_c_pf": 157.5,
+            "l_uh": 17.575
+          },
+          "primary_pass": true,
+          "circuit_pass": false,
+          "all_models_pass": false,
+          "minimum_margin_fraction": -0.9640415611660618,
+          "limiting_model": "Independent circuit",
+          "limiting_metric": "Front / peak time",
+          "predicted": 1.9070549620197823,
+          "allowed_lower": 0.84,
+          "allowed_upper": 1.56,
+          "unit": "\u00b5s"
+        },
+        "calibrated_scenarios": 0,
+        "scope": "Fixed hardware checked after ranking using 128 separate-seed Latin-hypercube scenarios and 16 boundary corners. These checks do not select or reorder candidates. Finite simulation evidence only: not continuous-bound certification, independent model-accuracy testing or a laboratory success probability. Efficiency and hardware tolerances are held fixed; no statistical coverage claim."
+      },
       "pareto_optimal": false
     },
     {
-      "id": "c20",
+      "id": "c28",
       "settings": {
         "stages": 9,
         "charge_kv_stage": 193.08943089430895,
@@ -22281,6 +22522,7 @@
         ],
         "count_per_stage": 1,
         "inventory_feasible": true,
+        "legacy_catalog_value": true,
         "total_components": 9
       },
       "tail_network": {
@@ -22308,6 +22550,7 @@
         ],
         "count_per_stage": 3,
         "inventory_feasible": true,
+        "legacy_catalog_value": true,
         "total_components": 27
       },
       "physics": {
@@ -22441,6 +22684,8 @@
         "samples": 32,
         "seed": 73,
         "method": "Latin hypercube; independent uniform parasitic ranges",
+        "calibrated_scenarios": 0,
+        "outside_calibration_scope_scenarios": null,
         "uncertainty_pct": 5,
         "parameters": [
           "load_c_pf",
@@ -25292,14 +25537,14 @@
         "note": "Double-exponential curve fitted to predicted metrics; not an independently predicted waveform."
       },
       "circuit_crosscheck": {
-        "front_us": 1.812328919075872,
-        "tail_us": 53.729021555926785,
+        "front_us": 1.8121441600247434,
+        "tail_us": 53.72691054772237,
         "crest_kv": 1360.4295960956456,
         "peak_time_us": 3.0478380728006864,
-        "t30_us": 0.2588915374272294,
-        "t90_us": 1.3441184350774522,
-        "t50_us": 53.4452996445289,
-        "virtual_origin_us": -0.283721911397882,
+        "t30_us": 0.25888598298664667,
+        "t90_us": 1.3440022464745172,
+        "t50_us": 53.44323839896508,
+        "virtual_origin_us": -0.2836721487572885,
         "polarity": 1,
         "local_maxima_count": 1,
         "ringing_detected": false,
@@ -25307,7 +25552,8 @@
         "time_origin_us": 0.0,
         "definition": "virtual front/origin",
         "diagnostics": {
-          "model": "lumped RLC Marx equivalent v1",
+          "model": "lumped RLC Marx equivalent v2",
+          "metric_extraction": "Continuous modal peak and bracketed 30/90/50% root refinement; plot samples are not the final crossing metrics.",
           "damping_ratio": 2.0260132600083667,
           "eigenvalues_per_second": [
             {
@@ -27745,11 +27991,11 @@
             {
               "name": "Front / peak time",
               "target": 1.2,
-              "predicted": 1.812328919075872,
+              "predicted": 1.8121441600247434,
               "lower": 0.84,
               "upper": 1.56,
-              "deviation": 0.6123289190758721,
-              "deviation_pct": 51.02740992298933,
+              "deviation": 0.6121441600247435,
+              "deviation_pct": 51.01201333539529,
               "pass": false,
               "robust": false,
               "unit": "\u00b5s",
@@ -27758,11 +28004,11 @@
             {
               "name": "Time to half-value",
               "target": 50,
-              "predicted": 53.729021555926785,
+              "predicted": 53.72691054772237,
               "lower": 40,
               "upper": 60,
-              "deviation": 3.729021555926785,
-              "deviation_pct": 7.458043111853563,
+              "deviation": 3.726910547722369,
+              "deviation_pct": 7.453821095444746,
               "pass": true,
               "robust": false,
               "unit": "\u00b5s",
@@ -27788,6 +28034,61 @@
           "hardware_pass": true,
           "definition": "1.67 \u00d7 rising 30\u201390%; half-value relative to virtual origin"
         }
+      },
+      "verification": {
+        "version": "fixed-settings-verification-v1",
+        "seed": 617,
+        "used_for_ranking": false,
+        "models_checked": [
+          "Primary prediction",
+          "Independent circuit"
+        ],
+        "parameters": [
+          "load_c_pf",
+          "divider_c_pf",
+          "stray_c_pf",
+          "l_uh"
+        ],
+        "uncertainty_pct": 5,
+        "fresh_samples": {
+          "total": 128,
+          "passed": 0,
+          "primary_passed": 128,
+          "circuit_passed": 0
+        },
+        "boundary_corners": {
+          "total": 16,
+          "passed": 0,
+          "primary_passed": 16,
+          "circuit_passed": 0
+        },
+        "total": 144,
+        "passed": 0,
+        "unique_scenarios": 144,
+        "nominal_all_models_pass": false,
+        "all_checks_pass": false,
+        "worst_case": {
+          "index": 143,
+          "group": "boundary_corners",
+          "inputs": {
+            "load_c_pf": 892.5,
+            "divider_c_pf": 525.0,
+            "stray_c_pf": 157.5,
+            "l_uh": 17.575
+          },
+          "primary_pass": true,
+          "circuit_pass": false,
+          "all_models_pass": false,
+          "minimum_margin_fraction": -0.9632817387903492,
+          "limiting_model": "Independent circuit",
+          "limiting_metric": "Front / peak time",
+          "predicted": 1.9067814259645257,
+          "allowed_lower": 0.84,
+          "allowed_upper": 1.56,
+          "unit": "\u00b5s"
+        },
+        "calibrated_scenarios": 0,
+        "scope": "Fixed hardware checked after ranking using 128 separate-seed Latin-hypercube scenarios and 16 boundary corners. These checks do not select or reorder candidates. Finite simulation evidence only: not continuous-bound certification, independent model-accuracy testing or a laboratory success probability. Efficiency and hardware tolerances are held fixed; no statistical coverage claim."
       },
       "pareto_optimal": false
     }
@@ -29201,13 +29502,14 @@
     "note": "Double-exponential curve fitted to predicted metrics; not an independently predicted waveform."
   },
   "search": {
-    "evaluated": 416,
-    "hardware_feasible": 416,
+    "evaluated": 1081,
+    "hardware_feasible": 1081,
     "rejected": {
       "stage_voltage_or_energy": 7,
       "nonfinite_or_invalid_waveform": 0
     },
-    "search_kind": "Bounded series DP + up-to-three-part parallel/mixed networks; nearest five front/tail choices per stage, not exhaustive global optimization."
+    "agreement_feasible": null,
+    "search_kind": "Bounded series DP + four-part series/parallel trees (six parts for small catalogs) and identical parallel banks; nearest five front/tail choices per stage, not exhaustive global optimization."
   },
   "inventory_provenance": "Hybrid Calculator B13:B15; Resistor Inventory A4:F15",
   "warnings": [
@@ -29235,7 +29537,7 @@
     "search_note": "Bounded enumeration and shortlist simulation; no global optimality guarantee"
   },
   "calibration_review": null,
-  "run_id": "91640476f632",
-  "id": "91640476f632",
-  "created_at": "2026-10-01T06:43:17.633413+00:00"
+  "run_id": "748bb8541090",
+  "id": "748bb8541090",
+  "created_at": "2026-10-01T15:07:56.855122+00:00"
 }

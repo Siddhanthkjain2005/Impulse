@@ -1,0 +1,120 @@
+{
+  "recorded_at_utc": "2026-10-01T15:08:41.683154+00:00",
+  "cases": {
+    "workbook_lightning": {
+      "require_model_agreement": true
+    },
+    "higher_load_lightning": {
+      "load_c_pf": 1500,
+      "require_model_agreement": true
+    },
+    "low_voltage_lightning": {
+      "test_kv": 500,
+      "require_model_agreement": true
+    },
+    "constructible_switching": {
+      "impulse_type": "Switching",
+      "test_kv": 1025,
+      "load_c_pf": 1240,
+      "divider_c_pf": 740,
+      "stray_c_pf": 320,
+      "require_model_agreement": true
+    },
+    "pdf_lightning_assumed_stock": {
+      "profile_id": "cpri_problem_brief_profile",
+      "inventory_override": {
+        "front": [
+          {
+            "ohm": 30,
+            "count_per_stage": 4
+          },
+          {
+            "ohm": 465,
+            "count_per_stage": 4
+          },
+          {
+            "ohm": 3700,
+            "count_per_stage": 4
+          }
+        ],
+        "tail": [
+          {
+            "ohm": 520,
+            "count_per_stage": 4
+          }
+        ],
+        "provenance": "Diagnostic assumption: four per value per stage; unverified laboratory stock"
+      },
+      "require_model_agreement": true
+    },
+    "pdf_lightning_circuit": {
+      "profile_id": "cpri_problem_brief_profile",
+      "solver": "circuit",
+      "impulse_type": "Lightning",
+      "test_kv": 1425,
+      "inventory_override": {
+        "front": [
+          {
+            "ohm": 30,
+            "count_per_stage": 4
+          },
+          {
+            "ohm": 465,
+            "count_per_stage": 4
+          },
+          {
+            "ohm": 3700,
+            "count_per_stage": 4
+          }
+        ],
+        "tail": [
+          {
+            "ohm": 520,
+            "count_per_stage": 4
+          }
+        ],
+        "provenance": "Diagnostic assumption: four units per value per stage; quantities unverified"
+      }
+    },
+    "pdf_switching_circuit": {
+      "profile_id": "cpri_problem_brief_profile",
+      "solver": "circuit",
+      "impulse_type": "Switching",
+      "test_kv": 1050,
+      "inventory_override": {
+        "front": [
+          {
+            "ohm": 30,
+            "count_per_stage": 4
+          },
+          {
+            "ohm": 465,
+            "count_per_stage": 4
+          },
+          {
+            "ohm": 3700,
+            "count_per_stage": 4
+          }
+        ],
+        "tail": [
+          {
+            "ohm": 22000,
+            "count_per_stage": 4
+          }
+        ],
+        "provenance": "Diagnostic assumption: four units per value per stage; quantities unverified"
+      }
+    }
+  },
+  "source_sha256": {
+    "backend/app/optimization/verification.py": "061de989ae1aca1bf3d9359cedc568608dbc47ebc6f708e44dc5ecc2be54c0a4",
+    "backend/app/optimization/__init__.py": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+    "backend/app/optimization/networks.py": "dba89a49a134b138d185180ecc500f8af3a601c4a71f06e70498b182c9d57513",
+    "backend/app/optimization/engine.py": "f83c2aa11b68a5578cac67a7de0d51ee33fe48cc78b5339122a17a91fa83f6a9",
+    "backend/app/physics/circuit.py": "76c4824114d9603239bed9d60f58e4c061df5a30e254a02d5e20553b3abf3183",
+    "backend/app/physics/compliance.py": "d9a8f696291a8062088c73580259b20591a0e44da4a21f58707239058eee71e0",
+    "backend/app/physics/__init__.py": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+    "backend/app/physics/waveform_metrics.py": "02ff786a1616083505b0367bdb7ad26e971a4fdee392ce6b48dee235b0e54015"
+  },
+  "scope": "Engineering development examples, not independent model-accuracy evaluation. Expanded targets retain legacy choices. Verification follows ranking, without reordering. Continuous failure diagnostics from the initial study remain separate and are not infeasibility proofs."
+}

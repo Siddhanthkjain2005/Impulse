@@ -23,6 +23,7 @@ class OptimizeRequest(BaseModel):
     efficiency:float=Field(default=.82,gt=.05,le=1)
     solver:Literal['reference','circuit']='reference'
     model_mode:Literal['hybrid','physics','experimental_v2']='hybrid'
+    require_model_agreement:bool=False
     connection_mode:Literal['series_marx_equivalent']='series_marx_equivalent'
     layout_id:str=Field(default='default-layout',min_length=1,max_length=100)
     stage_min:int|None=Field(default=None,ge=2,le=30)
@@ -38,6 +39,8 @@ class OptimizeRequest(BaseModel):
     calibration_id:str|None=None
     @model_validator(mode='after')
     def ordered_stages(self):
+        if self.require_model_agreement and self.solver!='reference':
+            raise ValueError('Agreement search uses the workbook reference and independent circuit together. Select the reference prediction engine.')
         if self.stage_min and self.stage_max and self.stage_min>self.stage_max:
             raise ValueError('Minimum stages must not exceed maximum stages.')
         if self.equipment_reference_kv and not self.equipment_reference_source:

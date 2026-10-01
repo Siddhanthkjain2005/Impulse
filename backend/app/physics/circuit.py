@@ -4,6 +4,8 @@ from scipy.linalg import eig
 from scipy.optimize import brentq
 from .waveform_metrics import analyze
 
+VERSION = 'lumped RLC Marx equivalent v2'
+
 def simulate(stages,charge_kv_stage,front_r_stage,tail_r_stage,stage_c_uf,
              total_c_pf,l_uh,efficiency,impulse_type='Lightning',include_waveform=True):
     cg=stage_c_uf*1e-6/stages; cl=total_c_pf*1e-12; rf=front_r_stage*stages; rt=tail_r_stage*stages
@@ -29,12 +31,31 @@ def simulate(stages,charge_kv_stage,front_r_stage,tail_r_stage,stage_c_uf,
             t=np.unique(np.r_[t,tp]); v=np.real((vectors[out_index,:]*coefficients)@np.exp(eigen[:,None]*t[None,:]))
         except ValueError: pass
     v[0]=0.; result=analyze(t*1e6,v,impulse_type)
+    # The modal solution is continuous: refine threshold times on that solution
+    # rather than accepting the plotting-grid interpolation as the final metric.
+    # Uploaded sampled waveforms still use the separate interpolation analyzer.
+    def voltage(time):
+        return float(np.real(np.sum(vectors[out_index,:]*coefficients*np.exp(eigen*time))))
+    peak=int(np.argmax(v));crest=float(v[peak])
+    def exact_crossing(fraction,rising):
+        level=crest*fraction
+        first,last=(0,peak) if rising else (peak,len(t)-1)
+        a,b=v[first:last],v[first+1:last+1]
+        matches=(a<=level)&(b>=level) if rising else (a>=level)&(b<=level)
+        index=int(np.flatnonzero(matches)[0])+first
+        return brentq(lambda time:voltage(time)-level,t[index],t[index+1],xtol=1e-15)*1e6
+    t30=exact_crossing(.3,True);t90=exact_crossing(.9,True);t50=exact_crossing(.5,False)
+    virtual=t30-.5*(t90-t30)
+    result.update(t30_us=t30,t90_us=t90,t50_us=t50,virtual_origin_us=virtual,
+        front_us=1.67*(t90-t30) if impulse_type=='Lightning' else float(t[peak]*1e6),
+        tail_us=t50-virtual if impulse_type=='Lightning' else t50)
     states=np.real(vectors@(coefficients[:,None]*np.exp(eigen[:,None]*t[None,:])))
     stored=.5*cg*(states[0]*1000)**2+.5*cl*(states[out_index]*1000)**2
     if out_index==2: stored+=.5*l*(states[1]*1000)**2
     initial_energy=.5*cg*(initial*1000)**2
     energy_ratios=stored/initial_energy
-    result['diagnostics']={'model':'lumped RLC Marx equivalent v1','damping_ratio':float(rf/2*np.sqrt(cl/max(l_uh*1e-6,1e-18))),
+    result['diagnostics']={'model':VERSION,'metric_extraction':'Continuous modal peak and bracketed 30/90/50% root refinement; plot samples are not the final crossing metrics.',
+        'damping_ratio':float(rf/2*np.sqrt(cl/max(l_uh*1e-6,1e-18))),
         'eigenvalues_per_second':[{'real':float(e.real),'imaginary':float(e.imag)} for e in eigen],
         'efficiency_convention':'One voltage factor applied to erected initial voltage; includes assumed spark/connection loss.',
         'limitations':'No spark-gap dynamics, distributed capacitances, electromagnetic fields or pulse-rating model. Needs lab validation.',

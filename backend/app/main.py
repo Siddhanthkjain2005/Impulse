@@ -21,6 +21,7 @@ from .ml.reference_knn import WorkbookKNN
 from .ml.registry import registry
 from . import storage
 from .reports import report_html
+from .run_evidence import summarize_evidence
 
 ROOT=Path(__file__).resolve().parents[2]
 app=FastAPI(title='ImpulseTwin AI',version='1.0.0',description='Offline physics-guided impulse-generator decision support. No hardware control.',docs_url=None,redoc_url=None)
@@ -101,6 +102,10 @@ def models():
     experiment=ROOT/'artifacts/experiments/v2/summary.json'
     if experiment.exists():
         result['experiment_v2']=json.loads(experiment.read_text())
+    v3=ROOT/'artifacts/experiments/v3/summary.json'
+    if v3.exists():
+        study=json.loads(v3.read_text())
+        result['experiment_v3']={k:study[k] for k in ['version','scope','macro_improvement_pct','promotion_eligible','decision','hidden_test_evaluated','elapsed_seconds']}
     return result
 
 @app.get('/api/models/{id}/metrics')
@@ -117,7 +122,7 @@ def explain(body:dict):
 
 @app.get('/api/runs')
 def runs():
-    return [{'id':r['id'],'created_at':r['created_at'],'profile':r['profile']['name'],'inputs':r['inputs'],'status':r['candidates'][0]['compliance']['status'],'model_version':r['model_version']} for r in storage.list_records('run')]
+    return [{'id':r['id'],'created_at':r['created_at'],'profile':r['profile']['name'],'inputs':r['inputs'],'status':r['candidates'][0]['compliance']['status'],'model_version':r['model_version'],'evidence':summarize_evidence(r)} for r in storage.list_records('run')]
 
 @app.get('/api/runs/{id}')
 def get_run(id:str):return saved(id,'run')
@@ -173,6 +178,8 @@ def calibrate(id:str):
         raise HTTPException(422,'The shot differs by more than 30%. Review units, setup and waveform before local calibration.')
     scope={**{k:run['inputs'][k] for k in ['profile_id','impulse_type','layout_id','solver','model_mode','include_base_c','test_kv','load_c_pf','divider_c_pf','stray_c_pf','l_uh','efficiency']},
         'model_version':run['model_version'],
+        'physics_version':'workbook-reference-v1' if run['inputs']['solver']=='reference' else c['physics']['diagnostics']['model'],
+        'require_model_agreement':run['inputs'].get('require_model_agreement',False),
         'generator_profile':run['profile'],'rules_version':run['rules']['version'],
         'front_topology':c['front_network']['topology'],'tail_topology':c['tail_network']['topology'],
         **{k:c['settings'][k] for k in ['stages','front_r_stage','tail_r_stage','charge_kv_stage']}}

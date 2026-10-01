@@ -1,7 +1,7 @@
 {
   "lightning_reference": {
     "source_type": "generated_stress_test",
-    "run_id": "91640476f632",
+    "run_id": "748bb8541090",
     "model_version": "residual-competition-v1",
     "settings": {
       "stages": 9,
@@ -17,11 +17,56 @@
     "nominal_pass": true,
     "status": "MARGINAL",
     "ml_trust": 1.0,
+    "model_agreement": null,
     "circuit_crosscheck": "FAIL"
+  },
+  "lightning_model_agreement": {
+    "source_type": "generated_stress_test",
+    "run_id": "1cc5ffde4e8d",
+    "model_version": "residual-competition-v1",
+    "settings": {
+      "stages": 9,
+      "charge_kv_stage": 196.78500059932176,
+      "front_r_stage": 40.0,
+      "tail_r_stage": 23.823529411764703,
+      "stage_utilization": 0.9839250029966088,
+      "stored_energy_kj": 522.7785422218134,
+      "voltage_margin_kv_stage": 3.214999400678238,
+      "energy_margin_kj": 377.2214577781866,
+      "energy_margin_pct": 41.9134953086874
+    },
+    "nominal_pass": true,
+    "status": "MARGINAL",
+    "ml_trust": 0.0,
+    "model_agreement": {
+      "required": true,
+      "both_nominal_pass": true,
+      "reference_nominal_pass": true,
+      "circuit_nominal_pass": true,
+      "worst_tolerance_fraction": 0.6379720332864197,
+      "raw_crest_charge_windows": {
+        "reference_kv_stage": [
+          187.2967479674797,
+          198.88211382113823
+        ],
+        "circuit_kv_stage": [
+          194.60604704707578,
+          206.64353449328664
+        ],
+        "overlap": true,
+        "scope": "Raw-model charge ranges at this fixed resistor network, before stage/energy caps or local correction. Disjoint ranges cannot be repaired by charge adjustment alone."
+      },
+      "scope": "Agreement of two unvalidated models at the same hardware settings; not measured accuracy or laboratory compliance.",
+      "sampled_both_pass_pct": 100.0,
+      "sampled_circuit_pass_pct": 100.0,
+      "scenario_count": 32,
+      "scenario_note": "Finite independent parasitic scenarios, not a calibrated probability or proof over continuous ranges."
+    },
+    "circuit_crosscheck": "MARGINAL"
   },
   "lightning_circuit": {
     "source_type": "generated_stress_test",
-    "run_id": "431bba0b82eb",
+    "run_id": "a2a1ac37dae6",
     "model_version": "residual-competition-v1",
     "settings": {
       "stages": 9,
@@ -37,11 +82,12 @@
     "nominal_pass": true,
     "status": "MARGINAL",
     "ml_trust": 0.0,
+    "model_agreement": null,
     "circuit_crosscheck": null
   },
   "switching_constructible_ood": {
     "source_type": "generated_stress_test",
-    "run_id": "5317ef6960d0",
+    "run_id": "39eb187bb59d",
     "model_version": "residual-competition-v1",
     "settings": {
       "stages": 15,
@@ -57,11 +103,12 @@
     "nominal_pass": true,
     "status": "MARGINAL",
     "ml_trust": 0.0,
+    "model_agreement": null,
     "circuit_crosscheck": "FAIL"
   },
   "lightning_v2_candidate": {
     "source_type": "generated_stress_test",
-    "run_id": "bd49d24a47db",
+    "run_id": "8dd79766680e",
     "model_version": "targetwise-physics-v2-experiment",
     "settings": {
       "stages": 9,
@@ -77,6 +124,7 @@
     "nominal_pass": true,
     "status": "MARGINAL",
     "ml_trust": 1.0,
+    "model_agreement": null,
     "circuit_crosscheck": "FAIL"
   }
 }

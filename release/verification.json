@@ -1,24 +1,12 @@
 {
-  "recorded_at_utc": "2026-10-01T06:48:04.294443+00:00",
-  "status": "passed",
-  "extracted_root": "/var/folders/1x/dbv5hr0j6q31yd6qf988kzqw0000gn/T/impulsetwin-v2-release-e45ckibv/ImpulseTwin_AI",
-  "verified_files": 204,
+  "recorded_at_utc": "2026-10-01T17:24:22.739796+00:00",
+  "archive": "release/ImpulseTwin_AI_Local_PoC.zip",
+  "sha256": "811e5c0eafaab7ac4111ea5743827b48cabd8cbd4d3b8cbe71c2ec1a3b493308",
+  "bytes": 12048512,
+  "manifest_files": 233,
   "zip_integrity_passed": true,
-  "sha_manifest_passed": true,
-  "live_history_and_raw_uploads_excluded": true,
-  "application_checks": {
-    "static_routes": 6,
-    "api_docs": true,
-    "frozen_registry": true,
-    "default_and_v2_optimizer": true,
-    "reports": true,
-    "xgboost_not_required_for_serving": true
-  },
-  "launch_scope": "Extracted application loaded through FastAPI TestClient on current machine with existing installed dependencies; no new hosting deployment or fresh-machine installation.",
-  "archive_launch_passed": true,
-  "note": "Extracted backend application checks passed. Backend code and model artifacts are unchanged in the final package; final UI wording and rebuilt assets verified separately in the browser and offline asset check. Final ZIP and per-file manifest are verified after packaging this QA record.",
-  "final_archive_sha256": "138dc0f3d9590615f9a0b9ca5044e148479a9c6ee691d0e7dacfca3a54e09655",
-  "final_archive_size_bytes": 11396401,
-  "final_verified_files": 204,
-  "final_integrity_and_manifest_passed": true
+  "all_manifest_hashes_match": true,
+  "all_workspace_files_match": true,
+  "release_application_checks": "artifacts/qa/release_validation.json",
+  "scope": "Final archive integrity and source match. Extracted application checks on this machine are recorded separately; no fresh-machine install or cloud deployment."
 }

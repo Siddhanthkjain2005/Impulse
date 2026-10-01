@@ -1,0 +1,118 @@
+{
+  "lightning_reference": {
+    "source_type": "generated_stress_test",
+    "run_id": "5c6844273da4",
+    "model_version": "residual-competition-v1",
+    "settings": {
+      "stages": 9,
+      "charge_kv_stage": 193.08943089430895,
+      "front_r_stage": 50.0,
+      "tail_r_stage": 25.0,
+      "stage_utilization": 0.9654471544715447,
+      "stored_energy_kj": 503.32763236168944,
+      "voltage_margin_kv_stage": 6.910569105691053,
+      "energy_margin_kj": 396.67236763831056,
+      "energy_margin_pct": 44.07470751536784
+    },
+    "nominal_pass": true,
+    "status": "MARGINAL",
+    "ml_trust": 1.0,
+    "model_agreement": null,
+    "circuit_crosscheck": "FAIL"
+  },
+  "lightning_model_agreement": {
+    "source_type": "generated_stress_test",
+    "run_id": "b5e41d5f78aa",
+    "model_version": "residual-competition-v1",
+    "settings": {
+      "stages": 9,
+      "charge_kv_stage": 196.78500059932176,
+      "front_r_stage": 40.0,
+      "tail_r_stage": 23.823529411764703,
+      "stage_utilization": 0.9839250029966088,
+      "stored_energy_kj": 522.7785422218134,
+      "voltage_margin_kv_stage": 3.214999400678238,
+      "energy_margin_kj": 377.2214577781866,
+      "energy_margin_pct": 41.9134953086874
+    },
+    "nominal_pass": true,
+    "status": "MARGINAL",
+    "ml_trust": 0.0,
+    "model_agreement": {
+      "required": true,
+      "both_nominal_pass": true,
+      "reference_nominal_pass": true,
+      "circuit_nominal_pass": true,
+      "worst_tolerance_fraction": 0.6379720332864197,
+      "scope": "Agreement of two unvalidated models at the same hardware settings; not measured accuracy or laboratory compliance.",
+      "sampled_both_pass_pct": 100.0,
+      "sampled_circuit_pass_pct": 100.0,
+      "scenario_count": 32,
+      "scenario_note": "Finite independent parasitic scenarios, not a calibrated probability or proof over continuous ranges."
+    },
+    "circuit_crosscheck": "MARGINAL"
+  },
+  "lightning_circuit": {
+    "source_type": "generated_stress_test",
+    "run_id": "1fe75f47eb84",
+    "model_version": "residual-competition-v1",
+    "settings": {
+      "stages": 9,
+      "charge_kv_stage": 199.9714832043248,
+      "front_r_stage": 35.0,
+      "tail_r_stage": 22.641509433962263,
+      "stage_utilization": 0.999857416021624,
+      "stored_energy_kj": 539.8460202816572,
+      "voltage_margin_kv_stage": 0.028516795675187723,
+      "energy_margin_kj": 360.15397971834284,
+      "energy_margin_pct": 40.017108857593655
+    },
+    "nominal_pass": true,
+    "status": "MARGINAL",
+    "ml_trust": 0.0,
+    "model_agreement": null,
+    "circuit_crosscheck": null
+  },
+  "switching_constructible_ood": {
+    "source_type": "generated_stress_test",
+    "run_id": "046a3731927a",
+    "model_version": "residual-competition-v1",
+    "settings": {
+      "stages": 15,
+      "charge_kv_stage": 83.33333333333334,
+      "front_r_stage": 4330.0,
+      "tail_r_stage": 1200.0,
+      "stage_utilization": 0.41666666666666674,
+      "stored_energy_kj": 156.25,
+      "voltage_margin_kv_stage": 116.66666666666666,
+      "energy_margin_kj": 743.75,
+      "energy_margin_pct": 82.63888888888889
+    },
+    "nominal_pass": true,
+    "status": "MARGINAL",
+    "ml_trust": 0.0,
+    "model_agreement": null,
+    "circuit_crosscheck": "FAIL"
+  },
+  "lightning_v2_candidate": {
+    "source_type": "generated_stress_test",
+    "run_id": "9495ac4646f1",
+    "model_version": "targetwise-physics-v2-experiment",
+    "settings": {
+      "stages": 9,
+      "charge_kv_stage": 193.08943089430895,
+      "front_r_stage": 50.0,
+      "tail_r_stage": 25.0,
+      "stage_utilization": 0.9654471544715447,
+      "stored_energy_kj": 503.32763236168944,
+      "voltage_margin_kv_stage": 6.910569105691053,
+      "energy_margin_kj": 396.67236763831056,
+      "energy_margin_pct": 44.07470751536784
+    },
+    "nominal_pass": true,
+    "status": "MARGINAL",
+    "ml_trust": 1.0,
+    "model_agreement": null,
+    "circuit_crosscheck": "FAIL"
+  }
+}

@@ -56,6 +56,10 @@ def report_html(run):
         cross_note = f'''<aside class="callout {'danger-callout' if disagrees else 'caution-callout'}"><h2>{e(heading)}</h2><p>The headline status uses the workbook reference and its selected correction. The independent circuit reports {badge(cross['compliance']['status'], cross_kind)} for the same settings.</p>{comparison}<p class="small">The reference curve reconstructs predicted metrics. The circuit solves a separate lumped RLC equivalent; neither has laboratory validation. Its status is a waveform-only check without calibrated intervals. A passing reference result does not establish that the physical circuit will pass.</p></aside>'''
     else:
         cross_note = '<aside class="callout caution-callout"><p>This waveform comes from a lumped equivalent circuit. Its topology and assumed loss factor require measured validation; this result does not establish laboratory compliance.</p></aside>'
+    if c.get('model_agreement'):
+        agreement=c['model_agreement']
+        outcome='Both nominal model checks pass' if agreement['both_nominal_pass'] else 'No agreement at this setting'
+        cross_note+=f'<aside class="callout caution-callout"><h2>Search requiring model agreement</h2><p><strong>{e(outcome)}</strong>. {number(agreement["sampled_both_pass_pct"],1)}% of {e(agreement["scenario_count"])} sampled parasitic scenarios pass both models.</p><p>{e(agreement["scope"])} {e(agreement["scenario_note"])}</p></aside>'
 
     chart = '<p class="muted">A curve could not be reconstructed for these metrics. The numeric results below remain the basis for compliance.</p>'
     if wave:
@@ -115,6 +119,7 @@ def report_html(run):
     input_rows = []
     for key, value in inputs.items():
         if key == 'inventory_override': value = f'Yes — {value["provenance"]}. Quantities appear in the component plan.' if value else 'No — profile stock is used'
+        elif key == 'require_model_agreement': value = 'Required across workbook and independent circuit' if value else 'Single prediction engine with independent review'
         elif key == 'profile_id': value = run['profile']['name']
         elif key == 'solver': value = solver_name
         elif key == 'model_mode': value = {'hybrid':'Trust-gated residual correction','physics':'Physics only','experimental_v2':'Experimental V2 residual correction (development evidence)'}.get(value,value)
@@ -143,6 +148,11 @@ def report_html(run):
         calibration = f'''<section><h2>Trial-shot feedback</h2><div class="callout caution-callout"><p><strong>{'Scoped correction applied' if applied else 'Saved correction not applied'}</strong> · source: {e(source_label)} · record {e(correction['id'])}</p>{detail}<p>A one-shot additive correction is unvalidated. It does not retrain production models or establish interval coverage. It applies only to the saved profile, rules, model, layout, solver, resistor topology and settings, with inputs within 1%. Reduced-voltage to full-voltage transfer is not inferred.</p></div></section>'''
     reason_list = ''.join(f'<li>{e(v)}</li>' for v in c['explanation'])
     warnings = ''.join(f'<li>{e(v)}</li>' for v in run['warnings'])
+    verification=''
+    if c.get('verification'):
+        v=c['verification'];w=v['worst_case']
+        verification=f'''<aside class="callout {'caution-callout' if v['all_checks_pass'] else 'danger-callout'}"><h2>Post-ranking settings challenge</h2><p><strong>{e(v['passed'])}/{e(v['total'])} scenarios pass every checked model.</strong> Separate samples: {e(v['fresh_samples']['passed'])}/{e(v['fresh_samples']['total'])}; boundary corners: {e(v['boundary_corners']['passed'])}/{e(v['boundary_corners']['total'])}. {e(v['unique_scenarios'])} distinct scenarios.</p><p>Most limiting: {e(w['limiting_model'])}, {e(w['limiting_metric'])} = {number(w['predicted'])} {e(w['unit'])}, allowed {number(w['allowed_lower'])}–{number(w['allowed_upper'])}. Margin: {number(w['minimum_margin_fraction']*100,1)}% of the allowed half-range.</p><p class="small">{e(v['scope'])}</p></aside>'''
+    ranking_order=' → '.join(run['ranking_config']['ranking_order'])
     return f'''<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>ImpulseTwin report {e(run['id'])}</title>
 <style>
@@ -153,11 +163,12 @@ def report_html(run):
 <header><div class="eyebrow">Physics-guided high-voltage decision support</div><h1>ImpulseTwin AI</h1><p class="subtitle">Laboratory setup discussion report</p><div class="meta"><span>Run <strong>{e(run['id'])}</strong></span><span>Recorded {e(run['created_at'])}</span><span>{e(inputs['impulse_type'])} impulse</span></div></header>
 <div class="summary"><div class="summary-line">{badge(c['compliance']['status'], status_kind)}<span>{e(solver_name)} result · {number(inputs['test_kv'], 0)} kV requested crest</span></div><p>Under {e(run['rules']['label'])}. Decision support; engineer verification required. This is a model prediction, not a measured test result.</p>{'<p><strong>No nominally compliant candidate was found. The setup below is a diagnostic alternative.</strong></p>' if not nominal else ''}</div>
 {cross_note}
+{verification}
 <section><h2>1. Configuration and provenance</h2>{provenance}</section>
 <section><h2>2. {'Rank-one setup' if nominal else 'Rank-one diagnostic setup'}</h2>{setup}<p class="small">{e(c['setup_component_count'])} total front/tail parts across {e(s['stages'])} active stages. Stock arithmetic and declared ratings are checked; permitted mounting and resistor pulse ratings require engineering confirmation.</p>{chart}{compliance}</section>
 <section><h2>3. Uncertainty and training support</h2><p><strong>{e(support)}</strong> · residual-correction weight {number(c['ood']['trust_weight'], 3)}<br>{e(c['uncertainty']['method'])}</p>{intervals}<p class="small">{e(coverage_text)} {e(c['uncertainty'].get('coverage_limit', ''))}</p><p>Parasitic ranges: ±{number(inputs['uncertainty_pct'], 1)}% · {e(robustness['samples'])} finite scenarios · {number(robustness['nominal_scenario_pass_pct'], 1)}% of sampled point predictions pass.</p><p class="small">{e(robustness['note'])}</p>{sensitivity}</section>
 <section><h2>4. Resistor component plan</h2>{components}<p class="small">Availability totals refer to the active stages and the declared per-stage stock. Inventory provenance: {e(run['inventory_provenance'])}.</p></section>
-<section><h2>5. Ranked alternatives and reasoning</h2>{alternatives}<p class="small">Lower weighted cost is preferred after nominal compliance and interval containment. The bounded shortlist is not proof of a global optimum.</p>{scores}<ul>{reason_list}</ul></section>
+<section><h2>5. Ranked alternatives and reasoning</h2>{alternatives}<p class="small">Ranking order: {e(ranking_order)}. The bounded shortlist is not proof of a global optimum.</p>{scores}<ul>{reason_list}</ul></section>
 {calibration}
 <section><h2>6. Recorded inputs</h2>{input_table}</section>
 <section><h2>7. Limits of this result</h2><ul>{warnings}</ul><p>Published workbook validation-table discrepancy remains documented in source reconciliation. All trained models use supplied synthetic records; no laboratory validation or measured reduction in trial shots has been established.</p></section>

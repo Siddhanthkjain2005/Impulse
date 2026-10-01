@@ -42,7 +42,7 @@ For the full continuation guide, read [HANDOFF.md](HANDOFF.md). The repository i
 
 For independent frontend development, run `npm run dev` in `frontend` with the API on 8000. Engineering formulas live in Python only. API documentation: `http://127.0.0.1:8000/docs`.
 
-Four self-contained fallback reports live in `reports/demo_*.html`. Clearly generated waveform CSVs and their archived run snapshots live in `data/demo`. Open a report directly if the live presentation is interrupted; import a sample only after creating a matching live run. Regenerate these with `python3 -m scripts.prepare_demo_artifacts`.
+Five self-contained fallback reports live in `reports/demo_*.html`. Clearly generated waveform CSVs and their archived run snapshots live in `data/demo`. Open a report directly if the live presentation is interrupted; import a sample only after creating a matching live run. Regenerate these with `python3 -m scripts.prepare_demo_artifacts`.
 
 ## Evidence and limitations to understand before presenting
 
@@ -66,7 +66,7 @@ The controlled search completed locally in **54.96 seconds**, spent **$0 on clou
 
 ## Current checks and handoff
 
-The latest recorded backend run has **67 passing tests, zero failures and zero errors** in `artifacts/qa/backend-tests.xml`. The latest frontend typecheck and static build passed. The exported HTML references **17 local assets**, with no remote or missing assets in the in-process offline check. This does not replace a physically disconnected-network rehearsal on the presentation laptop. Browser review and final archive verification are recorded in `artifacts/qa_summary.json` as they are completed.
+The latest recorded backend run has **86 passing tests, zero failures and zero errors** in `artifacts/qa/backend-tests.xml`. The latest frontend typecheck and static build passed. The exported HTML references **17 local assets**, with no remote or missing assets in the in-process offline check. This does not replace a physically disconnected-network rehearsal on the presentation laptop. Browser review and final archive verification are recorded in `artifacts/qa_summary.json` as they are completed.
 
 The release workflow includes source, frozen V1/V2 artifacts, static assets, generated fallback reports and executed QA evidence. It excludes live SQLite histories and raw uploaded trials. Release packaging follows the final QA update; a fresh-machine installation and disconnected-network rehearsal on a second laptop remain finale preparation tasks.
 
@@ -80,3 +80,15 @@ Google Cloud credit is optional. `docs/cloud_readiness.md` and the Dockerfile pr
 
 
 Benchmark scores evaluate residual predictions before runtime support and scenario gating. The optimizer can fall back to physics and widen its envelope; the saved errors are not a laboratory or complete-optimizer accuracy estimate.
+
+## Agreement search and additional accuracy study
+
+Preset **G · Lightning · agreement across models** searches for stock settings that pass both reference and circuit nominal limits. The default Lightning case now has a demonstrated agreement configuration; this is two-model simulation evidence, not measured accuracy. The uncertainty result remains MARGINAL. The tested Switching and PDF cases still lack agreement in the bounded search.
+
+A separate V3 model search produced only 1.03% macro development improvement versus the historical V2 refit, below its predefined 5% gate, so it was not activated. See `docs/accuracy_v3_results.md` for outcomes and limits. Calibration corrections are now restricted to scenarios within the saved 1% input scope.
+
+If the default frontend compiler cannot open a temporary port in a restricted environment, use `cd frontend && npm run build -- --webpack` with Node 22+.
+
+## Expanded search and post-ranking checks
+
+Every returned setup now receives 128 separate-seed parasitic samples and 16 boundary corners after ranking, shown in **Challenge the selected setup**. The chart also overlays the independent circuit. Circuit thresholds now use continuous root refinement, checked against a separate time-domain integration method. Counted hardware search includes additional four/six-component trees and parallel banks while retaining earlier target alternatives. See `docs/search_v4_results.md`; these are numerical and engineering checks, not laboratory accuracy.

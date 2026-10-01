@@ -112,6 +112,7 @@
     "efficiency": 0.82,
     "solver": "circuit",
     "model_mode": "hybrid",
+    "require_model_agreement": false,
     "connection_mode": "series_marx_equivalent",
     "layout_id": "default-layout",
     "stage_min": null,
@@ -160,6 +161,7 @@
         ],
         "count_per_stage": 3,
         "inventory_feasible": true,
+        "legacy_catalog_value": true,
         "total_components": 27
       },
       "tail_network": {
@@ -187,17 +189,18 @@
         ],
         "count_per_stage": 3,
         "inventory_feasible": true,
+        "legacy_catalog_value": true,
         "total_components": 27
       },
       "physics": {
-        "front_us": 1.2023209828772599,
-        "tail_us": 50.00178939357525,
+        "front_us": 1.2022845105042,
+        "tail_us": 49.99957660944584,
         "crest_kv": 1425.0000000000002,
         "peak_time_us": 2.1499245005655623,
-        "t30_us": 0.20811941967234798,
-        "t90_us": 0.9280721040299886,
-        "t50_us": 49.849932471068776,
-        "virtual_origin_us": -0.15185692250647237,
+        "t30_us": 0.20811885039171488,
+        "t90_us": 0.9280496950050082,
+        "t50_us": 49.84773003753091,
+        "virtual_origin_us": -0.1518465719149318,
         "polarity": 1,
         "local_maxima_count": 1,
         "ringing_detected": false,
@@ -205,7 +208,8 @@
         "time_origin_us": 0.0,
         "definition": "virtual front/origin",
         "diagnostics": {
-          "model": "lumped RLC Marx equivalent v1",
+          "model": "lumped RLC Marx equivalent v2",
+          "metric_extraction": "Continuous modal peak and bracketed 30/90/50% root refinement; plot samples are not the final crossing metrics.",
           "damping_ratio": 1.4182092820058567,
           "eigenvalues_per_second": [
             {
@@ -237,7 +241,7 @@
       "support_policy": "calculator-settings-and-envelope-v2",
       "raw_residual": [
         -0.0017620458597055872,
-        -4.305168482912822,
+        -4.309574315512129,
         6.923924760076018
       ],
       "correction": [
@@ -246,14 +250,14 @@
         0.0
       ],
       "prediction": [
-        1.2023209828772599,
-        50.00178939357525,
+        1.2022845105042,
+        49.99957660944584,
         1425.0000000000002
       ],
       "ood": {
         "state": "physics_mode",
         "trust_weight": 0.0,
-        "nearest_distance": 53.73068904837734,
+        "nearest_distance": 53.785334357786,
         "threshold_p95": 1.9782598510822709,
         "outside_feature_envelope": true,
         "calculator_setting_supported": false,
@@ -262,18 +266,18 @@
       },
       "uncertainty": {
         "lower": [
-          1.0489009406410084,
-          44.26965797538012,
+          1.0488501167503745,
+          44.26857548218345,
           1353.8974405463773
         ],
         "upper": [
-          1.3626901139106056,
-          55.747040881657995,
+          1.3626852529694613,
+          55.74516997607873,
           1496.2513886413924
         ],
         "halfwidth": [
-          0.1603691310333457,
-          5.745251488082744,
+          0.16040074246526137,
+          5.745593366632889,
           71.25138864139217
         ],
         "coverage_claim": null,
@@ -282,8 +286,8 @@
       },
       "calibration": null,
       "hybrid": {
-        "front_us": 1.2023209828772599,
-        "tail_us": 50.00178939357525,
+        "front_us": 1.2022845105042,
+        "tail_us": 49.99957660944584,
         "crest_kv": 1425.0000000000002
       },
       "compliance": {
@@ -294,11 +298,11 @@
           {
             "name": "Front / peak time",
             "target": 1.2,
-            "predicted": 1.2023209828772599,
+            "predicted": 1.2022845105042,
             "lower": 0.84,
             "upper": 1.56,
-            "deviation": 0.002320982877259903,
-            "deviation_pct": 0.19341523977165487,
+            "deviation": 0.002284510504199977,
+            "deviation_pct": 0.19037587535000178,
             "pass": true,
             "robust": true,
             "unit": "\u00b5s",
@@ -307,11 +311,11 @@
           {
             "name": "Time to half-value",
             "target": 50,
-            "predicted": 50.00178939357525,
+            "predicted": 49.99957660944584,
             "lower": 40,
             "upper": 60,
-            "deviation": 0.001789393575251097,
-            "deviation_pct": 0.003578787150493312,
+            "deviation": -0.00042339055416107385,
+            "deviation_pct": -0.0008467811083212595,
             "pass": true,
             "robust": true,
             "unit": "\u00b5s",
@@ -338,21 +342,23 @@
         "definition": "1.67 \u00d7 rising 30\u201390%; half-value relative to virtual origin"
       },
       "score_breakdown": {
-        "front_deviation": 0.0019341523977165855,
-        "tail_deviation": 5.368180725753291e-05,
+        "front_deviation": 0.0019037587534999805,
+        "tail_deviation": 1.2701716624832217e-05,
         "crest_deviation": 2.127472986603341e-15,
         "setup_complexity": 0.16200000000000003,
         "ood_penalty": 0.08,
         "operating_margin_penalty": 0.02999572248064872,
-        "uncertainty_penalty": 0.04030041160110726
+        "uncertainty_penalty": 0.040302241561928964
       },
-      "score": 0.3142839682867323,
-      "accuracy_cost": 0.0066261140165857135,
+      "score": 0.31421442451270465,
+      "accuracy_cost": 0.006388201567088028,
       "setup_component_count": 54,
       "robustness": {
         "samples": 32,
         "seed": 73,
         "method": "Latin hypercube; independent uniform parasitic ranges",
+        "calibrated_scenarios": 0,
+        "outside_calibration_scope_scenarios": null,
         "uncertainty_pct": 5,
         "parameters": [
           "load_c_pf",
@@ -363,20 +369,20 @@
         "nominal_scenario_pass_pct": 100.0,
         "note": "Scenario fraction under stated assumptions, not probability of laboratory success. Intervals include finite sampled extremes; not a proof over continuous bounds.",
         "minimum": [
-          1.1392404344527796,
-          49.85846784986205,
+          1.1391869356205335,
+          49.85732838333924,
           1422.6678519115546
         ],
         "maximum": [
-          1.2660120398299746,
-          50.14395657111349,
+          1.266007410362218,
+          50.14217475627609,
           1427.3407891587979
         ],
         "sensitivity_5pct": {
-          "load_c_pf": 3.0770510491435754,
-          "divider_c_pf": 1.8105237930888585,
-          "stray_c_pf": 0.5446414525656307,
-          "l_uh": 0.7810261453560896
+          "load_c_pf": 3.079016662800904,
+          "divider_c_pf": 1.8125888523055744,
+          "stray_c_pf": 0.5441983232737924,
+          "l_uh": 0.7848576078400726
         },
         "most_sensitive_parameter": "load_c_pf"
       },
@@ -386,7 +392,7 @@
         "Every resistor is counted: 54 total parts across front and tail networks.",
         "Ranking combines tolerance-normalized waveform error, component count, uncertainty and operating margin. Score 0.314; lower is better.",
         "ML trust weight 0.00; physics mode. No laboratory accuracy claim.",
-        "Rank 1 versus rank 2: compliance is ordered first, then interval containment, then the weighted cost (0.3143 versus 0.3146). This setup uses 54 parts versus 54; lower cost can trade waveform deviation against complexity and headroom."
+        "Rank 1 versus rank 2: nominal compliance, then interval containment, then weighted cost (0.3142 versus 0.3145). This setup uses 54 parts versus 54; lower cost can trade waveform deviation against complexity and headroom."
       ],
       "waveform": {
         "time_us": [
@@ -5207,10 +5213,64 @@
         "kind": "equivalent_circuit"
       },
       "circuit_crosscheck": null,
+      "verification": {
+        "version": "fixed-settings-verification-v1",
+        "seed": 617,
+        "used_for_ranking": false,
+        "models_checked": [
+          "Circuit prediction"
+        ],
+        "parameters": [
+          "load_c_pf",
+          "divider_c_pf",
+          "stray_c_pf",
+          "l_uh"
+        ],
+        "uncertainty_pct": 5,
+        "fresh_samples": {
+          "total": 128,
+          "passed": 128,
+          "primary_passed": 128,
+          "circuit_passed": null
+        },
+        "boundary_corners": {
+          "total": 16,
+          "passed": 16,
+          "primary_passed": 16,
+          "circuit_passed": null
+        },
+        "total": 144,
+        "passed": 144,
+        "unique_scenarios": 144,
+        "nominal_all_models_pass": true,
+        "all_checks_pass": true,
+        "worst_case": {
+          "index": 143,
+          "group": "boundary_corners",
+          "inputs": {
+            "load_c_pf": 892.5,
+            "divider_c_pf": 525.0,
+            "stray_c_pf": 157.5,
+            "l_uh": 17.575
+          },
+          "primary_pass": true,
+          "circuit_pass": null,
+          "all_models_pass": true,
+          "minimum_margin_fraction": 0.7863277409343084,
+          "limiting_model": "Primary prediction",
+          "limiting_metric": "Front / peak time",
+          "predicted": 1.276922013263649,
+          "allowed_lower": 0.84,
+          "allowed_upper": 1.56,
+          "unit": "\u00b5s"
+        },
+        "calibrated_scenarios": 0,
+        "scope": "Fixed hardware checked after ranking using 128 separate-seed Latin-hypercube scenarios and 16 boundary corners. These checks do not select or reorder candidates. Finite simulation evidence only: not continuous-bound certification, independent model-accuracy testing or a laboratory success probability. Efficiency and hardware tolerances are held fixed; no statistical coverage claim."
+      },
       "pareto_optimal": true
     },
     {
-      "id": "c8",
+      "id": "c11",
       "settings": {
         "stages": 9,
         "charge_kv_stage": 199.94736481327413,
@@ -5247,6 +5307,7 @@
         ],
         "count_per_stage": 3,
         "inventory_feasible": true,
+        "legacy_catalog_value": true,
         "total_components": 27
       },
       "tail_network": {
@@ -5274,17 +5335,18 @@
         ],
         "count_per_stage": 3,
         "inventory_feasible": true,
+        "legacy_catalog_value": true,
         "total_components": 27
       },
       "physics": {
-        "front_us": 1.1973402231187686,
-        "tail_us": 50.0029203547798,
+        "front_us": 1.1973048616301802,
+        "tail_us": 50.00073410883642,
         "crest_kv": 1425.0000000000005,
         "peak_time_us": 2.142535221902414,
-        "t30_us": 0.20776949201916314,
-        "t90_us": 0.9247396855034558,
-        "t50_us": 49.85220475005682,
-        "virtual_origin_us": -0.15071560472298315,
+        "t30_us": 0.20776884243833413,
+        "t90_us": 0.9247178613785618,
+        "t50_us": 49.85002844180464,
+        "virtual_origin_us": -0.1507056670317797,
         "polarity": 1,
         "local_maxima_count": 1,
         "ringing_detected": false,
@@ -5292,7 +5354,8 @@
         "time_origin_us": 0.0,
         "definition": "virtual front/origin",
         "diagnostics": {
-          "model": "lumped RLC Marx equivalent v1",
+          "model": "lumped RLC Marx equivalent v2",
+          "metric_extraction": "Continuous modal peak and bracketed 30/90/50% root refinement; plot samples are not the final crossing metrics.",
           "damping_ratio": 1.4134976232616514,
           "eigenvalues_per_second": [
             {
@@ -5324,7 +5387,7 @@
       "support_policy": "calculator-settings-and-envelope-v2",
       "raw_residual": [
         -0.0010949178432599312,
-        -4.300182550910107,
+        -4.30453566694206,
         6.921917483748848
       ],
       "correction": [
@@ -5333,14 +5396,14 @@
         0.0
       ],
       "prediction": [
-        1.1973402231187686,
-        50.0029203547798,
+        1.1973048616301802,
+        50.00073410883642,
         1425.0000000000005
       ],
       "ood": {
         "state": "physics_mode",
         "trust_weight": 0.0,
-        "nearest_distance": 53.70421475896627,
+        "nearest_distance": 53.75820583558997,
         "threshold_p95": 1.9782598510822709,
         "outside_feature_envelope": true,
         "calculator_setting_supported": false,
@@ -5349,18 +5412,18 @@
       },
       "uncertainty": {
         "lower": [
-          1.0443106012917933,
-          44.27081328598342,
+          1.0442695452297013,
+          44.269870610102764,
           1353.9000013486166
         ],
         "upper": [
-          1.357304752936581,
-          55.748142863814024,
+          1.3573014384464912,
+          55.74618185924842,
           1496.2485055767997
         ],
         "halfwidth": [
-          0.15996452981781228,
-          5.745222509034221,
+          0.15999657681631096,
+          5.745447750412005,
           71.24850557679929
         ],
         "coverage_claim": null,
@@ -5369,8 +5432,8 @@
       },
       "calibration": null,
       "hybrid": {
-        "front_us": 1.1973402231187686,
-        "tail_us": 50.0029203547798,
+        "front_us": 1.1973048616301802,
+        "tail_us": 50.00073410883642,
         "crest_kv": 1425.0000000000005
       },
       "compliance": {
@@ -5381,11 +5444,11 @@
           {
             "name": "Front / peak time",
             "target": 1.2,
-            "predicted": 1.1973402231187686,
+            "predicted": 1.1973048616301802,
             "lower": 0.84,
             "upper": 1.56,
-            "deviation": -0.0026597768812313127,
-            "deviation_pct": -0.22164807343594273,
+            "deviation": -0.0026951383698197162,
+            "deviation_pct": -0.22459486415163932,
             "pass": true,
             "robust": true,
             "unit": "\u00b5s",
@@ -5394,11 +5457,11 @@
           {
             "name": "Time to half-value",
             "target": 50,
-            "predicted": 50.0029203547798,
+            "predicted": 50.00073410883642,
             "lower": 40,
             "upper": 60,
-            "deviation": 0.002920354779803347,
-            "deviation_pct": 0.005840709559601365,
+            "deviation": 0.0007341088364185566,
+            "deviation_pct": 0.0014682176728397778,
             "pass": true,
             "robust": true,
             "unit": "\u00b5s",
@@ -5425,21 +5488,23 @@
         "definition": "1.67 \u00d7 rising 30\u201390%; half-value relative to virtual origin"
       },
       "score_breakdown": {
-        "front_deviation": 0.002216480734359427,
-        "tail_deviation": 8.76106433941004e-05,
+        "front_deviation": 0.0022459486415164296,
+        "tail_deviation": 2.20232650925567e-05,
         "crest_deviation": 4.254945973206682e-15,
         "setup_complexity": 0.16200000000000003,
         "ood_penalty": 0.08,
         "operating_margin_penalty": 0.02999210472199112,
-        "uncertainty_penalty": 0.04028249814694238
+        "uncertainty_penalty": 0.040284171300613174
       },
-      "score": 0.3145786942466913,
-      "accuracy_cost": 0.0076803045925223955,
+      "score": 0.3145442479292176,
+      "accuracy_cost": 0.0075599063553739255,
       "setup_component_count": 54,
       "robustness": {
         "samples": 32,
         "seed": 73,
         "method": "Latin hypercube; independent uniform parasitic ranges",
+        "calibrated_scenarios": 0,
+        "outside_calibration_scope_scenarios": null,
         "uncertainty_pct": 5,
         "parameters": [
           "load_c_pf",
@@ -5450,20 +5515,20 @@
         "nominal_scenario_pass_pct": 100.0,
         "note": "Scenario fraction under stated assumptions, not probability of laboratory success. Intervals include finite sampled extremes; not a proof over continuous bounds.",
         "minimum": [
-          1.134408498295711,
-          49.859683966286575,
+          1.1343652813882459,
+          49.858691675885886,
           1422.670491913863
         ],
         "maximum": [
-          1.260883124616618,
-          50.145006077928755,
+          1.2608799679593896,
+          50.14313845453295,
           1427.3379900669602
         ],
         "sensitivity_5pct": {
-          "load_c_pf": 3.0807634614391954,
-          "divider_c_pf": 1.816115853662903,
-          "stray_c_pf": 0.5454822649631152,
-          "l_uh": 0.7882954871387904
+          "load_c_pf": 3.0830808213311967,
+          "divider_c_pf": 1.8149759253399456,
+          "stray_c_pf": 0.5449132938091017,
+          "l_uh": 0.7908524554877561
         },
         "most_sensitive_parameter": "load_c_pf"
       },
@@ -10293,6 +10358,60 @@
         "kind": "equivalent_circuit"
       },
       "circuit_crosscheck": null,
+      "verification": {
+        "version": "fixed-settings-verification-v1",
+        "seed": 617,
+        "used_for_ranking": false,
+        "models_checked": [
+          "Circuit prediction"
+        ],
+        "parameters": [
+          "load_c_pf",
+          "divider_c_pf",
+          "stray_c_pf",
+          "l_uh"
+        ],
+        "uncertainty_pct": 5,
+        "fresh_samples": {
+          "total": 128,
+          "passed": 128,
+          "primary_passed": 128,
+          "circuit_passed": null
+        },
+        "boundary_corners": {
+          "total": 16,
+          "passed": 16,
+          "primary_passed": 16,
+          "circuit_passed": null
+        },
+        "total": 144,
+        "passed": 144,
+        "unique_scenarios": 144,
+        "nominal_all_models_pass": true,
+        "all_checks_pass": true,
+        "worst_case": {
+          "index": 130,
+          "group": "boundary_corners",
+          "inputs": {
+            "load_c_pf": 807.5,
+            "divider_c_pf": 475.0,
+            "stray_c_pf": 142.5,
+            "l_uh": 19.425
+          },
+          "primary_pass": true,
+          "circuit_pass": null,
+          "all_models_pass": true,
+          "minimum_margin_fraction": 0.7842241335166679,
+          "limiting_model": "Primary prediction",
+          "limiting_metric": "Front / peak time",
+          "predicted": 1.1223206880660004,
+          "allowed_lower": 0.84,
+          "allowed_upper": 1.56,
+          "unit": "\u00b5s"
+        },
+        "calibrated_scenarios": 0,
+        "scope": "Fixed hardware checked after ranking using 128 separate-seed Latin-hypercube scenarios and 16 boundary corners. These checks do not select or reorder candidates. Finite simulation evidence only: not continuous-bound certification, independent model-accuracy testing or a laboratory success probability. Efficiency and hardware tolerances are held fixed; no statistical coverage claim."
+      },
       "pareto_optimal": true
     },
     {
@@ -10327,6 +10446,7 @@
         ],
         "count_per_stage": 3,
         "inventory_feasible": true,
+        "legacy_catalog_value": true,
         "total_components": 27
       },
       "tail_network": {
@@ -10354,17 +10474,18 @@
         ],
         "count_per_stage": 3,
         "inventory_feasible": true,
+        "legacy_catalog_value": true,
         "total_components": 27
       },
       "physics": {
-        "front_us": 1.2023392320479798,
-        "tail_us": 50.01348002775844,
+        "front_us": 1.2023032983878579,
+        "tail_us": 50.011268469632505,
         "crest_kv": 1425.0000000000005,
         "peak_time_us": 2.1500204887418826,
-        "t30_us": 0.20812037660419752,
-        "t90_us": 0.9280839886089758,
-        "t50_us": 49.86161859836025,
-        "virtual_origin_us": -0.15186142939819164,
+        "t30_us": 0.20811987219218395,
+        "t90_us": 0.9280619670352127,
+        "t50_us": 49.85941729440317,
+        "virtual_origin_us": -0.15185117522933042,
         "polarity": 1,
         "local_maxima_count": 1,
         "ringing_detected": false,
@@ -10372,7 +10493,8 @@
         "time_origin_us": 0.0,
         "definition": "virtual front/origin",
         "diagnostics": {
-          "model": "lumped RLC Marx equivalent v1",
+          "model": "lumped RLC Marx equivalent v2",
+          "metric_extraction": "Continuous modal peak and bracketed 30/90/50% root refinement; plot samples are not the final crossing metrics.",
           "damping_ratio": 1.4182092820058567,
           "eigenvalues_per_second": [
             {
@@ -10404,7 +10526,7 @@
       "support_policy": "calculator-settings-and-envelope-v2",
       "raw_residual": [
         -0.0017620458597055872,
-        -4.281857759966273,
+        -4.286261246278187,
         6.923924760076018
       ],
       "correction": [
@@ -10413,14 +10535,14 @@
         0.0
       ],
       "prediction": [
-        1.2023392320479798,
-        50.01348002775844,
+        1.2023032983878579,
+        50.011268469632505,
         1425.0000000000005
       ],
       "ood": {
         "state": "physics_mode",
         "trust_weight": 0.0,
-        "nearest_distance": 53.44176257760814,
+        "nearest_distance": 53.49637474741077,
         "threshold_p95": 1.9782598510822709,
         "outside_feature_envelope": true,
         "calculator_setting_supported": false,
@@ -10429,18 +10551,18 @@
       },
       "uncertainty": {
         "lower": [
-          1.0489161847572763,
-          44.28074730582028,
+          1.048866327259057,
+          44.27967488940388,
           1353.8978138370217
         ],
         "upper": [
-          1.362712080961961,
-          55.759333699908844,
+          1.3627068673861384,
+          55.75745517145618,
           1496.250989186939
         ],
         "halfwidth": [
-          0.1603728489139813,
-          5.745853672150403,
+          0.16040356899828057,
+          5.7461867018236745,
           71.25098918693857
         ],
         "coverage_claim": null,
@@ -10449,8 +10571,8 @@
       },
       "calibration": null,
       "hybrid": {
-        "front_us": 1.2023392320479798,
-        "tail_us": 50.01348002775844,
+        "front_us": 1.2023032983878579,
+        "tail_us": 50.011268469632505,
         "crest_kv": 1425.0000000000005
       },
       "compliance": {
@@ -10461,11 +10583,11 @@
           {
             "name": "Front / peak time",
             "target": 1.2,
-            "predicted": 1.2023392320479798,
+            "predicted": 1.2023032983878579,
             "lower": 0.84,
             "upper": 1.56,
-            "deviation": 0.002339232047979811,
-            "deviation_pct": 0.1949360039983139,
+            "deviation": 0.0023032983878579216,
+            "deviation_pct": 0.19194153232149347,
             "pass": true,
             "robust": true,
             "unit": "\u00b5s",
@@ -10474,11 +10596,11 @@
           {
             "name": "Time to half-value",
             "target": 50,
-            "predicted": 50.01348002775844,
+            "predicted": 50.011268469632505,
             "lower": 40,
             "upper": 60,
-            "deviation": 0.013480027758440372,
-            "deviation_pct": 0.02696005551687808,
+            "deviation": 0.011268469632504718,
+            "deviation_pct": 0.022536939265016542,
             "pass": true,
             "robust": true,
             "unit": "\u00b5s",
@@ -10505,21 +10627,23 @@
         "definition": "1.67 \u00d7 rising 30\u201390%; half-value relative to virtual origin"
       },
       "score_breakdown": {
-        "front_deviation": 0.0019493600399831756,
-        "tail_deviation": 0.00040440083275321113,
+        "front_deviation": 0.0019194153232149343,
+        "tail_deviation": 0.00033805408897514156,
         "crest_deviation": 4.254945973206682e-15,
         "setup_complexity": 0.16200000000000003,
         "ood_penalty": 0.08,
         "operating_margin_penalty": 0.029995540269107345,
-        "uncertainty_penalty": 0.04030132962944449
+        "uncertainty_penalty": 0.04030310917746687
       },
-      "score": 0.3146506307712925,
-      "accuracy_cost": 0.007845869575798593,
+      "score": 0.3145561188587686,
+      "accuracy_cost": 0.0075248980406442244,
       "setup_component_count": 54,
       "robustness": {
         "samples": 32,
         "seed": 73,
         "method": "Latin hypercube; independent uniform parasitic ranges",
+        "calibrated_scenarios": 0,
+        "outside_calibration_scope_scenarios": null,
         "uncertainty_pct": 5,
         "parameters": [
           "load_c_pf",
@@ -10530,20 +10654,20 @@
         "nominal_scenario_pass_pct": 100.0,
         "note": "Scenario fraction under stated assumptions, not probability of laboratory success. Intervals include finite sampled extremes; not a proof over continuous bounds.",
         "minimum": [
-          1.1392564808909564,
-          49.87014082927274,
+          1.1392039993138834,
+          49.86901196988706,
           1422.6682367472704
         ],
         "maximum": [
-          1.2660329608312655,
-          50.155664017066684,
+          1.2660279955209583,
+          50.15387494234986,
           1427.3404013389402
         ],
         "sensitivity_5pct": {
-          "load_c_pf": 3.077097098627446,
-          "divider_c_pf": 1.8109039035088204,
-          "stray_c_pf": 0.5446426668832771,
-          "l_uh": 0.7811073628225529
+          "load_c_pf": 3.0790533485171467,
+          "divider_c_pf": 1.812610258525238,
+          "stray_c_pf": 0.5442046333374195,
+          "l_uh": 0.7848726338309575
         },
         "most_sensitive_parameter": "load_c_pf"
       },
@@ -15373,10 +15497,64 @@
         "kind": "equivalent_circuit"
       },
       "circuit_crosscheck": null,
-      "pareto_optimal": false
+      "verification": {
+        "version": "fixed-settings-verification-v1",
+        "seed": 617,
+        "used_for_ranking": false,
+        "models_checked": [
+          "Circuit prediction"
+        ],
+        "parameters": [
+          "load_c_pf",
+          "divider_c_pf",
+          "stray_c_pf",
+          "l_uh"
+        ],
+        "uncertainty_pct": 5,
+        "fresh_samples": {
+          "total": 128,
+          "passed": 128,
+          "primary_passed": 128,
+          "circuit_passed": null
+        },
+        "boundary_corners": {
+          "total": 16,
+          "passed": 16,
+          "primary_passed": 16,
+          "circuit_passed": null
+        },
+        "total": 144,
+        "passed": 144,
+        "unique_scenarios": 144,
+        "nominal_all_models_pass": true,
+        "all_checks_pass": true,
+        "worst_case": {
+          "index": 143,
+          "group": "boundary_corners",
+          "inputs": {
+            "load_c_pf": 892.5,
+            "divider_c_pf": 525.0,
+            "stray_c_pf": 157.5,
+            "l_uh": 17.575
+          },
+          "primary_pass": true,
+          "circuit_pass": null,
+          "all_models_pass": true,
+          "minimum_margin_fraction": 0.7862696331975373,
+          "limiting_model": "Primary prediction",
+          "limiting_metric": "Front / peak time",
+          "predicted": 1.2769429320488865,
+          "allowed_lower": 0.84,
+          "allowed_upper": 1.56,
+          "unit": "\u00b5s"
+        },
+        "calibrated_scenarios": 0,
+        "scope": "Fixed hardware checked after ranking using 128 separate-seed Latin-hypercube scenarios and 16 boundary corners. These checks do not select or reorder candidates. Finite simulation evidence only: not continuous-bound certification, independent model-accuracy testing or a laboratory success probability. Efficiency and hardware tolerances are held fixed; no statistical coverage claim."
+      },
+      "pareto_optimal": true
     },
     {
-      "id": "c7",
+      "id": "c10",
       "settings": {
         "stages": 9,
         "charge_kv_stage": 199.94857510126855,
@@ -15413,6 +15591,7 @@
         ],
         "count_per_stage": 3,
         "inventory_feasible": true,
+        "legacy_catalog_value": true,
         "total_components": 27
       },
       "tail_network": {
@@ -15440,17 +15619,18 @@
         ],
         "count_per_stage": 3,
         "inventory_feasible": true,
+        "legacy_catalog_value": true,
         "total_components": 27
       },
       "physics": {
-        "front_us": 1.1973221277337103,
-        "tail_us": 49.991230827693805,
+        "front_us": 1.1972862146978076,
+        "tail_us": 49.98904272379903,
         "crest_kv": 1425.0000000000002,
         "peak_time_us": 2.1424396762833164,
-        "t30_us": 0.207768540013567,
-        "t90_us": 0.9247278979379445,
-        "t50_us": 49.84051968874518,
-        "virtual_origin_us": -0.15071113894862173,
+        "t30_us": 0.20776782751371134,
+        "t90_us": 0.924705680626171,
+        "t50_us": 49.83834162475651,
+        "virtual_origin_us": -0.15070109904251847,
         "polarity": 1,
         "local_maxima_count": 1,
         "ringing_detected": false,
@@ -15458,7 +15638,8 @@
         "time_origin_us": 0.0,
         "definition": "virtual front/origin",
         "diagnostics": {
-          "model": "lumped RLC Marx equivalent v1",
+          "model": "lumped RLC Marx equivalent v2",
+          "metric_extraction": "Continuous modal peak and bracketed 30/90/50% root refinement; plot samples are not the final crossing metrics.",
           "damping_ratio": 1.4134976232616514,
           "eigenvalues_per_second": [
             {
@@ -15490,7 +15671,7 @@
       "support_policy": "calculator-settings-and-envelope-v2",
       "raw_residual": [
         -0.0010949178432599312,
-        -4.323491087587496,
+        -4.327847807724305,
         6.921917483748848
       ],
       "correction": [
@@ -15499,14 +15680,14 @@
         0.0
       ],
       "prediction": [
-        1.1973221277337103,
-        49.991230827693805,
+        1.1972862146978076,
+        49.98904272379903,
         1425.0000000000002
       ],
       "ood": {
         "state": "physics_mode",
         "trust_weight": 0.0,
-        "nearest_distance": 53.99311963304758,
+        "nearest_distance": 54.047159429241134,
         "threshold_p95": 1.9782598510822709,
         "outside_feature_envelope": true,
         "calculator_setting_supported": false,
@@ -15515,18 +15696,18 @@
       },
       "uncertainty": {
         "lower": [
-          1.0442955065505837,
-          44.259725020175956,
+          1.0442534615113115,
+          44.25877164298747,
           1353.8996283904712
         ],
         "upper": [
-          1.3572829519416045,
-          55.735851199305735,
+          1.357279979823062,
+          55.733897174891275,
           1496.2489046442975
         ],
         "halfwidth": [
-          0.15996082420789426,
-          5.74462037161193,
+          0.15999376512525432,
+          5.744854451092245,
           71.24890464429723
         ],
         "coverage_claim": null,
@@ -15535,8 +15716,8 @@
       },
       "calibration": null,
       "hybrid": {
-        "front_us": 1.1973221277337103,
-        "tail_us": 49.991230827693805,
+        "front_us": 1.1972862146978076,
+        "tail_us": 49.98904272379903,
         "crest_kv": 1425.0000000000002
       },
       "compliance": {
@@ -15547,11 +15728,11 @@
           {
             "name": "Front / peak time",
             "target": 1.2,
-            "predicted": 1.1973221277337103,
+            "predicted": 1.1972862146978076,
             "lower": 0.84,
             "upper": 1.56,
-            "deviation": -0.0026778722662896826,
-            "deviation_pct": -0.22315602219080688,
+            "deviation": -0.002713785302192351,
+            "deviation_pct": -0.2261487751826996,
             "pass": true,
             "robust": true,
             "unit": "\u00b5s",
@@ -15560,11 +15741,11 @@
           {
             "name": "Time to half-value",
             "target": 50,
-            "predicted": 49.991230827693805,
+            "predicted": 49.98904272379903,
             "lower": 40,
             "upper": 60,
-            "deviation": -0.008769172306195117,
-            "deviation_pct": -0.0175383446123889,
+            "deviation": -0.01095727620096909,
+            "deviation_pct": -0.02191455240193596,
             "pass": true,
             "robust": true,
             "unit": "\u00b5s",
@@ -15591,21 +15772,23 @@
         "definition": "1.67 \u00d7 rising 30\u201390%; half-value relative to virtual origin"
       },
       "score_breakdown": {
-        "front_deviation": 0.0022315602219080684,
-        "tail_deviation": 0.00026307516918585346,
+        "front_deviation": 0.0022614877518269587,
+        "tail_deviation": 0.0003287182860290727,
         "crest_deviation": 2.127472986603341e-15,
         "setup_complexity": 0.16200000000000003,
         "ood_penalty": 0.08,
         "operating_margin_penalty": 0.029992286265190283,
-        "uncertainty_penalty": 0.040281580564079184
+        "uncertainty_penalty": 0.04028330422152299
       },
-      "score": 0.31476850222036556,
-      "accuracy_cost": 0.008315451303651725,
+      "score": 0.3148657965245715,
+      "accuracy_cost": 0.00863402012619209,
       "setup_component_count": 54,
       "robustness": {
         "samples": 32,
         "seed": 73,
         "method": "Latin hypercube; independent uniform parasitic ranges",
+        "calibrated_scenarios": 0,
+        "outside_calibration_scope_scenarios": null,
         "uncertainty_pct": 5,
         "parameters": [
           "load_c_pf",
@@ -15616,20 +15799,20 @@
         "nominal_scenario_pass_pct": 100.0,
         "note": "Scenario fraction under stated assumptions, not probability of laboratory success. Intervals include finite sampled extremes; not a proof over continuous bounds.",
         "minimum": [
-          1.1343926090944378,
-          49.84801210754188,
+          1.1343483511583619,
+          49.84700855260663,
           1422.6701074209298
         ],
         "maximum": [
-          1.2608623617642594,
-          50.133299730778006,
+          1.2608595311751711,
+          50.13143875514519,
           1427.3383775111329
         ],
         "sensitivity_5pct": {
-          "load_c_pf": 3.0807174358965517,
-          "divider_c_pf": 1.816073251260053,
-          "stray_c_pf": 0.5454809358745427,
-          "l_uh": 0.7882131763921829
+          "load_c_pf": 3.0830441110486273,
+          "divider_c_pf": 1.8149544928190098,
+          "stray_c_pf": 0.544906909742715,
+          "l_uh": 0.7908372393944041
         },
         "most_sensitive_parameter": "load_c_pf"
       },
@@ -20459,10 +20642,64 @@
         "kind": "equivalent_circuit"
       },
       "circuit_crosscheck": null,
+      "verification": {
+        "version": "fixed-settings-verification-v1",
+        "seed": 617,
+        "used_for_ranking": false,
+        "models_checked": [
+          "Circuit prediction"
+        ],
+        "parameters": [
+          "load_c_pf",
+          "divider_c_pf",
+          "stray_c_pf",
+          "l_uh"
+        ],
+        "uncertainty_pct": 5,
+        "fresh_samples": {
+          "total": 128,
+          "passed": 128,
+          "primary_passed": 128,
+          "circuit_passed": null
+        },
+        "boundary_corners": {
+          "total": 16,
+          "passed": 16,
+          "primary_passed": 16,
+          "circuit_passed": null
+        },
+        "total": 144,
+        "passed": 144,
+        "unique_scenarios": 144,
+        "nominal_all_models_pass": true,
+        "all_checks_pass": true,
+        "worst_case": {
+          "index": 130,
+          "group": "boundary_corners",
+          "inputs": {
+            "load_c_pf": 807.5,
+            "divider_c_pf": 475.0,
+            "stray_c_pf": 142.5,
+            "l_uh": 19.425
+          },
+          "primary_pass": true,
+          "circuit_pass": null,
+          "all_models_pass": true,
+          "minimum_margin_fraction": 0.7841781285293112,
+          "limiting_model": "Primary prediction",
+          "limiting_metric": "Front / peak time",
+          "predicted": 1.122304126270552,
+          "allowed_lower": 0.84,
+          "allowed_upper": 1.56,
+          "unit": "\u00b5s"
+        },
+        "calibrated_scenarios": 0,
+        "scope": "Fixed hardware checked after ranking using 128 separate-seed Latin-hypercube scenarios and 16 boundary corners. These checks do not select or reorder candidates. Finite simulation evidence only: not continuous-bound certification, independent model-accuracy testing or a laboratory success probability. Efficiency and hardware tolerances are held fixed; no statistical coverage claim."
+      },
       "pareto_optimal": false
     },
     {
-      "id": "c9",
+      "id": "c12",
       "settings": {
         "stages": 9,
         "charge_kv_stage": 199.92993000789934,
@@ -20499,6 +20736,7 @@
         ],
         "count_per_stage": 3,
         "inventory_feasible": true,
+        "legacy_catalog_value": true,
         "total_components": 27
       },
       "tail_network": {
@@ -20526,17 +20764,18 @@
         ],
         "count_per_stage": 3,
         "inventory_feasible": true,
+        "legacy_catalog_value": true,
         "total_components": 27
       },
       "physics": {
-        "front_us": 1.1976009718004705,
-        "tail_us": 50.171878378796805,
+        "front_us": 1.19757359625495,
+        "tail_us": 50.169725031758546,
         "crest_kv": 1425.0000000000005,
         "peak_time_us": 2.1439137322041155,
-        "t30_us": 0.2077835953507589,
-        "t90_us": 0.9249099257702025,
-        "t50_us": 50.02109880893784,
-        "virtual_origin_us": -0.15077956985896285,
+        "t30_us": 0.20778346488911364,
+        "t90_us": 0.9248934027663293,
+        "t50_us": 50.01895352770905,
+        "virtual_origin_us": -0.1507715040494942,
         "polarity": 1,
         "local_maxima_count": 1,
         "ringing_detected": false,
@@ -20544,7 +20783,8 @@
         "time_origin_us": 0.0,
         "definition": "virtual front/origin",
         "diagnostics": {
-          "model": "lumped RLC Marx equivalent v1",
+          "model": "lumped RLC Marx equivalent v2",
+          "metric_extraction": "Continuous modal peak and bracketed 30/90/50% root refinement; plot samples are not the final crossing metrics.",
           "damping_ratio": 1.4134976232616514,
           "eigenvalues_per_second": [
             {
@@ -20576,7 +20816,7 @@
       "support_policy": "calculator-settings-and-envelope-v2",
       "raw_residual": [
         -0.0016246483640101259,
-        -3.963285690558775,
+        -3.9675746629400126,
         6.921917483748848
       ],
       "correction": [
@@ -20585,14 +20825,14 @@
         0.0
       ],
       "prediction": [
-        1.1976009718004705,
-        50.171878378796805,
+        1.19757359625495,
+        50.169725031758546,
         1425.0000000000005
       ],
       "ood": {
         "state": "physics_mode",
         "trust_weight": 0.0,
-        "nearest_distance": 49.53014731024504,
+        "nearest_distance": 49.58328015421547,
         "threshold_p95": 1.9782598510822709,
         "outside_feature_envelope": true,
         "calculator_setting_supported": false,
@@ -20601,18 +20841,18 @@
       },
       "uncertainty": {
         "lower": [
-          1.044528749449722,
-          44.43108135791985,
+          1.0445013364714577,
+          44.43029869079833,
           1353.905374903845
         ],
         "upper": [
-          1.3576196852980604,
-          55.92580475789611,
+          1.3576106988318377,
+          55.92374834703477,
           1496.2427559030682
         ],
         "halfwidth": [
-          0.1600187134975899,
-          5.753926379099305,
+          0.16003710257688764,
+          5.754023315276221,
           71.24275590306775
         ],
         "coverage_claim": null,
@@ -20621,8 +20861,8 @@
       },
       "calibration": null,
       "hybrid": {
-        "front_us": 1.1976009718004705,
-        "tail_us": 50.171878378796805,
+        "front_us": 1.19757359625495,
+        "tail_us": 50.169725031758546,
         "crest_kv": 1425.0000000000005
       },
       "compliance": {
@@ -20633,11 +20873,11 @@
           {
             "name": "Front / peak time",
             "target": 1.2,
-            "predicted": 1.1976009718004705,
+            "predicted": 1.19757359625495,
             "lower": 0.84,
             "upper": 1.56,
-            "deviation": -0.0023990281995294183,
-            "deviation_pct": -0.19991901662744782,
+            "deviation": -0.0024264037450498765,
+            "deviation_pct": -0.202200312087486,
             "pass": true,
             "robust": true,
             "unit": "\u00b5s",
@@ -20646,11 +20886,11 @@
           {
             "name": "Time to half-value",
             "target": 50,
-            "predicted": 50.171878378796805,
+            "predicted": 50.169725031758546,
             "lower": 40,
             "upper": 60,
-            "deviation": 0.171878378796805,
-            "deviation_pct": 0.34375675759361624,
+            "deviation": 0.1697250317585457,
+            "deviation_pct": 0.3394500635170994,
             "pass": true,
             "robust": true,
             "unit": "\u00b5s",
@@ -20677,21 +20917,23 @@
         "definition": "1.67 \u00d7 rising 30\u201390%; half-value relative to virtual origin"
       },
       "score_breakdown": {
-        "front_deviation": 0.001999190166274515,
-        "tail_deviation": 0.00515635136390415,
+        "front_deviation": 0.002022003120874897,
+        "tail_deviation": 0.005091750952756371,
         "crest_deviation": 4.254945973206682e-15,
         "setup_complexity": 0.16200000000000003,
         "ood_penalty": 0.08,
         "operating_margin_penalty": 0.0299894895011849,
-        "uncertainty_penalty": 0.040295794175984584
+        "uncertainty_penalty": 0.04029670579188736
       },
-      "score": 0.31944082520735245,
-      "accuracy_cost": 0.023851805100606187,
+      "score": 0.31939994936670785,
+      "accuracy_cost": 0.02371251357878153,
       "setup_component_count": 54,
       "robustness": {
         "samples": 32,
         "seed": 73,
         "method": "Latin hypercube; independent uniform parasitic ranges",
+        "calibrated_scenarios": 0,
+        "outside_calibration_scope_scenarios": null,
         "uncertainty_pct": 5,
         "parameters": [
           "load_c_pf",
@@ -20702,20 +20944,20 @@
         "nominal_scenario_pass_pct": 100.0,
         "note": "Scenario fraction under stated assumptions, not probability of laboratory success. Intervals include finite sampled extremes; not a proof over continuous bounds.",
         "minimum": [
-          1.134638127935636,
-          50.028387199903875,
+          1.134609272169042,
+          50.02756333977596,
           1422.6760316615214
         ],
         "maximum": [
-          1.2611830601989793,
-          50.31420788181646,
+          1.2611745016597196,
+          50.312249395281846,
           1427.332407859454
         ],
         "sensitivity_5pct": {
-          "load_c_pf": 3.081483956528297,
-          "divider_c_pf": 1.8167372478894217,
-          "stray_c_pf": 0.545566132240749,
-          "l_uh": 0.7894210703797921
+          "load_c_pf": 3.0836099645733084,
+          "divider_c_pf": 1.815284868785949,
+          "stray_c_pf": 0.5450052389163629,
+          "l_uh": 0.7910717169838821
         },
         "most_sensitive_parameter": "load_c_pf"
       },
@@ -25545,6 +25787,60 @@
         "kind": "equivalent_circuit"
       },
       "circuit_crosscheck": null,
+      "verification": {
+        "version": "fixed-settings-verification-v1",
+        "seed": 617,
+        "used_for_ranking": false,
+        "models_checked": [
+          "Circuit prediction"
+        ],
+        "parameters": [
+          "load_c_pf",
+          "divider_c_pf",
+          "stray_c_pf",
+          "l_uh"
+        ],
+        "uncertainty_pct": 5,
+        "fresh_samples": {
+          "total": 128,
+          "passed": 128,
+          "primary_passed": 128,
+          "circuit_passed": null
+        },
+        "boundary_corners": {
+          "total": 16,
+          "passed": 16,
+          "primary_passed": 16,
+          "circuit_passed": null
+        },
+        "total": 144,
+        "passed": 144,
+        "unique_scenarios": 144,
+        "nominal_all_models_pass": true,
+        "all_checks_pass": true,
+        "worst_case": {
+          "index": 130,
+          "group": "boundary_corners",
+          "inputs": {
+            "load_c_pf": 807.5,
+            "divider_c_pf": 475.0,
+            "stray_c_pf": 142.5,
+            "l_uh": 19.425
+          },
+          "primary_pass": true,
+          "circuit_pass": null,
+          "all_models_pass": true,
+          "minimum_margin_fraction": 0.7848871345047307,
+          "limiting_model": "Primary prediction",
+          "limiting_metric": "Front / peak time",
+          "predicted": 1.122559368421703,
+          "allowed_lower": 0.84,
+          "allowed_upper": 1.56,
+          "unit": "\u00b5s"
+        },
+        "calibrated_scenarios": 0,
+        "scope": "Fixed hardware checked after ranking using 128 separate-seed Latin-hypercube scenarios and 16 boundary corners. These checks do not select or reorder candidates. Finite simulation evidence only: not continuous-bound certification, independent model-accuracy testing or a laboratory success probability. Efficiency and hardware tolerances are held fixed; no statistical coverage claim."
+      },
       "pareto_optimal": true
     }
   ],
@@ -26957,13 +27253,14 @@
     "note": "Double-exponential curve fitted to predicted metrics; not an independently predicted waveform."
   },
   "search": {
-    "evaluated": 432,
-    "hardware_feasible": 414,
+    "evaluated": 1057,
+    "hardware_feasible": 1028,
     "rejected": {
-      "stage_voltage_or_energy": 25,
+      "stage_voltage_or_energy": 36,
       "nonfinite_or_invalid_waveform": 0
     },
-    "search_kind": "Bounded series DP + up-to-three-part parallel/mixed networks; nearest five front/tail choices per stage, not exhaustive global optimization."
+    "agreement_feasible": null,
+    "search_kind": "Bounded series DP + four-part series/parallel trees (six parts for small catalogs) and identical parallel banks; nearest five front/tail choices per stage, not exhaustive global optimization."
   },
   "inventory_provenance": "Hybrid Calculator B13:B15; Resistor Inventory A4:F15",
   "warnings": [
@@ -26990,7 +27287,7 @@
     "search_note": "Bounded enumeration and shortlist simulation; no global optimality guarantee"
   },
   "calibration_review": null,
-  "run_id": "431bba0b82eb",
-  "id": "431bba0b82eb",
-  "created_at": "2026-10-01T06:43:18.654051+00:00"
+  "run_id": "a2a1ac37dae6",
+  "id": "a2a1ac37dae6",
+  "created_at": "2026-10-01T15:08:11.960035+00:00"
 }

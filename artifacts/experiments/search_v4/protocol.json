@@ -1,0 +1,77 @@
+{
+  "recorded_at_utc": "2026-10-01T15:05:12.403538+00:00",
+  "cases": {
+    "workbook_lightning": {},
+    "higher_load_lightning": {
+      "load_c_pf": 1500
+    },
+    "low_voltage_lightning": {
+      "test_kv": 500
+    },
+    "constructible_switching": {
+      "impulse_type": "Switching",
+      "test_kv": 1025,
+      "load_c_pf": 1240,
+      "divider_c_pf": 740,
+      "stray_c_pf": 320
+    },
+    "pdf_lightning_assumed_stock": {
+      "profile_id": "cpri_problem_brief_profile",
+      "inventory_override": {
+        "front": [
+          {
+            "ohm": 30,
+            "count_per_stage": 4
+          },
+          {
+            "ohm": 465,
+            "count_per_stage": 4
+          },
+          {
+            "ohm": 3700,
+            "count_per_stage": 4
+          }
+        ],
+        "tail": [
+          {
+            "ohm": 520,
+            "count_per_stage": 4
+          }
+        ],
+        "provenance": "Diagnostic assumption: four per value per stage; unverified laboratory stock"
+      }
+    }
+  },
+  "continuous_search": {
+    "seeds": "437 + stage count",
+    "maxiter": 30,
+    "popsize": 10,
+    "dimensions": 2
+  },
+  "runner_sha256": "77143d9dd42656ae0c6f9c129d9160312b498d103f175345d1aa30d17b9d2a0a",
+  "preserved_artifacts": {
+    "artifacts/models/registry.json": "ae45602b534ef80a6cc55545cdff3d97aad5f4ee8879c9b4787b78f95208396e",
+    "artifacts/models/residual_models.joblib": "026f7e1a3c3049bfed4ae1da99efbe5133f5a0e51625544e2477a997adc11e5a",
+    "artifacts/models/hidden_test_evaluation.json": "2cebd28690a0a7d93a2e9e4302e3f5bb82d284ee60dad8de3bd97aa37dbfba99",
+    "artifacts/experiments/v2/outer-Switching-0.json": "fbad52f9b7202e443b8039467a438eca3848a3f477fc395ffea399979ec4e5c4",
+    "artifacts/experiments/v2/summary.json": "b9e682c0544a795e18c3df10966c21d5b2a2c113e0b7a3f48a32b1fabd15a4f3",
+    "artifacts/experiments/v2/frozen_configuration.json": "23ded54c4c9245edb555800baa5c9f4dedf67c168d949bd730df47bf7e491a5b",
+    "artifacts/experiments/v2/calibrated_candidate_models.joblib": "9b76c82a1d5ebe564362517e6fc6e77b858726418baabbb31ad03577ca9cbf70",
+    "artifacts/experiments/v2/outer-Switching-1.json": "3504fc59efa7e790523257b5c3d020b905b7bf1dba481d9546f88e7e05e7a7fc",
+    "artifacts/experiments/v2/oof_predictions.json": "27fae2c631a4fdda7b6bb4049fae88d79c4fb6a91eca4720a608a4c3864cb157",
+    "artifacts/experiments/v2/outer-Lightning-0.json": "04f7cd57d85e2580d1b14bf1cdcac09dc91ef5f8f7ea8a63eb829951892681d9",
+    "artifacts/experiments/v2/outer-Lightning-1.json": "f088bdc0889354ad7db69497de4695d15b7f4ada50141edc67f4a0dfe0cdaa6a",
+    "artifacts/experiments/v2/outer-Lightning-2.json": "de7c940d44671fbb0a8d45b962ba6134ee0b67e44209f63549ce26eda004f00f",
+    "artifacts/experiments/v2/candidate_models.joblib": "024f5228fafbe6431d8252aec041c7a5c68642277fea6f1d7d3b9a005aee4105",
+    "artifacts/experiments/v2/outer-Switching-4.json": "e18d6c2b325158a374b5a3e9110859e0fdffaca8273ab7a4701dfe5ee0607fe5",
+    "artifacts/experiments/v2/outer-Lightning-3.json": "a2b4230f87cd6ede522fb44e361a4c0839af899e2e6285607e5046ff1f6f241e",
+    "artifacts/experiments/v2/protocol.json": "9881369852ae43f5ca7aadc35544d9bbb3ab75236d5ebd447591fdaba0cd5b61",
+    "artifacts/experiments/v2/outer-Lightning-4.json": "6562de2d5fa6021d963ad4e5260f738128aa708c84a35f95b777328b45356c2c",
+    "artifacts/experiments/v2/outer-Switching-2.json": "341d1363b2420ea168a6d59995d291bc7380837d3837c1967ce48a6a0f4059fc",
+    "artifacts/experiments/v2/outer-Switching-3.json": "c869cb6770ac303a7c0d9a6cbecd167272800e89ee959382ca6acbfbc48a19d3",
+    "artifacts/experiments/v3/summary.json": "33c720ebf738707b1885f009972974ed7d675f4130251e95e22088c8337a6853",
+    "artifacts/experiments/v3/oof_predictions.json": "8d8aa21621ce566838059205eb4b755d486075b50935deee0a13e19186269af1",
+    "artifacts/experiments/v3/protocol.json": "fdff4ac25fefacd05712803f767a03fce523b8de22c554ad4650ed5c2196bb23"
+  },
+  "scope": "Search and numerical-solver development check, not a new model-accuracy test. No supervised outcomes used."
+}

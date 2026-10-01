@@ -12,7 +12,7 @@ def package():
     if not qa.exists() or not json.loads(qa.read_text()).get('backend_tests_passed'):
         raise SystemExit('Record successful QA before packaging.')
     directories=['backend','config','data','docs','reports','scripts','tests','frontend/app','frontend/components','frontend/lib','frontend/out','artifacts/models','artifacts/experiments','artifacts/qa']
-    singles=['README.md','PROJECT_STATE.md','Makefile','requirements.txt','requirements-experiments.txt','pytest.ini','Start_ImpulseTwin.command','Dockerfile','.dockerignore','.gitignore',
+    singles=['README.md','HANDOFF.md','PROJECT_STATE.md','Makefile','requirements.txt','requirements-experiments.txt','pytest.ini','Start_ImpulseTwin.command','Dockerfile','.dockerignore','.gitignore',
         'POWERNEXT_Track1_Astra_Winning_Master_Prompt.md','PowerNext_AI_Track1_Briefing_Transcript.md',
         'frontend/package.json','frontend/package-lock.json','frontend/tsconfig.json','frontend/next.config.ts','frontend/postcss.config.mjs','frontend/next-env.d.ts',
         'artifacts/reference_workbook_snapshot.json','artifacts/data_audit.json','artifacts/stress_test_summary.json','artifacts/demo_artifact_manifest.json','artifacts/qa_summary.json']

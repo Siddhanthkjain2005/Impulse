@@ -22,7 +22,7 @@ Describe the objective in plain terms: waveform deviation, setup complexity, unc
 
 Show nominal versus interval/scenario compliance. “A green point prediction is not the same as a verified laboratory shot.”
 
-With the strengthened support guard and default ±5% parasitic range, the workbook Lightning example is nominally compliant but **MARGINAL**: some scenarios leave the calculator-selected hardware pattern represented by training. Explain this distinction directly; do not reduce uncertainty to obtain a green status. The independent circuit cross-check also fails this reference setting.
+With the strengthened support guard and default ±5% parasitic range, the workbook Lightning example is nominally compliant but **MARGINAL**: some scenarios leave the calculator-selected hardware pattern represented by training. Explain this distinction directly; do not reduce uncertainty to obtain a green status. The independent circuit cross-check also fails this reference setting. Use **Find settings passing both models** or preset G to find the agreement setup. Show the two predictions and the 128/128 fresh samples plus 16/16 boundary checks under **Challenge the selected setup**; explain that these checks occur after ranking and the uncertainty result stays MARGINAL.
 
 ## 2:00–2:40 — demonstrate useful skepticism
 

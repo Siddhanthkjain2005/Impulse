@@ -20,9 +20,12 @@ def test_offline_default_ranked_and_reported(client,run):
     c=run['candidates'][0]
     assert c['compliance']['nominal_pass'] and c['settings']['stages']==9
     assert c['circuit_crosscheck']['compliance']['nominal_pass'] is False
+    assert c['verification']['fresh_samples']['primary_passed']==128
+    assert c['verification']['passed']==0 and not c['verification']['used_for_ranking']
     assert c['waveform']['kind']=='metric_reconstruction'
     report=client.get(f"/api/runs/{run['id']}/report")
     assert report.status_code==200 and 'engineer verification' in report.text
+    assert 'Post-ranking settings challenge' in report.text
     assert client.get(f"/api/runs/{run['id']}").json()['model_version']==run['model_version']
     assert client.get('/api/source-status').json()['published_metrics_parity'].startswith('UNRESOLVED')
 

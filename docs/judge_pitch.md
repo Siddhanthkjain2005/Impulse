@@ -40,6 +40,8 @@ ImpulseTwin AI helps an impulse-test engineer choose and inspect a stronger star
 
 “Now look at the independent circuit cross-check. The workbook approximation and the lumped RLC solver can disagree. We display that disagreement because it changes what an engineer should trust.
 
+“For the Lightning example, the agreement search finds another counted setup that passes both models. We then challenge the fixed settings with 128 separate samples and all 16 boundary corners, without reranking on those results. This is simulation evidence, not lab validation.
+
 “Switching solver changes the actual prediction path; workbook residuals are not transferred into the circuit solver. Move outside training support and the learned correction turns off. Request an impossible voltage and the software rejects it.
 
 “These checks prevent silent extrapolation. They support the engineer's review; they do not replace laboratory interlocks or prove the circuit model is correct.”

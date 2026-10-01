@@ -40,11 +40,50 @@ def networks(stock_tuple,max_components=24):
                 for x,y,z in [(a,b,d),(b,a,d),(d,a,b)]:
                     add(x+1/(1/y+1/z),c,f'{x:g}Ω + ({y:g}Ω ∥ {z:g}Ω)')
                     add(1/(1/x+1/(y+z)),c,f'{x:g}Ω ∥ ({y:g}Ω + {z:g}Ω)')
+    legacy_values=set(found)
+    # Count-aware series/parallel trees include four-part bridge-free networks.
+    # Keep distinct component-count vectors in intermediate states: dropping a
+    # more expensive realization here could hide a later stock-feasible tree.
+    # Small hardware catalogs also receive five/six-part trees. This is bounded,
+    # not a claim to enumerate every topology allowed by max_components.
+    depth=min(max_components,sum(stock.values()),6 if len(stock)<=3 else 4)
+    levels={1:{}}
+    for i,r in enumerate(values):
+        counts=tuple(int(j==i) for j in range(len(values)))
+        levels[1][(counts,round(r,8))]=(r,f'{r:g}Ω')
+    for size in range(2,depth+1):
+        current={}
+        for left_size in range(1,size//2+1):
+            right_size=size-left_size
+            for li,((lc,_),(lv,lt)) in enumerate(levels[left_size].items()):
+                for ri,((rc,_),(rv,rt)) in enumerate(levels[right_size].items()):
+                    if left_size==right_size and ri<li:continue
+                    counts=tuple(a+b for a,b in zip(lc,rc))
+                    if any(q>stock[r] for r,q in zip(values,counts)):continue
+                    for value,topology in [(lv+rv,f'({lt}) + ({rt})'),
+                                           (lv*rv/(lv+rv),f'({lt}) ∥ ({rt})')]:
+                        key=(counts,round(value,8))
+                        if key not in current:current[key]=(value,topology)
+        levels[size]=current
+        if size>=4:
+            for (counts,_),(value,topology) in current.items():
+                add(value,Counter({r:q for r,q in zip(values,counts) if q}),topology)
+    # Identical parallel banks have a closed form and remain cheap at large
+    # quantities, including the previously missing fourth 520/22000-ohm unit.
+    for r,qty in stock.items():
+        for count in range(4,min(qty,max_components)+1):
+            add(r/count,Counter({r:count}),f'{count}×{r:g}Ω in parallel')
+    for value,item in found.items():item['legacy_catalog_value']=value in legacy_values
     return list(found.values())
 
 def nearest_networks(stock,target,max_components,count=6):
     all_items=networks(tuple(sorted(stock.items())),max_components)
     distance=lambda n:abs(math.log(n['equivalent_ohm']/max(target,1e-6)))
-    closest=sorted(all_items,key=lambda n:(distance(n),n['count_per_stage']))[:count]
-    simple=sorted([n for n in all_items if distance(n)<.3],key=lambda n:(n['count_per_stage'],distance(n)))[:3]
-    return list({round(n['equivalent_ohm'],8):n for n in closest+simple}.values())
+    def shortlist(items):
+        closest=sorted(items,key=lambda n:(distance(n),n['count_per_stage']))[:count]
+        simple=sorted([n for n in items if distance(n)<.3],key=lambda n:(n['count_per_stage'],distance(n)))[:3]
+        return closest+simple
+    # Expanded candidates supplement the old shortlist. Merely adding close
+    # four-part values must not crowd out a simpler previously available setup.
+    legacy=shortlist([n for n in all_items if n['legacy_catalog_value']])
+    return list({round(n['equivalent_ohm'],8):n for n in legacy+shortlist(all_items)}.values())

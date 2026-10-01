@@ -4,7 +4,7 @@ Reviewed 1 October 2026 against the supplied master prompt, source reconciliatio
 
 ## Current evidence
 
-The latest recorded backend test run in `artifacts/qa/backend-tests.xml` contains **67 tests, zero failures, zero errors and zero skipped tests**. The record is dated 1 October 2026; the final QA summary records browser and release verification. Frozen V1 artifacts and its original Hidden Test evidence remain unchanged. The separate optional V2 candidate, Train-only cross-validation and calculator-setting support guard are covered by additional checks; see `docs/accuracy_v2_results.md` for gains, regressions and methodological limits.
+The latest recorded backend test run in `artifacts/qa/backend-tests.xml` contains **86 tests, zero failures, zero errors and zero skipped tests**. The record is dated 1 October 2026; the final QA summary records browser and release verification. Frozen V1 artifacts and its original Hidden Test evidence remain unchanged. The separate optional V2 candidate, Train-only cross-validation and calculator-setting support guard are covered by additional checks; see `docs/accuracy_v2_results.md` for gains, regressions and methodological limits.
 
 | Acceptance requirement | Evidence | Status and practical limit |
 |---|---|---|
@@ -48,3 +48,5 @@ The frozen competition uses a multioutput CV mean-squared-error objective in ori
 - Preserve the user's cloud hold: **no Google Cloud deployment or resource creation until the user explicitly authorizes it.**
 
 The appropriate completion claim is a tested local engineering proof of concept with explicit source and laboratory-validation limits. A hackathon result, laboratory first-shot success rate and reduction in physical setup changes cannot be guaranteed by the current evidence.
+
+The latest update adds optional agreement search across the reference and circuit, a separate unpromoted V3 development study, and strict 1% calibration scope in parasitic scenarios. Five engineering diagnostics preserve the two remaining model-agreement failures. See `docs/accuracy_v3_results.md`.

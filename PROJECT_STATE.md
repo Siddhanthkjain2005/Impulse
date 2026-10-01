@@ -14,8 +14,8 @@ Readiness deadline: **10 October 2026**. Inputs reviewed: supplied master prompt
 - Separate targetwise V2 experiment with nested Train CV, frozen candidate, disjoint calibration, joint synthetic envelopes and an explicit optional selector. V1 remains the default.
 - Six-page responsive local interface, interactive numeric waveforms, model evidence, profiles, run history and comparison.
 - Raw CSV preservation, explicit units/polarity/onset, generated-data labeling, scoped one-shot correction and retained original-setting review.
-- Local audit histories, readable print-ready reports, four regenerated offline fallback reports, generated rehearsal CSVs and judge preparation documents. Reference/circuit disagreement remains prominent in each applicable report.
-- **67 backend regression/E2E tests pass** with zero failures/errors. Latest frontend typecheck and static build pass. Static asset verification finds 17 local assets, no remote/missing assets and successful local serving. Root verified the accuracy dashboard, visible regression, optional V2 optimizer and 390px mobile width; see QA artifacts for executed results.
+- Local audit histories, readable print-ready reports, five regenerated offline fallback reports, generated rehearsal CSVs and judge preparation documents. Reference/circuit disagreement remains prominent in each applicable report.
+- **86 backend regression/E2E tests pass** with zero failures/errors. Latest frontend typecheck and static build pass. Static asset verification finds 17 local assets, no remote/missing assets and successful local serving. Root verified the accuracy dashboard, visible regression, optional V2 optimizer and 390px mobile width; see QA artifacts for executed results.
 
 ## Demonstrated benchmark
 
@@ -44,4 +44,14 @@ The user authorized additional compute and explicitly deferred cloud deployment.
 
 Run `make demo` or double-click `Start_ImpulseTwin.command` on the prepared Mac. Open `http://127.0.0.1:8000`. Rehearse with `docs/demo_script.md`, `docs/judge_pitch.md`, `docs/judges_qa.md` and `docs/finale_readiness.md`. Review the optional experiment through `docs/accuracy_v2_results.md`.
 
-The release input inspection confirms live SQLite histories and raw uploads are excluded. The ZIP includes source, frozen models, optional V2 evidence, static interface, four reports and executed QA. Its manifest and extracted application checks are recorded in the release verification.
+The release input inspection confirms live SQLite histories and raw uploads are excluded. The ZIP includes source, frozen models, optional V2 evidence, static interface, five reports and executed QA. Its manifest and extracted application checks are recorded in the release verification.
+
+## Latest agreement and accuracy work
+
+Optional two-model agreement search, clearer waveform-failure labels, an agreement comparison table, and a fifth fallback report are implemented. Three of five declared engineering diagnostic cases gain nominal agreement; Switching and PDF examples remain failures. The default Lightning agreement case passes both simulations in 32 sampled parasitic scenarios but remains MARGINAL under its unsupported-settings uncertainty envelope. This is not laboratory accuracy.
+
+The further V3 Train-only nested search achieved 1.0339% macro improvement versus a historical V2 refit and failed the 5% gate. V1/V2 remain unchanged. Calibration bias is now applied only to scenarios within the saved 1% input scope. See `docs/accuracy_v3_results.md` and the latest QA records.
+
+## Search and numerical verification update
+
+Expanded four-part series/parallel networks (six parts for small catalogs) and identical parallel banks now preserve stock counts and earlier target choices. Circuit v2 refines continuous crossing times and passes independent time-domain integration tests. Every returned setup receives 128 fresh-seed samples and 16 boundary corners after ranking; these do not reorder results. The UI shows their limiting condition and overlays the independent circuit waveform. The default Lightning agreement, two additional Lightning cases and both PDF circuit presets pass all sampled checks. Two model-agreement cases still fail, and uncertainty remains MARGINAL. See `docs/search_v4_results.md` and `artifacts/experiments/search_v4/final_summary.json`. No cloud compute was necessary.

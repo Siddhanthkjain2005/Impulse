@@ -1,0 +1,491 @@
+{
+  "recorded_at_utc": "2026-10-01T11:15:32.677643+00:00",
+  "scope": "Five declared engineering cases, including the development Lightning case. Two unvalidated simulations, not independent accuracy or laboratory validation.",
+  "cases": {
+    "workbook_lightning": {
+      "inputs": {},
+      "original": {
+        "settings": {
+          "stages": 9,
+          "charge_kv_stage": 193.08943089430895,
+          "front_r_stage": 50.0,
+          "tail_r_stage": 25.0,
+          "stage_utilization": 0.9654471544715447,
+          "stored_energy_kj": 503.32763236168944,
+          "voltage_margin_kv_stage": 6.910569105691053,
+          "energy_margin_kj": 396.67236763831056,
+          "energy_margin_pct": 44.07470751536784
+        },
+        "reference": {
+          "front_us": 1.206888149697565,
+          "tail_us": 52.08375232570821,
+          "crest_kv": 1431.7117279976035
+        },
+        "circuit": {
+          "front_us": 1.8193541463979312,
+          "tail_us": 56.21541993114424,
+          "crest_kv": 1362.5837415266355
+        },
+        "both_nominal_pass": false,
+        "envelope_status": "MARGINAL",
+        "agreement": null,
+        "ml_trust": 1.0,
+        "search": {
+          "evaluated": 416,
+          "hardware_feasible": 416,
+          "rejected": {
+            "stage_voltage_or_energy": 7,
+            "nonfinite_or_invalid_waveform": 0
+          },
+          "agreement_feasible": null,
+          "search_kind": "Bounded series DP + up-to-three-part parallel/mixed networks; nearest five front/tail choices per stage, not exhaustive global optimization."
+        },
+        "seconds": 0.3466720419964986
+      },
+      "agreement": {
+        "settings": {
+          "stages": 9,
+          "charge_kv_stage": 196.78500059932176,
+          "front_r_stage": 40.0,
+          "tail_r_stage": 23.823529411764703,
+          "stage_utilization": 0.9839250029966088,
+          "stored_energy_kj": 522.7785422218134,
+          "voltage_margin_kv_stage": 3.214999400678238,
+          "energy_margin_kj": 377.2214577781866,
+          "energy_margin_pct": 41.9134953086874
+        },
+        "reference": {
+          "front_us": 1.0033559575245468,
+          "tail_us": 49.751998676470585,
+          "crest_kv": 1452.2733044229944
+        },
+        "circuit": {
+          "front_us": 1.4167726162028045,
+          "tail_us": 52.92777381005439,
+          "crest_kv": 1397.7266955770058
+        },
+        "both_nominal_pass": true,
+        "envelope_status": "MARGINAL",
+        "agreement": {
+          "required": true,
+          "both_nominal_pass": true,
+          "reference_nominal_pass": true,
+          "circuit_nominal_pass": true,
+          "worst_tolerance_fraction": 0.6379720332864197,
+          "scope": "Agreement of two unvalidated models at the same hardware settings; not measured accuracy or laboratory compliance.",
+          "sampled_both_pass_pct": 100.0,
+          "sampled_circuit_pass_pct": 100.0,
+          "scenario_count": 32,
+          "scenario_note": "Finite independent parasitic scenarios, not a calibrated probability or proof over continuous ranges."
+        },
+        "ml_trust": 0.0,
+        "search": {
+          "evaluated": 5376,
+          "hardware_feasible": 5376,
+          "rejected": {
+            "stage_voltage_or_energy": 7,
+            "nonfinite_or_invalid_waveform": 0
+          },
+          "agreement_feasible": 1680,
+          "search_kind": "Bounded stock network search across five front and four tail target neighborhoods; raw workbook/circuit crest balancing; 20-candidate scenario shortlist, not global optimization."
+        },
+        "seconds": 3.710292749994551
+      }
+    },
+    "higher_load_lightning": {
+      "inputs": {
+        "load_c_pf": 1500
+      },
+      "original": {
+        "settings": {
+          "stages": 10,
+          "charge_kv_stage": 173.78048780487808,
+          "front_r_stage": 30.0,
+          "tail_r_stage": 23.863636363636363,
+          "stage_utilization": 0.8689024390243903,
+          "stored_energy_kj": 452.99486912552055,
+          "voltage_margin_kv_stage": 26.219512195121922,
+          "energy_margin_kj": 447.00513087447945,
+          "energy_margin_pct": 49.66723676383105
+        },
+        "reference": {
+          "front_us": 1.1989884762790672,
+          "tail_us": 49.96805624999999,
+          "crest_kv": 1425.0
+        },
+        "circuit": {
+          "front_us": 1.6654137473687283,
+          "tail_us": 53.648173356161976,
+          "crest_kv": 1361.0681027557978
+        },
+        "both_nominal_pass": false,
+        "envelope_status": "MARGINAL",
+        "agreement": null,
+        "ml_trust": 0.0,
+        "search": {
+          "evaluated": 392,
+          "hardware_feasible": 392,
+          "rejected": {
+            "stage_voltage_or_energy": 7,
+            "nonfinite_or_invalid_waveform": 0
+          },
+          "agreement_feasible": null,
+          "search_kind": "Bounded series DP + up-to-three-part parallel/mixed networks; nearest five front/tail choices per stage, not exhaustive global optimization."
+        },
+        "seconds": 0.2589174169988837
+      },
+      "agreement": {
+        "settings": {
+          "stages": 9,
+          "charge_kv_stage": 196.7220931444329,
+          "front_r_stage": 27.272727272727273,
+          "tail_r_stage": 23.793103448275865,
+          "stage_utilization": 0.9836104657221645,
+          "stored_energy_kj": 522.4443560702136,
+          "voltage_margin_kv_stage": 3.277906855567096,
+          "energy_margin_kj": 377.55564392978636,
+          "energy_margin_pct": 41.95062710330959
+        },
+        "reference": {
+          "front_us": 1.02665424831773,
+          "tail_us": 49.78491687931035,
+          "crest_kv": 1451.8090474059147
+        },
+        "circuit": {
+          "front_us": 1.3038503912693276,
+          "tail_us": 52.71305680927606,
+          "crest_kv": 1398.1909525940848
+        },
+        "both_nominal_pass": true,
+        "envelope_status": "MARGINAL",
+        "agreement": {
+          "required": true,
+          "both_nominal_pass": true,
+          "reference_nominal_pass": true,
+          "circuit_nominal_pass": true,
+          "worst_tolerance_fraction": 0.6271122200214024,
+          "scope": "Agreement of two unvalidated models at the same hardware settings; not measured accuracy or laboratory compliance.",
+          "sampled_both_pass_pct": 100.0,
+          "sampled_circuit_pass_pct": 100.0,
+          "scenario_count": 32,
+          "scenario_note": "Finite independent parasitic scenarios, not a calibrated probability or proof over continuous ranges."
+        },
+        "ml_trust": 0.0,
+        "search": {
+          "evaluated": 5280,
+          "hardware_feasible": 5280,
+          "rejected": {
+            "stage_voltage_or_energy": 7,
+            "nonfinite_or_invalid_waveform": 0
+          },
+          "agreement_feasible": 2695,
+          "search_kind": "Bounded stock network search across five front and four tail target neighborhoods; raw workbook/circuit crest balancing; 20-candidate scenario shortlist, not global optimization."
+        },
+        "seconds": 3.5784906660046545
+      }
+    },
+    "low_voltage_lightning": {
+      "inputs": {
+        "test_kv": 500
+      },
+      "original": {
+        "settings": {
+          "stages": 4,
+          "charge_kv_stage": 152.4390243902439,
+          "front_r_stage": 110.0,
+          "tail_r_stage": 24.0,
+          "stage_utilization": 0.7621951219512195,
+          "stored_energy_kj": 139.42593694229626,
+          "voltage_margin_kv_stage": 47.5609756097561,
+          "energy_margin_kj": 760.5740630577037,
+          "energy_margin_pct": 84.50822922863375
+        },
+        "reference": {
+          "front_us": 1.1867286031355275,
+          "tail_us": 49.995792,
+          "crest_kv": 499.99999999999994
+        },
+        "circuit": {
+          "front_us": 1.7747001385188954,
+          "tail_us": 53.89744034591753,
+          "crest_kv": 478.98958673126987
+        },
+        "both_nominal_pass": false,
+        "envelope_status": "MARGINAL",
+        "agreement": null,
+        "ml_trust": 0.0,
+        "search": {
+          "evaluated": 720,
+          "hardware_feasible": 720,
+          "rejected": {
+            "stage_voltage_or_energy": 2,
+            "nonfinite_or_invalid_waveform": 0
+          },
+          "agreement_feasible": null,
+          "search_kind": "Bounded series DP + up-to-three-part parallel/mixed networks; nearest five front/tail choices per stage, not exhaustive global optimization."
+        },
+        "seconds": 0.28017495799576864
+      },
+      "agreement": {
+        "settings": {
+          "stages": 4,
+          "charge_kv_stage": 155.0458376649322,
+          "front_r_stage": 85.71428571428571,
+          "tail_r_stage": 23.863636363636363,
+          "stage_utilization": 0.775229188324661,
+          "stored_energy_kj": 144.2352706633231,
+          "voltage_margin_kv_stage": 44.95416233506779,
+          "energy_margin_kj": 755.764729336677,
+          "energy_margin_pct": 83.97385881518632
+        },
+        "reference": {
+          "front_us": 0.9649432777820334,
+          "tail_us": 49.711724999999994,
+          "crest_kv": 508.55034754097755
+        },
+        "circuit": {
+          "front_us": 1.3412583917524996,
+          "tail_us": 52.732411166209914,
+          "crest_kv": 491.44965245902245
+        },
+        "both_nominal_pass": true,
+        "envelope_status": "MARGINAL",
+        "agreement": {
+          "required": true,
+          "both_nominal_pass": true,
+          "reference_nominal_pass": true,
+          "circuit_nominal_pass": true,
+          "worst_tolerance_fraction": 0.6529353394943516,
+          "scope": "Agreement of two unvalidated models at the same hardware settings; not measured accuracy or laboratory compliance.",
+          "sampled_both_pass_pct": 100.0,
+          "sampled_circuit_pass_pct": 100.0,
+          "scenario_count": 32,
+          "scenario_note": "Finite independent parasitic scenarios, not a calibrated probability or proof over continuous ranges."
+        },
+        "ml_trust": 0.0,
+        "search": {
+          "evaluated": 9344,
+          "hardware_feasible": 9344,
+          "rejected": {
+            "stage_voltage_or_energy": 2,
+            "nonfinite_or_invalid_waveform": 0
+          },
+          "agreement_feasible": 3033,
+          "search_kind": "Bounded stock network search across five front and four tail target neighborhoods; raw workbook/circuit crest balancing; 20-candidate scenario shortlist, not global optimization."
+        },
+        "seconds": 5.836103124995134
+      }
+    },
+    "constructible_switching": {
+      "inputs": {
+        "impulse_type": "Switching",
+        "test_kv": 1025,
+        "load_c_pf": 1240,
+        "divider_c_pf": 740,
+        "stray_c_pf": 320
+      },
+      "original": {
+        "settings": {
+          "stages": 15,
+          "charge_kv_stage": 83.33333333333334,
+          "front_r_stage": 4330.0,
+          "tail_r_stage": 1200.0,
+          "stage_utilization": 0.41666666666666674,
+          "stored_energy_kj": 156.25,
+          "voltage_margin_kv_stage": 116.66666666666666,
+          "energy_margin_kj": 743.75,
+          "energy_margin_pct": 82.63888888888889
+        },
+        "reference": {
+          "front_us": 249.47354459128528,
+          "tail_us": 2523.4901999999997,
+          "crest_kv": 1025.0000000000002
+        },
+        "circuit": {
+          "front_us": 493.23839927148515,
+          "tail_us": 3169.291096209325,
+          "crest_kv": 884.6043190771636
+        },
+        "both_nominal_pass": false,
+        "envelope_status": "MARGINAL",
+        "agreement": null,
+        "ml_trust": 0.0,
+        "search": {
+          "evaluated": 504,
+          "hardware_feasible": 504,
+          "rejected": {
+            "stage_voltage_or_energy": 5,
+            "nonfinite_or_invalid_waveform": 0
+          },
+          "agreement_feasible": null,
+          "search_kind": "Bounded series DP + up-to-three-part parallel/mixed networks; nearest five front/tail choices per stage, not exhaustive global optimization."
+        },
+        "seconds": 0.24148308399890084
+      },
+      "agreement": {
+        "settings": {
+          "stages": 9,
+          "charge_kv_stage": 145.13339871568772,
+          "front_r_stage": 3400.0,
+          "tail_r_stage": 1100.0,
+          "stage_utilization": 0.7256669935784386,
+          "stored_energy_kj": 284.35999620735157,
+          "voltage_margin_kv_stage": 54.86660128431228,
+          "energy_margin_kj": 615.6400037926485,
+          "energy_margin_pct": 68.40444486584983
+        },
+        "reference": {
+          "front_us": 117.53586204387791,
+          "tail_us": 2302.67961,
+          "crest_kv": 1071.0844825217755
+        },
+        "circuit": {
+          "front_us": 275.68865603788004,
+          "tail_us": 2649.8932280596828,
+          "crest_kv": 978.915517478224
+        },
+        "both_nominal_pass": false,
+        "envelope_status": "FAIL",
+        "agreement": {
+          "required": true,
+          "both_nominal_pass": false,
+          "reference_nominal_pass": false,
+          "circuit_nominal_pass": false,
+          "worst_tolerance_fraction": 2.649282759122442,
+          "scope": "Agreement of two unvalidated models at the same hardware settings; not measured accuracy or laboratory compliance.",
+          "sampled_both_pass_pct": 0.0,
+          "sampled_circuit_pass_pct": 0.0,
+          "scenario_count": 32,
+          "scenario_note": "Finite independent parasitic scenarios, not a calibrated probability or proof over continuous ranges."
+        },
+        "ml_trust": 0.0,
+        "search": {
+          "evaluated": 7124,
+          "hardware_feasible": 7124,
+          "rejected": {
+            "stage_voltage_or_energy": 5,
+            "nonfinite_or_invalid_waveform": 0
+          },
+          "agreement_feasible": 0,
+          "search_kind": "Bounded stock network search across five front and four tail target neighborhoods; raw workbook/circuit crest balancing; 20-candidate scenario shortlist, not global optimization."
+        },
+        "seconds": 4.623015042001498
+      }
+    },
+    "pdf_lightning_assumed_stock": {
+      "inputs": {
+        "profile_id": "cpri_problem_brief_profile",
+        "inventory_override": {
+          "front": [
+            {
+              "ohm": 30,
+              "count_per_stage": 4
+            },
+            {
+              "ohm": 465,
+              "count_per_stage": 4
+            },
+            {
+              "ohm": 3700,
+              "count_per_stage": 4
+            }
+          ],
+          "tail": [
+            {
+              "ohm": 520,
+              "count_per_stage": 4
+            }
+          ],
+          "provenance": "Diagnostic assumption: four per value per stage; unverified laboratory stock"
+        }
+      },
+      "original": {
+        "settings": {
+          "stages": 10,
+          "charge_kv_stage": 173.78048780487808,
+          "front_r_stage": 45.0,
+          "tail_r_stage": 520.0,
+          "stage_utilization": 0.8689024390243903,
+          "stored_energy_kj": 18.874786213563358,
+          "voltage_margin_kv_stage": 26.219512195121922,
+          "energy_margin_kj": 11.125213786436642,
+          "energy_margin_pct": 37.08404595478881
+        },
+        "reference": {
+          "front_us": 1.2100299583068181,
+          "tail_us": 50.450399999999995,
+          "crest_kv": 1425.0
+        },
+        "circuit": {
+          "front_us": 1.6270310483409296,
+          "tail_us": 54.109399316356075,
+          "crest_kv": 1224.1376123111604
+        },
+        "both_nominal_pass": false,
+        "envelope_status": "MARGINAL",
+        "agreement": null,
+        "ml_trust": 0.0,
+        "search": {
+          "evaluated": 120,
+          "hardware_feasible": 120,
+          "rejected": {
+            "stage_voltage_or_energy": 7,
+            "nonfinite_or_invalid_waveform": 0
+          },
+          "agreement_feasible": null,
+          "search_kind": "Bounded series DP + up-to-three-part parallel/mixed networks; nearest five front/tail choices per stage, not exhaustive global optimization."
+        },
+        "seconds": 0.14228558300237637
+      },
+      "agreement": {
+        "settings": {
+          "stages": 10,
+          "charge_kv_stage": 185.78894641267544,
+          "front_r_stage": 30.0,
+          "tail_r_stage": 520.0,
+          "stage_utilization": 0.9289447320633772,
+          "stored_energy_kj": 21.573457880707487,
+          "voltage_margin_kv_stage": 14.211053587324557,
+          "energy_margin_kj": 8.426542119292513,
+          "energy_margin_pct": 28.08847373097504
+        },
+        "reference": {
+          "front_us": 0.8707652884101432,
+          "tail_us": 50.450399999999995,
+          "crest_kv": 1523.4693605839384
+        },
+        "circuit": {
+          "front_us": 1.0022386154695169,
+          "tail_us": 52.78965499064097,
+          "crest_kv": 1326.5306394160616
+        },
+        "both_nominal_pass": false,
+        "envelope_status": "FAIL",
+        "agreement": {
+          "required": true,
+          "both_nominal_pass": false,
+          "reference_nominal_pass": false,
+          "circuit_nominal_pass": false,
+          "worst_tolerance_fraction": 2.303376855764641,
+          "scope": "Agreement of two unvalidated models at the same hardware settings; not measured accuracy or laboratory compliance.",
+          "sampled_both_pass_pct": 0.0,
+          "sampled_circuit_pass_pct": 0.0,
+          "scenario_count": 32,
+          "scenario_note": "Finite independent parasitic scenarios, not a calibrated probability or proof over continuous ranges."
+        },
+        "ml_trust": 0.0,
+        "search": {
+          "evaluated": 330,
+          "hardware_feasible": 330,
+          "rejected": {
+            "stage_voltage_or_energy": 7,
+            "nonfinite_or_invalid_waveform": 0
+          },
+          "agreement_feasible": 0,
+          "search_kind": "Bounded stock network search across five front and four tail target neighborhoods; raw workbook/circuit crest balancing; 20-candidate scenario shortlist, not global optimization."
+        },
+        "seconds": 0.6160991249998915
+      }
+    }
+  }
+}

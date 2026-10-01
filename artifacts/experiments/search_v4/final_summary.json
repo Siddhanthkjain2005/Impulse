@@ -1,0 +1,1164 @@
+{
+  "cases": {
+    "workbook_lightning": {
+      "inputs": {
+        "require_model_agreement": true
+      },
+      "seconds": 12.7069755420016,
+      "settings": {
+        "stages": 9,
+        "charge_kv_stage": 196.78500059932176,
+        "front_r_stage": 40.0,
+        "tail_r_stage": 23.823529411764703,
+        "stage_utilization": 0.9839250029966088,
+        "stored_energy_kj": 522.7785422218134,
+        "voltage_margin_kv_stage": 3.214999400678238,
+        "energy_margin_kj": 377.2214577781866,
+        "energy_margin_pct": 41.9134953086874
+      },
+      "prediction": {
+        "front_us": 1.0033559575245468,
+        "tail_us": 49.751998676470585,
+        "crest_kv": 1452.2733044229944
+      },
+      "circuit": {
+        "front_us": 1.4167477671394735,
+        "tail_us": 52.92723018398568,
+        "crest_kv": 1397.7266955770058
+      },
+      "nominal_pass": true,
+      "uncertainty_status": "MARGINAL",
+      "agreement": {
+        "required": true,
+        "both_nominal_pass": true,
+        "reference_nominal_pass": true,
+        "circuit_nominal_pass": true,
+        "worst_tolerance_fraction": 0.6379720332864197,
+        "raw_crest_charge_windows": {
+          "reference_kv_stage": [
+            187.2967479674797,
+            198.88211382113823
+          ],
+          "circuit_kv_stage": [
+            194.60604704707578,
+            206.64353449328664
+          ],
+          "overlap": true,
+          "scope": "Raw-model charge ranges at this fixed resistor network, before stage/energy caps or local correction. Disjoint ranges cannot be repaired by charge adjustment alone."
+        },
+        "scope": "Agreement of two unvalidated models at the same hardware settings; not measured accuracy or laboratory compliance.",
+        "sampled_both_pass_pct": 100.0,
+        "sampled_circuit_pass_pct": 100.0,
+        "scenario_count": 32,
+        "scenario_note": "Finite independent parasitic scenarios, not a calibrated probability or proof over continuous ranges."
+      },
+      "verification": {
+        "version": "fixed-settings-verification-v1",
+        "seed": 617,
+        "used_for_ranking": false,
+        "models_checked": [
+          "Primary prediction",
+          "Independent circuit"
+        ],
+        "parameters": [
+          "load_c_pf",
+          "divider_c_pf",
+          "stray_c_pf",
+          "l_uh"
+        ],
+        "uncertainty_pct": 5,
+        "fresh_samples": {
+          "total": 128,
+          "passed": 128,
+          "primary_passed": 128,
+          "circuit_passed": 128
+        },
+        "boundary_corners": {
+          "total": 16,
+          "passed": 16,
+          "primary_passed": 16,
+          "circuit_passed": 16
+        },
+        "total": 144,
+        "passed": 144,
+        "unique_scenarios": 144,
+        "nominal_all_models_pass": true,
+        "all_checks_pass": true,
+        "worst_case": {
+          "index": 143,
+          "group": "boundary_corners",
+          "inputs": {
+            "load_c_pf": 892.5,
+            "divider_c_pf": 525.0,
+            "stray_c_pf": 157.5,
+            "l_uh": 17.575
+          },
+          "primary_pass": true,
+          "circuit_pass": true,
+          "all_models_pass": true,
+          "minimum_margin_fraction": 0.1712738890373413,
+          "limiting_model": "Independent circuit",
+          "limiting_metric": "Front / peak time",
+          "predicted": 1.4983413999465571,
+          "allowed_lower": 0.84,
+          "allowed_upper": 1.56,
+          "unit": "\u00b5s"
+        },
+        "calibrated_scenarios": 0,
+        "scope": "Fixed hardware checked after ranking using 128 separate-seed Latin-hypercube scenarios and 16 boundary corners. These checks do not select or reorder candidates. Finite simulation evidence only: not continuous-bound certification, independent model-accuracy testing or a laboratory success probability. Efficiency and hardware tolerances are held fixed; no statistical coverage claim."
+      },
+      "score": 0.8061358089781808,
+      "front_network": {
+        "equivalent_ohm": 40.0,
+        "topology": "2\u00d720\u03a9",
+        "components": [
+          {
+            "ohm": 20.0,
+            "count_per_stage": 2,
+            "total_required": 18,
+            "available_per_stage": 4
+          }
+        ],
+        "count_per_stage": 2,
+        "inventory_feasible": true,
+        "legacy_catalog_value": true,
+        "total_components": 18
+      },
+      "tail_network": {
+        "equivalent_ohm": 23.823529411764703,
+        "topology": "15\u03a9 + (10\u03a9 \u2225 75\u03a9)",
+        "components": [
+          {
+            "ohm": 10.0,
+            "count_per_stage": 1,
+            "total_required": 9,
+            "available_per_stage": 4
+          },
+          {
+            "ohm": 15.0,
+            "count_per_stage": 1,
+            "total_required": 9,
+            "available_per_stage": 4
+          },
+          {
+            "ohm": 75.0,
+            "count_per_stage": 1,
+            "total_required": 9,
+            "available_per_stage": 4
+          }
+        ],
+        "count_per_stage": 3,
+        "inventory_feasible": true,
+        "legacy_catalog_value": true,
+        "total_components": 27
+      },
+      "search": {
+        "evaluated": 16556,
+        "hardware_feasible": 16556,
+        "rejected": {
+          "stage_voltage_or_energy": 7,
+          "nonfinite_or_invalid_waveform": 0
+        },
+        "agreement_feasible": 5458,
+        "search_kind": "Bounded stock network search across five front and four tail target neighborhoods; raw workbook/circuit crest balancing; 20-candidate scenario shortlist, not global optimization."
+      }
+    },
+    "higher_load_lightning": {
+      "inputs": {
+        "load_c_pf": 1500,
+        "require_model_agreement": true
+      },
+      "seconds": 11.791115583000646,
+      "settings": {
+        "stages": 9,
+        "charge_kv_stage": 196.7220931444329,
+        "front_r_stage": 27.272727272727273,
+        "tail_r_stage": 23.793103448275865,
+        "stage_utilization": 0.9836104657221645,
+        "stored_energy_kj": 522.4443560702136,
+        "voltage_margin_kv_stage": 3.277906855567096,
+        "energy_margin_kj": 377.55564392978636,
+        "energy_margin_pct": 41.95062710330959
+      },
+      "prediction": {
+        "front_us": 1.02665424831773,
+        "tail_us": 49.78491687931035,
+        "crest_kv": 1451.8090474059147
+      },
+      "circuit": {
+        "front_us": 1.3038001344046712,
+        "tail_us": 52.7122172057208,
+        "crest_kv": 1398.1909525940848
+      },
+      "nominal_pass": true,
+      "uncertainty_status": "MARGINAL",
+      "agreement": {
+        "required": true,
+        "both_nominal_pass": true,
+        "reference_nominal_pass": true,
+        "circuit_nominal_pass": true,
+        "worst_tolerance_fraction": 0.6271122200214024,
+        "raw_crest_charge_windows": {
+          "reference_kv_stage": [
+            187.2967479674797,
+            198.8821138211382
+          ],
+          "circuit_kv_stage": [
+            194.47923958054278,
+            206.5088832659372
+          ],
+          "overlap": true,
+          "scope": "Raw-model charge ranges at this fixed resistor network, before stage/energy caps or local correction. Disjoint ranges cannot be repaired by charge adjustment alone."
+        },
+        "scope": "Agreement of two unvalidated models at the same hardware settings; not measured accuracy or laboratory compliance.",
+        "sampled_both_pass_pct": 100.0,
+        "sampled_circuit_pass_pct": 100.0,
+        "scenario_count": 32,
+        "scenario_note": "Finite independent parasitic scenarios, not a calibrated probability or proof over continuous ranges."
+      },
+      "verification": {
+        "version": "fixed-settings-verification-v1",
+        "seed": 617,
+        "used_for_ranking": false,
+        "models_checked": [
+          "Primary prediction",
+          "Independent circuit"
+        ],
+        "parameters": [
+          "load_c_pf",
+          "divider_c_pf",
+          "stray_c_pf",
+          "l_uh"
+        ],
+        "uncertainty_pct": 5,
+        "fresh_samples": {
+          "total": 128,
+          "passed": 128,
+          "primary_passed": 128,
+          "circuit_passed": 128
+        },
+        "boundary_corners": {
+          "total": 16,
+          "passed": 16,
+          "primary_passed": 16,
+          "circuit_passed": 16
+        },
+        "total": 144,
+        "passed": 144,
+        "unique_scenarios": 144,
+        "nominal_all_models_pass": true,
+        "all_checks_pass": true,
+        "worst_case": {
+          "index": 143,
+          "group": "boundary_corners",
+          "inputs": {
+            "load_c_pf": 1575.0,
+            "divider_c_pf": 525.0,
+            "stray_c_pf": 157.5,
+            "l_uh": 17.575
+          },
+          "primary_pass": true,
+          "circuit_pass": true,
+          "all_models_pass": true,
+          "minimum_margin_fraction": 0.3022539401455526,
+          "limiting_model": "Independent circuit",
+          "limiting_metric": "Crest voltage",
+          "predicted": 1395.1713559412224,
+          "allowed_lower": 1382.25,
+          "allowed_upper": 1467.75,
+          "unit": "kV"
+        },
+        "calibrated_scenarios": 0,
+        "scope": "Fixed hardware checked after ranking using 128 separate-seed Latin-hypercube scenarios and 16 boundary corners. These checks do not select or reorder candidates. Finite simulation evidence only: not continuous-bound certification, independent model-accuracy testing or a laboratory success probability. Efficiency and hardware tolerances are held fixed; no statistical coverage claim."
+      },
+      "score": 0.7591462206817342,
+      "front_network": {
+        "equivalent_ohm": 27.272727272727273,
+        "topology": "30\u03a9 \u2225 300\u03a9",
+        "components": [
+          {
+            "ohm": 30.0,
+            "count_per_stage": 1,
+            "total_required": 9,
+            "available_per_stage": 4
+          },
+          {
+            "ohm": 300.0,
+            "count_per_stage": 1,
+            "total_required": 9,
+            "available_per_stage": 4
+          }
+        ],
+        "count_per_stage": 2,
+        "inventory_feasible": true,
+        "legacy_catalog_value": true,
+        "total_components": 18
+      },
+      "tail_network": {
+        "equivalent_ohm": 23.793103448275865,
+        "topology": "30\u03a9 \u2225 (15\u03a9 + 100\u03a9)",
+        "components": [
+          {
+            "ohm": 15.0,
+            "count_per_stage": 1,
+            "total_required": 9,
+            "available_per_stage": 4
+          },
+          {
+            "ohm": 30.0,
+            "count_per_stage": 1,
+            "total_required": 9,
+            "available_per_stage": 4
+          },
+          {
+            "ohm": 100.0,
+            "count_per_stage": 1,
+            "total_required": 9,
+            "available_per_stage": 4
+          }
+        ],
+        "count_per_stage": 3,
+        "inventory_feasible": true,
+        "legacy_catalog_value": true,
+        "total_components": 27
+      },
+      "search": {
+        "evaluated": 15442,
+        "hardware_feasible": 15442,
+        "rejected": {
+          "stage_voltage_or_energy": 7,
+          "nonfinite_or_invalid_waveform": 0
+        },
+        "agreement_feasible": 8073,
+        "search_kind": "Bounded stock network search across five front and four tail target neighborhoods; raw workbook/circuit crest balancing; 20-candidate scenario shortlist, not global optimization."
+      }
+    },
+    "low_voltage_lightning": {
+      "inputs": {
+        "test_kv": 500,
+        "require_model_agreement": true
+      },
+      "seconds": 21.34478695800499,
+      "settings": {
+        "stages": 4,
+        "charge_kv_stage": 155.0458376649322,
+        "front_r_stage": 85.71428571428571,
+        "tail_r_stage": 23.863636363636363,
+        "stage_utilization": 0.775229188324661,
+        "stored_energy_kj": 144.2352706633231,
+        "voltage_margin_kv_stage": 44.95416233506779,
+        "energy_margin_kj": 755.764729336677,
+        "energy_margin_pct": 83.97385881518632
+      },
+      "prediction": {
+        "front_us": 0.9649432777820334,
+        "tail_us": 49.711724999999994,
+        "crest_kv": 508.55034754097755
+      },
+      "circuit": {
+        "front_us": 1.3412231794571494,
+        "tail_us": 52.73021186316442,
+        "crest_kv": 491.44965245902245
+      },
+      "nominal_pass": true,
+      "uncertainty_status": "MARGINAL",
+      "agreement": {
+        "required": true,
+        "both_nominal_pass": true,
+        "reference_nominal_pass": true,
+        "circuit_nominal_pass": true,
+        "worst_tolerance_fraction": 0.6529353394943516,
+        "raw_crest_charge_windows": {
+          "reference_kv_stage": [
+            147.86585365853662,
+            157.01219512195124
+          ],
+          "circuit_kv_stage": [
+            153.0110579816966,
+            162.47565950633762
+          ],
+          "overlap": true,
+          "scope": "Raw-model charge ranges at this fixed resistor network, before stage/energy caps or local correction. Disjoint ranges cannot be repaired by charge adjustment alone."
+        },
+        "scope": "Agreement of two unvalidated models at the same hardware settings; not measured accuracy or laboratory compliance.",
+        "sampled_both_pass_pct": 100.0,
+        "sampled_circuit_pass_pct": 100.0,
+        "scenario_count": 32,
+        "scenario_note": "Finite independent parasitic scenarios, not a calibrated probability or proof over continuous ranges."
+      },
+      "verification": {
+        "version": "fixed-settings-verification-v1",
+        "seed": 617,
+        "used_for_ranking": false,
+        "models_checked": [
+          "Primary prediction",
+          "Independent circuit"
+        ],
+        "parameters": [
+          "load_c_pf",
+          "divider_c_pf",
+          "stray_c_pf",
+          "l_uh"
+        ],
+        "uncertainty_pct": 5,
+        "fresh_samples": {
+          "total": 128,
+          "passed": 128,
+          "primary_passed": 128,
+          "circuit_passed": 128
+        },
+        "boundary_corners": {
+          "total": 16,
+          "passed": 16,
+          "primary_passed": 16,
+          "circuit_passed": 16
+        },
+        "total": 144,
+        "passed": 144,
+        "unique_scenarios": 144,
+        "nominal_all_models_pass": true,
+        "all_checks_pass": true,
+        "worst_case": {
+          "index": 129,
+          "group": "boundary_corners",
+          "inputs": {
+            "load_c_pf": 807.5,
+            "divider_c_pf": 475.0,
+            "stray_c_pf": 142.5,
+            "l_uh": 17.575
+          },
+          "primary_pass": true,
+          "circuit_pass": true,
+          "all_models_pass": true,
+          "minimum_margin_fraction": 0.21304476081369939,
+          "limiting_model": "Primary prediction",
+          "limiting_metric": "Front / peak time",
+          "predicted": 0.9166961138929317,
+          "allowed_lower": 0.84,
+          "allowed_upper": 1.56,
+          "unit": "\u00b5s"
+        },
+        "calibrated_scenarios": 0,
+        "scope": "Fixed hardware checked after ranking using 128 separate-seed Latin-hypercube scenarios and 16 boundary corners. These checks do not select or reorder candidates. Finite simulation evidence only: not continuous-bound certification, independent model-accuracy testing or a laboratory success probability. Efficiency and hardware tolerances are held fixed; no statistical coverage claim."
+      },
+      "score": 0.7237679727384575,
+      "front_network": {
+        "equivalent_ohm": 85.71428571428571,
+        "topology": "150\u03a9 \u2225 200\u03a9",
+        "components": [
+          {
+            "ohm": 150.0,
+            "count_per_stage": 1,
+            "total_required": 4,
+            "available_per_stage": 4
+          },
+          {
+            "ohm": 200.0,
+            "count_per_stage": 1,
+            "total_required": 4,
+            "available_per_stage": 4
+          }
+        ],
+        "count_per_stage": 2,
+        "inventory_feasible": true,
+        "legacy_catalog_value": true,
+        "total_components": 8
+      },
+      "tail_network": {
+        "equivalent_ohm": 23.863636363636363,
+        "topology": "75\u03a9 \u2225 (5\u03a9 + 30\u03a9)",
+        "components": [
+          {
+            "ohm": 5.0,
+            "count_per_stage": 1,
+            "total_required": 4,
+            "available_per_stage": 4
+          },
+          {
+            "ohm": 30.0,
+            "count_per_stage": 1,
+            "total_required": 4,
+            "available_per_stage": 4
+          },
+          {
+            "ohm": 75.0,
+            "count_per_stage": 1,
+            "total_required": 4,
+            "available_per_stage": 4
+          }
+        ],
+        "count_per_stage": 3,
+        "inventory_feasible": true,
+        "legacy_catalog_value": true,
+        "total_components": 12
+      },
+      "search": {
+        "evaluated": 28490,
+        "hardware_feasible": 28490,
+        "rejected": {
+          "stage_voltage_or_energy": 2,
+          "nonfinite_or_invalid_waveform": 0
+        },
+        "agreement_feasible": 9550,
+        "search_kind": "Bounded stock network search across five front and four tail target neighborhoods; raw workbook/circuit crest balancing; 20-candidate scenario shortlist, not global optimization."
+      }
+    },
+    "constructible_switching": {
+      "inputs": {
+        "impulse_type": "Switching",
+        "test_kv": 1025,
+        "load_c_pf": 1240,
+        "divider_c_pf": 740,
+        "stray_c_pf": 320,
+        "require_model_agreement": true
+      },
+      "seconds": 6.778181041001517,
+      "settings": {
+        "stages": 9,
+        "charge_kv_stage": 145.13339871568772,
+        "front_r_stage": 3400.0,
+        "tail_r_stage": 1100.0,
+        "stage_utilization": 0.7256669935784386,
+        "stored_energy_kj": 284.35999620735157,
+        "voltage_margin_kv_stage": 54.86660128431228,
+        "energy_margin_kj": 615.6400037926485,
+        "energy_margin_pct": 68.40444486584983
+      },
+      "prediction": {
+        "front_us": 117.53586204387791,
+        "tail_us": 2302.67961,
+        "crest_kv": 1071.0844825217755
+      },
+      "circuit": {
+        "front_us": 275.68865603788004,
+        "tail_us": 2649.8308468342793,
+        "crest_kv": 978.915517478224
+      },
+      "nominal_pass": false,
+      "uncertainty_status": "FAIL",
+      "agreement": {
+        "required": true,
+        "both_nominal_pass": false,
+        "reference_nominal_pass": false,
+        "circuit_nominal_pass": false,
+        "worst_tolerance_fraction": 2.649282759122442,
+        "raw_crest_charge_windows": {
+          "reference_kv_stage": [
+            134.7222222222222,
+            143.05555555555554
+          ],
+          "circuit_kv_stage": [
+            147.40687944634854,
+            156.52483075230825
+          ],
+          "overlap": false,
+          "scope": "Raw-model charge ranges at this fixed resistor network, before stage/energy caps or local correction. Disjoint ranges cannot be repaired by charge adjustment alone."
+        },
+        "scope": "Agreement of two unvalidated models at the same hardware settings; not measured accuracy or laboratory compliance.",
+        "sampled_both_pass_pct": 0.0,
+        "sampled_circuit_pass_pct": 0.0,
+        "scenario_count": 32,
+        "scenario_note": "Finite independent parasitic scenarios, not a calibrated probability or proof over continuous ranges."
+      },
+      "verification": {
+        "version": "fixed-settings-verification-v1",
+        "seed": 617,
+        "used_for_ranking": false,
+        "models_checked": [
+          "Primary prediction",
+          "Independent circuit"
+        ],
+        "parameters": [
+          "load_c_pf",
+          "divider_c_pf",
+          "stray_c_pf",
+          "l_uh"
+        ],
+        "uncertainty_pct": 5,
+        "fresh_samples": {
+          "total": 128,
+          "passed": 0,
+          "primary_passed": 0,
+          "circuit_passed": 0
+        },
+        "boundary_corners": {
+          "total": 16,
+          "passed": 0,
+          "primary_passed": 0,
+          "circuit_passed": 0
+        },
+        "total": 144,
+        "passed": 0,
+        "unique_scenarios": 144,
+        "nominal_all_models_pass": false,
+        "all_checks_pass": false,
+        "worst_case": {
+          "index": 129,
+          "group": "boundary_corners",
+          "inputs": {
+            "load_c_pf": 1178.0,
+            "divider_c_pf": 703.0,
+            "stray_c_pf": 304.0,
+            "l_uh": 17.575
+          },
+          "primary_pass": false,
+          "circuit_pass": false,
+          "all_models_pass": false,
+          "minimum_margin_fraction": -1.76681862116632,
+          "limiting_model": "Primary prediction",
+          "limiting_metric": "Front / peak time",
+          "predicted": 111.65906894168401,
+          "allowed_lower": 200,
+          "allowed_upper": 300,
+          "unit": "\u00b5s"
+        },
+        "calibrated_scenarios": 0,
+        "scope": "Fixed hardware checked after ranking using 128 separate-seed Latin-hypercube scenarios and 16 boundary corners. These checks do not select or reorder candidates. Finite simulation evidence only: not continuous-bound certification, independent model-accuracy testing or a laboratory success probability. Efficiency and hardware tolerances are held fixed; no statistical coverage claim."
+      },
+      "score": 2.0574453599022617,
+      "front_network": {
+        "equivalent_ohm": 3400.0,
+        "topology": "1\u00d7200\u03a9 + 4\u00d7300\u03a9 + 4\u00d7500\u03a9",
+        "components": [
+          {
+            "ohm": 200.0,
+            "count_per_stage": 1,
+            "total_required": 9,
+            "available_per_stage": 4
+          },
+          {
+            "ohm": 300.0,
+            "count_per_stage": 4,
+            "total_required": 36,
+            "available_per_stage": 4
+          },
+          {
+            "ohm": 500.0,
+            "count_per_stage": 4,
+            "total_required": 36,
+            "available_per_stage": 4
+          }
+        ],
+        "count_per_stage": 9,
+        "inventory_feasible": true,
+        "legacy_catalog_value": true,
+        "total_components": 81
+      },
+      "tail_network": {
+        "equivalent_ohm": 1100.0,
+        "topology": "2\u00d7150\u03a9 + 4\u00d7200\u03a9",
+        "components": [
+          {
+            "ohm": 150.0,
+            "count_per_stage": 2,
+            "total_required": 18,
+            "available_per_stage": 4
+          },
+          {
+            "ohm": 200.0,
+            "count_per_stage": 4,
+            "total_required": 36,
+            "available_per_stage": 4
+          }
+        ],
+        "count_per_stage": 6,
+        "inventory_feasible": true,
+        "legacy_catalog_value": true,
+        "total_components": 54
+      },
+      "search": {
+        "evaluated": 7124,
+        "hardware_feasible": 7124,
+        "rejected": {
+          "stage_voltage_or_energy": 5,
+          "nonfinite_or_invalid_waveform": 0
+        },
+        "agreement_feasible": 0,
+        "search_kind": "Bounded stock network search across five front and four tail target neighborhoods; raw workbook/circuit crest balancing; 20-candidate scenario shortlist, not global optimization."
+      }
+    },
+    "pdf_lightning_assumed_stock": {
+      "inputs": {
+        "profile_id": "cpri_problem_brief_profile",
+        "inventory_override": {
+          "front": [
+            {
+              "ohm": 30,
+              "count_per_stage": 4
+            },
+            {
+              "ohm": 465,
+              "count_per_stage": 4
+            },
+            {
+              "ohm": 3700,
+              "count_per_stage": 4
+            }
+          ],
+          "tail": [
+            {
+              "ohm": 520,
+              "count_per_stage": 4
+            }
+          ],
+          "provenance": "Diagnostic assumption: four per value per stage; unverified laboratory stock"
+        },
+        "require_model_agreement": true
+      },
+      "seconds": 2.2677353330000187,
+      "settings": {
+        "stages": 10,
+        "charge_kv_stage": 185.78894641267544,
+        "front_r_stage": 30.0,
+        "tail_r_stage": 520.0,
+        "stage_utilization": 0.9289447320633772,
+        "stored_energy_kj": 21.573457880707487,
+        "voltage_margin_kv_stage": 14.211053587324557,
+        "energy_margin_kj": 8.426542119292513,
+        "energy_margin_pct": 28.08847373097504
+      },
+      "prediction": {
+        "front_us": 0.8707652884101432,
+        "tail_us": 50.450399999999995,
+        "crest_kv": 1523.4693605839384
+      },
+      "circuit": {
+        "front_us": 1.0022292008748872,
+        "tail_us": 52.78886732980104,
+        "crest_kv": 1326.5306394160616
+      },
+      "nominal_pass": false,
+      "uncertainty_status": "FAIL",
+      "agreement": {
+        "required": true,
+        "both_nominal_pass": false,
+        "reference_nominal_pass": false,
+        "circuit_nominal_pass": false,
+        "worst_tolerance_fraction": 2.303376855764641,
+        "raw_crest_charge_windows": {
+          "reference_kv_stage": [
+            168.56707317073173,
+            178.9939024390244
+          ],
+          "circuit_kv_stage": [
+            193.59279276954123,
+            205.56760469343038
+          ],
+          "overlap": false,
+          "scope": "Raw-model charge ranges at this fixed resistor network, before stage/energy caps or local correction. Disjoint ranges cannot be repaired by charge adjustment alone."
+        },
+        "scope": "Agreement of two unvalidated models at the same hardware settings; not measured accuracy or laboratory compliance.",
+        "sampled_both_pass_pct": 0.0,
+        "sampled_circuit_pass_pct": 0.0,
+        "scenario_count": 32,
+        "scenario_note": "Finite independent parasitic scenarios, not a calibrated probability or proof over continuous ranges."
+      },
+      "verification": {
+        "version": "fixed-settings-verification-v1",
+        "seed": 617,
+        "used_for_ranking": false,
+        "models_checked": [
+          "Primary prediction",
+          "Independent circuit"
+        ],
+        "parameters": [
+          "load_c_pf",
+          "divider_c_pf",
+          "stray_c_pf",
+          "l_uh"
+        ],
+        "uncertainty_pct": 5,
+        "fresh_samples": {
+          "total": 128,
+          "passed": 0,
+          "primary_passed": 0,
+          "circuit_passed": 0
+        },
+        "boundary_corners": {
+          "total": 16,
+          "passed": 0,
+          "primary_passed": 0,
+          "circuit_passed": 0
+        },
+        "total": 144,
+        "passed": 0,
+        "unique_scenarios": 144,
+        "nominal_all_models_pass": false,
+        "all_checks_pass": false,
+        "worst_case": {
+          "index": 143,
+          "group": "boundary_corners",
+          "inputs": {
+            "load_c_pf": 892.5,
+            "divider_c_pf": 525.0,
+            "stray_c_pf": 157.5,
+            "l_uh": 17.575
+          },
+          "primary_pass": false,
+          "circuit_pass": false,
+          "all_models_pass": false,
+          "minimum_margin_fraction": -1.5100391884321782,
+          "limiting_model": "Independent circuit",
+          "limiting_metric": "Crest voltage",
+          "predicted": 1317.6958246945244,
+          "allowed_lower": 1382.25,
+          "allowed_upper": 1467.75,
+          "unit": "kV"
+        },
+        "calibrated_scenarios": 0,
+        "scope": "Fixed hardware checked after ranking using 128 separate-seed Latin-hypercube scenarios and 16 boundary corners. These checks do not select or reorder candidates. Finite simulation evidence only: not continuous-bound certification, independent model-accuracy testing or a laboratory success probability. Efficiency and hardware tolerances are held fixed; no statistical coverage claim."
+      },
+      "score": 1.4858222001125918,
+      "front_network": {
+        "equivalent_ohm": 30.0,
+        "topology": "1\u00d730\u03a9",
+        "components": [
+          {
+            "ohm": 30.0,
+            "count_per_stage": 1,
+            "total_required": 10,
+            "available_per_stage": 4
+          }
+        ],
+        "count_per_stage": 1,
+        "inventory_feasible": true,
+        "legacy_catalog_value": true,
+        "total_components": 10
+      },
+      "tail_network": {
+        "equivalent_ohm": 520.0,
+        "topology": "1\u00d7520\u03a9",
+        "components": [
+          {
+            "ohm": 520.0,
+            "count_per_stage": 1,
+            "total_required": 10,
+            "available_per_stage": 4
+          }
+        ],
+        "count_per_stage": 1,
+        "inventory_feasible": true,
+        "legacy_catalog_value": true,
+        "total_components": 10
+      },
+      "search": {
+        "evaluated": 1540,
+        "hardware_feasible": 1540,
+        "rejected": {
+          "stage_voltage_or_energy": 7,
+          "nonfinite_or_invalid_waveform": 0
+        },
+        "agreement_feasible": 0,
+        "search_kind": "Bounded stock network search across five front and four tail target neighborhoods; raw workbook/circuit crest balancing; 20-candidate scenario shortlist, not global optimization."
+      }
+    },
+    "pdf_lightning_circuit": {
+      "inputs": {
+        "profile_id": "cpri_problem_brief_profile",
+        "solver": "circuit",
+        "impulse_type": "Lightning",
+        "test_kv": 1425,
+        "inventory_override": {
+          "front": [
+            {
+              "ohm": 30,
+              "count_per_stage": 4
+            },
+            {
+              "ohm": 465,
+              "count_per_stage": 4
+            },
+            {
+              "ohm": 3700,
+              "count_per_stage": 4
+            }
+          ],
+          "tail": [
+            {
+              "ohm": 520,
+              "count_per_stage": 4
+            }
+          ],
+          "provenance": "Diagnostic assumption: four units per value per stage; quantities unverified"
+        }
+      },
+      "seconds": 1.1725070829998003,
+      "settings": {
+        "stages": 12,
+        "charge_kv_stage": 170.7095452744963,
+        "front_r_stage": 30.0,
+        "tail_r_stage": 520.0,
+        "stage_utilization": 0.8535477263724814,
+        "stored_energy_kj": 21.856311635868973,
+        "voltage_margin_kv_stage": 29.290454725503707,
+        "energy_margin_kj": 8.143688364131027,
+        "energy_margin_pct": 27.145627880436752
+      },
+      "prediction": {
+        "front_us": 1.2363120207058897,
+        "tail_us": 54.391642427536816,
+        "crest_kv": 1424.9999999999998
+      },
+      "circuit": null,
+      "nominal_pass": true,
+      "uncertainty_status": "MARGINAL",
+      "agreement": null,
+      "verification": {
+        "version": "fixed-settings-verification-v1",
+        "seed": 617,
+        "used_for_ranking": false,
+        "models_checked": [
+          "Circuit prediction"
+        ],
+        "parameters": [
+          "load_c_pf",
+          "divider_c_pf",
+          "stray_c_pf",
+          "l_uh"
+        ],
+        "uncertainty_pct": 5,
+        "fresh_samples": {
+          "total": 128,
+          "passed": 128,
+          "primary_passed": 128,
+          "circuit_passed": null
+        },
+        "boundary_corners": {
+          "total": 16,
+          "passed": 16,
+          "primary_passed": 16,
+          "circuit_passed": null
+        },
+        "total": 144,
+        "passed": 144,
+        "unique_scenarios": 144,
+        "nominal_all_models_pass": true,
+        "all_checks_pass": true,
+        "worst_case": {
+          "index": 143,
+          "group": "boundary_corners",
+          "inputs": {
+            "load_c_pf": 892.5,
+            "divider_c_pf": 525.0,
+            "stray_c_pf": 157.5,
+            "l_uh": 17.575
+          },
+          "primary_pass": true,
+          "circuit_pass": null,
+          "all_models_pass": true,
+          "minimum_margin_fraction": 0.513968892676204,
+          "limiting_model": "Primary prediction",
+          "limiting_metric": "Time to half-value",
+          "predicted": 54.86031107323796,
+          "allowed_lower": 40,
+          "allowed_upper": 60,
+          "unit": "\u00b5s"
+        },
+        "calibrated_scenarios": 0,
+        "scope": "Fixed hardware checked after ranking using 128 separate-seed Latin-hypercube scenarios and 16 boundary corners. These checks do not select or reorder candidates. Finite simulation evidence only: not continuous-bound certification, independent model-accuracy testing or a laboratory success probability. Efficiency and hardware tolerances are held fixed; no statistical coverage claim."
+      },
+      "score": 0.3831240339576058,
+      "front_network": {
+        "equivalent_ohm": 30.0,
+        "topology": "1\u00d730\u03a9",
+        "components": [
+          {
+            "ohm": 30.0,
+            "count_per_stage": 1,
+            "total_required": 12,
+            "available_per_stage": 4
+          }
+        ],
+        "count_per_stage": 1,
+        "inventory_feasible": true,
+        "legacy_catalog_value": true,
+        "total_components": 12
+      },
+      "tail_network": {
+        "equivalent_ohm": 520.0,
+        "topology": "1\u00d7520\u03a9",
+        "components": [
+          {
+            "ohm": 520.0,
+            "count_per_stage": 1,
+            "total_required": 12,
+            "available_per_stage": 4
+          }
+        ],
+        "count_per_stage": 1,
+        "inventory_feasible": true,
+        "legacy_catalog_value": true,
+        "total_components": 12
+      },
+      "search": {
+        "evaluated": 352,
+        "hardware_feasible": 215,
+        "rejected": {
+          "stage_voltage_or_energy": 144,
+          "nonfinite_or_invalid_waveform": 0
+        },
+        "agreement_feasible": null,
+        "search_kind": "Bounded series DP + four-part series/parallel trees (six parts for small catalogs) and identical parallel banks; nearest five front/tail choices per stage, not exhaustive global optimization."
+      }
+    },
+    "pdf_switching_circuit": {
+      "inputs": {
+        "profile_id": "cpri_problem_brief_profile",
+        "solver": "circuit",
+        "impulse_type": "Switching",
+        "test_kv": 1050,
+        "inventory_override": {
+          "front": [
+            {
+              "ohm": 30,
+              "count_per_stage": 4
+            },
+            {
+              "ohm": 465,
+              "count_per_stage": 4
+            },
+            {
+              "ohm": 3700,
+              "count_per_stage": 4
+            }
+          ],
+          "tail": [
+            {
+              "ohm": 22000,
+              "count_per_stage": 4
+            }
+          ],
+          "provenance": "Diagnostic assumption: four units per value per stage; quantities unverified"
+        }
+      },
+      "seconds": 1.5706756670042523,
+      "settings": {
+        "stages": 11,
+        "charge_kv_stage": 142.83713586526477,
+        "front_r_stage": 4165.0,
+        "tail_r_stage": 22000.0,
+        "stage_utilization": 0.7141856793263238,
+        "stored_energy_kj": 14.026682575257075,
+        "voltage_margin_kv_stage": 57.16286413473523,
+        "energy_margin_kj": 15.973317424742925,
+        "energy_margin_pct": 53.244391415809744
+      },
+      "prediction": {
+        "front_us": 243.4397799191918,
+        "tail_us": 2468.0163101322946,
+        "crest_kv": 1050.0
+      },
+      "circuit": null,
+      "nominal_pass": true,
+      "uncertainty_status": "MARGINAL",
+      "agreement": null,
+      "verification": {
+        "version": "fixed-settings-verification-v1",
+        "seed": 617,
+        "used_for_ranking": false,
+        "models_checked": [
+          "Circuit prediction"
+        ],
+        "parameters": [
+          "load_c_pf",
+          "divider_c_pf",
+          "stray_c_pf",
+          "l_uh"
+        ],
+        "uncertainty_pct": 5,
+        "fresh_samples": {
+          "total": 128,
+          "passed": 128,
+          "primary_passed": 128,
+          "circuit_passed": null
+        },
+        "boundary_corners": {
+          "total": 16,
+          "passed": 16,
+          "primary_passed": 16,
+          "circuit_passed": null
+        },
+        "total": 144,
+        "passed": 144,
+        "unique_scenarios": 144,
+        "nominal_all_models_pass": true,
+        "all_checks_pass": true,
+        "worst_case": {
+          "index": 130,
+          "group": "boundary_corners",
+          "inputs": {
+            "load_c_pf": 807.5,
+            "divider_c_pf": 475.0,
+            "stray_c_pf": 142.5,
+            "l_uh": 19.425
+          },
+          "primary_pass": true,
+          "circuit_pass": null,
+          "all_models_pass": true,
+          "minimum_margin_fraction": 0.6961797029849487,
+          "limiting_model": "Primary prediction",
+          "limiting_metric": "Front / peak time",
+          "predicted": 234.80898514924743,
+          "allowed_lower": 200,
+          "allowed_upper": 300,
+          "unit": "\u00b5s"
+        },
+        "calibrated_scenarios": 0,
+        "scope": "Fixed hardware checked after ranking using 128 separate-seed Latin-hypercube scenarios and 16 boundary corners. These checks do not select or reorder candidates. Finite simulation evidence only: not continuous-bound certification, independent model-accuracy testing or a laboratory success probability. Efficiency and hardware tolerances are held fixed; no statistical coverage claim."
+      },
+      "score": 0.3036109243015749,
+      "front_network": {
+        "equivalent_ohm": 4165.0,
+        "topology": "1\u00d7465\u03a9 + 1\u00d73700\u03a9",
+        "components": [
+          {
+            "ohm": 465.0,
+            "count_per_stage": 1,
+            "total_required": 11,
+            "available_per_stage": 4
+          },
+          {
+            "ohm": 3700.0,
+            "count_per_stage": 1,
+            "total_required": 11,
+            "available_per_stage": 4
+          }
+        ],
+        "count_per_stage": 2,
+        "inventory_feasible": true,
+        "legacy_catalog_value": true,
+        "total_components": 22
+      },
+      "tail_network": {
+        "equivalent_ohm": 22000.0,
+        "topology": "1\u00d722000\u03a9",
+        "components": [
+          {
+            "ohm": 22000.0,
+            "count_per_stage": 1,
+            "total_required": 11,
+            "available_per_stage": 4
+          }
+        ],
+        "count_per_stage": 1,
+        "inventory_feasible": true,
+        "legacy_catalog_value": true,
+        "total_components": 11
+      },
+      "search": {
+        "evaluated": 515,
+        "hardware_feasible": 414,
+        "rejected": {
+          "stage_voltage_or_energy": 106,
+          "nonfinite_or_invalid_waveform": 0
+        },
+        "agreement_feasible": null,
+        "search_kind": "Bounded series DP + four-part series/parallel trees (six parts for small catalogs) and identical parallel banks; nearest five front/tail choices per stage, not exhaustive global optimization."
+      }
+    }
+  },
+  "elapsed_seconds": 57.63943329099857,
+  "cloud_spend_usd": 0,
+  "supervised_training_performed": false,
+  "scope": "Seven engineering development examples. Five pass all post-ranking sampled checks; two agreement failures remain visible. Not laboratory validation."
+}

@@ -1,16 +1,23 @@
 {
-  "extracted_root": "/var/folders/1x/dbv5hr0j6q31yd6qf988kzqw0000gn/T/impulsetwin-release-check-ay0z18yz/ImpulseTwin_AI",
-  "verified_files": 172,
+  "recorded_at_utc": "2026-10-01T17:23:57.460748+00:00",
+  "status": "passed",
+  "verified_files": 233,
   "zip_integrity_passed": true,
   "sha_manifest_passed": true,
   "live_history_and_raw_uploads_excluded": true,
-  "launch_scope": "Current machine, using existing installed pinned dependencies; not a fresh-machine installation.",
-  "archive_launch_passed": true,
-  "launch_command": "make demo PYTHON=/Library/Frameworks/Python.framework/Versions/3.12/bin/python3",
-  "browser_verified": [
-    "Offline API documentation",
-    "Fresh default optimizer run",
-    "Final printable report with visible model disagreement"
-  ],
-  "recorded_at_utc": "2026-10-01T05:13:39.390830+00:00"
+  "extracted_root": "/var/folders/1x/dbv5hr0j6q31yd6qf988kzqw0000gn/T/impulsetwin-search-v4-release-xb2nc6ti/ImpulseTwin_AI",
+  "application_checks": {
+    "static_routes": 6,
+    "api_docs": true,
+    "frozen_registry": true,
+    "agreement_optimizer": true,
+    "postranking_scenarios_passed": 144,
+    "uncalibrated_envelope_preserved": true,
+    "circuit_v2": true,
+    "reports": true,
+    "v3_not_activated": true,
+    "handoff_included": true
+  },
+  "launch_scope": "Extracted application through TestClient on current machine with existing dependencies; not a clean second machine.",
+  "note": "Final package is rebuilt after recording this QA result; only QA metadata changes, with all final ZIP file hashes reverified."
 }

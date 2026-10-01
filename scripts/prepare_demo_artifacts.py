@@ -21,6 +21,7 @@ def prepare():
     samples.mkdir(exist_ok=True)
     cases = {
         'lightning_reference': {},
+        'lightning_model_agreement': {'require_model_agreement': True},
         'lightning_circuit': {'solver': 'circuit'},
         'switching_constructible_ood': {'impulse_type': 'Switching', 'test_kv': 1025,
             'load_c_pf': 1240, 'divider_c_pf': 740, 'stray_c_pf': 320},
@@ -39,12 +40,13 @@ def prepare():
         (samples / f'{name}_run.json').write_text(json.dumps(run, indent=2))
         wave = client.get(f"/api/runs/{run['id']}/demo-waveform")
         wave.raise_for_status()
-        (samples / f'{name}_generated_trial.csv').write_bytes(wave.content)
+        (samples / f'{name}_generated_trial.csv').write_bytes(wave.content.replace(b'\r\n',b'\n'))
         c = run['candidates'][0]
         evidence[name] = {'source_type': 'generated_stress_test', 'run_id': run['id'],
             'model_version': run['model_version'], 'settings': c['settings'],
             'nominal_pass': c['compliance']['nominal_pass'], 'status': c['compliance']['status'],
             'ml_trust': c['ood']['trust_weight'],
+            'model_agreement': c.get('model_agreement'),
             'circuit_crosscheck': c['circuit_crosscheck']['compliance']['status'] if c['circuit_crosscheck'] else None}
     (samples / 'README.md').write_text(
         '# Offline demonstration samples\n\n'

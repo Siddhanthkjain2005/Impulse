@@ -1,9 +1,9 @@
 {
-  "recorded_at_utc": "2026-10-01T06:47:07.686436+00:00",
+  "recorded_at_utc": "2026-10-01T17:21:53.457027+00:00",
   "version": "1.0.0",
   "backend_tests_passed": true,
   "backend": {
-    "tests": 67,
+    "tests": 86,
     "failures": 0,
     "errors": 0,
     "skipped": 0
@@ -12,8 +12,8 @@
   "frontend": {
     "typecheck_passed": true,
     "production_build_passed": true,
-    "verification": "Frontend worker executed final TypeScript check and production build after V2 mode and method-disclosure changes; root verified updated rendered views.",
-    "source_sha256": "91042cd7b354d46b391853bf0efd527166a14dae03b991707b638443d148ebb7",
+    "verification": "TypeScript and production static build passed with Node 22.23.2 using npm run build -- --webpack. Turbopack local-port restriction avoided with supported webpack builder.",
+    "source_sha256": "d23011251fa890b53ebecdb67374d23b8efcfcc394bea09b720c2587a032f5aa",
     "routes": [
       "/",
       "/model-lab/",
@@ -22,7 +22,31 @@
       "/runs/",
       "/compare/"
     ],
-    "source_hash_method": "SHA256 of sorted JSON mapping relative source paths to file SHA256"
+    "source_hash_method": "SHA256 of sorted JSON mapping relative source paths to file SHA256",
+    "source_hash_files": [
+      "frontend/app/.DS_Store",
+      "frontend/app/compare/page.tsx",
+      "frontend/app/globals.css",
+      "frontend/app/icon.svg",
+      "frontend/app/layout.tsx",
+      "frontend/app/model-lab/page.tsx",
+      "frontend/app/page.tsx",
+      "frontend/app/profiles/page.tsx",
+      "frontend/app/runs/page.tsx",
+      "frontend/app/trial-calibrator/page.tsx",
+      "frontend/components/engineering-chart.tsx",
+      "frontend/components/optimizer.tsx",
+      "frontend/components/secondary-pages.tsx",
+      "frontend/components/settings-verification.tsx",
+      "frontend/components/workspace.tsx",
+      "frontend/lib/api.ts",
+      "frontend/next-env.d.ts",
+      "frontend/next.config.ts",
+      "frontend/package-lock.json",
+      "frontend/package.json",
+      "frontend/postcss.config.mjs",
+      "frontend/tsconfig.json"
+    ]
   },
   "browser": {
     "tested_at": "2026-10-01",
@@ -70,57 +94,89 @@
       "Final benchmark panels explicitly distinguish residual scores from runtime support/scenario-gated optimizer predictions"
     ],
     "accuracy_screenshot": "artifacts/qa/model-lab-accuracy.png",
-    "v2_screenshot": "artifacts/qa/model-lab-v2.png"
+    "v2_screenshot": "artifacts/qa/model-lab-v2.png",
+    "agreement_update_verified": [
+      "Failed circuit card names waveform metrics and distinguishes software tests",
+      "Button runs two-model agreement search and displays new counted hardware",
+      "Both nominal checks pass with side-by-side predictions and unchanged limits",
+      "MARGINAL uncertainty remains visible; corrections disabled outside ML support",
+      "390px responsive agreement table: document width equals viewport; no console errors",
+      "Model Lab shows V3 1.03% development gain and no promotion decision"
+    ],
+    "agreement_screenshot": "artifacts/qa/model-agreement.png",
+    "settings_verification_update": {
+      "tested_at": "2026-10-01",
+      "desktop_viewport": [
+        1280,
+        720
+      ],
+      "mobile_viewport": [
+        390,
+        844
+      ],
+      "mobile_document_width": 390,
+      "checks": [
+        "New post-ranking 128/128 and 16/16 cards; 17.1% minimum margin matches run",
+        "Worst-case inputs and unchanged MARGINAL envelope visible",
+        "Independent circuit overlay rendered; full Lightning plot uses 0\u2013250 microsecond axis",
+        "Saved latest run restored after preview restart",
+        "Mobile cards stack with no horizontal page overflow",
+        "No console errors observed in final preview"
+      ],
+      "screenshot": "artifacts/qa/settings-verification.png",
+      "mobile_screenshot": "artifacts/qa/settings-verification-mobile.png",
+      "viewport_override_reset": true
+    }
   },
   "offline_static_assets": {
     "html_pages": [
-      "index.html",
-      "404.html",
-      "model-lab/index.html",
-      "compare/index.html",
-      "trial-calibrator/index.html",
-      "_not-found/index.html",
-      "profiles/index.html",
       "404/index.html",
-      "runs/index.html"
+      "404.html",
+      "_not-found/index.html",
+      "compare/index.html",
+      "index.html",
+      "model-lab/index.html",
+      "profiles/index.html",
+      "runs/index.html",
+      "trial-calibrator/index.html"
     ],
     "asset_count": 17,
     "remote_assets": [],
     "missing_assets": [],
     "served_asset_status": {
-      "/_next/static/chunks/878-0d7dda84d5e831a6.js": 200,
-      "/_next/static/chunks/webpack-fe2cfd9fa929694f.js": 200,
-      "/_next/static/chunks/app/page-09ee5dbf606ceae1.js": 200,
-      "/_next/static/chunks/128-485fb63d75d09e6c.js": 200,
+      "/_next/static/chunks/128-8c94e6a2da297a48.js": 200,
+      "/_next/static/chunks/4bd1b696-92152b0f5947070d.js": 200,
+      "/_next/static/chunks/699-8cb61db040cec60b.js": 200,
+      "/_next/static/chunks/794-71ff2c1735abeddf.js": 200,
+      "/_next/static/chunks/878-5b090624b5eee32a.js": 200,
+      "/_next/static/chunks/app/compare/page-b1721cf670469fdd.js": 200,
+      "/_next/static/chunks/app/layout-c9c24d32d6a7935d.js": 200,
+      "/_next/static/chunks/app/model-lab/page-9c63e7efe162d4ba.js": 200,
+      "/_next/static/chunks/app/page-c40fd33210075d34.js": 200,
+      "/_next/static/chunks/app/profiles/page-d3ad848bcb6c4e08.js": 200,
+      "/_next/static/chunks/app/runs/page-3349d0997e52138b.js": 200,
+      "/_next/static/chunks/app/trial-calibrator/page-5e4d3369cb72991d.js": 200,
       "/_next/static/chunks/main-app-f09dec10dbfe7fab.js": 200,
       "/_next/static/chunks/polyfills-42372ed130431b0a.js": 200,
-      "/_next/static/chunks/app/trial-calibrator/page-5e4d3369cb72991d.js": 200,
-      "/_next/static/chunks/app/compare/page-b1721cf670469fdd.js": 200,
-      "/_next/static/chunks/app/profiles/page-d3ad848bcb6c4e08.js": 200,
-      "/_next/static/css/8f5d526ab3435715.css": 200,
-      "/_next/static/chunks/app/layout-abd55c7acf15ff34.js": 200,
-      "/_next/static/chunks/794-71ff2c1735abeddf.js": 200,
-      "/_next/static/chunks/app/model-lab/page-9c63e7efe162d4ba.js": 200,
-      "/_next/static/chunks/699-8cb61db040cec60b.js": 200,
-      "/icon.svg?d8f9cd8af1d4dce3": 200,
-      "/_next/static/chunks/4bd1b696-92152b0f5947070d.js": 200,
-      "/_next/static/chunks/app/runs/page-3349d0997e52138b.js": 200
+      "/_next/static/chunks/webpack-fe2cfd9fa929694f.js": 200,
+      "/_next/static/css/f3f60bfe113e92da.css": 200,
+      "/icon.svg?d8f9cd8af1d4dce3": 200
     },
     "passed": true,
-    "scope": "Static exported HTML assets verified in process; no external network was used. Does not simulate a physically disconnected laptop."
+    "scope": "Static exported HTML assets verified through local TestClient; no physically disconnected laptop rehearsal."
   },
   "sources": {
     "workbook_cached_case_and_1400_neighbors_verified": true,
     "published_validation_table_parity": "Unresolved source discrepancy",
     "lab_validation": "Pending actual measured data"
   },
-  "fallback_reports": "Four self-contained reports, including labeled V2 candidate, plus generated CSVs/run snapshots in data/demo",
+  "fallback_reports": "Five self-contained reports, including model-agreement and V2 cases, with generated CSVs/run snapshots in data/demo",
   "cloud": {
     "deployed": false,
     "resources_created": false,
     "spend_by_this_build_usd": 0,
     "training_authorized": true,
-    "reason": "Local search completed in 55 seconds; user deferred deployment"
+    "reason": "Training and expanded engineering searches completed locally; user deferred deployment. No cloud resources created."
   },
   "not_verified": [
     "Clean installation on a second laptop",
@@ -141,41 +197,82 @@
     "integrity_review": "artifacts/qa/freeze_and_release_review.json"
   },
   "previous_release_validation": {
-    "extracted_root": "/var/folders/1x/dbv5hr0j6q31yd6qf988kzqw0000gn/T/impulsetwin-release-check-ay0z18yz/ImpulseTwin_AI",
-    "verified_files": 172,
+    "recorded_at_utc": "2026-10-01T11:17:42.729109+00:00",
+    "status": "passed",
+    "verified_files": 217,
     "zip_integrity_passed": true,
     "sha_manifest_passed": true,
     "live_history_and_raw_uploads_excluded": true,
-    "launch_scope": "Current machine, using existing installed pinned dependencies; not a fresh-machine installation.",
-    "archive_launch_passed": true,
-    "launch_command": "make demo PYTHON=/Library/Frameworks/Python.framework/Versions/3.12/bin/python3",
-    "browser_verified": [
-      "Offline API documentation",
-      "Fresh default optimizer run",
-      "Final printable report with visible model disagreement"
+    "extracted_root": "/var/folders/1x/dbv5hr0j6q31yd6qf988kzqw0000gn/T/impulsetwin-agreement-release-k17lvf0b/ImpulseTwin_AI",
+    "application_checks": {
+      "static_routes": 6,
+      "api_docs": true,
+      "agreement_optimizer": true,
+      "reports": true,
+      "v3_not_activated": true,
+      "handoff_included": true
+    },
+    "launch_scope": "Extracted application through TestClient on current machine with existing dependencies; not a clean second machine.",
+    "note": "Final package is rebuilt after recording this QA result; only QA metadata changes, with all final ZIP file hashes reverified."
+  },
+  "accuracy_v3": {
+    "summary": "artifacts/experiments/v3/summary.json",
+    "promotion_eligible": false,
+    "macro_improvement_pct": 1.033850668985814,
+    "calibration_validation_hidden_evaluated": false,
+    "frozen_v1_v2_preserved": true
+  },
+  "agreement_diagnostic": {
+    "record": "artifacts/qa/model_agreement_diagnostic.json",
+    "case_count": 5,
+    "improved_to_both_nominal_pass": 3,
+    "remaining_failures": [
+      "constructible_switching",
+      "pdf_lightning_assumed_stock"
     ],
-    "recorded_at_utc": "2026-10-01T05:13:39.390830+00:00",
-    "status": "passed",
-    "note": "Extracted payload verified and launched on this machine with existing dependencies. Final archive integrity/manifest is verified again after QA metadata is packaged."
+    "scope": "Development engineering examples; not a model-accuracy benchmark"
+  },
+  "calibration_scenario_scope": "Saved one-shot bias applies only inside 1% input scope; scenario counts recorded and boundary regression tests pass.",
+  "search_v4": {
+    "summary": "artifacts/experiments/search_v4/final_summary.json",
+    "protocol": "artifacts/experiments/search_v4/final_protocol.json",
+    "development_cases": 7,
+    "passing_144_postranking_checks": 5,
+    "two_model_agreement_cases_passing": 3,
+    "pdf_circuit_presets_passing": 2,
+    "remaining_agreement_failures": [
+      "constructible_switching",
+      "pdf_lightning_assumed_stock"
+    ],
+    "scope": "Selected engineering development examples; not measured accuracy or laboratory success rate. PDF stock quantities assumed."
+  },
+  "circuit_precision": {
+    "method": "Continuous modal peak and bracketed crossing roots",
+    "independent_check": "Charge/current ODE integration and independently bracketed crossings, both impulse types; 2e-7 relative agreement",
+    "version": "lumped RLC Marx equivalent v2",
+    "calibration_transfer": "Previous circuit-version biases rejected; workbook calibration behavior preserved."
   },
   "release_validation": {
-    "recorded_at_utc": "2026-10-01T06:48:04.294443+00:00",
+    "recorded_at_utc": "2026-10-01T17:23:57.460748+00:00",
     "status": "passed",
-    "extracted_root": "/var/folders/1x/dbv5hr0j6q31yd6qf988kzqw0000gn/T/impulsetwin-v2-release-e45ckibv/ImpulseTwin_AI",
-    "verified_files": 204,
+    "verified_files": 233,
     "zip_integrity_passed": true,
     "sha_manifest_passed": true,
     "live_history_and_raw_uploads_excluded": true,
+    "extracted_root": "/var/folders/1x/dbv5hr0j6q31yd6qf988kzqw0000gn/T/impulsetwin-search-v4-release-xb2nc6ti/ImpulseTwin_AI",
     "application_checks": {
       "static_routes": 6,
       "api_docs": true,
       "frozen_registry": true,
-      "default_and_v2_optimizer": true,
+      "agreement_optimizer": true,
+      "postranking_scenarios_passed": 144,
+      "uncalibrated_envelope_preserved": true,
+      "circuit_v2": true,
       "reports": true,
-      "xgboost_not_required_for_serving": true
+      "v3_not_activated": true,
+      "handoff_included": true
     },
-    "launch_scope": "Extracted application loaded through FastAPI TestClient on current machine with existing installed dependencies; no new hosting deployment or fresh-machine installation.",
-    "archive_launch_passed": true,
-    "note": "Extracted backend application checks passed. Backend code and model artifacts are unchanged in the final package; final UI wording and rebuilt assets verified separately in the browser and offline asset check. Final ZIP and per-file manifest are verified after packaging this QA record."
+    "launch_scope": "Extracted application through TestClient on current machine with existing dependencies; not a clean second machine.",
+    "note": "Final package is rebuilt after recording this QA result; only QA metadata changes, with all final ZIP file hashes reverified."
   }
 }
