@@ -1,0 +1,1766 @@
+{
+  "version": "pooled-physics-v4-development",
+  "scope": "Train development experiment using previously explored features and historically selected V2 parameters. Reused outer folds; no independent final test, calibration or laboratory evaluation.",
+  "protocol_sha256": "7760fc1db2bffca916399343b16a8b59ea9cd0027f0a2f51e96e7a79f1e3eb51",
+  "nested_cv": {
+    "Lightning": {
+      "metrics": {
+        "V4 pooling search": {
+          "mae": [
+            0.006305396097250575,
+            0.5495493534463008,
+            4.124853169940148
+          ],
+          "rmse": [
+            0.007186798817917249,
+            0.6332965475781446,
+            4.873002331847097
+          ],
+          "mape_pct": [
+            0.5259820356914388,
+            1.0511672964044696,
+            0.28972936464601007
+          ],
+          "r2": [
+            0.9557395151668284,
+            0.4060756381466868,
+            0.9884837423177978
+          ],
+          "normalized_rmse_tolerance": [
+            0.019963330049770148,
+            0.0633296547578144,
+            0.1137289236416327
+          ],
+          "p95_absolute_error": [
+            0.011870580023657238,
+            1.039871253823416,
+            8.580201352057747
+          ]
+        },
+        "Historical V2 refit": {
+          "mae": [
+            0.006305396097250575,
+            0.5495493534463008,
+            4.124853169940148
+          ],
+          "rmse": [
+            0.007186798817917249,
+            0.6332965475781446,
+            4.873002331847097
+          ],
+          "mape_pct": [
+            0.5259820356914388,
+            1.0511672964044696,
+            0.28972936464601007
+          ],
+          "r2": [
+            0.9557395151668284,
+            0.4060756381466868,
+            0.9884837423177978
+          ],
+          "normalized_rmse_tolerance": [
+            0.019963330049770148,
+            0.0633296547578144,
+            0.1137289236416327
+          ],
+          "p95_absolute_error": [
+            0.011870580023657238,
+            1.039871253823416,
+            8.580201352057747
+          ]
+        }
+      },
+      "improvement_vs_v2_pct": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "Switching": {
+      "metrics": {
+        "V4 pooling search": {
+          "mae": [
+            1.4775169771882342,
+            22.07549170985247,
+            3.0402365139580643
+          ],
+          "rmse": [
+            1.7391253986187623,
+            25.607145202197852,
+            3.5918398400491585
+          ],
+          "mape_pct": [
+            0.5903522962964258,
+            0.8819853779084563,
+            0.2975534411940356
+          ],
+          "r2": [
+            0.479726043678677,
+            0.34920037820035266,
+            0.9934556661767159
+          ],
+          "normalized_rmse_tolerance": [
+            0.03478250797237527,
+            0.05121429040439572,
+            0.11694601895110183
+          ],
+          "p95_absolute_error": [
+            2.9696562269519355,
+            41.700469699409396,
+            6.216945949395505
+          ]
+        },
+        "Historical V2 refit": {
+          "mae": [
+            1.4775169771882342,
+            22.07549170985247,
+            3.0402365139580643
+          ],
+          "rmse": [
+            1.7391253986187623,
+            25.607145202197852,
+            3.5918398400491585
+          ],
+          "mape_pct": [
+            0.5903522962964258,
+            0.8819853779084563,
+            0.2975534411940356
+          ],
+          "r2": [
+            0.479726043678677,
+            0.34920037820035266,
+            0.9934556661767159
+          ],
+          "normalized_rmse_tolerance": [
+            0.03478250797237527,
+            0.05121429040439572,
+            0.11694601895110183
+          ],
+          "p95_absolute_error": [
+            2.9696562269519355,
+            41.700469699409396,
+            6.216945949395505
+          ]
+        }
+      },
+      "improvement_vs_v2_pct": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    }
+  },
+  "fold_choices": [
+    [
+      {
+        "selection": {
+          "Lightning": {
+            "blend": 0.0,
+            "name": "Historical V2 refit"
+          },
+          "Switching": {
+            "blend": 0.0,
+            "name": "Historical V2 refit"
+          }
+        },
+        "inner": {
+          "Lightning": {
+            "baseline_normalized_mse": 0.00039571411180268037,
+            "chosen_normalized_mse": 0.00039571411180268037,
+            "leaders": [
+              {
+                "basis": "minimal mechanism",
+                "degree": 1,
+                "pooling": "partial",
+                "alpha": 10.0,
+                "blend": 1.0,
+                "normalized_mse": 0.0003955185442924909
+              },
+              {
+                "basis": "extended mechanism",
+                "degree": 1,
+                "pooling": "offset",
+                "alpha": 10.0,
+                "blend": 0.5,
+                "normalized_mse": 0.00039553468610994643
+              },
+              {
+                "basis": "minimal mechanism",
+                "degree": 1,
+                "pooling": "partial",
+                "alpha": 10.0,
+                "blend": 0.5,
+                "normalized_mse": 0.00039560545996316824
+              },
+              {
+                "basis": "extended mechanism",
+                "degree": 1,
+                "pooling": "shared",
+                "alpha": 10.0,
+                "blend": 0.5,
+                "normalized_mse": 0.0003956557290460903
+              },
+              {
+                "basis": "minimal mechanism",
+                "degree": 1,
+                "pooling": "partial",
+                "alpha": 0.1,
+                "blend": 1.0,
+                "normalized_mse": 0.0003957108345657681
+              }
+            ]
+          },
+          "Switching": {
+            "baseline_normalized_mse": 0.0012399358398480938,
+            "chosen_normalized_mse": 0.0012399358398480938,
+            "leaders": [
+              {
+                "basis": "extended mechanism",
+                "degree": 1,
+                "pooling": "shared",
+                "alpha": 10.0,
+                "blend": 0.5,
+                "normalized_mse": 0.001233464940384681
+              },
+              {
+                "basis": "minimal mechanism",
+                "degree": 1,
+                "pooling": "shared",
+                "alpha": 0.1,
+                "blend": 0.5,
+                "normalized_mse": 0.0012348849490201417
+              },
+              {
+                "basis": "minimal mechanism",
+                "degree": 1,
+                "pooling": "shared",
+                "alpha": 0.1,
+                "blend": 1.0,
+                "normalized_mse": 0.0012350368592851022
+              },
+              {
+                "basis": "minimal mechanism",
+                "degree": 1,
+                "pooling": "shared",
+                "alpha": 10.0,
+                "blend": 0.5,
+                "normalized_mse": 0.0012357485009512124
+              },
+              {
+                "basis": "extended mechanism",
+                "degree": 1,
+                "pooling": "offset",
+                "alpha": 10.0,
+                "blend": 0.5,
+                "normalized_mse": 0.0012360234358124984
+              }
+            ]
+          }
+        }
+      },
+      {
+        "selection": {
+          "Lightning": {
+            "blend": 0.0,
+            "name": "Historical V2 refit"
+          },
+          "Switching": {
+            "blend": 0.0,
+            "name": "Historical V2 refit"
+          }
+        },
+        "inner": {
+          "Lightning": {
+            "baseline_normalized_mse": 0.003923363394088974,
+            "chosen_normalized_mse": 0.003923363394088974,
+            "leaders": [
+              {
+                "basis": "minimal mechanism",
+                "degree": 2,
+                "pooling": "shared",
+                "alpha": 0.1,
+                "blend": 1.0,
+                "normalized_mse": 0.0038711315743729033
+              },
+              {
+                "basis": "extended mechanism",
+                "degree": 2,
+                "pooling": "shared",
+                "alpha": 10.0,
+                "blend": 0.5,
+                "normalized_mse": 0.0038722601239917034
+              },
+              {
+                "basis": "extended mechanism",
+                "degree": 2,
+                "pooling": "shared",
+                "alpha": 0.1,
+                "blend": 0.5,
+                "normalized_mse": 0.003874129342433852
+              },
+              {
+                "basis": "minimal mechanism",
+                "degree": 2,
+                "pooling": "shared",
+                "alpha": 10.0,
+                "blend": 1.0,
+                "normalized_mse": 0.0038763942997080644
+              },
+              {
+                "basis": "minimal mechanism",
+                "degree": 1,
+                "pooling": "shared",
+                "alpha": 0.1,
+                "blend": 1.0,
+                "normalized_mse": 0.003877335539741059
+              }
+            ]
+          },
+          "Switching": {
+            "baseline_normalized_mse": 0.0027053055947437996,
+            "chosen_normalized_mse": 0.0027053055947437996,
+            "leaders": [
+              {
+                "basis": "minimal mechanism",
+                "degree": 2,
+                "pooling": "offset",
+                "alpha": 10.0,
+                "blend": 1.0,
+                "normalized_mse": 0.00268065261752896
+              },
+              {
+                "basis": "minimal mechanism",
+                "degree": 2,
+                "pooling": "shared",
+                "alpha": 10.0,
+                "blend": 1.0,
+                "normalized_mse": 0.0026823538730697052
+              },
+              {
+                "basis": "minimal mechanism",
+                "degree": 1,
+                "pooling": "offset",
+                "alpha": 10.0,
+                "blend": 1.0,
+                "normalized_mse": 0.002683313110837781
+              },
+              {
+                "basis": "minimal mechanism",
+                "degree": 2,
+                "pooling": "offset",
+                "alpha": 0.1,
+                "blend": 1.0,
+                "normalized_mse": 0.0026844907244042357
+              },
+              {
+                "basis": "minimal mechanism",
+                "degree": 1,
+                "pooling": "shared",
+                "alpha": 10.0,
+                "blend": 1.0,
+                "normalized_mse": 0.002685209611593243
+              }
+            ]
+          }
+        }
+      },
+      {
+        "selection": {
+          "Lightning": {
+            "blend": 0.0,
+            "name": "Historical V2 refit"
+          },
+          "Switching": {
+            "blend": 0.0,
+            "name": "Historical V2 refit"
+          }
+        },
+        "inner": {
+          "Lightning": {
+            "baseline_normalized_mse": 0.013319759020767468,
+            "chosen_normalized_mse": 0.013319759020767468,
+            "leaders": [
+              {
+                "basis": "minimal mechanism",
+                "degree": 2,
+                "pooling": "offset",
+                "alpha": 10.0,
+                "blend": 0.5,
+                "normalized_mse": 0.01465616684228722
+              },
+              {
+                "basis": "minimal mechanism",
+                "degree": 2,
+                "pooling": "offset",
+                "alpha": 0.1,
+                "blend": 0.5,
+                "normalized_mse": 0.01466822741567426
+              },
+              {
+                "basis": "minimal mechanism",
+                "degree": 2,
+                "pooling": "shared",
+                "alpha": 10.0,
+                "blend": 0.5,
+                "normalized_mse": 0.014671688085479211
+              },
+              {
+                "basis": "minimal mechanism",
+                "degree": 2,
+                "pooling": "partial",
+                "alpha": 10.0,
+                "blend": 0.5,
+                "normalized_mse": 0.014676050237749335
+              },
+              {
+                "basis": "minimal mechanism",
+                "degree": 2,
+                "pooling": "shared",
+                "alpha": 0.1,
+                "blend": 0.5,
+                "normalized_mse": 0.014683354452846463
+              }
+            ]
+          },
+          "Switching": {
+            "baseline_normalized_mse": 0.01392088646738271,
+            "chosen_normalized_mse": 0.01392088646738271,
+            "leaders": [
+              {
+                "basis": "extended mechanism",
+                "degree": 1,
+                "pooling": "separate slopes",
+                "alpha": 0.1,
+                "blend": 0.5,
+                "normalized_mse": 0.015158829906762022
+              },
+              {
+                "basis": "extended mechanism",
+                "degree": 1,
+                "pooling": "partial",
+                "alpha": 10.0,
+                "blend": 0.5,
+                "normalized_mse": 0.015160412176562424
+              },
+              {
+                "basis": "extended mechanism",
+                "degree": 1,
+                "pooling": "partial",
+                "alpha": 0.1,
+                "blend": 0.5,
+                "normalized_mse": 0.01516116102083232
+              },
+              {
+                "basis": "extended mechanism",
+                "degree": 1,
+                "pooling": "shared",
+                "alpha": 10.0,
+                "blend": 0.5,
+                "normalized_mse": 0.015162387785920424
+              },
+              {
+                "basis": "extended mechanism",
+                "degree": 1,
+                "pooling": "offset",
+                "alpha": 10.0,
+                "blend": 0.5,
+                "normalized_mse": 0.015162486551378284
+              }
+            ]
+          }
+        }
+      }
+    ],
+    [
+      {
+        "selection": {
+          "Lightning": {
+            "blend": 0.0,
+            "name": "Historical V2 refit"
+          },
+          "Switching": {
+            "blend": 0.0,
+            "name": "Historical V2 refit"
+          }
+        },
+        "inner": {
+          "Lightning": {
+            "baseline_normalized_mse": 0.00040127074413481156,
+            "chosen_normalized_mse": 0.00040127074413481156,
+            "leaders": [
+              {
+                "basis": "minimal mechanism",
+                "degree": 2,
+                "pooling": "shared",
+                "alpha": 10.0,
+                "blend": 1.0,
+                "normalized_mse": 0.0003965570344553032
+              },
+              {
+                "basis": "minimal mechanism",
+                "degree": 2,
+                "pooling": "shared",
+                "alpha": 10.0,
+                "blend": 0.5,
+                "normalized_mse": 0.00039734894262958344
+              },
+              {
+                "basis": "minimal mechanism",
+                "degree": 2,
+                "pooling": "shared",
+                "alpha": 0.1,
+                "blend": 0.5,
+                "normalized_mse": 0.00039761914802396336
+              },
+              {
+                "basis": "minimal mechanism",
+                "degree": 2,
+                "pooling": "shared",
+                "alpha": 0.1,
+                "blend": 1.0,
+                "normalized_mse": 0.00039773109702678663
+              },
+              {
+                "basis": "minimal mechanism",
+                "degree": 1,
+                "pooling": "shared",
+                "alpha": 10.0,
+                "blend": 1.0,
+                "normalized_mse": 0.0003980253655842908
+              }
+            ]
+          },
+          "Switching": {
+            "baseline_normalized_mse": 0.0012011051419226345,
+            "chosen_normalized_mse": 0.0012011051419226345,
+            "leaders": [
+              {
+                "basis": "minimal mechanism",
+                "degree": 2,
+                "pooling": "shared",
+                "alpha": 0.1,
+                "blend": 0.5,
+                "normalized_mse": 0.001192990832017574
+              },
+              {
+                "basis": "minimal mechanism",
+                "degree": 2,
+                "pooling": "shared",
+                "alpha": 0.1,
+                "blend": 1.0,
+                "normalized_mse": 0.0011931804252516634
+              },
+              {
+                "basis": "minimal mechanism",
+                "degree": 2,
+                "pooling": "shared",
+                "alpha": 10.0,
+                "blend": 0.5,
+                "normalized_mse": 0.0011938312535950233
+              },
+              {
+                "basis": "minimal mechanism",
+                "degree": 2,
+                "pooling": "shared",
+                "alpha": 10.0,
+                "blend": 1.0,
+                "normalized_mse": 0.0011962357725918108
+              },
+              {
+                "basis": "minimal mechanism",
+                "degree": 1,
+                "pooling": "shared",
+                "alpha": 0.1,
+                "blend": 0.5,
+                "normalized_mse": 0.0011968432943676517
+              }
+            ]
+          }
+        }
+      },
+      {
+        "selection": {
+          "Lightning": {
+            "blend": 0.0,
+            "name": "Historical V2 refit"
+          },
+          "Switching": {
+            "blend": 0.0,
+            "name": "Historical V2 refit"
+          }
+        },
+        "inner": {
+          "Lightning": {
+            "baseline_normalized_mse": 0.0041966378958880265,
+            "chosen_normalized_mse": 0.0041966378958880265,
+            "leaders": [
+              {
+                "basis": "minimal mechanism",
+                "degree": 1,
+                "pooling": "shared",
+                "alpha": 0.1,
+                "blend": 1.0,
+                "normalized_mse": 0.004172583122793535
+              },
+              {
+                "basis": "minimal mechanism",
+                "degree": 1,
+                "pooling": "offset",
+                "alpha": 0.1,
+                "blend": 1.0,
+                "normalized_mse": 0.004178154566049955
+              },
+              {
+                "basis": "minimal mechanism",
+                "degree": 1,
+                "pooling": "shared",
+                "alpha": 10.0,
+                "blend": 1.0,
+                "normalized_mse": 0.00417825200399649
+              },
+              {
+                "basis": "minimal mechanism",
+                "degree": 1,
+                "pooling": "shared",
+                "alpha": 0.1,
+                "blend": 0.5,
+                "normalized_mse": 0.004180709507546793
+              },
+              {
+                "basis": "minimal mechanism",
+                "degree": 1,
+                "pooling": "shared",
+                "alpha": 10.0,
+                "blend": 0.5,
+                "normalized_mse": 0.004182231762182117
+              }
+            ]
+          },
+          "Switching": {
+            "baseline_normalized_mse": 0.0026857689356954806,
+            "chosen_normalized_mse": 0.0026857689356954806,
+            "leaders": [
+              {
+                "basis": "minimal mechanism",
+                "degree": 2,
+                "pooling": "shared",
+                "alpha": 10.0,
+                "blend": 1.0,
+                "normalized_mse": 0.0026603456320022146
+              },
+              {
+                "basis": "minimal mechanism",
+                "degree": 2,
+                "pooling": "shared",
+                "alpha": 0.1,
+                "blend": 1.0,
+                "normalized_mse": 0.0026646943862349954
+              },
+              {
+                "basis": "minimal mechanism",
+                "degree": 1,
+                "pooling": "shared",
+                "alpha": 10.0,
+                "blend": 1.0,
+                "normalized_mse": 0.002667911200592186
+              },
+              {
+                "basis": "minimal mechanism",
+                "degree": 2,
+                "pooling": "shared",
+                "alpha": 10.0,
+                "blend": 0.5,
+                "normalized_mse": 0.0026683357998923385
+              },
+              {
+                "basis": "minimal mechanism",
+                "degree": 2,
+                "pooling": "shared",
+                "alpha": 0.1,
+                "blend": 0.5,
+                "normalized_mse": 0.002669381612119545
+              }
+            ]
+          }
+        }
+      },
+      {
+        "selection": {
+          "Lightning": {
+            "blend": 0.0,
+            "name": "Historical V2 refit"
+          },
+          "Switching": {
+            "blend": 0.0,
+            "name": "Historical V2 refit"
+          }
+        },
+        "inner": {
+          "Lightning": {
+            "baseline_normalized_mse": 0.01305275930169915,
+            "chosen_normalized_mse": 0.01305275930169915,
+            "leaders": [
+              {
+                "basis": "minimal mechanism",
+                "degree": 2,
+                "pooling": "shared",
+                "alpha": 10.0,
+                "blend": 0.5,
+                "normalized_mse": 0.014703144610644777
+              },
+              {
+                "basis": "minimal mechanism",
+                "degree": 2,
+                "pooling": "shared",
+                "alpha": 0.1,
+                "blend": 0.5,
+                "normalized_mse": 0.014704196298189597
+              },
+              {
+                "basis": "extended mechanism",
+                "degree": 1,
+                "pooling": "shared",
+                "alpha": 0.1,
+                "blend": 0.5,
+                "normalized_mse": 0.014745227529562897
+              },
+              {
+                "basis": "extended mechanism",
+                "degree": 2,
+                "pooling": "shared",
+                "alpha": 10.0,
+                "blend": 0.5,
+                "normalized_mse": 0.014752025181406463
+              },
+              {
+                "basis": "minimal mechanism",
+                "degree": 2,
+                "pooling": "partial",
+                "alpha": 0.1,
+                "blend": 0.5,
+                "normalized_mse": 0.014775026716939988
+              }
+            ]
+          },
+          "Switching": {
+            "baseline_normalized_mse": 0.014305580749370009,
+            "chosen_normalized_mse": 0.014305580749370009,
+            "leaders": [
+              {
+                "basis": "extended mechanism",
+                "degree": 1,
+                "pooling": "shared",
+                "alpha": 10.0,
+                "blend": 0.5,
+                "normalized_mse": 0.015952411426432035
+              },
+              {
+                "basis": "extended mechanism",
+                "degree": 1,
+                "pooling": "offset",
+                "alpha": 10.0,
+                "blend": 0.5,
+                "normalized_mse": 0.01597156956682489
+              },
+              {
+                "basis": "extended mechanism",
+                "degree": 1,
+                "pooling": "shared",
+                "alpha": 0.1,
+                "blend": 0.5,
+                "normalized_mse": 0.015981722980550693
+              },
+              {
+                "basis": "extended mechanism",
+                "degree": 1,
+                "pooling": "partial",
+                "alpha": 10.0,
+                "blend": 0.5,
+                "normalized_mse": 0.015992390535617202
+              },
+              {
+                "basis": "extended mechanism",
+                "degree": 1,
+                "pooling": "separate slopes",
+                "alpha": 0.1,
+                "blend": 0.5,
+                "normalized_mse": 0.01599391681854739
+              }
+            ]
+          }
+        }
+      }
+    ],
+    [
+      {
+        "selection": {
+          "Lightning": {
+            "blend": 0.0,
+            "name": "Historical V2 refit"
+          },
+          "Switching": {
+            "blend": 0.0,
+            "name": "Historical V2 refit"
+          }
+        },
+        "inner": {
+          "Lightning": {
+            "baseline_normalized_mse": 0.00040703818815143153,
+            "chosen_normalized_mse": 0.00040703818815143153,
+            "leaders": [
+              {
+                "basis": "extended mechanism",
+                "degree": 1,
+                "pooling": "separate slopes",
+                "alpha": 0.1,
+                "blend": 0.5,
+                "normalized_mse": 0.0004061807922811217
+              },
+              {
+                "basis": "minimal mechanism",
+                "degree": 1,
+                "pooling": "shared",
+                "alpha": 10.0,
+                "blend": 0.5,
+                "normalized_mse": 0.0004062442076658528
+              },
+              {
+                "basis": "minimal mechanism",
+                "degree": 1,
+                "pooling": "shared",
+                "alpha": 0.1,
+                "blend": 0.5,
+                "normalized_mse": 0.0004064859440326111
+              },
+              {
+                "basis": "minimal mechanism",
+                "degree": 1,
+                "pooling": "partial",
+                "alpha": 10.0,
+                "blend": 1.0,
+                "normalized_mse": 0.00040664620593528725
+              },
+              {
+                "basis": "minimal mechanism",
+                "degree": 1,
+                "pooling": "offset",
+                "alpha": 10.0,
+                "blend": 0.5,
+                "normalized_mse": 0.00040667502588580446
+              }
+            ]
+          },
+          "Switching": {
+            "baseline_normalized_mse": 0.0012287049876276517,
+            "chosen_normalized_mse": 0.0012287049876276517,
+            "leaders": [
+              {
+                "basis": "minimal mechanism",
+                "degree": 1,
+                "pooling": "shared",
+                "alpha": 0.1,
+                "blend": 1.0,
+                "normalized_mse": 0.0012118686028498925
+              },
+              {
+                "basis": "minimal mechanism",
+                "degree": 1,
+                "pooling": "shared",
+                "alpha": 10.0,
+                "blend": 1.0,
+                "normalized_mse": 0.0012144984041615543
+              },
+              {
+                "basis": "minimal mechanism",
+                "degree": 1,
+                "pooling": "offset",
+                "alpha": 0.1,
+                "blend": 1.0,
+                "normalized_mse": 0.0012171663709870017
+              },
+              {
+                "basis": "minimal mechanism",
+                "degree": 1,
+                "pooling": "shared",
+                "alpha": 0.1,
+                "blend": 0.5,
+                "normalized_mse": 0.0012180711261656544
+              },
+              {
+                "basis": "minimal mechanism",
+                "degree": 1,
+                "pooling": "shared",
+                "alpha": 10.0,
+                "blend": 0.5,
+                "normalized_mse": 0.0012187271210735587
+              }
+            ]
+          }
+        }
+      },
+      {
+        "selection": {
+          "Lightning": {
+            "blend": 0.0,
+            "name": "Historical V2 refit"
+          },
+          "Switching": {
+            "blend": 0.0,
+            "name": "Historical V2 refit"
+          }
+        },
+        "inner": {
+          "Lightning": {
+            "baseline_normalized_mse": 0.003994862719886884,
+            "chosen_normalized_mse": 0.003994862719886884,
+            "leaders": [
+              {
+                "basis": "minimal mechanism",
+                "degree": 1,
+                "pooling": "partial",
+                "alpha": 0.1,
+                "blend": 0.5,
+                "normalized_mse": 0.00399492375086318
+              },
+              {
+                "basis": "minimal mechanism",
+                "degree": 1,
+                "pooling": "separate slopes",
+                "alpha": 0.1,
+                "blend": 0.5,
+                "normalized_mse": 0.003994924230032019
+              },
+              {
+                "basis": "minimal mechanism",
+                "degree": 2,
+                "pooling": "shared",
+                "alpha": 0.1,
+                "blend": 0.5,
+                "normalized_mse": 0.003994937628279747
+              },
+              {
+                "basis": "minimal mechanism",
+                "degree": 1,
+                "pooling": "partial",
+                "alpha": 0.1,
+                "blend": 1.0,
+                "normalized_mse": 0.0039949960220979205
+              },
+              {
+                "basis": "minimal mechanism",
+                "degree": 1,
+                "pooling": "separate slopes",
+                "alpha": 0.1,
+                "blend": 1.0,
+                "normalized_mse": 0.003994998765556653
+              }
+            ]
+          },
+          "Switching": {
+            "baseline_normalized_mse": 0.0026271105700572486,
+            "chosen_normalized_mse": 0.0026271105700572486,
+            "leaders": [
+              {
+                "basis": "minimal mechanism",
+                "degree": 2,
+                "pooling": "shared",
+                "alpha": 10.0,
+                "blend": 0.5,
+                "normalized_mse": 0.002622344085117516
+              },
+              {
+                "basis": "extended mechanism",
+                "degree": 1,
+                "pooling": "shared",
+                "alpha": 10.0,
+                "blend": 0.5,
+                "normalized_mse": 0.0026232358799966027
+              },
+              {
+                "basis": "minimal mechanism",
+                "degree": 1,
+                "pooling": "shared",
+                "alpha": 10.0,
+                "blend": 0.5,
+                "normalized_mse": 0.002623795521193931
+              },
+              {
+                "basis": "minimal mechanism",
+                "degree": 2,
+                "pooling": "shared",
+                "alpha": 0.1,
+                "blend": 0.5,
+                "normalized_mse": 0.0026239474239052735
+              },
+              {
+                "basis": "extended mechanism",
+                "degree": 1,
+                "pooling": "shared",
+                "alpha": 0.1,
+                "blend": 0.5,
+                "normalized_mse": 0.002624254878656654
+              }
+            ]
+          }
+        }
+      },
+      {
+        "selection": {
+          "Lightning": {
+            "blend": 0.0,
+            "name": "Historical V2 refit"
+          },
+          "Switching": {
+            "blend": 0.0,
+            "name": "Historical V2 refit"
+          }
+        },
+        "inner": {
+          "Lightning": {
+            "baseline_normalized_mse": 0.012871356900064407,
+            "chosen_normalized_mse": 0.012871356900064407,
+            "leaders": [
+              {
+                "basis": "extended mechanism",
+                "degree": 2,
+                "pooling": "shared",
+                "alpha": 0.1,
+                "blend": 0.5,
+                "normalized_mse": 0.01425824083375697
+              },
+              {
+                "basis": "extended mechanism",
+                "degree": 2,
+                "pooling": "shared",
+                "alpha": 10.0,
+                "blend": 0.5,
+                "normalized_mse": 0.014277332607507612
+              },
+              {
+                "basis": "minimal mechanism",
+                "degree": 2,
+                "pooling": "shared",
+                "alpha": 10.0,
+                "blend": 0.5,
+                "normalized_mse": 0.014298089344213375
+              },
+              {
+                "basis": "minimal mechanism",
+                "degree": 2,
+                "pooling": "shared",
+                "alpha": 0.1,
+                "blend": 0.5,
+                "normalized_mse": 0.014309486868956512
+              },
+              {
+                "basis": "extended mechanism",
+                "degree": 1,
+                "pooling": "shared",
+                "alpha": 0.1,
+                "blend": 0.5,
+                "normalized_mse": 0.014326163402697743
+              }
+            ]
+          },
+          "Switching": {
+            "baseline_normalized_mse": 0.013390757634391806,
+            "chosen_normalized_mse": 0.013390757634391806,
+            "leaders": [
+              {
+                "basis": "extended mechanism",
+                "degree": 1,
+                "pooling": "offset",
+                "alpha": 0.1,
+                "blend": 0.5,
+                "normalized_mse": 0.01540905338576848
+              },
+              {
+                "basis": "extended mechanism",
+                "degree": 1,
+                "pooling": "partial",
+                "alpha": 0.1,
+                "blend": 0.5,
+                "normalized_mse": 0.01543551254946135
+              },
+              {
+                "basis": "extended mechanism",
+                "degree": 1,
+                "pooling": "shared",
+                "alpha": 0.1,
+                "blend": 0.5,
+                "normalized_mse": 0.015436641014484748
+              },
+              {
+                "basis": "extended mechanism",
+                "degree": 2,
+                "pooling": "offset",
+                "alpha": 0.1,
+                "blend": 0.5,
+                "normalized_mse": 0.015437346897303337
+              },
+              {
+                "basis": "extended mechanism",
+                "degree": 1,
+                "pooling": "separate slopes",
+                "alpha": 0.1,
+                "blend": 0.5,
+                "normalized_mse": 0.015439080154797506
+              }
+            ]
+          }
+        }
+      }
+    ],
+    [
+      {
+        "selection": {
+          "Lightning": {
+            "blend": 0.0,
+            "name": "Historical V2 refit"
+          },
+          "Switching": {
+            "blend": 0.0,
+            "name": "Historical V2 refit"
+          }
+        },
+        "inner": {
+          "Lightning": {
+            "baseline_normalized_mse": 0.00039037847687358834,
+            "chosen_normalized_mse": 0.00039037847687358834,
+            "leaders": [
+              {
+                "basis": "extended mechanism",
+                "degree": 1,
+                "pooling": "separate slopes",
+                "alpha": 10.0,
+                "blend": 0.5,
+                "normalized_mse": 0.0003896585920310085
+              },
+              {
+                "basis": "extended mechanism",
+                "degree": 1,
+                "pooling": "partial",
+                "alpha": 10.0,
+                "blend": 0.5,
+                "normalized_mse": 0.00038978167493135566
+              },
+              {
+                "basis": "extended mechanism",
+                "degree": 1,
+                "pooling": "shared",
+                "alpha": 10.0,
+                "blend": 0.5,
+                "normalized_mse": 0.0003899592181567378
+              },
+              {
+                "basis": "minimal mechanism",
+                "degree": 1,
+                "pooling": "partial",
+                "alpha": 10.0,
+                "blend": 1.0,
+                "normalized_mse": 0.00039002903296742264
+              },
+              {
+                "basis": "extended mechanism",
+                "degree": 1,
+                "pooling": "separate slopes",
+                "alpha": 0.1,
+                "blend": 0.5,
+                "normalized_mse": 0.0003900528871865717
+              }
+            ]
+          },
+          "Switching": {
+            "baseline_normalized_mse": 0.0011532553882963718,
+            "chosen_normalized_mse": 0.0011532553882963718,
+            "leaders": [
+              {
+                "basis": "minimal mechanism",
+                "degree": 2,
+                "pooling": "separate slopes",
+                "alpha": 0.1,
+                "blend": 0.5,
+                "normalized_mse": 0.0011450948118434075
+              },
+              {
+                "basis": "minimal mechanism",
+                "degree": 2,
+                "pooling": "partial",
+                "alpha": 0.1,
+                "blend": 0.5,
+                "normalized_mse": 0.0011450970379052242
+              },
+              {
+                "basis": "minimal mechanism",
+                "degree": 2,
+                "pooling": "separate slopes",
+                "alpha": 10.0,
+                "blend": 0.5,
+                "normalized_mse": 0.0011452943205044453
+              },
+              {
+                "basis": "minimal mechanism",
+                "degree": 2,
+                "pooling": "partial",
+                "alpha": 10.0,
+                "blend": 0.5,
+                "normalized_mse": 0.001145788734622667
+              },
+              {
+                "basis": "minimal mechanism",
+                "degree": 2,
+                "pooling": "partial",
+                "alpha": 0.1,
+                "blend": 1.0,
+                "normalized_mse": 0.001145906463314817
+              }
+            ]
+          }
+        }
+      },
+      {
+        "selection": {
+          "Lightning": {
+            "blend": 0.0,
+            "name": "Historical V2 refit"
+          },
+          "Switching": {
+            "blend": 0.0,
+            "name": "Historical V2 refit"
+          }
+        },
+        "inner": {
+          "Lightning": {
+            "baseline_normalized_mse": 0.0040124446307848545,
+            "chosen_normalized_mse": 0.0040124446307848545,
+            "leaders": [
+              {
+                "basis": "minimal mechanism",
+                "degree": 1,
+                "pooling": "shared",
+                "alpha": 0.1,
+                "blend": 0.5,
+                "normalized_mse": 0.004007367191992709
+              },
+              {
+                "basis": "minimal mechanism",
+                "degree": 1,
+                "pooling": "shared",
+                "alpha": 10.0,
+                "blend": 0.5,
+                "normalized_mse": 0.004009140736817106
+              },
+              {
+                "basis": "minimal mechanism",
+                "degree": 2,
+                "pooling": "shared",
+                "alpha": 0.1,
+                "blend": 0.5,
+                "normalized_mse": 0.004010749840045716
+              },
+              {
+                "basis": "minimal mechanism",
+                "degree": 1,
+                "pooling": "shared",
+                "alpha": 0.1,
+                "blend": 1.0,
+                "normalized_mse": 0.004011931688604765
+              },
+              {
+                "basis": "minimal mechanism",
+                "degree": 2,
+                "pooling": "shared",
+                "alpha": 10.0,
+                "blend": 0.5,
+                "normalized_mse": 0.004012374436308611
+              }
+            ]
+          },
+          "Switching": {
+            "baseline_normalized_mse": 0.0026277809693333247,
+            "chosen_normalized_mse": 0.0026277809693333247,
+            "leaders": [
+              {
+                "basis": "minimal mechanism",
+                "degree": 2,
+                "pooling": "shared",
+                "alpha": 10.0,
+                "blend": 1.0,
+                "normalized_mse": 0.0025895050389967353
+              },
+              {
+                "basis": "minimal mechanism",
+                "degree": 2,
+                "pooling": "shared",
+                "alpha": 0.1,
+                "blend": 1.0,
+                "normalized_mse": 0.0025944753920894895
+              },
+              {
+                "basis": "minimal mechanism",
+                "degree": 2,
+                "pooling": "partial",
+                "alpha": 10.0,
+                "blend": 1.0,
+                "normalized_mse": 0.002602655934096497
+              },
+              {
+                "basis": "minimal mechanism",
+                "degree": 2,
+                "pooling": "offset",
+                "alpha": 10.0,
+                "blend": 1.0,
+                "normalized_mse": 0.0026032737630199815
+              },
+              {
+                "basis": "minimal mechanism",
+                "degree": 2,
+                "pooling": "shared",
+                "alpha": 10.0,
+                "blend": 0.5,
+                "normalized_mse": 0.0026034506781180645
+              }
+            ]
+          }
+        }
+      },
+      {
+        "selection": {
+          "Lightning": {
+            "blend": 0.0,
+            "name": "Historical V2 refit"
+          },
+          "Switching": {
+            "blend": 0.0,
+            "name": "Historical V2 refit"
+          }
+        },
+        "inner": {
+          "Lightning": {
+            "baseline_normalized_mse": 0.013512181503979436,
+            "chosen_normalized_mse": 0.013512181503979436,
+            "leaders": [
+              {
+                "basis": "minimal mechanism",
+                "degree": 2,
+                "pooling": "partial",
+                "alpha": 10.0,
+                "blend": 0.5,
+                "normalized_mse": 0.014933552690050771
+              },
+              {
+                "basis": "minimal mechanism",
+                "degree": 2,
+                "pooling": "separate slopes",
+                "alpha": 10.0,
+                "blend": 0.5,
+                "normalized_mse": 0.014934507223738054
+              },
+              {
+                "basis": "extended mechanism",
+                "degree": 2,
+                "pooling": "shared",
+                "alpha": 0.1,
+                "blend": 0.5,
+                "normalized_mse": 0.014935164923413445
+              },
+              {
+                "basis": "minimal mechanism",
+                "degree": 2,
+                "pooling": "separate slopes",
+                "alpha": 0.1,
+                "blend": 0.5,
+                "normalized_mse": 0.014939323234033167
+              },
+              {
+                "basis": "minimal mechanism",
+                "degree": 2,
+                "pooling": "partial",
+                "alpha": 0.1,
+                "blend": 0.5,
+                "normalized_mse": 0.014939326467570934
+              }
+            ]
+          },
+          "Switching": {
+            "baseline_normalized_mse": 0.013330970145652028,
+            "chosen_normalized_mse": 0.013330970145652028,
+            "leaders": [
+              {
+                "basis": "extended mechanism",
+                "degree": 2,
+                "pooling": "offset",
+                "alpha": 0.1,
+                "blend": 0.5,
+                "normalized_mse": 0.015243471181900767
+              },
+              {
+                "basis": "extended mechanism",
+                "degree": 2,
+                "pooling": "shared",
+                "alpha": 0.1,
+                "blend": 0.5,
+                "normalized_mse": 0.015249706456390455
+              },
+              {
+                "basis": "extended mechanism",
+                "degree": 1,
+                "pooling": "offset",
+                "alpha": 10.0,
+                "blend": 0.5,
+                "normalized_mse": 0.015255511267588503
+              },
+              {
+                "basis": "extended mechanism",
+                "degree": 1,
+                "pooling": "offset",
+                "alpha": 0.1,
+                "blend": 0.5,
+                "normalized_mse": 0.015257117285087222
+              },
+              {
+                "basis": "extended mechanism",
+                "degree": 1,
+                "pooling": "partial",
+                "alpha": 10.0,
+                "blend": 0.5,
+                "normalized_mse": 0.015260268752156591
+              }
+            ]
+          }
+        }
+      }
+    ],
+    [
+      {
+        "selection": {
+          "Lightning": {
+            "blend": 0.0,
+            "name": "Historical V2 refit"
+          },
+          "Switching": {
+            "blend": 0.0,
+            "name": "Historical V2 refit"
+          }
+        },
+        "inner": {
+          "Lightning": {
+            "baseline_normalized_mse": 0.00039687196346653374,
+            "chosen_normalized_mse": 0.00039687196346653374,
+            "leaders": [
+              {
+                "basis": "minimal mechanism",
+                "degree": 2,
+                "pooling": "partial",
+                "alpha": 0.1,
+                "blend": 0.5,
+                "normalized_mse": 0.0003965153956355104
+              },
+              {
+                "basis": "minimal mechanism",
+                "degree": 2,
+                "pooling": "separate slopes",
+                "alpha": 0.1,
+                "blend": 0.5,
+                "normalized_mse": 0.000396516309285853
+              },
+              {
+                "basis": "minimal mechanism",
+                "degree": 2,
+                "pooling": "partial",
+                "alpha": 10.0,
+                "blend": 0.5,
+                "normalized_mse": 0.0003965523726637901
+              },
+              {
+                "basis": "minimal mechanism",
+                "degree": 2,
+                "pooling": "separate slopes",
+                "alpha": 10.0,
+                "blend": 0.5,
+                "normalized_mse": 0.000396592038045202
+              },
+              {
+                "basis": "minimal mechanism",
+                "degree": 1,
+                "pooling": "partial",
+                "alpha": 10.0,
+                "blend": 1.0,
+                "normalized_mse": 0.0003968159365101688
+              }
+            ]
+          },
+          "Switching": {
+            "baseline_normalized_mse": 0.0012073858595089367,
+            "chosen_normalized_mse": 0.0012073858595089367,
+            "leaders": [
+              {
+                "basis": "extended mechanism",
+                "degree": 2,
+                "pooling": "shared",
+                "alpha": 0.1,
+                "blend": 0.5,
+                "normalized_mse": 0.0012009489511576505
+              },
+              {
+                "basis": "extended mechanism",
+                "degree": 2,
+                "pooling": "offset",
+                "alpha": 0.1,
+                "blend": 0.5,
+                "normalized_mse": 0.0012011820487888743
+              },
+              {
+                "basis": "minimal mechanism",
+                "degree": 1,
+                "pooling": "shared",
+                "alpha": 0.1,
+                "blend": 1.0,
+                "normalized_mse": 0.0012015433310308685
+              },
+              {
+                "basis": "minimal mechanism",
+                "degree": 1,
+                "pooling": "offset",
+                "alpha": 0.1,
+                "blend": 1.0,
+                "normalized_mse": 0.001201671117567823
+              },
+              {
+                "basis": "minimal mechanism",
+                "degree": 1,
+                "pooling": "shared",
+                "alpha": 0.1,
+                "blend": 0.5,
+                "normalized_mse": 0.0012016966039519342
+              }
+            ]
+          }
+        }
+      },
+      {
+        "selection": {
+          "Lightning": {
+            "blend": 0.0,
+            "name": "Historical V2 refit"
+          },
+          "Switching": {
+            "blend": 0.0,
+            "name": "Historical V2 refit"
+          }
+        },
+        "inner": {
+          "Lightning": {
+            "baseline_normalized_mse": 0.004016233451950166,
+            "chosen_normalized_mse": 0.004016233451950166,
+            "leaders": [
+              {
+                "basis": "extended mechanism",
+                "degree": 1,
+                "pooling": "shared",
+                "alpha": 10.0,
+                "blend": 0.5,
+                "normalized_mse": 0.003999776582541221
+              },
+              {
+                "basis": "extended mechanism",
+                "degree": 1,
+                "pooling": "shared",
+                "alpha": 0.1,
+                "blend": 0.5,
+                "normalized_mse": 0.004000426025387733
+              },
+              {
+                "basis": "extended mechanism",
+                "degree": 1,
+                "pooling": "offset",
+                "alpha": 10.0,
+                "blend": 0.5,
+                "normalized_mse": 0.004001501115222551
+              },
+              {
+                "basis": "extended mechanism",
+                "degree": 1,
+                "pooling": "offset",
+                "alpha": 0.1,
+                "blend": 0.5,
+                "normalized_mse": 0.004002229623253017
+              },
+              {
+                "basis": "extended mechanism",
+                "degree": 1,
+                "pooling": "shared",
+                "alpha": 0.1,
+                "blend": 1.0,
+                "normalized_mse": 0.004002889174057377
+              }
+            ]
+          },
+          "Switching": {
+            "baseline_normalized_mse": 0.0025196354144008345,
+            "chosen_normalized_mse": 0.0025196354144008345,
+            "leaders": [
+              {
+                "basis": "extended mechanism",
+                "degree": 2,
+                "pooling": "partial",
+                "alpha": 10.0,
+                "blend": 0.5,
+                "normalized_mse": 0.002475065213289599
+              },
+              {
+                "basis": "extended mechanism",
+                "degree": 2,
+                "pooling": "separate slopes",
+                "alpha": 10.0,
+                "blend": 0.5,
+                "normalized_mse": 0.0024766674770179986
+              },
+              {
+                "basis": "extended mechanism",
+                "degree": 2,
+                "pooling": "partial",
+                "alpha": 0.1,
+                "blend": 0.5,
+                "normalized_mse": 0.0024784506159888408
+              },
+              {
+                "basis": "extended mechanism",
+                "degree": 2,
+                "pooling": "separate slopes",
+                "alpha": 0.1,
+                "blend": 0.5,
+                "normalized_mse": 0.002478607389432256
+              },
+              {
+                "basis": "extended mechanism",
+                "degree": 2,
+                "pooling": "partial",
+                "alpha": 10.0,
+                "blend": 1.0,
+                "normalized_mse": 0.0024804068772751767
+              }
+            ]
+          }
+        }
+      },
+      {
+        "selection": {
+          "Lightning": {
+            "blend": 0.0,
+            "name": "Historical V2 refit"
+          },
+          "Switching": {
+            "blend": 0.0,
+            "name": "Historical V2 refit"
+          }
+        },
+        "inner": {
+          "Lightning": {
+            "baseline_normalized_mse": 0.013003729323731785,
+            "chosen_normalized_mse": 0.013003729323731785,
+            "leaders": [
+              {
+                "basis": "minimal mechanism",
+                "degree": 2,
+                "pooling": "offset",
+                "alpha": 10.0,
+                "blend": 0.5,
+                "normalized_mse": 0.014765556483374215
+              },
+              {
+                "basis": "minimal mechanism",
+                "degree": 2,
+                "pooling": "shared",
+                "alpha": 10.0,
+                "blend": 0.5,
+                "normalized_mse": 0.014769371069507351
+              },
+              {
+                "basis": "minimal mechanism",
+                "degree": 2,
+                "pooling": "offset",
+                "alpha": 0.1,
+                "blend": 0.5,
+                "normalized_mse": 0.014773369398366579
+              },
+              {
+                "basis": "minimal mechanism",
+                "degree": 2,
+                "pooling": "shared",
+                "alpha": 0.1,
+                "blend": 0.5,
+                "normalized_mse": 0.014777098383462807
+              },
+              {
+                "basis": "minimal mechanism",
+                "degree": 2,
+                "pooling": "partial",
+                "alpha": 10.0,
+                "blend": 0.5,
+                "normalized_mse": 0.014786251742456433
+              }
+            ]
+          },
+          "Switching": {
+            "baseline_normalized_mse": 0.014891638694557497,
+            "chosen_normalized_mse": 0.014891638694557497,
+            "leaders": [
+              {
+                "basis": "extended mechanism",
+                "degree": 1,
+                "pooling": "partial",
+                "alpha": 10.0,
+                "blend": 0.5,
+                "normalized_mse": 0.016645995186503504
+              },
+              {
+                "basis": "extended mechanism",
+                "degree": 1,
+                "pooling": "offset",
+                "alpha": 0.1,
+                "blend": 0.5,
+                "normalized_mse": 0.016657516151165022
+              },
+              {
+                "basis": "extended mechanism",
+                "degree": 1,
+                "pooling": "offset",
+                "alpha": 10.0,
+                "blend": 0.5,
+                "normalized_mse": 0.01666168420842571
+              },
+              {
+                "basis": "extended mechanism",
+                "degree": 1,
+                "pooling": "shared",
+                "alpha": 0.1,
+                "blend": 0.5,
+                "normalized_mse": 0.016671052907204525
+              },
+              {
+                "basis": "extended mechanism",
+                "degree": 1,
+                "pooling": "separate slopes",
+                "alpha": 10.0,
+                "blend": 0.5,
+                "normalized_mse": 0.016671340169037496
+              }
+            ]
+          }
+        }
+      }
+    ]
+  ],
+  "macro_improvement_pct": 0.0,
+  "worst_target_improvement_pct": 0.0,
+  "promotion_eligible": false,
+  "hidden_test_evaluated": false,
+  "calibration_evaluated": false,
+  "validation_evaluated": false,
+  "cloud_spend_usd": 0,
+  "elapsed_seconds": 5.954698999994434,
+  "active_model": "residual-competition-v1",
+  "decision": "No promotion: pooled corrections did not meet the preregistered improvement gate. V1/V2 unchanged.",
+  "preserved_artifacts_verified": true
+}

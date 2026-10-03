@@ -12,7 +12,7 @@ from fastapi import FastAPI, HTTPException, UploadFile, File, Form
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import HTMLResponse, FileResponse, Response
 from fastapi.staticfiles import StaticFiles
-from .schemas import OptimizeRequest,SimulationRequest,ComplianceRequest
+from .schemas import OptimizeRequest,SimulationRequest,ComplianceRequest,TrialEvaluationRequest,SetupTransitionRequest,SensitivityRequest
 from .optimization.engine import optimize, profile_for, PROFILES, physics
 from .physics.waveform_metrics import analyze,waveform_from_metrics
 from .physics.compliance import check,RULES
@@ -22,6 +22,13 @@ from .ml.registry import registry
 from . import storage
 from .reports import report_html
 from .run_evidence import summarize_evidence
+from .trial_quality import assess_waveform
+from .decision_metrics import captured_limits, extracted_compliance
+from .trial_provenance import validate_csv_provenance
+from .trial_evaluation import evaluate_trials
+from .setup_transition import plan_transition
+from .transition_report import transition_report
+from .sensitivity import compare_sensitivity
 
 ROOT=Path(__file__).resolve().parents[2]
 app=FastAPI(title='ImpulseTwin AI',version='1.0.0',description='Offline physics-guided impulse-generator decision support. No hardware control.',docs_url=None,redoc_url=None)
@@ -30,6 +37,24 @@ app.add_middleware(CORSMiddleware,allow_origins=['http://localhost:3000','http:/
 def saved(id,kind):
     try:return storage.get(id,kind)
     except KeyError:raise HTTPException(404,f'{kind} not found')
+
+def selected_candidate(run,candidate_id=''):
+    if not candidate_id:return run['candidates'][0]
+    candidate=next((c for c in run['candidates'] if c['id']==candidate_id),None)
+    if candidate is None:raise HTTPException(422,'The selected candidate does not belong to this run. Select a saved candidate before associating a waveform.')
+    return candidate
+
+def trial_correction(measured,candidate):
+    keys=['front_us','tail_us','crest_kv']
+    previous=candidate.get('calibration') or {}
+    prior=np.array(previous.get('bias',[0.,0.,0.]),float)
+    prediction=np.array([candidate['hybrid'][k] for k in keys])
+    base=prediction-prior
+    observed=np.array([measured[k] for k in keys])
+    return (observed-base).tolist(),{
+        'parent_calibration_id':previous.get('id'),'prior_applied_bias':prior.tolist(),
+        'base_prediction':dict(zip(keys,base.tolist())),
+        'method':'Replacement total correction relative to the original model: prior applied correction plus new observed residual.'}
 
 @app.get('/api/health')
 def health():return {'status':'online','version':'1.0.0','mode':'local / offline capable','hardware_control':False}
@@ -106,12 +131,27 @@ def models():
     if v3.exists():
         study=json.loads(v3.read_text())
         result['experiment_v3']={k:study[k] for k in ['version','scope','macro_improvement_pct','promotion_eligible','decision','hidden_test_evaluated','elapsed_seconds']}
+    v4=ROOT/'artifacts/experiments/v4/summary.json'
+    if v4.exists():
+        study=json.loads(v4.read_text())
+        protocol=json.loads((v4.parent/'protocol.json').read_text())
+        result['experiment_v4']={k:study[k] for k in ['version','scope','macro_improvement_pct','worst_target_improvement_pct','promotion_eligible','decision','hidden_test_evaluated','calibration_evaluated','validation_evaluated','elapsed_seconds','nested_cv']}
+        result['experiment_v4']['candidate_count']=len(protocol['grid'])
+        result['experiment_v4']['selected_pooled_fold_targets']=sum(s['blend']>0 for fold in study['fold_choices'] for target in fold for s in target['selection'].values())
+    v5=ROOT/'artifacts/experiments/v5/summary.json'
+    if v5.exists():
+        study=json.loads(v5.read_text())
+        result['experiment_v5']={k:study[k] for k in ['version','scope','macro_improvement_pct','control_macro_improvement_pct','improvement_vs_matched_control_pct','worst_target_improvement_pct','promotion_eligible','decision','hidden_test_evaluated','calibration_evaluated','validation_evaluated','elapsed_seconds','nested_cv']}
     return result
 
 @app.get('/api/models/{id}/metrics')
 def model_metrics(id:str):
     result=models()
     if id==result.get('experiment_v2',{}).get('version'):return result['experiment_v2']
+    if id==result.get('experiment_v4',{}).get('version'):
+        return json.loads((ROOT/'artifacts/experiments/v4/summary.json').read_text())
+    if id==result.get('experiment_v5',{}).get('version'):
+        return json.loads((ROOT/'artifacts/experiments/v5/summary.json').read_text())
     if id!=result['version']:raise HTTPException(404,'Unknown model version')
     return result
 
@@ -127,6 +167,32 @@ def runs():
 @app.get('/api/runs/{id}')
 def get_run(id:str):return saved(id,'run')
 
+@app.post('/api/runs/{id}/candidates/{candidate_id}/sensitivity')
+def sensitivity(id:str,candidate_id:str,request:SensitivityRequest):
+    try: result=compare_sensitivity(saved(id,'run'),candidate_id,request)
+    except (ValueError,KeyError,TypeError) as e:raise HTTPException(422,f'Sensitivity preview failed: {e}')
+    return storage.put('sensitivity',uuid.uuid4().hex[:12],result)
+
+@app.get('/api/sensitivity/{id}/json')
+def sensitivity_json(id:str):
+    return Response(json.dumps(saved(id,'sensitivity'),indent=2),media_type='application/json',
+                    headers={'Content-Disposition':f'attachment; filename="rlc_sensitivity_{id}.json"'})
+
+@app.post('/api/runs/{id}/setup-transitions')
+def setup_transitions(id:str,request:SetupTransitionRequest):
+    target=saved(id,'run'); baseline=saved(request.baseline_run_id,'run')
+    try: result=plan_transition(baseline,request.baseline_candidate_id,target)
+    except (ValueError,KeyError,TypeError) as e:raise HTTPException(422,f'Setup comparison failed: {e}')
+    return storage.put('transition',uuid.uuid4().hex[:12],result)
+
+@app.get('/api/setup-transitions/{id}/json')
+def setup_transition_json(id:str):
+    return Response(json.dumps(saved(id,'transition'),indent=2),media_type='application/json',
+                    headers={'Content-Disposition':f'attachment; filename="setup_transition_{id}.json"'})
+
+@app.get('/api/setup-transitions/{id}/report',response_class=HTMLResponse)
+def setup_transition_report(id:str):return transition_report(saved(id,'transition'))
+
 @app.get('/api/runs/{id}/report',response_class=HTMLResponse)
 def report(id:str):return HTMLResponse(report_html(saved(id,'run')),headers={'Content-Disposition':f'inline; filename="ImpulseTwin-{id}.html"'})
 
@@ -134,10 +200,10 @@ def report(id:str):return HTMLResponse(report_html(saved(id,'run')),headers={'Co
 def run_json(id:str):return Response(json.dumps(saved(id,'run'),indent=2),media_type='application/json',headers={'Content-Disposition':f'attachment; filename="ImpulseTwin-{id}.json"'})
 
 @app.get('/api/runs/{id}/demo-waveform')
-def demo_waveform(id:str):
-    run=saved(id,'run'); c=run['candidates'][0]; pred=c['prediction']
+def demo_waveform(id:str,candidate_id:str=''):
+    run=saved(id,'run'); c=selected_candidate(run,candidate_id); pred=c['prediction']
     wave=waveform_from_metrics(pred[0]*1.045,pred[1]*.97,pred[2]*.985,run['inputs']['impulse_type'])
-    stream=io.StringIO(); stream.write('# source_type=generated_stress_test; demo only, not measured lab data\n')
+    stream=io.StringIO(); stream.write(f"# source_type=generated_stress_test; run_id={id}; candidate_id={c['id']}; time_unit=us; voltage_unit=kV; demo only, not measured lab data\n")
     writer=csv.writer(stream); writer.writerow(['time_us','voltage_kv']); writer.writerows(zip(wave['time_us'],wave['voltage_kv']))
     return Response(stream.getvalue(),media_type='text/csv',headers={'Content-Disposition':'attachment; filename="generated_stress_test_trial.csv"'})
 
@@ -145,37 +211,69 @@ def demo_waveform(id:str):
 async def upload_trial(file:UploadFile=File(...),run_id:str=Form(...),candidate_id:str=Form(''),
     time_column:str=Form('time_us'),voltage_column:str=Form('voltage_kv'),time_unit:str=Form('us'),
     voltage_unit:str=Form('kV'),baseline_kv:float=Form(0),source_type:str=Form('generated_stress_test'),time_origin_us:float=Form(0)):
-    run=saved(run_id,'run'); candidate=next((c for c in run['candidates'] if c['id']==candidate_id),run['candidates'][0])
+    run=saved(run_id,'run'); candidate=selected_candidate(run,candidate_id)
     if source_type not in ['generated_stress_test','measured_lab']:raise HTTPException(422,'Source type must identify demo or measured laboratory data.')
     content=await file.read(5_000_001)
     if len(content)>5_000_000:raise HTTPException(413,'CSV exceeds the 5 MB upload limit.')
     try:
         text=content.decode('utf-8-sig')
-        if 'source_type=generated_stress_test' in text[:1000]:source_type='generated_stress_test'
+        provenance=validate_csv_provenance(text,run_id,candidate['id'],time_unit,voltage_unit)
+        if provenance['embedded_metadata'].get('source_type')=='generated_stress_test':source_type='generated_stress_test'
         df=pd.read_csv(io.StringIO(text),comment='#')
         ts={'us':1,'µs':1,'ms':1000,'s':1e6,'ns':.001}[time_unit]
         vs={'kV':1,'V':.001,'MV':1000}[voltage_unit]
         t=df[time_column].to_numpy(float)*ts; v=df[voltage_column].to_numpy(float)*vs
         measured=analyze(t,v,run['inputs']['impulse_type'],baseline_kv,time_origin_us)
+        limits=captured_limits(run)
     except (UnicodeError,ValueError,KeyError,TypeError) as e:raise HTTPException(422,f'CSV validation failed: {e}')
+    quality=assess_waveform(t,v,measured,impulse_type=run['inputs']['impulse_type'],rules=run.get('rules',{}))
     id=uuid.uuid4().hex[:12]; path=ROOT/'artifacts/trials'/f'{id}.csv'; path.parent.mkdir(exist_ok=True,parents=True); path.write_bytes(content)
     bias=[measured[k]-candidate['hybrid'][k] for k in ['front_us','tail_us','crest_kv']]
+    calibration_bias,lineage=trial_correction(measured,candidate)
     result={'run_id':run_id,'candidate_id':candidate['id'],'source_type':source_type,'original_filename':file.filename,
         'raw_sha256':hashlib.sha256(content).hexdigest(),'raw_path':str(path.relative_to(ROOT)),
+        'provenance':provenance,
         'processing':{'time_column':time_column,'voltage_column':voltage_column,'time_unit':time_unit,'voltage_unit':voltage_unit,'baseline_kv':baseline_kv,'time_origin_us':time_origin_us,'polarity':measured['polarity'],'steps':['Units converted without changing raw file','Explicit baseline subtracted only for analysis','Polarity normalized for metric extraction','Linear interpolation at crossings']},
         'measured':measured,'predicted':candidate['hybrid'],'physics':candidate['physics'],'bias':bias,
+        'calibration_bias':calibration_bias,'calibration_lineage':lineage,
+        'quality':quality,
         'waveform':{'time_us':t.tolist(),'voltage_kv':v.tolist(),'kind':source_type},
-        'compliance':check(run['inputs']['impulse_type'],run['inputs']['test_kv'],measured)}
+        'comparison_waveform':{'time_us':(t-time_origin_us).tolist(),
+            'voltage_kv':((v-baseline_kv)*measured['polarity']).tolist(),'kind':source_type,
+            'note':'Positive magnitude after explicit baseline subtraction; time relative to entered physical onset. Original samples and raw file retained separately.'},
+        'compliance':extracted_compliance([measured[k] for k in ['front_us','tail_us','crest_kv']],limits,quality)}
     return storage.put('trial',id,result)
 
 @app.get('/api/trials')
 def trials():return storage.list_records('trial',50)
 
+@app.post('/api/evaluations')
+def evaluate(request:TrialEvaluationRequest):
+    try: result=evaluate_trials(request.trial_ids,storage.get,ROOT)
+    except (ValueError,KeyError,TypeError) as e:raise HTTPException(422,f'Accuracy review failed: {e}')
+    return storage.put('evaluation',uuid.uuid4().hex[:12],result)
+
+@app.get('/api/evaluations')
+def evaluations():return storage.list_records('evaluation',50)
+
+@app.get('/api/evaluations/{id}/json')
+def evaluation_json(id:str):
+    return Response(json.dumps(saved(id,'evaluation'),indent=2),media_type='application/json',
+                    headers={'Content-Disposition':f'attachment; filename="accuracy_review_{id}.json"'})
+
 @app.post('/api/trials/{id}/calibrate')
 def calibrate(id:str):
-    trial=saved(id,'trial'); run=saved(trial['run_id'],'run'); c=next(c for c in run['candidates'] if c['id']==trial['candidate_id'])
+    trial=saved(id,'trial'); run=saved(trial['run_id'],'run'); c=selected_candidate(run,trial['candidate_id'])
+    wave=trial.get('waveform') or {}
+    quality=assess_waveform(wave.get('time_us'),wave.get('voltage_kv'),trial['measured'],
+                            impulse_type=run['inputs']['impulse_type'],rules=run.get('rules',{}))
+    if not quality['calibration_allowed']:
+        raise HTTPException(422,'Capture review required: '+' '.join(item['message'] for item in quality['issues']))
+    total_bias,lineage=trial_correction(trial['measured'],c)
     if any(abs(b)>abs(p)*.3 for b,p in zip(trial['bias'],c['prediction'])):
         raise HTTPException(422,'The shot differs by more than 30%. Review units, setup and waveform before local calibration.')
+    if any(abs(b)>abs(p)*.3 for b,p in zip(total_bias,lineage['base_prediction'].values())):
+        raise HTTPException(422,'The total correction differs from the original model by more than 30%. Review units, setup and waveform before local calibration.')
     scope={**{k:run['inputs'][k] for k in ['profile_id','impulse_type','layout_id','solver','model_mode','include_base_c','test_kv','load_c_pf','divider_c_pf','stray_c_pf','l_uh','efficiency']},
         'model_version':run['model_version'],
         'physics_version':'workbook-reference-v1' if run['inputs']['solver']=='reference' else c['physics']['diagnostics']['model'],
@@ -184,13 +282,14 @@ def calibrate(id:str):
         'front_topology':c['front_network']['topology'],'tail_topology':c['tail_network']['topology'],
         **{k:c['settings'][k] for k in ['stages','front_r_stage','tail_r_stage','charge_kv_stage']}}
     return storage.put('calibration',uuid.uuid4().hex[:12],{'trial_id':id,'source_type':trial['source_type'],
-        'bias':trial['bias'],'scope':scope,'production_model_changed':False,
+        'bias':total_bias,'scope':scope,'production_model_changed':False,
+        'observed_residual':trial['bias'],'calibration_lineage':lineage,'quality':quality,
         'retraining_queue':'Stored for later engineer-reviewed retraining; no automatic training',
         'limitation':'Applies only to same profile, layout, solver and hardware settings with inputs within 1%. Reduced-voltage transfer to a higher-voltage shot is not inferred.'})
 
 @app.get('/api/documents/{name}')
 def document(name:str):
-    paths={'source_reconciliation':ROOT/'docs/source_reconciliation.md','data_audit':ROOT/'reports/data_audit.html','assumptions':ROOT/'docs/assumptions.md','accuracy_v2_results':ROOT/'docs/accuracy_v2_results.md'}
+    paths={'source_reconciliation':ROOT/'docs/source_reconciliation.md','data_audit':ROOT/'reports/data_audit.html','assumptions':ROOT/'docs/assumptions.md','accuracy_v2_results':ROOT/'docs/accuracy_v2_results.md','accuracy_v4_results':ROOT/'docs/accuracy_v4_results.md','accuracy_v5_results':ROOT/'docs/accuracy_v5_results.md','judging_criteria':ROOT/'docs/judging_criteria_evidence.md','capture_resolution':ROOT/'docs/capture_resolution_review.md'}
     p=paths.get(name)
     if p is None or not p.exists():raise HTTPException(404,'Document not found')
     return FileResponse(p,media_type='text/html' if p.suffix=='.html' else 'text/plain')

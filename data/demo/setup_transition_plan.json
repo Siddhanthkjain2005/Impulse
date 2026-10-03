@@ -1,0 +1,938 @@
+{
+  "version": "saved-setup-transition-v1",
+  "baseline": {
+    "run_id": "748bb8541090",
+    "candidate_id": "c30",
+    "settings": {
+      "stages": 9,
+      "charge_kv_stage": 193.08943089430895,
+      "front_r_stage": 50.0,
+      "tail_r_stage": 25.0,
+      "stage_utilization": 0.9654471544715447,
+      "stored_energy_kj": 503.32763236168944,
+      "voltage_margin_kv_stage": 6.910569105691053,
+      "energy_margin_kj": 396.67236763831056,
+      "energy_margin_pct": 44.07470751536784
+    },
+    "profile_name": "Workbook reference \u00b7 15 stages",
+    "layout_id": "default-layout",
+    "run_sha256": "7d93eba292c798b881db50cb019cbd7aca21c5e0fd2e9eb1f2788f807f492226"
+  },
+  "target": {
+    "run_id": "1cc5ffde4e8d",
+    "impulse_type": "Lightning",
+    "test_kv": 1425,
+    "run_sha256": "4f345ebea64b41f511ea1a3540f7ce707845d52b2ef9c980720d55a87e6a8632",
+    "model_version": "residual-competition-v1",
+    "inventory_provenance": "Hybrid Calculator B13:B15; Resistor Inventory A4:F15"
+  },
+  "options": [
+    {
+      "candidate_id": "c1256",
+      "original_rank": 1,
+      "settings": {
+        "stages": 9,
+        "charge_kv_stage": 196.78500059932176,
+        "front_r_stage": 40.0,
+        "tail_r_stage": 23.823529411764703,
+        "stage_utilization": 0.9839250029966088,
+        "stored_energy_kj": 522.7785422218134,
+        "voltage_margin_kv_stage": 3.214999400678238,
+        "energy_margin_kj": 377.2214577781866,
+        "energy_margin_pct": 41.9134953086874
+      },
+      "nominal_review": {
+        "eligible_nominal": true,
+        "reasons": [],
+        "models_checked": [
+          "Primary prediction",
+          "Independent circuit"
+        ],
+        "scope": "Nominal model, declared stock and rating checks only; no laboratory approval."
+      },
+      "uncertainty_status": "MARGINAL",
+      "verification": {
+        "version": "fixed-settings-verification-v1",
+        "seed": 617,
+        "used_for_ranking": false,
+        "models_checked": [
+          "Primary prediction",
+          "Independent circuit"
+        ],
+        "parameters": [
+          "load_c_pf",
+          "divider_c_pf",
+          "stray_c_pf",
+          "l_uh"
+        ],
+        "uncertainty_pct": 5,
+        "fresh_samples": {
+          "total": 128,
+          "passed": 128,
+          "primary_passed": 128,
+          "circuit_passed": 128
+        },
+        "boundary_corners": {
+          "total": 16,
+          "passed": 16,
+          "primary_passed": 16,
+          "circuit_passed": 16
+        },
+        "total": 144,
+        "passed": 144,
+        "unique_scenarios": 144,
+        "nominal_all_models_pass": true,
+        "all_checks_pass": true,
+        "worst_case": {
+          "index": 143,
+          "group": "boundary_corners",
+          "inputs": {
+            "load_c_pf": 892.5,
+            "divider_c_pf": 525.0,
+            "stray_c_pf": 157.5,
+            "l_uh": 17.575
+          },
+          "primary_pass": true,
+          "circuit_pass": true,
+          "all_models_pass": true,
+          "minimum_margin_fraction": 0.1712738890373413,
+          "limiting_model": "Independent circuit",
+          "limiting_metric": "Front / peak time",
+          "predicted": 1.4983413999465571,
+          "allowed_lower": 0.84,
+          "allowed_upper": 1.56,
+          "unit": "\u00b5s"
+        },
+        "calibrated_scenarios": 0,
+        "scope": "Fixed hardware checked after ranking using 128 separate-seed Latin-hypercube scenarios and 16 boundary corners. These checks do not select or reorder candidates. Finite simulation evidence only: not continuous-bound certification, independent model-accuracy testing or a laboratory success probability. Efficiency and hardware tolerances are held fixed; no statistical coverage claim."
+      },
+      "networks": {
+        "front": {
+          "baseline_topology": "1\u00d750\u03a9",
+          "target_topology": "2\u00d720\u03a9",
+          "baseline_equivalent_ohm": 50.0,
+          "target_equivalent_ohm": 40.0,
+          "connection_plan_changed": true,
+          "shared_stage_banks_to_review": 9,
+          "parts": [
+            {
+              "ohm": 20.0,
+              "baseline_per_stage": 0,
+              "target_per_stage": 2,
+              "retained_on_shared_stages": 0,
+              "added_on_shared_stages": 18,
+              "removed_from_shared_stages": 0,
+              "required_on_newly_active_stages": 0,
+              "present_on_deactivated_stages": 0
+            },
+            {
+              "ohm": 50.0,
+              "baseline_per_stage": 1,
+              "target_per_stage": 0,
+              "retained_on_shared_stages": 0,
+              "added_on_shared_stages": 0,
+              "removed_from_shared_stages": 9,
+              "required_on_newly_active_stages": 0,
+              "present_on_deactivated_stages": 0
+            }
+          ],
+          "retained_on_shared_stages": 0,
+          "added_on_shared_stages": 18,
+          "removed_from_shared_stages": 9,
+          "required_on_newly_active_stages": 0,
+          "present_on_deactivated_stages": 0
+        },
+        "tail": {
+          "baseline_topology": "1\u00d725\u03a9",
+          "target_topology": "15\u03a9 + (10\u03a9 \u2225 75\u03a9)",
+          "baseline_equivalent_ohm": 25.0,
+          "target_equivalent_ohm": 23.823529411764703,
+          "connection_plan_changed": true,
+          "shared_stage_banks_to_review": 9,
+          "parts": [
+            {
+              "ohm": 10.0,
+              "baseline_per_stage": 0,
+              "target_per_stage": 1,
+              "retained_on_shared_stages": 0,
+              "added_on_shared_stages": 9,
+              "removed_from_shared_stages": 0,
+              "required_on_newly_active_stages": 0,
+              "present_on_deactivated_stages": 0
+            },
+            {
+              "ohm": 15.0,
+              "baseline_per_stage": 0,
+              "target_per_stage": 1,
+              "retained_on_shared_stages": 0,
+              "added_on_shared_stages": 9,
+              "removed_from_shared_stages": 0,
+              "required_on_newly_active_stages": 0,
+              "present_on_deactivated_stages": 0
+            },
+            {
+              "ohm": 25.0,
+              "baseline_per_stage": 1,
+              "target_per_stage": 0,
+              "retained_on_shared_stages": 0,
+              "added_on_shared_stages": 0,
+              "removed_from_shared_stages": 9,
+              "required_on_newly_active_stages": 0,
+              "present_on_deactivated_stages": 0
+            },
+            {
+              "ohm": 75.0,
+              "baseline_per_stage": 0,
+              "target_per_stage": 1,
+              "retained_on_shared_stages": 0,
+              "added_on_shared_stages": 9,
+              "removed_from_shared_stages": 0,
+              "required_on_newly_active_stages": 0,
+              "present_on_deactivated_stages": 0
+            }
+          ],
+          "retained_on_shared_stages": 0,
+          "added_on_shared_stages": 27,
+          "removed_from_shared_stages": 9,
+          "required_on_newly_active_stages": 0,
+          "present_on_deactivated_stages": 0
+        }
+      },
+      "changed_network_families": 2,
+      "active_stages_added": 0,
+      "active_stages_deactivated": 0,
+      "shared_stage_part_changes": 63,
+      "charge_delta_kv_stage": 3.695569705012815,
+      "charge_delta_pct": 1.9139160998592684
+    },
+    {
+      "candidate_id": "c1255",
+      "original_rank": 2,
+      "settings": {
+        "stages": 9,
+        "charge_kv_stage": 196.78057369398493,
+        "front_r_stage": 40.0,
+        "tail_r_stage": 23.863636363636363,
+        "stage_utilization": 0.9839028684699247,
+        "stored_energy_kj": 522.7550214750069,
+        "voltage_margin_kv_stage": 3.219426306015066,
+        "energy_margin_kj": 377.24497852499314,
+        "energy_margin_pct": 41.91610872499923
+      },
+      "nominal_review": {
+        "eligible_nominal": true,
+        "reasons": [],
+        "models_checked": [
+          "Primary prediction",
+          "Independent circuit"
+        ],
+        "scope": "Nominal model, declared stock and rating checks only; no laboratory approval."
+      },
+      "uncertainty_status": "MARGINAL",
+      "verification": {
+        "version": "fixed-settings-verification-v1",
+        "seed": 617,
+        "used_for_ranking": false,
+        "models_checked": [
+          "Primary prediction",
+          "Independent circuit"
+        ],
+        "parameters": [
+          "load_c_pf",
+          "divider_c_pf",
+          "stray_c_pf",
+          "l_uh"
+        ],
+        "uncertainty_pct": 5,
+        "fresh_samples": {
+          "total": 128,
+          "passed": 128,
+          "primary_passed": 128,
+          "circuit_passed": 128
+        },
+        "boundary_corners": {
+          "total": 16,
+          "passed": 16,
+          "primary_passed": 16,
+          "circuit_passed": 16
+        },
+        "total": 144,
+        "passed": 144,
+        "unique_scenarios": 144,
+        "nominal_all_models_pass": true,
+        "all_checks_pass": true,
+        "worst_case": {
+          "index": 143,
+          "group": "boundary_corners",
+          "inputs": {
+            "load_c_pf": 892.5,
+            "divider_c_pf": 525.0,
+            "stray_c_pf": 157.5,
+            "l_uh": 17.575
+          },
+          "primary_pass": true,
+          "circuit_pass": true,
+          "all_models_pass": true,
+          "minimum_margin_fraction": 0.1707660644167064,
+          "limiting_model": "Independent circuit",
+          "limiting_metric": "Front / peak time",
+          "predicted": 1.4985242168099857,
+          "allowed_lower": 0.84,
+          "allowed_upper": 1.56,
+          "unit": "\u00b5s"
+        },
+        "calibrated_scenarios": 0,
+        "scope": "Fixed hardware checked after ranking using 128 separate-seed Latin-hypercube scenarios and 16 boundary corners. These checks do not select or reorder candidates. Finite simulation evidence only: not continuous-bound certification, independent model-accuracy testing or a laboratory success probability. Efficiency and hardware tolerances are held fixed; no statistical coverage claim."
+      },
+      "networks": {
+        "front": {
+          "baseline_topology": "1\u00d750\u03a9",
+          "target_topology": "2\u00d720\u03a9",
+          "baseline_equivalent_ohm": 50.0,
+          "target_equivalent_ohm": 40.0,
+          "connection_plan_changed": true,
+          "shared_stage_banks_to_review": 9,
+          "parts": [
+            {
+              "ohm": 20.0,
+              "baseline_per_stage": 0,
+              "target_per_stage": 2,
+              "retained_on_shared_stages": 0,
+              "added_on_shared_stages": 18,
+              "removed_from_shared_stages": 0,
+              "required_on_newly_active_stages": 0,
+              "present_on_deactivated_stages": 0
+            },
+            {
+              "ohm": 50.0,
+              "baseline_per_stage": 1,
+              "target_per_stage": 0,
+              "retained_on_shared_stages": 0,
+              "added_on_shared_stages": 0,
+              "removed_from_shared_stages": 9,
+              "required_on_newly_active_stages": 0,
+              "present_on_deactivated_stages": 0
+            }
+          ],
+          "retained_on_shared_stages": 0,
+          "added_on_shared_stages": 18,
+          "removed_from_shared_stages": 9,
+          "required_on_newly_active_stages": 0,
+          "present_on_deactivated_stages": 0
+        },
+        "tail": {
+          "baseline_topology": "1\u00d725\u03a9",
+          "target_topology": "75\u03a9 \u2225 (5\u03a9 + 30\u03a9)",
+          "baseline_equivalent_ohm": 25.0,
+          "target_equivalent_ohm": 23.863636363636363,
+          "connection_plan_changed": true,
+          "shared_stage_banks_to_review": 9,
+          "parts": [
+            {
+              "ohm": 5.0,
+              "baseline_per_stage": 0,
+              "target_per_stage": 1,
+              "retained_on_shared_stages": 0,
+              "added_on_shared_stages": 9,
+              "removed_from_shared_stages": 0,
+              "required_on_newly_active_stages": 0,
+              "present_on_deactivated_stages": 0
+            },
+            {
+              "ohm": 25.0,
+              "baseline_per_stage": 1,
+              "target_per_stage": 0,
+              "retained_on_shared_stages": 0,
+              "added_on_shared_stages": 0,
+              "removed_from_shared_stages": 9,
+              "required_on_newly_active_stages": 0,
+              "present_on_deactivated_stages": 0
+            },
+            {
+              "ohm": 30.0,
+              "baseline_per_stage": 0,
+              "target_per_stage": 1,
+              "retained_on_shared_stages": 0,
+              "added_on_shared_stages": 9,
+              "removed_from_shared_stages": 0,
+              "required_on_newly_active_stages": 0,
+              "present_on_deactivated_stages": 0
+            },
+            {
+              "ohm": 75.0,
+              "baseline_per_stage": 0,
+              "target_per_stage": 1,
+              "retained_on_shared_stages": 0,
+              "added_on_shared_stages": 9,
+              "removed_from_shared_stages": 0,
+              "required_on_newly_active_stages": 0,
+              "present_on_deactivated_stages": 0
+            }
+          ],
+          "retained_on_shared_stages": 0,
+          "added_on_shared_stages": 27,
+          "removed_from_shared_stages": 9,
+          "required_on_newly_active_stages": 0,
+          "present_on_deactivated_stages": 0
+        }
+      },
+      "changed_network_families": 2,
+      "active_stages_added": 0,
+      "active_stages_deactivated": 0,
+      "shared_stage_part_changes": 63,
+      "charge_delta_kv_stage": 3.691142799675987,
+      "charge_delta_pct": 1.9116234288848268
+    },
+    {
+      "candidate_id": "c764",
+      "original_rank": 3,
+      "settings": {
+        "stages": 9,
+        "charge_kv_stage": 196.57300094995824,
+        "front_r_stage": 37.5,
+        "tail_r_stage": 23.823529411764703,
+        "stage_utilization": 0.9828650047497912,
+        "stored_energy_kj": 521.6527534833759,
+        "voltage_margin_kv_stage": 3.4269990500417578,
+        "energy_margin_kj": 378.34724651662407,
+        "energy_margin_pct": 42.038582946291555
+      },
+      "nominal_review": {
+        "eligible_nominal": true,
+        "reasons": [],
+        "models_checked": [
+          "Primary prediction",
+          "Independent circuit"
+        ],
+        "scope": "Nominal model, declared stock and rating checks only; no laboratory approval."
+      },
+      "uncertainty_status": "MARGINAL",
+      "verification": {
+        "version": "fixed-settings-verification-v1",
+        "seed": 617,
+        "used_for_ranking": false,
+        "models_checked": [
+          "Primary prediction",
+          "Independent circuit"
+        ],
+        "parameters": [
+          "load_c_pf",
+          "divider_c_pf",
+          "stray_c_pf",
+          "l_uh"
+        ],
+        "uncertainty_pct": 5,
+        "fresh_samples": {
+          "total": 128,
+          "passed": 128,
+          "primary_passed": 128,
+          "circuit_passed": 128
+        },
+        "boundary_corners": {
+          "total": 16,
+          "passed": 16,
+          "primary_passed": 16,
+          "circuit_passed": 16
+        },
+        "total": 144,
+        "passed": 144,
+        "unique_scenarios": 144,
+        "nominal_all_models_pass": true,
+        "all_checks_pass": true,
+        "worst_case": {
+          "index": 129,
+          "group": "boundary_corners",
+          "inputs": {
+            "load_c_pf": 807.5,
+            "divider_c_pf": 475.0,
+            "stray_c_pf": 142.5,
+            "l_uh": 17.575
+          },
+          "primary_pass": true,
+          "circuit_pass": true,
+          "all_models_pass": true,
+          "minimum_margin_fraction": 0.181576933049597,
+          "limiting_model": "Primary prediction",
+          "limiting_metric": "Front / peak time",
+          "predicted": 0.9053676958978548,
+          "allowed_lower": 0.84,
+          "allowed_upper": 1.56,
+          "unit": "\u00b5s"
+        },
+        "calibrated_scenarios": 0,
+        "scope": "Fixed hardware checked after ranking using 128 separate-seed Latin-hypercube scenarios and 16 boundary corners. These checks do not select or reorder candidates. Finite simulation evidence only: not continuous-bound certification, independent model-accuracy testing or a laboratory success probability. Efficiency and hardware tolerances are held fixed; no statistical coverage claim."
+      },
+      "networks": {
+        "front": {
+          "baseline_topology": "1\u00d750\u03a9",
+          "target_topology": "50\u03a9 \u2225 150\u03a9",
+          "baseline_equivalent_ohm": 50.0,
+          "target_equivalent_ohm": 37.5,
+          "connection_plan_changed": true,
+          "shared_stage_banks_to_review": 9,
+          "parts": [
+            {
+              "ohm": 50.0,
+              "baseline_per_stage": 1,
+              "target_per_stage": 1,
+              "retained_on_shared_stages": 9,
+              "added_on_shared_stages": 0,
+              "removed_from_shared_stages": 0,
+              "required_on_newly_active_stages": 0,
+              "present_on_deactivated_stages": 0
+            },
+            {
+              "ohm": 150.0,
+              "baseline_per_stage": 0,
+              "target_per_stage": 1,
+              "retained_on_shared_stages": 0,
+              "added_on_shared_stages": 9,
+              "removed_from_shared_stages": 0,
+              "required_on_newly_active_stages": 0,
+              "present_on_deactivated_stages": 0
+            }
+          ],
+          "retained_on_shared_stages": 9,
+          "added_on_shared_stages": 9,
+          "removed_from_shared_stages": 0,
+          "required_on_newly_active_stages": 0,
+          "present_on_deactivated_stages": 0
+        },
+        "tail": {
+          "baseline_topology": "1\u00d725\u03a9",
+          "target_topology": "15\u03a9 + (10\u03a9 \u2225 75\u03a9)",
+          "baseline_equivalent_ohm": 25.0,
+          "target_equivalent_ohm": 23.823529411764703,
+          "connection_plan_changed": true,
+          "shared_stage_banks_to_review": 9,
+          "parts": [
+            {
+              "ohm": 10.0,
+              "baseline_per_stage": 0,
+              "target_per_stage": 1,
+              "retained_on_shared_stages": 0,
+              "added_on_shared_stages": 9,
+              "removed_from_shared_stages": 0,
+              "required_on_newly_active_stages": 0,
+              "present_on_deactivated_stages": 0
+            },
+            {
+              "ohm": 15.0,
+              "baseline_per_stage": 0,
+              "target_per_stage": 1,
+              "retained_on_shared_stages": 0,
+              "added_on_shared_stages": 9,
+              "removed_from_shared_stages": 0,
+              "required_on_newly_active_stages": 0,
+              "present_on_deactivated_stages": 0
+            },
+            {
+              "ohm": 25.0,
+              "baseline_per_stage": 1,
+              "target_per_stage": 0,
+              "retained_on_shared_stages": 0,
+              "added_on_shared_stages": 0,
+              "removed_from_shared_stages": 9,
+              "required_on_newly_active_stages": 0,
+              "present_on_deactivated_stages": 0
+            },
+            {
+              "ohm": 75.0,
+              "baseline_per_stage": 0,
+              "target_per_stage": 1,
+              "retained_on_shared_stages": 0,
+              "added_on_shared_stages": 9,
+              "removed_from_shared_stages": 0,
+              "required_on_newly_active_stages": 0,
+              "present_on_deactivated_stages": 0
+            }
+          ],
+          "retained_on_shared_stages": 0,
+          "added_on_shared_stages": 27,
+          "removed_from_shared_stages": 9,
+          "required_on_newly_active_stages": 0,
+          "present_on_deactivated_stages": 0
+        }
+      },
+      "changed_network_families": 2,
+      "active_stages_added": 0,
+      "active_stages_deactivated": 0,
+      "shared_stage_part_changes": 45,
+      "charge_delta_kv_stage": 3.4835700556492952,
+      "charge_delta_pct": 1.8041225972415298
+    },
+    {
+      "candidate_id": "c763",
+      "original_rank": 4,
+      "settings": {
+        "stages": 9,
+        "charge_kv_stage": 196.56884699019227,
+        "front_r_stage": 37.5,
+        "tail_r_stage": 23.863636363636363,
+        "stage_utilization": 0.9828442349509614,
+        "stored_energy_kj": 521.6307066952239,
+        "voltage_margin_kv_stage": 3.43115300980773,
+        "energy_margin_kj": 378.3692933047761,
+        "energy_margin_pct": 42.04103258941957
+      },
+      "nominal_review": {
+        "eligible_nominal": true,
+        "reasons": [],
+        "models_checked": [
+          "Primary prediction",
+          "Independent circuit"
+        ],
+        "scope": "Nominal model, declared stock and rating checks only; no laboratory approval."
+      },
+      "uncertainty_status": "MARGINAL",
+      "verification": {
+        "version": "fixed-settings-verification-v1",
+        "seed": 617,
+        "used_for_ranking": false,
+        "models_checked": [
+          "Primary prediction",
+          "Independent circuit"
+        ],
+        "parameters": [
+          "load_c_pf",
+          "divider_c_pf",
+          "stray_c_pf",
+          "l_uh"
+        ],
+        "uncertainty_pct": 5,
+        "fresh_samples": {
+          "total": 128,
+          "passed": 128,
+          "primary_passed": 128,
+          "circuit_passed": 128
+        },
+        "boundary_corners": {
+          "total": 16,
+          "passed": 16,
+          "primary_passed": 16,
+          "circuit_passed": 16
+        },
+        "total": 144,
+        "passed": 144,
+        "unique_scenarios": 144,
+        "nominal_all_models_pass": true,
+        "all_checks_pass": true,
+        "worst_case": {
+          "index": 129,
+          "group": "boundary_corners",
+          "inputs": {
+            "load_c_pf": 807.5,
+            "divider_c_pf": 475.0,
+            "stray_c_pf": 142.5,
+            "l_uh": 17.575
+          },
+          "primary_pass": true,
+          "circuit_pass": true,
+          "all_models_pass": true,
+          "minimum_margin_fraction": 0.181576933049597,
+          "limiting_model": "Primary prediction",
+          "limiting_metric": "Front / peak time",
+          "predicted": 0.9053676958978548,
+          "allowed_lower": 0.84,
+          "allowed_upper": 1.56,
+          "unit": "\u00b5s"
+        },
+        "calibrated_scenarios": 0,
+        "scope": "Fixed hardware checked after ranking using 128 separate-seed Latin-hypercube scenarios and 16 boundary corners. These checks do not select or reorder candidates. Finite simulation evidence only: not continuous-bound certification, independent model-accuracy testing or a laboratory success probability. Efficiency and hardware tolerances are held fixed; no statistical coverage claim."
+      },
+      "networks": {
+        "front": {
+          "baseline_topology": "1\u00d750\u03a9",
+          "target_topology": "50\u03a9 \u2225 150\u03a9",
+          "baseline_equivalent_ohm": 50.0,
+          "target_equivalent_ohm": 37.5,
+          "connection_plan_changed": true,
+          "shared_stage_banks_to_review": 9,
+          "parts": [
+            {
+              "ohm": 50.0,
+              "baseline_per_stage": 1,
+              "target_per_stage": 1,
+              "retained_on_shared_stages": 9,
+              "added_on_shared_stages": 0,
+              "removed_from_shared_stages": 0,
+              "required_on_newly_active_stages": 0,
+              "present_on_deactivated_stages": 0
+            },
+            {
+              "ohm": 150.0,
+              "baseline_per_stage": 0,
+              "target_per_stage": 1,
+              "retained_on_shared_stages": 0,
+              "added_on_shared_stages": 9,
+              "removed_from_shared_stages": 0,
+              "required_on_newly_active_stages": 0,
+              "present_on_deactivated_stages": 0
+            }
+          ],
+          "retained_on_shared_stages": 9,
+          "added_on_shared_stages": 9,
+          "removed_from_shared_stages": 0,
+          "required_on_newly_active_stages": 0,
+          "present_on_deactivated_stages": 0
+        },
+        "tail": {
+          "baseline_topology": "1\u00d725\u03a9",
+          "target_topology": "75\u03a9 \u2225 (5\u03a9 + 30\u03a9)",
+          "baseline_equivalent_ohm": 25.0,
+          "target_equivalent_ohm": 23.863636363636363,
+          "connection_plan_changed": true,
+          "shared_stage_banks_to_review": 9,
+          "parts": [
+            {
+              "ohm": 5.0,
+              "baseline_per_stage": 0,
+              "target_per_stage": 1,
+              "retained_on_shared_stages": 0,
+              "added_on_shared_stages": 9,
+              "removed_from_shared_stages": 0,
+              "required_on_newly_active_stages": 0,
+              "present_on_deactivated_stages": 0
+            },
+            {
+              "ohm": 25.0,
+              "baseline_per_stage": 1,
+              "target_per_stage": 0,
+              "retained_on_shared_stages": 0,
+              "added_on_shared_stages": 0,
+              "removed_from_shared_stages": 9,
+              "required_on_newly_active_stages": 0,
+              "present_on_deactivated_stages": 0
+            },
+            {
+              "ohm": 30.0,
+              "baseline_per_stage": 0,
+              "target_per_stage": 1,
+              "retained_on_shared_stages": 0,
+              "added_on_shared_stages": 9,
+              "removed_from_shared_stages": 0,
+              "required_on_newly_active_stages": 0,
+              "present_on_deactivated_stages": 0
+            },
+            {
+              "ohm": 75.0,
+              "baseline_per_stage": 0,
+              "target_per_stage": 1,
+              "retained_on_shared_stages": 0,
+              "added_on_shared_stages": 9,
+              "removed_from_shared_stages": 0,
+              "required_on_newly_active_stages": 0,
+              "present_on_deactivated_stages": 0
+            }
+          ],
+          "retained_on_shared_stages": 0,
+          "added_on_shared_stages": 27,
+          "removed_from_shared_stages": 9,
+          "required_on_newly_active_stages": 0,
+          "present_on_deactivated_stages": 0
+        }
+      },
+      "changed_network_families": 2,
+      "active_stages_added": 0,
+      "active_stages_deactivated": 0,
+      "shared_stage_part_changes": 45,
+      "charge_delta_kv_stage": 3.479416095883323,
+      "charge_delta_pct": 1.8019712833416788
+    },
+    {
+      "candidate_id": "c1253",
+      "original_rank": 5,
+      "settings": {
+        "stages": 9,
+        "charge_kv_stage": 196.7707035895238,
+        "front_r_stage": 40.0,
+        "tail_r_stage": 23.953488372093023,
+        "stage_utilization": 0.983853517947619,
+        "stored_energy_kj": 522.7025821800692,
+        "voltage_margin_kv_stage": 3.229296410476195,
+        "energy_margin_kj": 377.29741781993084,
+        "energy_margin_pct": 41.921935313325655
+      },
+      "nominal_review": {
+        "eligible_nominal": true,
+        "reasons": [],
+        "models_checked": [
+          "Primary prediction",
+          "Independent circuit"
+        ],
+        "scope": "Nominal model, declared stock and rating checks only; no laboratory approval."
+      },
+      "uncertainty_status": "MARGINAL",
+      "verification": {
+        "version": "fixed-settings-verification-v1",
+        "seed": 617,
+        "used_for_ranking": false,
+        "models_checked": [
+          "Primary prediction",
+          "Independent circuit"
+        ],
+        "parameters": [
+          "load_c_pf",
+          "divider_c_pf",
+          "stray_c_pf",
+          "l_uh"
+        ],
+        "uncertainty_pct": 5,
+        "fresh_samples": {
+          "total": 128,
+          "passed": 128,
+          "primary_passed": 128,
+          "circuit_passed": 128
+        },
+        "boundary_corners": {
+          "total": 16,
+          "passed": 16,
+          "primary_passed": 16,
+          "circuit_passed": 16
+        },
+        "total": 144,
+        "passed": 144,
+        "unique_scenarios": 144,
+        "nominal_all_models_pass": true,
+        "all_checks_pass": true,
+        "worst_case": {
+          "index": 143,
+          "group": "boundary_corners",
+          "inputs": {
+            "load_c_pf": 892.5,
+            "divider_c_pf": 525.0,
+            "stray_c_pf": 157.5,
+            "l_uh": 17.575
+          },
+          "primary_pass": true,
+          "circuit_pass": true,
+          "all_models_pass": true,
+          "minimum_margin_fraction": 0.16963314766763404,
+          "limiting_model": "Independent circuit",
+          "limiting_metric": "Front / peak time",
+          "predicted": 1.4989320668396517,
+          "allowed_lower": 0.84,
+          "allowed_upper": 1.56,
+          "unit": "\u00b5s"
+        },
+        "calibrated_scenarios": 0,
+        "scope": "Fixed hardware checked after ranking using 128 separate-seed Latin-hypercube scenarios and 16 boundary corners. These checks do not select or reorder candidates. Finite simulation evidence only: not continuous-bound certification, independent model-accuracy testing or a laboratory success probability. Efficiency and hardware tolerances are held fixed; no statistical coverage claim."
+      },
+      "networks": {
+        "front": {
+          "baseline_topology": "1\u00d750\u03a9",
+          "target_topology": "2\u00d720\u03a9",
+          "baseline_equivalent_ohm": 50.0,
+          "target_equivalent_ohm": 40.0,
+          "connection_plan_changed": true,
+          "shared_stage_banks_to_review": 9,
+          "parts": [
+            {
+              "ohm": 20.0,
+              "baseline_per_stage": 0,
+              "target_per_stage": 2,
+              "retained_on_shared_stages": 0,
+              "added_on_shared_stages": 18,
+              "removed_from_shared_stages": 0,
+              "required_on_newly_active_stages": 0,
+              "present_on_deactivated_stages": 0
+            },
+            {
+              "ohm": 50.0,
+              "baseline_per_stage": 1,
+              "target_per_stage": 0,
+              "retained_on_shared_stages": 0,
+              "added_on_shared_stages": 0,
+              "removed_from_shared_stages": 9,
+              "required_on_newly_active_stages": 0,
+              "present_on_deactivated_stages": 0
+            }
+          ],
+          "retained_on_shared_stages": 0,
+          "added_on_shared_stages": 18,
+          "removed_from_shared_stages": 9,
+          "required_on_newly_active_stages": 0,
+          "present_on_deactivated_stages": 0
+        },
+        "tail": {
+          "baseline_topology": "1\u00d725\u03a9",
+          "target_topology": "10\u03a9 + (15\u03a9 \u2225 200\u03a9)",
+          "baseline_equivalent_ohm": 25.0,
+          "target_equivalent_ohm": 23.953488372093023,
+          "connection_plan_changed": true,
+          "shared_stage_banks_to_review": 9,
+          "parts": [
+            {
+              "ohm": 10.0,
+              "baseline_per_stage": 0,
+              "target_per_stage": 1,
+              "retained_on_shared_stages": 0,
+              "added_on_shared_stages": 9,
+              "removed_from_shared_stages": 0,
+              "required_on_newly_active_stages": 0,
+              "present_on_deactivated_stages": 0
+            },
+            {
+              "ohm": 15.0,
+              "baseline_per_stage": 0,
+              "target_per_stage": 1,
+              "retained_on_shared_stages": 0,
+              "added_on_shared_stages": 9,
+              "removed_from_shared_stages": 0,
+              "required_on_newly_active_stages": 0,
+              "present_on_deactivated_stages": 0
+            },
+            {
+              "ohm": 25.0,
+              "baseline_per_stage": 1,
+              "target_per_stage": 0,
+              "retained_on_shared_stages": 0,
+              "added_on_shared_stages": 0,
+              "removed_from_shared_stages": 9,
+              "required_on_newly_active_stages": 0,
+              "present_on_deactivated_stages": 0
+            },
+            {
+              "ohm": 200.0,
+              "baseline_per_stage": 0,
+              "target_per_stage": 1,
+              "retained_on_shared_stages": 0,
+              "added_on_shared_stages": 9,
+              "removed_from_shared_stages": 0,
+              "required_on_newly_active_stages": 0,
+              "present_on_deactivated_stages": 0
+            }
+          ],
+          "retained_on_shared_stages": 0,
+          "added_on_shared_stages": 27,
+          "removed_from_shared_stages": 9,
+          "required_on_newly_active_stages": 0,
+          "present_on_deactivated_stages": 0
+        }
+      },
+      "changed_network_families": 2,
+      "active_stages_added": 0,
+      "active_stages_deactivated": 0,
+      "shared_stage_part_changes": 63,
+      "charge_delta_kv_stage": 3.681272695214858,
+      "charge_delta_pct": 1.9065117537323264
+    }
+  ],
+  "closest_nominal_candidate_id": "c763",
+  "eligible_count": 5,
+  "review": "The closest nominal option also passes its saved finite challenge. Uncertainty and laboratory verification still apply.",
+  "priority": [
+    "Changed front/tail network families",
+    "Active stage-count change",
+    "Shared-stage component additions/removals",
+    "Absolute charge change",
+    "Original rank"
+  ],
+  "optimizer_ranking_changed": false,
+  "postranking_checks_used_for_selection": false,
+  "scope": "Saved-plan comparison only; the baseline is not authenticated as installed hardware. Uniform networks and corresponding shared stages are assumed. Counts on newly active or deactivated stages describe active plans, not physical installation/removal instructions. Different connection text is conservatively treated as changed wiring. Selection uses nominal checks and the declared change priority; post-ranking challenge and uncertainty remain separate review evidence. No measured climbs, time, shots saved, global minimum or laboratory readiness is claimed.",
+  "id": "demo-setup-transition-v1",
+  "created_at": "2026-10-02T07:15:27.395381+00:00",
+  "demo_only": true,
+  "source_type": "generated_stress_test"
+}

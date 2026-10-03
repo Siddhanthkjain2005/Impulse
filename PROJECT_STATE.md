@@ -1,6 +1,6 @@
 # ImpulseTwin AI project state
 
-Readiness deadline: **10 October 2026**. Inputs reviewed: supplied master prompt, Track 1 archive, and briefing transcript. Updated 1 October 2026. Current status: working local engineering proof of concept with a separate optional V2 accuracy candidate; final browser review is complete and release evidence is recorded in `artifacts/qa_summary.json`.
+Readiness deadline: **10 October 2026**. Inputs reviewed: supplied master prompt, Track 1 archive, and briefing transcript. Updated 3 October 2026. Current status: working local engineering proof of concept with a separate optional V2 accuracy candidate; earlier browser reviews and current automated release evidence are recorded in `artifacts/qa_summary.json`. The latest update has no browser preview, as requested by the user.
 
 ## Implemented and verified
 
@@ -15,7 +15,7 @@ Readiness deadline: **10 October 2026**. Inputs reviewed: supplied master prompt
 - Six-page responsive local interface, interactive numeric waveforms, model evidence, profiles, run history and comparison.
 - Raw CSV preservation, explicit units/polarity/onset, generated-data labeling, scoped one-shot correction and retained original-setting review.
 - Local audit histories, readable print-ready reports, five regenerated offline fallback reports, generated rehearsal CSVs and judge preparation documents. Reference/circuit disagreement remains prominent in each applicable report.
-- **86 backend regression/E2E tests pass** with zero failures/errors. Latest frontend typecheck and static build pass. Static asset verification finds 17 local assets, no remote/missing assets and successful local serving. Root verified the accuracy dashboard, visible regression, optional V2 optimizer and 390px mobile width; see QA artifacts for executed results.
+- **198 backend regression/E2E tests pass** with zero failures/errors. Latest frontend typecheck and static build pass. Static asset verification finds 17 local assets, no remote/missing assets and successful local serving. Earlier dated browser checks verified the accuracy dashboard, optional V2 optimizer and mobile layouts. This update intentionally omits website previews; see QA artifacts for exact scope.
 
 ## Demonstrated benchmark
 
@@ -55,3 +55,33 @@ The further V3 Train-only nested search achieved 1.0339% macro improvement versu
 ## Search and numerical verification update
 
 Expanded four-part series/parallel networks (six parts for small catalogs) and identical parallel banks now preserve stock counts and earlier target choices. Circuit v2 refines continuous crossing times and passes independent time-domain integration tests. Every returned setup receives 128 fresh-seed samples and 16 boundary corners after ranking; these do not reorder results. The UI shows their limiting condition and overlays the independent circuit waveform. The default Lightning agreement, two additional Lightning cases and both PDF circuit presets pass all sampled checks. Two model-agreement cases still fail, and uncertainty remains MARGINAL. See `docs/search_v4_results.md` and `artifacts/experiments/search_v4/final_summary.json`. No cloud compute was necessary.
+
+## Trial feedback and evidence update
+
+Repeated-shot calibration retains the total correction relative to the original model and records parent lineage. Selected-candidate demo downloads and explicit candidate validation prevent misattributed waveforms. New calibration creation reviews acquisition resolution and flat crests while retaining raw uploads. Run history and Compare separate nominal agreement, fresh scenario checks and unchanged uncertainty status, with missing legacy evidence left unknown. See `docs/trial_feedback_update.md`. This update does not retrain models or establish measured accuracy.
+
+## Saved-prediction laboratory accuracy review
+
+The new `/api/evaluations` workflow scores at least three distinct operator-labeled measured captures against their pre-upload saved predictions. It verifies original CSV hashes, rejects duplicate waveforms and recursively excludes every applied calibration source. It reports errors separately by impulse, profile/version, layout, solver and model version without fitting or promotion. The UI is in Trial calibrator. Current frozen V1 synthetic macro error reduction is 41.9265% versus physics; this update does not add a measured accuracy result. See `docs/accuracy_progress.md`.
+
+## Saved setup transition planner
+
+Compare now calculates front/tail component changes from a saved baseline and chooses the closest nominally passing option by declared change preference. It requires recorded nominal model, stock and recomputed rating checks; challenge results remain separate and cannot rerank the option. Stage activation/deactivation quantities are distinct from shared-stage parts. Printable HTML and JSON preserve both source-record hashes. Optimizer trial curves now use the same normalized comparison as Trial calibrator. See `docs/setup_transition_planner.md`.
+
+## RLC educational sensitivity
+
+Optimizer now compares one changed R, L or C value with the saved setup under both raw physics models, with fixed active stages, charging voltage and efficiency. Nominal waveform limits, hypothetical resistor values, different curve sources and unchanged saved uncertainty remain explicit. The audit export hashes its source run and captures both current physics versions. No ML residuals or calibration transfer are applied. See `docs/rlc_sensitivity.md`.
+
+
+## Latest pooled accuracy study
+
+The V4 Train-only experiment tested 48 shared/partially pooled configurations with both impulse types held out in every shared fit. No pooled candidate passed the inner selection gate; additional macro improvement was 0.0000%, and V1/V2 remain unchanged. The Model lab now records this result. Read `docs/accuracy_v4_results.md` before further tuning; preserve the frozen evidence and obtain new measured outcomes for independent accuracy evaluation. No cloud resources were created.
+
+
+## Accuracy and judging update — 3 October 2026
+
+Official and supplied expectations are mapped in `docs/judging_criteria_evidence.md`; no finale numeric weights were found. Prioritize accurate predictions, feasible counted hardware, both impulse types, numeric compliance and credible measured feedback. Public event dates are 10–11 October; team readiness remains 10 October.
+
+V5 added 1.0921% macro Train development improvement versus a historical V2 refit (0.2363% beyond a matched Ridge control), below its 5% gate. It was not promoted; V1/V2 and old model evidence remain frozen. See `docs/accuracy_v5_results.md`.
+
+Capture-resolution review now blocks three demonstrated sparse-waveform false passes from calibration and scoring, preserving raw samples and provisional extracted values. The measured-shot review adds false PASS/FAIL counts, denominators, worst-shot errors, saved-rule snapshots and separate envelope containment. See `docs/capture_resolution_review.md` and `docs/measured_decision_review.md`. No new laboratory accuracy result exists. Website previews were omitted at the user's request for this update; automated checks are recorded separately.

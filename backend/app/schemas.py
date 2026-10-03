@@ -1,6 +1,20 @@
 from typing import Literal
 from pydantic import BaseModel, Field, ConfigDict, model_validator
 
+class TrialEvaluationRequest(BaseModel):
+    model_config=ConfigDict(extra='forbid')
+    trial_ids:list[str]=Field(min_length=3,max_length=100)
+
+class SetupTransitionRequest(BaseModel):
+    model_config=ConfigDict(extra='forbid')
+    baseline_run_id:str=Field(min_length=1,max_length=128)
+    baseline_candidate_id:str=Field(min_length=1,max_length=128)
+
+class SensitivityRequest(BaseModel):
+    model_config=ConfigDict(extra='forbid',allow_inf_nan=False)
+    parameter:Literal['front_r_stage','tail_r_stage','load_c_pf','divider_c_pf','stray_c_pf','l_uh']='load_c_pf'
+    change_pct:float=Field(default=10,ge=-30,le=30)
+
 class StockItem(BaseModel):
     model_config=ConfigDict(extra='forbid',allow_inf_nan=False)
     ohm:float=Field(gt=0,le=1e7)

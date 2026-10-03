@@ -1,9 +1,9 @@
 {
-  "recorded_at_utc": "2026-10-01T17:21:53.457027+00:00",
+  "recorded_at_utc": "2026-10-03T05:17:20.329138+00:00",
   "version": "1.0.0",
   "backend_tests_passed": true,
   "backend": {
-    "tests": 86,
+    "tests": 198,
     "failures": 0,
     "errors": 0,
     "skipped": 0
@@ -13,7 +13,7 @@
     "typecheck_passed": true,
     "production_build_passed": true,
     "verification": "TypeScript and production static build passed with Node 22.23.2 using npm run build -- --webpack. Turbopack local-port restriction avoided with supported webpack builder.",
-    "source_sha256": "d23011251fa890b53ebecdb67374d23b8efcfcc394bea09b720c2587a032f5aa",
+    "source_sha256": "37da1a71b792fb54af1821fc904326499c1092f1a7debb4b0b6822cb5fd9584a",
     "routes": [
       "/",
       "/model-lab/",
@@ -22,9 +22,8 @@
       "/runs/",
       "/compare/"
     ],
-    "source_hash_method": "SHA256 of sorted JSON mapping relative source paths to file SHA256",
+    "source_hash_method": "SHA256 of compact sorted JSON mapping relative source paths to file SHA256; OS metadata excluded",
     "source_hash_files": [
-      "frontend/app/.DS_Store",
       "frontend/app/compare/page.tsx",
       "frontend/app/globals.css",
       "frontend/app/icon.svg",
@@ -36,17 +35,26 @@
       "frontend/app/trial-calibrator/page.tsx",
       "frontend/components/engineering-chart.tsx",
       "frontend/components/optimizer.tsx",
+      "frontend/components/pooled-experiment.tsx",
+      "frontend/components/rlc-sensitivity.tsx",
+      "frontend/components/run-evidence.tsx",
       "frontend/components/secondary-pages.tsx",
       "frontend/components/settings-verification.tsx",
+      "frontend/components/setup-transition-planner.tsx",
+      "frontend/components/trial-decision-evidence.tsx",
+      "frontend/components/trial-evaluator.tsx",
+      "frontend/components/trial-quality.tsx",
       "frontend/components/workspace.tsx",
       "frontend/lib/api.ts",
+      "frontend/lib/trial-waveform.ts",
       "frontend/next-env.d.ts",
       "frontend/next.config.ts",
       "frontend/package-lock.json",
       "frontend/package.json",
       "frontend/postcss.config.mjs",
       "frontend/tsconfig.json"
-    ]
+    ],
+    "visual_review_this_update": "No website preview or screenshot was performed, as requested by the user. Prior dated browser reviews do not validate the new panels."
   },
   "browser": {
     "tested_at": "2026-10-01",
@@ -126,51 +134,195 @@
       "screenshot": "artifacts/qa/settings-verification.png",
       "mobile_screenshot": "artifacts/qa/settings-verification-mobile.png",
       "viewport_override_reset": true
+    },
+    "trial_feedback_update": {
+      "tested_at_local": "2026-10-02",
+      "desktop_viewport": [
+        1280,
+        720
+      ],
+      "mobile_viewport": [
+        390,
+        844
+      ],
+      "mobile_document_width": 390,
+      "checks": [
+        "Saved evidence includes primary nominal, model agreement, fresh challenge and unchanged MARGINAL",
+        "History pass/missing filters and empty search verified",
+        "Older run correctly displays Not recorded for absent verification",
+        "Comparison shows stored ranking order and separates search samples from post-ranking results",
+        "Demo export includes selected candidate and imports as generated stress test",
+        "700-sample capture passes acquisition review with 41 rising intervals",
+        "11-sample sparse capture flagged; create calibration disabled",
+        "No console errors observed; viewport override reset",
+        "Delayed negative-polarity capture with explicit baseline 7 kV and physical onset 700 \u00b5s aligns with prediction; metrics and raw capture preserved",
+        "Waveform identity explicitly labels untagged files as operator-selected; server regression rejects conflicting or mismatched export identifiers/units"
+      ],
+      "screenshots": [
+        "artifacts/qa/run-evidence.png",
+        "artifacts/qa/run-evidence-mobile.png",
+        "artifacts/qa/trial-capture-review.png",
+        "artifacts/qa/trial-sparse-capture.png",
+        "artifacts/qa/trial-negative-aligned.jpg"
+      ],
+      "console_errors_observed": []
+    },
+    "laboratory_accuracy_review": {
+      "tested_at_local": "2026-10-02",
+      "desktop_viewport": [
+        1280,
+        720
+      ],
+      "mobile_viewport": [
+        390,
+        844
+      ],
+      "mobile_document_width": 390,
+      "checks": [
+        "New review panel identifies required measured evidence",
+        "Observed zero laboratory captures; all 31 synthetic uploads excluded",
+        "Score button disabled with zero selected captures",
+        "No fabricated laboratory results displayed",
+        "390px document width equals viewport",
+        "No console errors observed; viewport override reset"
+      ],
+      "screenshots": [
+        "artifacts/qa/laboratory-accuracy-review.jpg",
+        "artifacts/qa/laboratory-accuracy-review-mobile.jpg"
+      ]
+    },
+    "setup_transition_review": {
+      "tested_at_local": "2026-10-02",
+      "desktop_viewport": [
+        1280,
+        720
+      ],
+      "checks": [
+        "Saved baseline selected; five options remain in original order",
+        "Closest nominal option is original rank 4, with 45 shared-stage part changes versus 63 for rank 1",
+        "144/144 checks and MARGINAL uncertainty remain separate and visible",
+        "Front and tail counted changes verified in UI and printable report",
+        "Optimizer negative/delayed trial overlay shown at positive magnitude from 0 to 250 microseconds",
+        "No console errors observed"
+      ],
+      "screenshots": [
+        "artifacts/qa/setup-transition-planner.jpg",
+        "artifacts/qa/setup-transition-report.jpg",
+        "artifacts/qa/optimizer-negative-aligned.jpg"
+      ],
+      "mobile_verified": false,
+      "mobile_check_limitation": "Browser viewport override returned successfully but actual document and viewport both remained 1280px; no new 390px result claimed. Earlier mobile checks remain separately dated.",
+      "viewport_override_reset": true
+    },
+    "rlc_sensitivity_review": {
+      "tested_at_local": "2026-10-02",
+      "desktop_viewport": [
+        1280,
+        720
+      ],
+      "mobile_viewport": [
+        390,
+        844
+      ],
+      "mobile_document_width": 390,
+      "checks": [
+        "Object capacitance 850 to 1105 pF at fixed 9 stages and 196.785 kV/stage",
+        "Circuit front 1.417 to 1.665 microseconds (+17.49%) crosses unchanged 1.56 upper limit",
+        "Both raw-model views, front-detail chart and complete metric table rendered",
+        "Hypothetical 40 to 44 ohm front resistance flagged as lacking a counted stock construction",
+        "Changed parameter and changed candidate hide prior preview",
+        "Saved MARGINAL uncertainty remains unchanged",
+        "Mobile controls, model toggles and chart stay within 390px document",
+        "Long decimal axis labels formatted for readability",
+        "No console errors observed; viewport override reset",
+        "Header Explore R, L & C link jumps directly to the panel",
+        "Empty percentage input hides the prior preview and disables computation"
+      ],
+      "screenshots": [
+        "artifacts/qa/rlc-sensitivity-circuit.jpg",
+        "artifacts/qa/rlc-sensitivity-resistor.jpg",
+        "artifacts/qa/rlc-sensitivity-mobile.jpg"
+      ],
+      "console_errors_observed": [],
+      "viewport_override_reset": true
+    },
+    "accuracy_v4_review": {
+      "tested_at_utc": "2026-10-02T17:32:16.852807+00:00",
+      "desktop_viewport": [
+        1280,
+        720
+      ],
+      "mobile_viewport": [
+        390,
+        844
+      ],
+      "mobile_document_width": 390,
+      "checks": [
+        "48 candidate configurations and explicit no-promotion decision",
+        "Six same-fold output errors remain identical to the V2 comparator",
+        "0.00% extra gain displayed, without a perfect-accuracy claim",
+        "Saved V1 MAPE cards remain unchanged",
+        "Saved evidence and method links have correct local API targets",
+        "Mobile table and controls contained within viewport",
+        "No console errors observed",
+        "Viewport override reset"
+      ],
+      "screenshots": [
+        "artifacts/qa/model-lab-v4.jpg",
+        "artifacts/qa/model-lab-v4-mobile.jpg"
+      ],
+      "console_errors_observed": [],
+      "viewport_override_reset": true
+    },
+    "latest_update_review": {
+      "date": "2026-10-03",
+      "performed": false,
+      "reason": "User explicitly requested no website previews; automated verification only."
     }
   },
   "offline_static_assets": {
     "html_pages": [
-      "404/index.html",
-      "404.html",
-      "_not-found/index.html",
-      "compare/index.html",
       "index.html",
+      "404.html",
       "model-lab/index.html",
+      "compare/index.html",
+      "trial-calibrator/index.html",
+      "_not-found/index.html",
       "profiles/index.html",
-      "runs/index.html",
-      "trial-calibrator/index.html"
+      "404/index.html",
+      "runs/index.html"
     ],
     "asset_count": 17,
     "remote_assets": [],
     "missing_assets": [],
     "served_asset_status": {
-      "/_next/static/chunks/128-8c94e6a2da297a48.js": 200,
-      "/_next/static/chunks/4bd1b696-92152b0f5947070d.js": 200,
-      "/_next/static/chunks/699-8cb61db040cec60b.js": 200,
-      "/_next/static/chunks/794-71ff2c1735abeddf.js": 200,
-      "/_next/static/chunks/878-5b090624b5eee32a.js": 200,
-      "/_next/static/chunks/app/compare/page-b1721cf670469fdd.js": 200,
-      "/_next/static/chunks/app/layout-c9c24d32d6a7935d.js": 200,
-      "/_next/static/chunks/app/model-lab/page-9c63e7efe162d4ba.js": 200,
-      "/_next/static/chunks/app/page-c40fd33210075d34.js": 200,
-      "/_next/static/chunks/app/profiles/page-d3ad848bcb6c4e08.js": 200,
-      "/_next/static/chunks/app/runs/page-3349d0997e52138b.js": 200,
-      "/_next/static/chunks/app/trial-calibrator/page-5e4d3369cb72991d.js": 200,
       "/_next/static/chunks/main-app-f09dec10dbfe7fab.js": 200,
-      "/_next/static/chunks/polyfills-42372ed130431b0a.js": 200,
+      "/_next/static/css/ea3ace1f58950746.css": 200,
+      "/_next/static/chunks/app/trial-calibrator/page-082c620fd298840d.js": 200,
       "/_next/static/chunks/webpack-fe2cfd9fa929694f.js": 200,
-      "/_next/static/css/f3f60bfe113e92da.css": 200,
-      "/icon.svg?d8f9cd8af1d4dce3": 200
+      "/_next/static/chunks/app/layout-b638b0f9dbde980d.js": 200,
+      "/_next/static/chunks/app/profiles/page-994f7982398ea493.js": 200,
+      "/_next/static/chunks/699-8cb61db040cec60b.js": 200,
+      "/_next/static/chunks/app/page-c7ba368e4f74417c.js": 200,
+      "/_next/static/chunks/app/model-lab/page-ee645ef6b92fce30.js": 200,
+      "/_next/static/chunks/410-27c69c3cfd1478c3.js": 200,
+      "/icon.svg?d8f9cd8af1d4dce3": 200,
+      "/_next/static/chunks/app/compare/page-da6f96bd710123ff.js": 200,
+      "/_next/static/chunks/4bd1b696-92152b0f5947070d.js": 200,
+      "/_next/static/chunks/333-9ec0a74559e5e916.js": 200,
+      "/_next/static/chunks/app/runs/page-aef345169be42ee2.js": 200,
+      "/_next/static/chunks/polyfills-42372ed130431b0a.js": 200,
+      "/_next/static/chunks/794-71ff2c1735abeddf.js": 200
     },
     "passed": true,
-    "scope": "Static exported HTML assets verified through local TestClient; no physically disconnected laptop rehearsal."
+    "scope": "Static exported HTML assets verified in process; no external network was used. Does not simulate a physically disconnected laptop."
   },
   "sources": {
     "workbook_cached_case_and_1400_neighbors_verified": true,
     "published_validation_table_parity": "Unresolved source discrepancy",
     "lab_validation": "Pending actual measured data"
   },
-  "fallback_reports": "Five self-contained reports, including model-agreement and V2 cases, with generated CSVs/run snapshots in data/demo",
+  "fallback_reports": "Five self-contained waveform cases with generated CSVs/run snapshots plus one labeled archived setup-transition comparison",
   "cloud": {
     "deployed": false,
     "resources_created": false,
@@ -182,7 +334,8 @@
     "Clean installation on a second laptop",
     "Physically disconnected-network rehearsal",
     "Container build/Cloud Run deployment",
-    "Real stock quantities, pulse ratings, mechanical mounting and laboratory accuracy"
+    "Real stock quantities, pulse ratings, mechanical mounting and laboratory accuracy",
+    "Browser rendering/interactions for the 3 October capture/decision/V5 panels, omitted at user request"
   ],
   "accuracy_v2": {
     "summary": "artifacts/experiments/v2/summary.json",
@@ -197,23 +350,43 @@
     "integrity_review": "artifacts/qa/freeze_and_release_review.json"
   },
   "previous_release_validation": {
-    "recorded_at_utc": "2026-10-01T11:17:42.729109+00:00",
+    "recorded_at_utc": "2026-10-02T17:32:30.243277+00:00",
     "status": "passed",
-    "verified_files": 217,
+    "verified_files": 283,
     "zip_integrity_passed": true,
     "sha_manifest_passed": true,
     "live_history_and_raw_uploads_excluded": true,
-    "extracted_root": "/var/folders/1x/dbv5hr0j6q31yd6qf988kzqw0000gn/T/impulsetwin-agreement-release-k17lvf0b/ImpulseTwin_AI",
+    "extracted_root": "/var/folders/1x/dbv5hr0j6q31yd6qf988kzqw0000gn/T/impulsetwin-final-release-0_r91r5i/ImpulseTwin_AI",
     "application_checks": {
+      "pooled_accuracy_evidence": true,
+      "v4_not_promoted_and_not_servable": true,
+      "raw_rlc_preview_and_audit_export": true,
+      "rlc_preserves_saved_run_and_supply": true,
+      "hypothetical_resistor_flagged": true,
+      "invalid_sensitivity_rejected": true,
+      "setup_transition_saved_and_exported": true,
+      "transition_preserves_ranking_and_separate_challenge": true,
+      "invalid_baseline_rejected": true,
+      "offline_transition_replayed_from_archived_records": true,
+      "laboratory_accuracy_review_available": true,
+      "synthetic_lab_accuracy_rejected": true,
+      "no_fabricated_lab_scores": true,
       "static_routes": 6,
       "api_docs": true,
-      "agreement_optimizer": true,
-      "reports": true,
-      "v3_not_activated": true,
-      "handoff_included": true
+      "optimizer": true,
+      "run_evidence": true,
+      "selected_candidate_demo": true,
+      "matching_export_provenance": true,
+      "mismatched_csv_rejected": true,
+      "trial_capture_review": true,
+      "calibration_with_lineage": true,
+      "negative_delayed_comparison_aligned": true,
+      "raw_capture_unchanged": true,
+      "invalid_candidate_rejected": true,
+      "report_export": true
     },
-    "launch_scope": "Extracted application through TestClient on current machine with existing dependencies; not a clean second machine.",
-    "note": "Final package is rebuilt after recording this QA result; only QA metadata changes, with all final ZIP file hashes reverified."
+    "launch_scope": "Extracted application through TestClient on current machine with installed dependencies; not a clean second machine.",
+    "note": "Only QA metadata changes after application verification; final per-file hashes verified again after packaging."
   },
   "accuracy_v3": {
     "summary": "artifacts/experiments/v3/summary.json",
@@ -252,27 +425,196 @@
     "version": "lumped RLC Marx equivalent v2",
     "calibration_transfer": "Previous circuit-version biases rejected; workbook calibration behavior preserved."
   },
+  "trial_feedback": {
+    "document": "docs/trial_feedback_update.md",
+    "regression_tests": "tests/test_trial_feedback.py",
+    "repeated_correction": "Latest measured value minus original uncalibrated model, retaining parent and prior correction",
+    "quality_gate": "Fewer than four 30\u201390 rising intervals or sustained flat crest require acquisition review; heuristics only",
+    "raw_data_preserved": true,
+    "frozen_models_changed": false,
+    "real_accuracy_benchmark_added": false,
+    "csv_identity": "Embedded run, candidate and unit tags must match; untagged shots remain operator-selected",
+    "comparison_alignment": "Baseline-corrected polarity-normalized magnitude against time from explicitly entered physical onset; raw capture unchanged",
+    "freeze_verification": {
+      "v1_v2_preserved_file_count": 19,
+      "search_v4_source_file_count": 8,
+      "all_original_hashes_match": true
+    }
+  },
+  "accuracy_progress": {
+    "document": "docs/accuracy_progress.md",
+    "frozen_synthetic_macro_rmse_reduction_vs_physics_pct": 41.926494288944795,
+    "additional_measured_accuracy_gain_established": false,
+    "new_final_test_predictions_generated": false,
+    "active_model_changed": false,
+    "lab_capture_plan": "docs/laboratory_capture_plan.md",
+    "latest_practical_accuracy_work": "Sparse-capture evidence gates and false-PASS/worst-error evaluation. No new laboratory score or active-model gain."
+  },
+  "laboratory_accuracy_review": {
+    "regression_tests": [
+      "tests/test_trial_evaluation.py",
+      "tests/test_decision_metrics.py"
+    ],
+    "tests_passed": 30,
+    "production_weights_changed": false,
+    "synthetic_test_fixtures_are_not_laboratory_evidence": true,
+    "protections": [
+      "original raw CSV hashes",
+      "duplicate and equivalent capture detection",
+      "all calibration ancestors excluded",
+      "saved prediction and calibration predate upload",
+      "separate impulse/profile/layout/solver/physics/model groups"
+    ],
+    "no_lab_accuracy_result_added": true,
+    "version": "saved-prediction-laboratory-review-v2",
+    "decision_counts": true,
+    "denominator_zero_rates_are_null": true,
+    "missing_measured_outcome_class_disclosed": true,
+    "saved_rule_snapshot_and_hash": true,
+    "worst_error_trial_identified": true,
+    "envelope_geometry_separate": true,
+    "ml_support_state_preserved": true
+  },
+  "setup_transition": {
+    "document": "docs/setup_transition_planner.md",
+    "regression_tests": "tests/test_setup_transition.py",
+    "tests_passed": 14,
+    "nominal_gate": "Recorded primary and independent-circuit nominal checks (reference solver), declared stock and recomputed ratings",
+    "priority": "Changed front/tail plans; active-stage count; shared-stage part changes; charge change; original rank",
+    "postranking_checks_used_for_selection": false,
+    "optimizer_ranking_changed": false,
+    "source_records_hashed": true,
+    "freeze_verification": {
+      "v1_v2_preserved_file_count": 19,
+      "search_v4_source_file_count": 8,
+      "all_original_hashes_match": true
+    },
+    "real_accuracy_benchmark_added": false,
+    "measured_setup_effort_gain_established": false,
+    "offline_example": {
+      "plan": "data/demo/setup_transition_plan.json",
+      "report": "reports/demo_setup_transition.html",
+      "demo_only": true,
+      "closest_nominal_original_rank": 4,
+      "shared_stage_part_changes": 45,
+      "original_rank_1_part_changes": 63,
+      "separate_challenge": "144/144",
+      "uncertainty_status": "MARGINAL"
+    }
+  },
+  "rlc_sensitivity": {
+    "document": "docs/rlc_sensitivity.md",
+    "regression_tests": "tests/test_sensitivity.py",
+    "tests_passed": 12,
+    "raw_physics_only": true,
+    "ml_inference_used": false,
+    "trial_corrections_applied": false,
+    "source_record_hashed": true,
+    "saved_recommendation_or_ranking_changed": false,
+    "resistor_construction_verified": false,
+    "waveform_limits_scope": "Nominal raw-model waveform only; no uncertainty envelope or hardware approval",
+    "parameter_count": 6,
+    "captured_profile_used": true,
+    "active_stages_charge_and_efficiency_fixed": true,
+    "switching_time_to_peak_verified": true,
+    "failed_reference_curve_keeps_metrics": true,
+    "measured_accuracy_gain_established": false
+  },
+  "accuracy_v4": {
+    "summary": "artifacts/experiments/v4/summary.json",
+    "protocol": "artifacts/experiments/v4/protocol.json",
+    "document": "docs/accuracy_v4_results.md",
+    "candidate_configurations": 48,
+    "nested_shared_fits_exclude_both_regimes": true,
+    "macro_improvement_vs_v2_pct": 0.0,
+    "promotion_eligible": false,
+    "active_model_changed": false,
+    "calibration_validation_hidden_evaluated": false,
+    "cloud_spend_usd": 0,
+    "regression_tests": "tests/test_pooled_accuracy_experiment.py",
+    "tests_passed": 9,
+    "preserved_artifacts": 22,
+    "preserved_engineering_source_files": 8,
+    "all_original_hashes_match": true
+  },
+  "accuracy_v5": {
+    "summary": "artifacts/experiments/v5/summary.json",
+    "protocol": "artifacts/experiments/v5/protocol.json",
+    "candidate_count": 12,
+    "macro_improvement_vs_historical_v2_pct": 1.0920818719435732,
+    "improvement_vs_matched_ridge_control_pct": 0.23626626790075322,
+    "promotion_eligible": false,
+    "calibration_validation_hidden_evaluated": false,
+    "production_models_changed": false,
+    "cloud_spend_usd": 0,
+    "tests": "tests/test_accuracy_v5.py",
+    "regression_tests_passed": 14,
+    "preserved_artifacts": 33,
+    "old_model_and_engineering_hashes_verified": true
+  },
+  "capture_resolution": {
+    "version": "waveform-acquisition-review-v2",
+    "document": "docs/capture_resolution_review.md",
+    "tests": "tests/test_capture_resolution.py",
+    "unit_cases_passed": 16,
+    "sparse_false_pass_counterexamples_blocked": 3,
+    "source_type": "isolated_synthetic_regression_fixtures",
+    "raw_samples_and_extracted_metrics_preserved": true,
+    "all_calibration_and_evaluation_calls_use_saved_rules": true,
+    "unresolved_nominal_pass_is_provisional": true,
+    "threshold_scope": "Application heuristic: spans <=25% of challenge timing tolerance half-width, not an uncertainty estimate or IEC requirement",
+    "laboratory_accuracy_gain_established": false
+  },
+  "judging_audit": {
+    "document": "docs/judging_criteria_evidence.md",
+    "reviewed_local_date": "2026-10-03",
+    "finale_numerical_weights_verified": false,
+    "public_event_dates": "10\u201311 October 2026",
+    "team_readiness": "10 October 2026",
+    "screening_criteria_not_finale_rubric": true,
+    "private_finalist_instructions_reviewed": false
+  },
   "release_validation": {
-    "recorded_at_utc": "2026-10-01T17:23:57.460748+00:00",
+    "recorded_at_utc": "2026-10-03T05:17:47.969751+00:00",
     "status": "passed",
-    "verified_files": 233,
+    "verified_files": 296,
     "zip_integrity_passed": true,
     "sha_manifest_passed": true,
     "live_history_and_raw_uploads_excluded": true,
-    "extracted_root": "/var/folders/1x/dbv5hr0j6q31yd6qf988kzqw0000gn/T/impulsetwin-search-v4-release-xb2nc6ti/ImpulseTwin_AI",
+    "extracted_root": "/var/folders/1x/dbv5hr0j6q31yd6qf988kzqw0000gn/T/impulsetwin-final-release-pdrpi6ej/ImpulseTwin_AI",
     "application_checks": {
+      "v5_evidence_and_no_promotion": true,
+      "capture_resolution_provisional_pass": true,
+      "unresolved_calibration_blocked": true,
+      "decision_counts_and_zero_denominators": true,
+      "pooled_accuracy_evidence": true,
+      "v4_not_promoted_and_not_servable": true,
+      "raw_rlc_preview_and_audit_export": true,
+      "rlc_preserves_saved_run_and_supply": true,
+      "hypothetical_resistor_flagged": true,
+      "invalid_sensitivity_rejected": true,
+      "setup_transition_saved_and_exported": true,
+      "transition_preserves_ranking_and_separate_challenge": true,
+      "invalid_baseline_rejected": true,
+      "offline_transition_replayed_from_archived_records": true,
+      "laboratory_accuracy_review_available": true,
+      "synthetic_lab_accuracy_rejected": true,
+      "no_fabricated_lab_scores": true,
       "static_routes": 6,
       "api_docs": true,
-      "frozen_registry": true,
-      "agreement_optimizer": true,
-      "postranking_scenarios_passed": 144,
-      "uncalibrated_envelope_preserved": true,
-      "circuit_v2": true,
-      "reports": true,
-      "v3_not_activated": true,
-      "handoff_included": true
+      "optimizer": true,
+      "run_evidence": true,
+      "selected_candidate_demo": true,
+      "matching_export_provenance": true,
+      "mismatched_csv_rejected": true,
+      "trial_capture_review": true,
+      "calibration_with_lineage": true,
+      "negative_delayed_comparison_aligned": true,
+      "raw_capture_unchanged": true,
+      "invalid_candidate_rejected": true,
+      "report_export": true
     },
-    "launch_scope": "Extracted application through TestClient on current machine with existing dependencies; not a clean second machine.",
-    "note": "Final package is rebuilt after recording this QA result; only QA metadata changes, with all final ZIP file hashes reverified."
+    "launch_scope": "Extracted application through TestClient on current machine with installed dependencies; not a clean second machine.",
+    "note": "Only QA metadata changes after application verification; final per-file hashes verified again after packaging."
   }
 }

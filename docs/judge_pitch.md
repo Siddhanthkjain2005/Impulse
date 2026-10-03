@@ -6,6 +6,8 @@
 
 ImpulseTwin AI helps an impulse-test engineer choose and inspect a stronger starting setup before changing hardware and taking the next shot. It combines physics, carefully evaluated residual models and a bounded stock-aware search to propose stage counts, charging voltage and actual resistor constructions. It shows where training support ends, exposes disagreement with an independent circuit model and turns a trial waveform into a correction restricted to the tested configuration. The result is a reproducible engineering decision record, with laboratory benefit to be measured through paired field trials.
 
+For a judge's RLC question, use **Explore R, L and C** on the Optimizer: the saved Lightning agreement example with object capacitance +30% crosses the circuit front-time limit while the supply remains fixed. Compare both raw models and distinguish reconstruction from circuit simulation. Keep this as an optional explanation so the five-minute pitch stays within time. See `rlc_sensitivity.md`.
+
 ## 0:00–0:40 — start with the physical decision
 
 “An impulse-test engineer needs the right crest, front and tail. Reaching them can mean changing active stages and physically replacing front or tail resistors, then taking another shot.
@@ -30,7 +32,7 @@ ImpulseTwin AI helps an impulse-test engineer choose and inspect a stronger star
 
 “Here is a Lightning request. The optimizer searches stage counts and bounded resistor constructions. It rejects candidates that exceed declared stock counts, stage voltage or energy limits before ranking them.
 
-“The result shows charging voltage, the exact resistor network and component usage per stage and across the generator. Alternatives show the tradeoff between waveform deviation, uncertainty, operating headroom and setup complexity.
+“The result shows charging voltage, the exact resistor network and component usage. We can compare alternatives with a saved current setup: resistor changes on shared stages, stage activation and charging adjustments. The planner finds the closest nominally passing option while keeping the original optimizer ranking and its challenge evidence separate.
 
 “The status distinguishes a point prediction from containment of the returned uncertainty intervals and sampled parasitic scenarios. Pulse ratings, mounting and permitted physical connections still need confirmation from the laboratory.”
 
@@ -68,6 +70,8 @@ ImpulseTwin AI helps an impulse-test engineer choose and inspect a stronger star
 
 *Use Trial calibrator with the prepared generated sample. Show the scoped correction review and open the saved report. Never describe this sample as a laboratory measurement.*
 
+*If asked how we prevent misleading accuracy claims: explain the crest/tail acquisition review. A demonstrated sparse capture appeared to pass after missing the true crest; it is now retained for inspection but blocked from calibration and scoring. For new measured shots, show false-PASS counts and worst errors using the original saved limits. Do not show synthetic fixtures as laboratory outcomes.*
+
 ## 4:30–5:00 — finish with a testable next step
 
 “Our contribution is a complete local workflow that connects physics, available hardware, supported learning and traceable trial feedback.
@@ -102,3 +106,6 @@ ImpulseTwin AI helps an impulse-test engineer choose and inspect a stronger star
 - Detailed click sequence and fallback: [demo script](demo_script.md).
 
 Do not claim a guaranteed win, global optimum, complete IEC certification, measured shot reduction, laboratory accuracy or verified mechanical/pulse compatibility. Keep generated samples separate from measured trials. If the live app is unavailable, use the saved report and the sixty-second version; do not invent an execution result.
+
+
+Current judging-source audit: `judging_criteria_evidence.md`. The public event confirms 10–11 October 2026, but no finale scoring weights were found; screening criteria must not be relabeled as final-round marks. The five-minute format above remains a rehearsal assumption.

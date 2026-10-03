@@ -18,7 +18,7 @@
 |9October|Freeze dependencies/artifacts, export backup reports, practice five-minute presentation and transitions|
 |10October|Arrive with both laptops, source evidence, offline app and a precise list of remaining assumptions|
 
-The briefing says onsite work may continue10–11October. Treat10October as the readiness deadline given by the team.
+Official CPRI and event pages confirm 10–11 October 2026. Treat 10 October as the readiness deadline given by the team. See `judging_criteria_evidence.md`; exact private submission requirements and finale scoring weights remain unconfirmed.
 
 ## Organizer questions to resolve
 

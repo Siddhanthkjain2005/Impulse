@@ -18,7 +18,7 @@ For a clean machine, use Python 3.12 and Node 22+:
 Clone this repository, or extract the release ZIP and open its `ImpulseTwin_AI` folder, then run:
 
 ```sh
-make setup
+make setup PYTHON=python3.12
 make build
 make test PYTHON=.venv/bin/python
 make demo PYTHON=.venv/bin/python
@@ -66,7 +66,7 @@ The controlled search completed locally in **54.96 seconds**, spent **$0 on clou
 
 ## Current checks and handoff
 
-The latest recorded backend run has **86 passing tests, zero failures and zero errors** in `artifacts/qa/backend-tests.xml`. The latest frontend typecheck and static build passed. The exported HTML references **17 local assets**, with no remote or missing assets in the in-process offline check. This does not replace a physically disconnected-network rehearsal on the presentation laptop. Browser review and final archive verification are recorded in `artifacts/qa_summary.json` as they are completed.
+The latest recorded backend run has **198 passing tests, zero failures and zero errors** in `artifacts/qa/backend-tests.xml`. The latest frontend typecheck and static build passed. The exported HTML references **17 local assets**, with no remote or missing assets in the in-process offline check. This does not replace a physically disconnected-network rehearsal on the presentation laptop. Browser review and final archive verification are recorded in `artifacts/qa_summary.json` as they are completed.
 
 The release workflow includes source, frozen V1/V2 artifacts, static assets, generated fallback reports and executed QA evidence. It excludes live SQLite histories and raw uploaded trials. Release packaging follows the final QA update; a fresh-machine installation and disconnected-network rehearsal on a second laptop remain finale preparation tasks.
 
@@ -92,3 +92,25 @@ If the default frontend compiler cannot open a temporary port in a restricted en
 ## Expanded search and post-ranking checks
 
 Every returned setup now receives 128 separate-seed parasitic samples and 16 boundary corners after ranking, shown in **Challenge the selected setup**. The chart also overlays the independent circuit. Circuit thresholds now use continuous root refinement, checked against a separate time-domain integration method. Counted hardware search includes additional four/six-component trees and parallel banks while retaining earlier target alternatives. See `docs/search_v4_results.md`; these are numerical and engineering checks, not laboratory accuracy.
+
+The trial-feedback workflow retains cumulative corrections across repeated shots, checks basic capture quality before calibration, and associates demo CSVs with the selected candidate. Run history and comparison keep nominal agreement, fresh challenge results and uncertainty separate. See [trial feedback update](docs/trial_feedback_update.md) for scope and limits.
+
+The measured-shot accuracy review excludes synthetic demos, duplicate captures and every calibration-source waveform. It scores saved predictions without fitting new weights. Recorded synthetic improvement and the new evaluation procedure are documented in [accuracy progress](docs/accuracy_progress.md).
+
+The Compare page now estimates changes from a saved baseline setup and exports a printable change plan. Nominal checks precede the change preference; the original ranking, challenge evidence and uncertainty remain separate. See [setup transition planner](docs/setup_transition_planner.md).
+
+The Optimizer also includes **Explore R, L and C**: change one value while holding the saved supply and other inputs fixed, compare both raw models, inspect waveform-limit changes and export the preview audit. See [RLC sensitivity explorer](docs/rlc_sensitivity.md).
+
+
+## Latest pooled accuracy study
+
+The V4 Train-only experiment tested 48 shared/partially pooled configurations with both impulse types held out in every shared fit. No pooled candidate passed the inner selection gate; additional macro improvement was 0.0000%, and V1/V2 remain unchanged. The Model lab now records this result. Read `docs/accuracy_v4_results.md` before further tuning; preserve the frozen evidence and obtain new measured outcomes for independent accuracy evaluation. No cloud resources were created.
+
+
+## Accuracy and judging update — 3 October 2026
+
+Official and supplied expectations are mapped in `docs/judging_criteria_evidence.md`; no finale numeric weights were found. Prioritize accurate predictions, feasible counted hardware, both impulse types, numeric compliance and credible measured feedback. Public event dates are 10–11 October; team readiness remains 10 October.
+
+V5 added 1.0921% macro Train development improvement versus a historical V2 refit (0.2363% beyond a matched Ridge control), below its 5% gate. It was not promoted; V1/V2 and old model evidence remain frozen. See `docs/accuracy_v5_results.md`.
+
+Capture-resolution review now blocks three demonstrated sparse-waveform false passes from calibration and scoring, preserving raw samples and provisional extracted values. The measured-shot review adds false PASS/FAIL counts, denominators, worst-shot errors, saved-rule snapshots and separate envelope containment. See `docs/capture_resolution_review.md` and `docs/measured_decision_review.md`. No new laboratory accuracy result exists. Website previews were omitted at the user's request for this update; automated checks are recorded separately.

@@ -126,5 +126,15 @@
     "ml_trust": 1.0,
     "model_agreement": null,
     "circuit_crosscheck": "FAIL"
+  },
+  "setup_transition": {
+    "source_type": "generated_stress_test",
+    "demo_only": true,
+    "baseline_run_id": "748bb8541090",
+    "target_run_id": "1cc5ffde4e8d",
+    "closest_nominal_original_rank": 4,
+    "shared_stage_part_changes": 45,
+    "optimizer_ranking_changed": false,
+    "laboratory_evidence": false
   }
 }

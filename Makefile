@@ -1,7 +1,7 @@
 PYTHON ?= python3
 NODE ?= node
 NPM ?= npm
-.PHONY: setup ingest train experiment-v2 audit test build dev demo stress
+.PHONY: setup ingest train experiment-v2 experiment-v4 experiment-v5 audit test build dev demo stress
 setup:
 	$(PYTHON) -m venv .venv
 	.venv/bin/python -m pip install -r requirements.txt
@@ -12,6 +12,10 @@ train:
 	LOKY_MAX_CPU_COUNT=4 OMP_NUM_THREADS=1 $(PYTHON) -m backend.app.ml.train
 experiment-v2:
 	OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 $(PYTHON) -m backend.app.ml.experiment_v2
+experiment-v4:
+	OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 $(PYTHON) -m backend.app.ml.experiment_v4
+experiment-v5:
+	OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 $(PYTHON) -m backend.app.ml.experiment_v5
 audit:
 	$(PYTHON) -m backend.app.data.audit
 test:
