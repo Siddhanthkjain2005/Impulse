@@ -1,0 +1,23 @@
+{
+  "date": "2026-10-03",
+  "platform": "Windows",
+  "browser": "Codex in-app browser",
+  "origin": "http://127.0.0.1:8000",
+  "database": "Isolated review database outside the repository",
+  "status": "PASS",
+  "checks": [
+    "Judge Mode request submitted through UI; saved backend recommendation shown",
+    "Agreement example displays Level 3, ML outside support, both models passing and 144/144 fixed-setting challenges",
+    "Generated waveform loaded through UI and explicitly labeled GENERATED DEMONSTRATION",
+    "Laboratory Evidence retains zero measured captures and excludes the generated demo",
+    "Hardware Verification renders source conflict and unknown physical ratings",
+    "Experiment Timeline renders V1 promoted, V2 experimental and V3-V5 rejected from saved evidence",
+    "Search Quality renders four cases, rank 1 winners and zero objective gaps",
+    "Judge Mode mobile viewport 390x844: document width does not exceed viewport; override reset"
+  ],
+  "limitations": [
+    "Browser review is online localhost; physically disconnected browser test not performed",
+    "No real laboratory captures supplied",
+    "Not a comprehensive accessibility or cross-browser certification"
+  ]
+}

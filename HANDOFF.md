@@ -1,5 +1,12 @@
 # Continue ImpulseTwin AI
 
+## Evidence and Judge Mode update — 3 October 2026
+
+The evidence/release feature branch adds unified capture provenance, Laboratory Evidence, Hardware Verification, a versioned test-object catalog, deterministic recommendation evidence levels, a controlled exhaustive search benchmark, saved-artifact experiment timeline and seven-step Judge Mode. Existing engineering workflows and frozen V1–V5 evidence remain preserved. README now links deep history rather than accumulating every release note.
+
+Use `python scripts/verify_release.py` for the current report and `docs/release_readiness.md` for cross-platform setup. Original QA files and release ZIP are historical; the latest source and rebuilt static frontend on this branch are authoritative for this update. Windows clean setup, automated checks and fresh-database/offline-process checks are recorded in the new release report; untested platforms remain explicit. No deployment or new model training occurred.
+
+
 Repository: https://github.com/Siddhanthkjain2005/Impulse
 
 Read this guide, then `PROJECT_STATE.md`, `docs/judging_criteria_evidence.md` and `docs/accuracy_progress.md`. Source discrepancies are documented in `docs/source_reconciliation.md`; detailed search and experiment results are linked below. The finale readiness deadline is 10 October 2026. Official event dates are 10–11 October.

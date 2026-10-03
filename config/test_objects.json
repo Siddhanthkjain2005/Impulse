@@ -1,0 +1,10 @@
+{
+  "version": "1.0.0",
+  "mismatch_fraction": 0.03,
+  "mismatch_policy_source": "Application review threshold; not a standard tolerance",
+  "objects": [
+    {"id": "400kv_insulator_lightning", "name": "400 kV insulator — Lightning", "equipment_class": "insulator", "system_voltage_kv": 400, "impulse_type": "Lightning", "recommended_test_level_kv": null, "source": null, "source_version": null, "status": "unknown"},
+    {"id": "400kv_insulator_switching", "name": "400 kV insulator — Switching", "equipment_class": "insulator", "system_voltage_kv": 400, "impulse_type": "Switching", "recommended_test_level_kv": null, "source": null, "source_version": null, "status": "unknown"}
+  ],
+  "scope": "Workbook 1425 kV and briefing 1550 kV examples do not establish an authoritative equipment test-level catalog. Unknown references do not prevent hardware feasibility evaluation."
+}

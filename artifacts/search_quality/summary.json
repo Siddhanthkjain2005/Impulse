@@ -1,0 +1,442 @@
+{
+  "version": "1.0.0",
+  "status": "COMPLETE",
+  "split": "benchmark",
+  "source_type": "synthetic_benchmark",
+  "protocol_sha256": "ea310dee7760b8b947c6dde7ea7886c6337c994d513902f5c81104f750e2c96e",
+  "implementation_sha256": {
+    "scripts/benchmark_search_quality.py": "d83f42c300d4bad1359385c4f7984afbe31e1322ee0a310ff8972b52c86ca774",
+    "backend/app/optimization/engine.py": "0b82c898f881547fbe6a755f69b87100dfeeec6fef646dd9ab41b76a47395f09",
+    "backend/app/optimization/networks.py": "dba89a49a134b138d185180ecc500f8af3a601c4a71f06e70498b182c9d57513"
+  },
+  "scope": "Fixed synthetic engineering fixtures declared before results. No training data or Hidden Test outcomes are used. No optimizer tuning on benchmark cases. Enumerate all bridge-free series/parallel trees up to three components from counted stock, all declared stage choices and the same production charging rule. Score every exhaustive candidate with production uncertainty/scenario ranking. Continuous charge/topology/global optimality is outside scope.",
+  "cases": [
+    {
+      "id": "li-low-load",
+      "source_type": "synthetic_benchmark",
+      "inputs": {
+        "profile_id": "workbook_reference_profile",
+        "impulse_type": "Lightning",
+        "test_kv": 1400.0,
+        "load_c_pf": 650.0,
+        "divider_c_pf": 500,
+        "stray_c_pf": 150,
+        "l_uh": 18.5,
+        "efficiency": 0.82,
+        "solver": "reference",
+        "model_mode": "physics",
+        "require_model_agreement": false,
+        "connection_mode": "series_marx_equivalent",
+        "layout_id": "default-layout",
+        "stage_min": 9,
+        "stage_max": 10,
+        "inventory_override": {
+          "front": [
+            {
+              "ohm": 30.0,
+              "count_per_stage": 2
+            },
+            {
+              "ohm": 100.0,
+              "count_per_stage": 1
+            }
+          ],
+          "tail": [
+            {
+              "ohm": 10.0,
+              "count_per_stage": 1
+            },
+            {
+              "ohm": 30.0,
+              "count_per_stage": 1
+            }
+          ],
+          "provenance": "Controlled synthetic benchmark inventory; not CPRI stock"
+        },
+        "max_components_per_network": 3,
+        "include_base_c": false,
+        "uncertainty_pct": 5,
+        "monte_carlo_samples": 8,
+        "equipment_reference_kv": null,
+        "test_object_id": null,
+        "equipment_reference_source": null,
+        "confirm_reference_mismatch": false,
+        "calibration_id": null
+      },
+      "same_best_candidate": true,
+      "exhaustive_best_in_bounded_top3": true,
+      "bounded_winner_exhaustive_rank": 1,
+      "rank_difference": 0,
+      "objective_gap": 0.0,
+      "waveform_error_difference": 0.0,
+      "component_count_difference": 0,
+      "waveform_metric_difference": {
+        "front_us": 0.0,
+        "tail_us": 0.0,
+        "crest_kv": 0.0
+      },
+      "worst_waveform_margin_difference": 0.0,
+      "bounded_seconds": 1.9773467000341043,
+      "exhaustive_seconds": 2.9282644001068547,
+      "speedup": 1.4809059028729508,
+      "bounded_evaluated": 40,
+      "exhaustive_evaluated": 96,
+      "bounded_nominal_pass": false,
+      "exhaustive_nominal_pass": false,
+      "bounded_settings": {
+        "stages": 9,
+        "charge_kv_stage": 189.7018970189702,
+        "front_r_stage": 60.0,
+        "tail_r_stage": 30.0,
+        "stage_utilization": 0.9485094850948509,
+        "stored_energy_kj": 485.82193139004556,
+        "voltage_margin_kv_stage": 10.298102981029814,
+        "energy_margin_kj": 414.17806860995444,
+        "energy_margin_pct": 46.01978540110605
+      },
+      "exhaustive_settings": {
+        "stages": 9,
+        "charge_kv_stage": 189.7018970189702,
+        "front_r_stage": 60.0,
+        "tail_r_stage": 30.0,
+        "stage_utilization": 0.9485094850948509,
+        "stored_energy_kj": 485.82193139004556,
+        "voltage_margin_kv_stage": 10.298102981029814,
+        "energy_margin_kj": 414.17806860995444,
+        "energy_margin_pct": 46.01978540110605
+      },
+      "bounded_rank_key": [
+        true,
+        true,
+        0.6420656367193147
+      ],
+      "exhaustive_rank_key": [
+        true,
+        true,
+        0.6420656367193147
+      ]
+    },
+    {
+      "id": "li-high-load",
+      "source_type": "synthetic_benchmark",
+      "inputs": {
+        "profile_id": "workbook_reference_profile",
+        "impulse_type": "Lightning",
+        "test_kv": 1450.0,
+        "load_c_pf": 1100.0,
+        "divider_c_pf": 500,
+        "stray_c_pf": 150,
+        "l_uh": 18.5,
+        "efficiency": 0.82,
+        "solver": "reference",
+        "model_mode": "physics",
+        "require_model_agreement": false,
+        "connection_mode": "series_marx_equivalent",
+        "layout_id": "default-layout",
+        "stage_min": 9,
+        "stage_max": 10,
+        "inventory_override": {
+          "front": [
+            {
+              "ohm": 20.0,
+              "count_per_stage": 2
+            },
+            {
+              "ohm": 75.0,
+              "count_per_stage": 1
+            }
+          ],
+          "tail": [
+            {
+              "ohm": 15.0,
+              "count_per_stage": 1
+            },
+            {
+              "ohm": 40.0,
+              "count_per_stage": 1
+            }
+          ],
+          "provenance": "Controlled synthetic benchmark inventory; not CPRI stock"
+        },
+        "max_components_per_network": 3,
+        "include_base_c": false,
+        "uncertainty_pct": 5,
+        "monte_carlo_samples": 8,
+        "equipment_reference_kv": null,
+        "test_object_id": null,
+        "equipment_reference_source": null,
+        "confirm_reference_mismatch": false,
+        "calibration_id": null
+      },
+      "same_best_candidate": true,
+      "exhaustive_best_in_bounded_top3": true,
+      "bounded_winner_exhaustive_rank": 1,
+      "rank_difference": 0,
+      "objective_gap": 0.0,
+      "waveform_error_difference": 0.0,
+      "component_count_difference": 0,
+      "waveform_metric_difference": {
+        "front_us": 0.0,
+        "tail_us": 0.0,
+        "crest_kv": 0.0
+      },
+      "worst_waveform_margin_difference": 0.0,
+      "bounded_seconds": 1.8374721000436693,
+      "exhaustive_seconds": 2.80094760004431,
+      "speedup": 1.524348369685582,
+      "bounded_evaluated": 40,
+      "exhaustive_evaluated": 96,
+      "bounded_nominal_pass": false,
+      "exhaustive_nominal_pass": false,
+      "bounded_settings": {
+        "stages": 9,
+        "charge_kv_stage": 196.4769647696477,
+        "front_r_stage": 40.0,
+        "tail_r_stage": 15.0,
+        "stage_utilization": 0.9823848238482386,
+        "stored_energy_kj": 521.1431687487608,
+        "voltage_margin_kv_stage": 3.523035230352292,
+        "energy_margin_kj": 378.8568312512392,
+        "energy_margin_pct": 42.09520347235991
+      },
+      "exhaustive_settings": {
+        "stages": 9,
+        "charge_kv_stage": 196.4769647696477,
+        "front_r_stage": 40.0,
+        "tail_r_stage": 15.0,
+        "stage_utilization": 0.9823848238482386,
+        "stored_energy_kj": 521.1431687487608,
+        "voltage_margin_kv_stage": 3.523035230352292,
+        "energy_margin_kj": 378.8568312512392,
+        "energy_margin_pct": 42.09520347235991
+      },
+      "bounded_rank_key": [
+        true,
+        true,
+        0.8245208300681827
+      ],
+      "exhaustive_rank_key": [
+        true,
+        true,
+        0.8245208300681827
+      ]
+    },
+    {
+      "id": "si-low-load",
+      "source_type": "synthetic_benchmark",
+      "inputs": {
+        "profile_id": "workbook_reference_profile",
+        "impulse_type": "Switching",
+        "test_kv": 1000.0,
+        "load_c_pf": 900.0,
+        "divider_c_pf": 500,
+        "stray_c_pf": 150,
+        "l_uh": 18.5,
+        "efficiency": 0.82,
+        "solver": "reference",
+        "model_mode": "physics",
+        "require_model_agreement": false,
+        "connection_mode": "series_marx_equivalent",
+        "layout_id": "default-layout",
+        "stage_min": 7,
+        "stage_max": 8,
+        "inventory_override": {
+          "front": [
+            {
+              "ohm": 1000.0,
+              "count_per_stage": 2
+            },
+            {
+              "ohm": 4000.0,
+              "count_per_stage": 1
+            }
+          ],
+          "tail": [
+            {
+              "ohm": 500.0,
+              "count_per_stage": 1
+            },
+            {
+              "ohm": 1500.0,
+              "count_per_stage": 1
+            }
+          ],
+          "provenance": "Controlled synthetic benchmark inventory; not CPRI stock"
+        },
+        "max_components_per_network": 3,
+        "include_base_c": false,
+        "uncertainty_pct": 5,
+        "monte_carlo_samples": 8,
+        "equipment_reference_kv": null,
+        "test_object_id": null,
+        "equipment_reference_source": null,
+        "confirm_reference_mismatch": false,
+        "calibration_id": null
+      },
+      "same_best_candidate": true,
+      "exhaustive_best_in_bounded_top3": true,
+      "bounded_winner_exhaustive_rank": 1,
+      "rank_difference": 0,
+      "objective_gap": 0.0,
+      "waveform_error_difference": 0.0,
+      "component_count_difference": 0,
+      "waveform_metric_difference": {
+        "front_us": 0.0,
+        "tail_us": 0.0,
+        "crest_kv": 0.0
+      },
+      "worst_waveform_margin_difference": 0.0,
+      "bounded_seconds": 2.130306200007908,
+      "exhaustive_seconds": 4.604571999981999,
+      "speedup": 2.161460169418324,
+      "bounded_evaluated": 40,
+      "exhaustive_evaluated": 96,
+      "bounded_nominal_pass": false,
+      "exhaustive_nominal_pass": false,
+      "bounded_settings": {
+        "stages": 8,
+        "charge_kv_stage": 152.4390243902439,
+        "front_r_stage": 6000.0,
+        "tail_r_stage": 1500.0,
+        "stage_utilization": 0.7621951219512195,
+        "stored_energy_kj": 278.8518738845925,
+        "voltage_margin_kv_stage": 47.5609756097561,
+        "energy_margin_kj": 621.1481261154074,
+        "energy_margin_pct": 69.01645845726749
+      },
+      "exhaustive_settings": {
+        "stages": 8,
+        "charge_kv_stage": 152.4390243902439,
+        "front_r_stage": 6000.0,
+        "tail_r_stage": 1500.0,
+        "stage_utilization": 0.7621951219512195,
+        "stored_energy_kj": 278.8518738845925,
+        "voltage_margin_kv_stage": 47.5609756097561,
+        "energy_margin_kj": 621.1481261154074,
+        "energy_margin_pct": 69.01645845726749
+      },
+      "bounded_rank_key": [
+        true,
+        true,
+        1.370840451243939
+      ],
+      "exhaustive_rank_key": [
+        true,
+        true,
+        1.370840451243939
+      ]
+    },
+    {
+      "id": "si-high-load",
+      "source_type": "synthetic_benchmark",
+      "inputs": {
+        "profile_id": "workbook_reference_profile",
+        "impulse_type": "Switching",
+        "test_kv": 1050.0,
+        "load_c_pf": 1350.0,
+        "divider_c_pf": 500,
+        "stray_c_pf": 150,
+        "l_uh": 18.5,
+        "efficiency": 0.82,
+        "solver": "reference",
+        "model_mode": "physics",
+        "require_model_agreement": false,
+        "connection_mode": "series_marx_equivalent",
+        "layout_id": "default-layout",
+        "stage_min": 7,
+        "stage_max": 8,
+        "inventory_override": {
+          "front": [
+            {
+              "ohm": 1500.0,
+              "count_per_stage": 2
+            },
+            {
+              "ohm": 3500.0,
+              "count_per_stage": 1
+            }
+          ],
+          "tail": [
+            {
+              "ohm": 750.0,
+              "count_per_stage": 1
+            },
+            {
+              "ohm": 2000.0,
+              "count_per_stage": 1
+            }
+          ],
+          "provenance": "Controlled synthetic benchmark inventory; not CPRI stock"
+        },
+        "max_components_per_network": 3,
+        "include_base_c": false,
+        "uncertainty_pct": 5,
+        "monte_carlo_samples": 8,
+        "equipment_reference_kv": null,
+        "test_object_id": null,
+        "equipment_reference_source": null,
+        "confirm_reference_mismatch": false,
+        "calibration_id": null
+      },
+      "same_best_candidate": true,
+      "exhaustive_best_in_bounded_top3": true,
+      "bounded_winner_exhaustive_rank": 1,
+      "rank_difference": 0,
+      "objective_gap": 0.0,
+      "waveform_error_difference": 0.0,
+      "component_count_difference": 0,
+      "waveform_metric_difference": {
+        "front_us": 0.0,
+        "tail_us": 0.0,
+        "crest_kv": 0.0
+      },
+      "worst_waveform_margin_difference": 0.0,
+      "bounded_seconds": 3.022776099969633,
+      "exhaustive_seconds": 4.975541100022383,
+      "speedup": 1.6460170834592638,
+      "bounded_evaluated": 40,
+      "exhaustive_evaluated": 96,
+      "bounded_nominal_pass": false,
+      "exhaustive_nominal_pass": false,
+      "bounded_settings": {
+        "stages": 8,
+        "charge_kv_stage": 160.0609756097561,
+        "front_r_stage": 6500.0,
+        "tail_r_stage": 750.0,
+        "stage_utilization": 0.8003048780487805,
+        "stored_energy_kj": 307.4341909577633,
+        "voltage_margin_kv_stage": 39.9390243902439,
+        "energy_margin_kj": 592.5658090422367,
+        "energy_margin_pct": 65.84064544913741
+      },
+      "exhaustive_settings": {
+        "stages": 8,
+        "charge_kv_stage": 160.0609756097561,
+        "front_r_stage": 6500.0,
+        "tail_r_stage": 750.0,
+        "stage_utilization": 0.8003048780487805,
+        "stored_energy_kj": 307.4341909577633,
+        "voltage_margin_kv_stage": 39.9390243902439,
+        "energy_margin_kj": 592.5658090422367,
+        "energy_margin_pct": 65.84064544913741
+      },
+      "bounded_rank_key": [
+        true,
+        true,
+        1.2546264330539012
+      ],
+      "exhaustive_rank_key": [
+        true,
+        true,
+        1.2546264330539012
+      ]
+    }
+  ],
+  "top1_match_rate": 1,
+  "top3_containment_rate": 1,
+  "median_objective_gap": 0.0,
+  "worst_objective_gap": 0.0,
+  "median_runtime_speedup": 1.5851827265724228,
+  "worst_missed_waveform_margin": 0,
+  "limitation": "Small declared discrete spaces only. Objective gap alone does not reflect the preceding nominal/robust rank keys. Timings include cache effects and are machine-dependent. No global or laboratory claim."
+}
