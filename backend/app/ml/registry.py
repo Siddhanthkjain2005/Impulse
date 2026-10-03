@@ -9,14 +9,17 @@ from ..data.workbook_reference import calculate
 @lru_cache
 def registry():
     p=ROOT/'artifacts/models'
-    return joblib.load(p/'residual_models.joblib'),json.loads((p/'registry.json').read_text())
+    missing=[name for name in ('residual_models.joblib','registry.json') if not (p/name).is_file()]
+    if missing:
+        raise ValueError('Required frozen V1 artifacts missing: '+', '.join(missing)+'. Restore the committed artifacts; do not retrain on Hidden Test.')
+    return joblib.load(p/'residual_models.joblib'),json.loads((p/'registry.json').read_text(encoding="utf-8"))
 
 @lru_cache
 def experimental_registry():
     p=ROOT/'artifacts/experiments/v2'
     if not (p/'summary.json').exists():
         raise ValueError('V2 experiment is not available. Use the frozen V1 hybrid.')
-    meta=json.loads((p/'summary.json').read_text())
+    meta=json.loads((p/'summary.json').read_text(encoding="utf-8"))
     if not meta['promotion']['eligible']:
         raise ValueError('V2 did not meet its declared improvement gate. Use the frozen V1 hybrid.')
     return joblib.load(p/'calibrated_candidate_models.joblib'),meta

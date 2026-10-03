@@ -2,6 +2,18 @@
 import re
 
 
+SOURCES = {'synthetic_benchmark': 'synthetic_benchmark', 'generated_demo': 'generated_demo',
+           'generated_stress_test': 'generated_demo', 'measured_lab': 'measured_lab'}
+
+
+def classified_source(record):
+    declared = SOURCES.get(record.get('source_type'), 'unknown')
+    embedded = record.get('provenance', {}).get('embedded_metadata', {}).get('source_type')
+    if embedded is not None and SOURCES.get(embedded, 'unknown') != 'measured_lab':
+        return SOURCES.get(embedded, 'unknown')
+    return declared
+
+
 def validate_csv_provenance(text, run_id, candidate_id, time_unit, voltage_unit):
     metadata = {}
     keys = {'source_type', 'run_id', 'candidate_id', 'time_unit', 'voltage_unit'}

@@ -29,6 +29,10 @@ from .trial_evaluation import evaluate_trials
 from .setup_transition import plan_transition
 from .transition_report import transition_report
 from .sensitivity import compare_sensitivity
+from .evidence import evidence_record, laboratory_summary, recommendation_evidence, validated_evaluation_ids, SOURCES
+from .hardware_integrity import hardware_integrity
+from .test_objects import catalog, validate_request
+from .experiment_timeline import timeline
 
 ROOT=Path(__file__).resolve().parents[2]
 app=FastAPI(title='ImpulseTwin AI',version='1.0.0',description='Offline physics-guided impulse-generator decision support. No hardware control.',docs_url=None,redoc_url=None)
@@ -57,7 +61,10 @@ def trial_correction(measured,candidate):
         'method':'Replacement total correction relative to the original model: prior applied correction plus new observed residual.'}
 
 @app.get('/api/health')
-def health():return {'status':'online','version':'1.0.0','mode':'local / offline capable','hardware_control':False}
+def health():
+    try:registry()
+    except (ValueError,OSError) as e:raise HTTPException(503,str(e))
+    return {'status':'online','version':'1.0.0','mode':'local / offline capable','hardware_control':False}
 
 @app.get('/docs',response_class=HTMLResponse,include_in_schema=False)
 def offline_api_docs():
@@ -67,7 +74,7 @@ def offline_api_docs():
 
 @app.get('/api/source-status')
 def source_status():
-    manifest=json.loads((ROOT/'data/processed/manifest.json').read_text())
+    manifest=json.loads((ROOT/'data/processed/manifest.json').read_text(encoding="utf-8"))
     workbook=ROOT/'data/source/Hybrid_Physics_ML_Impulse_Generator_Optimiser.xlsx'
     dataset=ROOT/'data/processed/synthetic_dataset.csv'
     _,meta=registry()
@@ -77,10 +84,57 @@ def source_status():
         'formula_parity':'golden case and all 1400 cached helper distances/weights verified',
         'published_metrics_parity':'UNRESOLVED: hardcoded table differs from formula-based Validation evaluation',
         'lab_validation':'pending actual measured data','source_reconciliation':'/api/documents/source_reconciliation',
-        'standards':RULES,'qa':json.loads((ROOT/'artifacts/qa_summary.json').read_text()) if (ROOT/'artifacts/qa_summary.json').exists() else None}
+        'standards':RULES,'qa':json.loads((ROOT/'artifacts/qa_summary.json').read_text(encoding="utf-8")) if (ROOT/'artifacts/qa_summary.json').exists() else None}
 
 @app.get('/api/generator-profiles')
 def profiles():return PROFILES
+
+@app.get('/api/hardware-integrity')
+def hardware_sources():return [hardware_integrity(p) for p in PROFILES]
+
+@app.get('/api/test-objects')
+def test_objects():return catalog()
+
+@app.post('/api/test-objects/validate')
+def validate_test_object(req:OptimizeRequest):
+    try:return validate_request(req,profile_for(req.profile_id))
+    except ValueError as e:raise HTTPException(422,str(e))
+
+@app.get('/api/experiment-timeline')
+def experiment_timeline():return timeline()
+
+@app.get('/api/search-quality')
+def search_quality():
+    path=ROOT/'artifacts/search_quality/summary.json'
+    return json.loads(path.read_text(encoding='utf-8')) if path.exists() else {'status':'PENDING','message':'Search quality benchmark pending.'}
+
+@app.get('/api/laboratory-evidence')
+def laboratory_evidence():
+    return laboratory_summary(storage.list_records('trial',None),storage.list_records('calibration',None),storage.get,ROOT)
+
+@app.get('/api/runs/{id}/judge')
+def judge_run(id:str):
+    run=saved(id,'run'); evaluations=storage.list_records('evaluation',None)
+    candidates=[]
+    for candidate in run['candidates']:
+        ids=validated_evaluation_ids(run,candidate,evaluations,storage.get,ROOT)
+        candidates.append({**candidate,'evidence':recommendation_evidence(candidate,ids)})
+    alternatives=[]
+    for label,key in [('Best waveform match',lambda c:c['accuracy_cost']),
+                      ('Fewest components',lambda c:c['setup_component_count']),
+                      ('Largest stage-voltage margin',lambda c:-c['settings']['voltage_margin_kv_stage'])]:
+        candidate=min(candidates,key=key)
+        existing=next((a for a in alternatives if a['candidate']['id']==candidate['id']),None)
+        if existing:existing['labels'].append(label)
+        else:alternatives.append({'labels':[label],'candidate':candidate})
+    for candidate in candidates:
+        if len(alternatives)>=3:break
+        if not any(a['candidate']['id']==candidate['id'] for a in alternatives):
+            alternatives.append({'labels':[f"Ranked alternative {candidate['rank']}"],'candidate':candidate})
+    trials=[{**t,'evidence':evidence_record(t,run)} for t in storage.list_records('trial',None) if t['run_id']==id]
+    return {**run,'candidates':candidates,'alternatives':alternatives,'trials':trials,
+            'alternative_scope':'Trade-offs among the returned shortlist; fewest components is not fewest changes from an existing setup. Nominal failures remain diagnostic.',
+            'laboratory':laboratory_evidence()}
 
 @app.get('/api/generator-profiles/{id}')
 def profile(id:str):
@@ -123,24 +177,24 @@ def run_compliance(body:ComplianceRequest):
 @app.get('/api/models')
 def models():
     _,meta=registry()
-    result={**meta,'hidden_test':json.loads((ROOT/'artifacts/models/hidden_test_evaluation.json').read_text())}
+    result={**meta,'hidden_test':json.loads((ROOT/'artifacts/models/hidden_test_evaluation.json').read_text(encoding="utf-8"))}
     experiment=ROOT/'artifacts/experiments/v2/summary.json'
     if experiment.exists():
-        result['experiment_v2']=json.loads(experiment.read_text())
+        result['experiment_v2']=json.loads(experiment.read_text(encoding="utf-8"))
     v3=ROOT/'artifacts/experiments/v3/summary.json'
     if v3.exists():
-        study=json.loads(v3.read_text())
+        study=json.loads(v3.read_text(encoding="utf-8"))
         result['experiment_v3']={k:study[k] for k in ['version','scope','macro_improvement_pct','promotion_eligible','decision','hidden_test_evaluated','elapsed_seconds']}
     v4=ROOT/'artifacts/experiments/v4/summary.json'
     if v4.exists():
-        study=json.loads(v4.read_text())
-        protocol=json.loads((v4.parent/'protocol.json').read_text())
+        study=json.loads(v4.read_text(encoding="utf-8"))
+        protocol=json.loads((v4.parent/'protocol.json').read_text(encoding="utf-8"))
         result['experiment_v4']={k:study[k] for k in ['version','scope','macro_improvement_pct','worst_target_improvement_pct','promotion_eligible','decision','hidden_test_evaluated','calibration_evaluated','validation_evaluated','elapsed_seconds','nested_cv']}
         result['experiment_v4']['candidate_count']=len(protocol['grid'])
         result['experiment_v4']['selected_pooled_fold_targets']=sum(s['blend']>0 for fold in study['fold_choices'] for target in fold for s in target['selection'].values())
     v5=ROOT/'artifacts/experiments/v5/summary.json'
     if v5.exists():
-        study=json.loads(v5.read_text())
+        study=json.loads(v5.read_text(encoding="utf-8"))
         result['experiment_v5']={k:study[k] for k in ['version','scope','macro_improvement_pct','control_macro_improvement_pct','improvement_vs_matched_control_pct','worst_target_improvement_pct','promotion_eligible','decision','hidden_test_evaluated','calibration_evaluated','validation_evaluated','elapsed_seconds','nested_cv']}
     return result
 
@@ -149,9 +203,9 @@ def model_metrics(id:str):
     result=models()
     if id==result.get('experiment_v2',{}).get('version'):return result['experiment_v2']
     if id==result.get('experiment_v4',{}).get('version'):
-        return json.loads((ROOT/'artifacts/experiments/v4/summary.json').read_text())
+        return json.loads((ROOT/'artifacts/experiments/v4/summary.json').read_text(encoding="utf-8"))
     if id==result.get('experiment_v5',{}).get('version'):
-        return json.loads((ROOT/'artifacts/experiments/v5/summary.json').read_text())
+        return json.loads((ROOT/'artifacts/experiments/v5/summary.json').read_text(encoding="utf-8"))
     if id!=result['version']:raise HTTPException(404,'Unknown model version')
     return result
 
@@ -210,15 +264,23 @@ def demo_waveform(id:str,candidate_id:str=''):
 @app.post('/api/trials/upload')
 async def upload_trial(file:UploadFile=File(...),run_id:str=Form(...),candidate_id:str=Form(''),
     time_column:str=Form('time_us'),voltage_column:str=Form('voltage_kv'),time_unit:str=Form('us'),
-    voltage_unit:str=Form('kV'),baseline_kv:float=Form(0),source_type:str=Form('generated_stress_test'),time_origin_us:float=Form(0)):
+    voltage_unit:str=Form('kV'),baseline_kv:float=Form(0),source_type:str=Form('generated_stress_test'),time_origin_us:float=Form(0),
+    captured_at:str|None=Form(None),measurement_instrument:str|None=Form(None),operator_notes:str|None=Form(None)):
     run=saved(run_id,'run'); candidate=selected_candidate(run,candidate_id)
-    if source_type not in ['generated_stress_test','measured_lab']:raise HTTPException(422,'Source type must identify demo or measured laboratory data.')
+    if source_type not in SOURCES:raise HTTPException(422,'Source type must identify synthetic benchmark, generated demo or measured laboratory data.')
+    if source_type=='generated_demo':source_type='generated_stress_test'
+    if captured_at:
+        try:datetime.fromisoformat(captured_at.replace('Z','+00:00'))
+        except ValueError:raise HTTPException(422,'Capture time must be an ISO 8601 timestamp or omitted.')
     content=await file.read(5_000_001)
     if len(content)>5_000_000:raise HTTPException(413,'CSV exceeds the 5 MB upload limit.')
     try:
         text=content.decode('utf-8-sig')
         provenance=validate_csv_provenance(text,run_id,candidate['id'],time_unit,voltage_unit)
-        if provenance['embedded_metadata'].get('source_type')=='generated_stress_test':source_type='generated_stress_test'
+        embedded=provenance['embedded_metadata'].get('source_type')
+        if embedded is not None and embedded not in SOURCES:raise ValueError('Unknown embedded source type; provenance needs review.')
+        if embedded in ('generated_stress_test','generated_demo'):source_type='generated_stress_test'
+        elif embedded=='synthetic_benchmark':source_type='synthetic_benchmark'
         df=pd.read_csv(io.StringIO(text),comment='#')
         ts={'us':1,'µs':1,'ms':1000,'s':1e6,'ns':.001}[time_unit]
         vs={'kV':1,'V':.001,'MV':1000}[voltage_unit]
@@ -242,6 +304,8 @@ async def upload_trial(file:UploadFile=File(...),run_id:str=Form(...),candidate_
             'voltage_kv':((v-baseline_kv)*measured['polarity']).tolist(),'kind':source_type,
             'note':'Positive magnitude after explicit baseline subtraction; time relative to entered physical onset. Original samples and raw file retained separately.'},
         'compliance':extracted_compliance([measured[k] for k in ['front_us','tail_us','crest_kv']],limits,quality)}
+    result.update(captured_at=captured_at,measurement_instrument=measurement_instrument,operator_notes=operator_notes)
+    result['evidence']=evidence_record({**result,'id':id,'created_at':datetime.now(timezone.utc).isoformat()},run)
     return storage.put('trial',id,result)
 
 @app.get('/api/trials')
@@ -264,6 +328,11 @@ def evaluation_json(id:str):
 @app.post('/api/trials/{id}/calibrate')
 def calibrate(id:str):
     trial=saved(id,'trial'); run=saved(trial['run_id'],'run'); c=selected_candidate(run,trial['candidate_id'])
+    if evidence_record(trial,run)['source_type'] not in ('generated_demo','measured_lab'):
+        raise HTTPException(422,'Only explicitly classified trial waveforms can create a local correction.')
+    raw=(ROOT/trial['raw_path']).resolve()
+    if not raw.is_relative_to(ROOT.resolve()) or not raw.is_file() or hashlib.sha256(raw.read_bytes()).hexdigest()!=trial['raw_sha256']:
+        raise HTTPException(422,'Original trial CSV is missing or changed. Restore its original bytes before calibration.')
     wave=trial.get('waveform') or {}
     quality=assess_waveform(wave.get('time_us'),wave.get('voltage_kv'),trial['measured'],
                             impulse_type=run['inputs']['impulse_type'],rules=run.get('rules',{}))

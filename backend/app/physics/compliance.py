@@ -1,6 +1,6 @@
 from pathlib import Path
 import json
-RULES=json.loads((Path(__file__).resolve().parents[3]/'config/compliance.json').read_text())
+RULES=json.loads((Path(__file__).resolve().parents[3]/'config/compliance.json').read_text(encoding="utf-8"))
 
 def check(impulse_type,test_kv,prediction,uncertainty=None,hardware_ok=True):
     rule=RULES[impulse_type]; p=[prediction[k] for k in ['front_us','tail_us','crest_kv']]

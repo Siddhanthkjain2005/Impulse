@@ -51,6 +51,41 @@ def score(client, trials):
     return client.post('/api/evaluations', json={'trial_ids': [t['id'] for t in trials]})
 
 
+def test_laboratory_readiness_excludes_demo_duplicates_and_calibration_sources(review_store):
+    client,template=review_store; run=setup(template)
+    measured=capture(client,run,1000)
+    capture(client,run,1000,prefix='# Duplicate with changed bytes\n')
+    demo=capture(client,run,1002,source='generated_stress_test')
+    assert client.post(f"/api/trials/{measured['id']}/calibrate").status_code==200
+    result=client.get('/api/laboratory-evidence').json()
+    assert result['measured_captures']==2 and result['excluded_captures']==2
+    assert result['eligible_for_independent_evaluation']==0
+    assert result['by_source']['generated_demo']==1
+    assert not next(r for r in result['captures'] if r['source_id']==demo['id'])['eligible_for_external_accuracy']
+
+
+def test_highest_evidence_requires_matching_intact_evaluation(review_store):
+    client,template=review_store; run=setup(template)
+    trials=[capture(client,run,v) for v in (999,1000,1001)]
+    review=score(client,trials); assert review.status_code==200,review.text
+    judge=client.get(f"/api/runs/{run['id']}/judge").json()
+    assert judge['candidates'][0]['evidence']['level']==5
+    assert judge['candidates'][1]['evidence']['level']<5
+    (main.ROOT/trials[0]['raw_path']).write_text('changed capture')
+    assert client.post(f"/api/trials/{trials[0]['id']}/calibrate").status_code==422
+    refreshed=client.get(f"/api/runs/{run['id']}/judge").json()
+    assert refreshed['candidates'][0]['evidence']['level']<5
+
+
+@pytest.mark.parametrize('tag,expected',[('generated_demo','generated_demo'),('synthetic_benchmark','synthetic_benchmark')])
+def test_embedded_nonlaboratory_provenance_cannot_be_upgraded(review_store,tag,expected):
+    client,template=review_store;run=setup(template)
+    trial=capture(client,run,1000,prefix=f'# source_type={tag}\n')
+    assert trial['evidence']['source_type']==expected
+    assert trial['evidence']['measurement_instrument'] is None
+    assert not trial['evidence']['eligible_for_external_accuracy']
+
+
 def test_saved_predictions_score_new_shots_without_refit_or_changed_records(review_store):
     client, template = review_store; run = setup(template)
     trials = [capture(client, run, crest) for crest in [999, 1000, 1001]]

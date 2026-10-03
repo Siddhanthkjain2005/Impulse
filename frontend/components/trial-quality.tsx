@@ -1,10 +1,11 @@
 'use client';
+import {SourceBadge} from './evidence-pages';
 import {Data,fmt} from '@/lib/api';
 import {Badge} from './workspace';
 
 export default function TrialQuality({trial}:{trial:Data}) {
   const q=trial.quality, lineage=trial.calibration_lineage;
-  return <div className="trial-quality">
+  return <div className="trial-quality"><SourceBadge trial={trial}/>
     <div className="heading-actions"><strong>Waveform identity</strong><Badge tone={trial.provenance?.setup_identity==='matched_export'?'cyan':'neutral'}>{trial.provenance?.setup_identity==='matched_export'?'Export matches setup':'Operator-selected setup'}</Badge></div>
     <p className="panel-note">{trial.provenance?.setup_identity==='matched_export'?'The CSV’s recorded run, candidate and units match this upload.':'Confirm that the uploaded shot used this run’s selected hardware and units.'}</p>
     <div className="heading-actions"><strong>Waveform capture review</strong><Badge tone={!q?'amber':q.calibration_allowed?'cyan':'red'}>{!q?'Not recorded':q.calibration_allowed?'Basic checks passed':'Review capture'}</Badge></div>

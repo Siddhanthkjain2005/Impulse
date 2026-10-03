@@ -48,6 +48,7 @@ class OptimizeRequest(BaseModel):
     uncertainty_pct:float=Field(default=5,ge=0,le=30)
     monte_carlo_samples:int=Field(default=32,ge=8,le=128)
     equipment_reference_kv:float|None=Field(default=None,gt=0,le=10000)
+    test_object_id:str|None=Field(default=None,max_length=100)
     equipment_reference_source:str|None=Field(default=None,max_length=300)
     confirm_reference_mismatch:bool=False
     calibration_id:str|None=None

@@ -6,6 +6,7 @@ from pathlib import Path
 import numpy as np
 
 from .trial_quality import assess_waveform
+from .trial_provenance import classified_source
 from .decision_metrics import captured_limits, nominal_decision, saved_envelope_decision, summarize_decisions
 
 
@@ -53,10 +54,10 @@ def evaluate_trials(trial_ids, lookup, root):
     capture_cache = {}
     evaluation_hashes = {trial['raw_sha256'] for trial in trials}
     for trial in trials:
-        if trial.get('source_type') != 'measured_lab':
+        if classified_source(trial) != 'measured_lab':
             raise ValueError('Synthetic demos cannot enter the laboratory accuracy review.')
-        path = Path(root) / trial['raw_path']
-        if not path.is_file() or hashlib.sha256(path.read_bytes()).hexdigest() != trial['raw_sha256']:
+        path = (Path(root) / trial['raw_path']).resolve()
+        if not path.is_relative_to(Path(root).resolve()) or not path.is_file() or hashlib.sha256(path.read_bytes()).hexdigest() != trial['raw_sha256']:
             raise ValueError(f"Trial {trial['id']} has missing or changed original CSV bytes.")
         capture = normalized_capture(trial, get(trial['run_id'], 'run'))
         if any(trial['raw_sha256'] == previous['raw_sha256'] or same_capture(capture, other)

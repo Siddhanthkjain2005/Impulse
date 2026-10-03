@@ -1,0 +1,9 @@
+{
+  "status": "PASS",
+  "platform": "Windows",
+  "python": "3.12",
+  "backend": "Fresh repository-local .venv, installed requirements.txt with pip.",
+  "frontend": "npm ci from the unchanged package-lock.json.",
+  "source_commit": "cd8add626343f57dc1884f50fa760ecdd6869b72",
+  "scope": "Fresh checkout/dependency environments on the current Windows host, not a second physical machine. Baseline exposed Windows line-ending, text encoding and test portability issues; documented in docs/release_readiness.md."
+}

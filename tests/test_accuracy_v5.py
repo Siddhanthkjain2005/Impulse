@@ -152,7 +152,12 @@ def test_stored_record_recomputes_and_excludes_all_forbidden_ids():
     assert summary['protocol_sha256'] == v2.sha(path / 'protocol.json')
     assert protocol['runner_sha256'] == v2.sha(ROOT / 'backend/app/ml/experiment_v5.py')
     assert protocol['helper_sha256'] == v2.sha(ROOT / 'backend/app/ml/experiment_v2.py')
-    assert protocol['preserved_sha256'] == v5.preserved_artifacts()
+    # Historical protocol included untracked macOS Finder metadata. Preserve every
+    # scientific artifact hash and normalize path separators without editing the protocol.
+    expected = {k: v for k, v in protocol['preserved_sha256'].items() if not k.endswith('/.DS_Store')}
+    actual = {k.replace(chr(92), '/'): v for k, v in v5.preserved_artifacts().items()
+              if not k.replace(chr(92), '/').endswith('/.DS_Store')}
+    assert expected == actual
     frames = v5.load_fit_frames({'fit_ids': protocol['fit_ids'],
                                  'calibration_ids': protocol['excluded_calibration_ids']})
     baseline, candidate, gains = [], [], []
@@ -173,7 +178,9 @@ def test_stored_record_recomputes_and_excludes_all_forbidden_ids():
                           ('Matched Ridge control search', 'ridge_control_prediction')]:
             predictions = np.array([by_id[int(id_)][key] for id_ in frame.ID])
             recomputed = v2.metric_report(frame, predictions, typ)
-            assert recomputed == summary['nested_cv'][typ]['metrics'][name]
+            assert recomputed.keys() == summary['nested_cv'][typ]['metrics'][name].keys()
+            for metric, values in recomputed.items():
+                np.testing.assert_allclose(values, summary['nested_cv'][typ]['metrics'][name][metric], rtol=1e-12, atol=1e-14)
         for row in by_id.values():
             held = {r['id'] for r in by_id.values() if r['fold'] == row['fold']}
             assert len(row['train_ids']) == len(set(row['train_ids'])) == 448

@@ -1,0 +1,125 @@
+{
+  "version": "1.0.0",
+  "recorded_at": "2026-10-03T12:19:41.005817+00:00",
+  "status": "PARTIAL",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "python": "3.12.14",
+  "checks": {
+    "required_files": {
+      "status": "PASS",
+      "missing": []
+    },
+    "frozen_evidence_hashes": {
+      "status": "PASS",
+      "checked_files": 45,
+      "mismatches": [],
+      "baseline_commit": "cd8add626343f57dc1884f50fa760ecdd6869b72"
+    },
+    "configuration_and_registry": {
+      "status": "PASS",
+      "active_model": "residual-competition-v1",
+      "profiles": 3,
+      "scope": "Loads frozen artifacts and compares metadata only; never reruns Hidden Test predictions."
+    },
+    "backend_tests": {
+      "status": "PASS",
+      "exit_code": 0,
+      "command": [
+        "C:\\Users\\shara\\Documents\\Codex\\2026-10-03\\github-plugin-github-openai-curated-remote\\work\\Impulse\\.venv\\Scripts\\python.exe",
+        "-m",
+        "pytest",
+        "--junitxml=artifacts/release_checks/backend-tests.xml"
+      ],
+      "log": "artifacts/release_checks/backend_tests.txt"
+    },
+    "frontend_typecheck": {
+      "status": "PASS",
+      "exit_code": 0,
+      "command": [
+        "C:\\Program Files\\nodejs\\npm.cmd",
+        "run",
+        "typecheck"
+      ],
+      "log": "artifacts/release_checks/frontend_typecheck.txt"
+    },
+    "frontend_build": {
+      "status": "PASS",
+      "exit_code": 0,
+      "command": [
+        "C:\\Program Files\\nodejs\\npm.cmd",
+        "run",
+        "build",
+        "--",
+        "--webpack"
+      ],
+      "log": "artifacts/release_checks/frontend_build.txt"
+    },
+    "static_assets": {
+      "status": "PASS",
+      "pages": 14,
+      "local_assets": [
+        "/_next/static/chunks/305-c35b44a6c763d812.js",
+        "/_next/static/chunks/410-324ca76808000542.js",
+        "/_next/static/chunks/4bd1b696-92152b0f5947070d.js",
+        "/_next/static/chunks/699-8cb61db040cec60b.js",
+        "/_next/static/chunks/756-8be41ffe5602184c.js",
+        "/_next/static/chunks/794-71ff2c1735abeddf.js",
+        "/_next/static/chunks/app/compare/page-605ac92694840fa2.js",
+        "/_next/static/chunks/app/experiment-timeline/page-f0947143e0e53076.js",
+        "/_next/static/chunks/app/hardware-verification/page-f0947143e0e53076.js",
+        "/_next/static/chunks/app/judge/page-96858ecb634f6925.js",
+        "/_next/static/chunks/app/laboratory-evidence/page-f0947143e0e53076.js",
+        "/_next/static/chunks/app/layout-765a68f032eda2d9.js",
+        "/_next/static/chunks/app/model-lab/page-ace8dc2c62140d1a.js",
+        "/_next/static/chunks/app/page-65d67c69550cf2e2.js",
+        "/_next/static/chunks/app/profiles/page-b94cf39509221d4d.js",
+        "/_next/static/chunks/app/runs/page-6816b0f9e27ad859.js",
+        "/_next/static/chunks/app/search-quality/page-f0947143e0e53076.js",
+        "/_next/static/chunks/app/trial-calibrator/page-4a97ccc534840807.js",
+        "/_next/static/chunks/main-app-0d65f5e8c1b736c6.js",
+        "/_next/static/chunks/polyfills-42372ed130431b0a.js",
+        "/_next/static/chunks/webpack-cfa9f38815d940bc.js",
+        "/_next/static/css/b97264fc96ca9dc0.css",
+        "/icon.svg"
+      ],
+      "missing_assets": [],
+      "remote_assets": []
+    },
+    "fresh_database_offline_smoke": {
+      "status": "PASS",
+      "exit_code": 0,
+      "command": [
+        "C:\\Users\\shara\\Documents\\Codex\\2026-10-03\\github-plugin-github-openai-curated-remote\\work\\Impulse\\.venv\\Scripts\\python.exe",
+        "-m",
+        "scripts.release_smoke"
+      ],
+      "log": "artifacts/release_checks/fresh_database_offline_smoke.txt"
+    },
+    "platform_macOS": {
+      "status": "NOT TESTED",
+      "scope": "Local fresh database and application smoke only; see separate build/test/install checks."
+    },
+    "platform_Linux": {
+      "status": "NOT TESTED",
+      "scope": "Local fresh database and application smoke only; see separate build/test/install checks."
+    },
+    "platform_Windows": {
+      "status": "PASS",
+      "scope": "Local fresh database and application smoke only; see separate build/test/install checks."
+    },
+    "physically_disconnected_browser": {
+      "status": "NOT TESTED",
+      "reason": "Network denial in the smoke process is not a physically disconnected laptop rehearsal."
+    },
+    "clean_install": {
+      "status": "PASS",
+      "platform": "Windows",
+      "python": "3.12",
+      "backend": "Fresh repository-local .venv, installed requirements.txt with pip.",
+      "frontend": "npm ci from the unchanged package-lock.json.",
+      "source_commit": "cd8add626343f57dc1884f50fa760ecdd6869b72",
+      "scope": "Fresh checkout/dependency environments on the current Windows host, not a second physical machine. Baseline exposed Windows line-ending, text encoding and test portability issues; documented in docs/release_readiness.md."
+    }
+  },
+  "scope": "Local verification only. No deployment, model fitting or new Hidden Test evaluation."
+}

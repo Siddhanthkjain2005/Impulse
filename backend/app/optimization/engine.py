@@ -13,10 +13,12 @@ from ..physics.compliance import check, RULES
 from ..ml.registry import infer
 from .networks import nearest_networks
 from .verification import verify_settings
+from ..test_objects import validate_request
+from ..evidence import recommendation_evidence
 
 ROOT=Path(__file__).resolve().parents[3]
-PROFILES=[GeneratorProfile.model_validate(p).model_dump() for p in json.loads((ROOT/'config/generator_profiles.json').read_text())]
-WEIGHTS=json.loads((ROOT/'config/optimization.json').read_text())
+PROFILES=[GeneratorProfile.model_validate(p).model_dump() for p in json.loads((ROOT/'config/generator_profiles.json').read_text(encoding="utf-8"))]
+WEIGHTS=json.loads((ROOT/'config/optimization.json').read_text(encoding="utf-8"))
 
 def profile_for(pid):
     for p in PROFILES:
@@ -85,13 +87,14 @@ def final_rank(c):
             -(agreement.get('sampled_both_pass_pct',0)),not c['compliance']['robust_pass'],c['score'])
     return (not c['compliance']['nominal_pass'],not c['compliance']['robust_pass'],c['score'])
 
-def optimize(req:OptimizeRequest,calibration=None):
+def optimize(req:OptimizeRequest,calibration=None,*,_benchmark_networks=None):
     p=profile_for(req.profile_id)
+    reference_review=validate_request(req,p)
+    if reference_review['confirmation_required']:
+        raise ValueError(reference_review['message'])
     if not p['enabled']: raise ValueError('Profile is incomplete. Verified capacitance, energy and inventory are required.')
     if not p['voltage_min_kv']<=req.test_kv<=p['voltage_max_kv']:
         raise ValueError(f"Requested {req.test_kv:g} kV is outside {p['voltage_min_kv']:g}–{p['voltage_max_kv']:g} kV for this profile. No recommendation generated.")
-    if req.equipment_reference_kv and abs(req.test_kv/req.equipment_reference_kv-1)>.03 and not req.confirm_reference_mismatch:
-        raise ValueError('Entered voltage differs from the supplied equipment reference by more than 3%. Confirm the applicable reference before proceeding. The requested voltage has not been changed.')
     front_stock,tail_stock,inventory_source=stock_for(req,p)
     if not any(front_stock.values()) or not any(tail_stock.values()):
         raise ValueError('No constructible network: front or tail inventory is empty.')
@@ -120,9 +123,10 @@ def optimize(req:OptimizeRequest,calibration=None):
                 try:
                     rt_target=math.exp(brentq(lambda lr:physics(req,p,n,charge,rf_target,math.exp(lr))['tail_us']-rule['tail_target_us'],math.log(max(rt_target*.3,.01)),math.log(rt_target*3),xtol=1e-5))
                 except ValueError: pass
-        fronts=nearest_networks(front_stock,rf_target,req.max_components_per_network,5)
-        tails=nearest_networks(tail_stock,rt_target,req.max_components_per_network,5)
-        if req.require_model_agreement:
+        provider=_benchmark_networks or nearest_networks
+        fronts=provider(front_stock,rf_target,req.max_components_per_network,5)
+        tails=provider(tail_stock,rt_target,req.max_components_per_network,5)
+        if req.require_model_agreement and _benchmark_networks is None:
             # Broaden the shortlist around both the reference front and shorter
             # circuit front; every emitted value still comes from counted stock.
             def neighborhood(stock,target,factors):
@@ -182,7 +186,7 @@ def optimize(req:OptimizeRequest,calibration=None):
         if req.require_model_agreement:c['model_agreement']=agreement_for(c)
         score_candidate(c)
     candidates.sort(key=score_candidate)
-    selected=candidates[:20 if req.require_model_agreement else 10]
+    selected=candidates[:] if _benchmark_networks is not None else candidates[:20 if req.require_model_agreement else 10]
     calibrated=[c for c in candidates if c.get('calibration')]
     # Always compute the corrected original setting for the trial workflow, even
     # if a different setting is ranked above it after feedback.
@@ -192,6 +196,8 @@ def optimize(req:OptimizeRequest,calibration=None):
         robustness(req,p,c,mode,calibration)
         score_candidate(c)
     selected.sort(key=final_rank)
+    benchmark_ranking=[{'settings':c['settings'],'score':c['score'],'accuracy_cost':c['accuracy_cost'],
+                        'setup_component_count':c['setup_component_count'], 'rank_key':final_rank(c)} for c in selected] if _benchmark_networks is not None else None
     selected=selected[:5]
     calibration_review=None
     if calibration:
@@ -230,6 +236,7 @@ def optimize(req:OptimizeRequest,calibration=None):
             circuit=physics(req,p,s['stages'],s['charge_kv_stage'],s['front_r_stage'],s['tail_r_stage'],True)
             c['waveform']=circuit['waveform']; c['physics_waveform']=circuit['waveform']; c['circuit_crosscheck']=None
         c['verification']=verify_settings(req,p,c,mode,calibration)
+        c['evidence']=recommendation_evidence(c)
         c['pareto_optimal']=not any(other is not c and other['accuracy_cost']<=c['accuracy_cost'] and other['setup_component_count']<=c['setup_component_count'] and other['settings']['stage_utilization']<=s['stage_utilization'] and (other['accuracy_cost']<c['accuracy_cost'] or other['setup_component_count']<c['setup_component_count']) for other in selected)
     warnings=['Decision support only. Engineer verification and laboratory procedures remain required.',
               'All trained models use supplied synthetic data. No measured laboratory validation has been completed.']
@@ -248,7 +255,8 @@ def optimize(req:OptimizeRequest,calibration=None):
             'search_kind':'Bounded stock network search across five front and four tail target neighborhoods; raw workbook/circuit crest balancing; 20-candidate scenario shortlist, not global optimization.' if req.require_model_agreement else 'Bounded series DP + four-part series/parallel trees (six parts for small catalogs) and identical parallel banks; nearest five front/tail choices per stage, not exhaustive global optimization.'},
         'inventory_provenance':inventory_source,'warnings':warnings,'source_type':'model_prediction',
         'ranking_config':{**WEIGHTS,'ranking_order':['Both nominal model checks','Sampled agreement among shortlisted candidates','Reference interval containment','Weighted objective using worse model deviations']} if req.require_model_agreement else WEIGHTS,
-        'calibration_review':calibration_review}
+        'calibration_review':calibration_review,'test_object_review':reference_review,
+        **({'benchmark_ranking':benchmark_ranking} if benchmark_ranking is not None else {})}
 
 def calibration_matches(cal,req,c):
     scope=cal['scope']; s=c['settings']

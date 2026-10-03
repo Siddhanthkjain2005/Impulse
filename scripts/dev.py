@@ -11,6 +11,6 @@ os.environ.setdefault('OMP_NUM_THREADS','1')
 if not (ROOT/'frontend/out/index.html').exists():
     raise SystemExit('Frontend export missing. Run make build first (Node.js 22+ required).')
 if not (ROOT/'artifacts/models/residual_models.joblib').exists():
-    raise SystemExit('Frozen models missing. Run make train first.')
+    raise SystemExit('Frozen V1 model missing. Restore artifacts/models from the repository. Do not retrain on the exposed Hidden Test.')
 print('ImpulseTwin AI: http://127.0.0.1:8000  |  Ctrl+C to stop',flush=True)
 uvicorn.run('backend.app.main:app',host='127.0.0.1',port=8000,log_level='warning')
