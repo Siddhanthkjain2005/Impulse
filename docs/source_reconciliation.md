@@ -2,6 +2,8 @@
 
 Reviewed 30 September 2026. This is the implementation gate. The supplied files are retained unchanged in `data/source`; every nonempty workbook cell, cached value and formula is preserved in `artifacts/reference_workbook_snapshot.json`. Every source sheet has a CSV export. These are the canonical evidence for the exhaustive workbook cell-level inventory.
 
+Clarified 6 October 2026: the organizer clarification supplied by the user makes the problem-statement generator the primary engineering reference. The configured two-stage minimum and 50 kV minimum operating voltage are application assumptions; neither is established as a physical operating minimum. This corrects the earlier interpretation of the minimum-stage text. Stock counts and component pulse/mounting ratings remain unknown. Measured waveforms are not a prerequisite for the current challenge solution.
+
 ## Source authority and profiles
 
 The PDF is the challenge/hardware specification. The workbook is a reproducible mathematical reference and synthetic benchmark. The briefing supplies operational expectations, not a replacement nameplate. Their parameters are not interchangeable.
@@ -9,7 +11,7 @@ The PDF is the challenge/hardware specification. The workbook is a reproducible 
 | Parameter | PDF profile (p4 annotated figure) | Workbook profile (Hybrid Calculator) | Briefing profile |
 |---|---|---|---|
 | Overall voltage | 2400 kV | 3000 kV derived from stage rating | approximately 3 MV (4:54, 15:50) |
-| Stages | 2–12; minimum from p4 text | 15 maximum, application minimum 2 | 15 (14:53, 15:43) |
+| Stages | 12 maximum; application minimum 2, physical minimum unverified | 15 maximum, application minimum 2 | 15 (14:53, 15:43) |
 | Stage voltage | 200 kV | B14: 200 kV | 200 kV; two 100 kV capacitors per stage |
 | Stage capacitance | 0.125 µF | B15: 3 µF | unknown |
 | Energy | 2.5 kJ/stage, 30 kJ total | 60 kJ/stage, 900 kJ total derived at 200 kV; mathematical reference only | verbal 2.5 kJ tentative, no verified total |

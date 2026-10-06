@@ -166,6 +166,9 @@ def run_simulate(body:SimulationRequest):
         req=body.inputs; p=profile_for(req.profile_id); s=body.settings.model_dump()
         n=s['stages']; q=s['charge_kv_stage']
         if not p['enabled'] or not p['min_stages']<=n<=p['max_stages'] or not 0<q<=p['stage_kv']:raise ValueError('Settings exceed profile ratings.')
+        stage_energy_kj=.5*p['stage_c_uf']*1e-6*(q*1000)**2/1000
+        if stage_energy_kj>p['energy_stage_kj'] or n*stage_energy_kj>p['energy_total_kj']:
+            raise ValueError('Settings exceed the supplied stage or total energy rating.')
         return physics(req,p,n,q,s['front_r_stage'],s['tail_r_stage'],True)
     except (KeyError,TypeError,ValueError) as e:raise HTTPException(422,str(e))
 

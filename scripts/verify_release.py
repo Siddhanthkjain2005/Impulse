@@ -91,6 +91,8 @@ def run_checks(full=True, root=ROOT):
     check('frozen_evidence_hashes',lambda:integrity(root))
     check('configuration_and_registry',lambda:configuration(root))
     env={**os.environ,'PYTHONUTF8':'1','NEXT_TELEMETRY_DISABLED':'1','LOKY_MAX_CPU_COUNT':'4'}
+    for variable in ('OMP_NUM_THREADS','OPENBLAS_NUM_THREADS','MKL_NUM_THREADS','NUMEXPR_NUM_THREADS'):
+        env.setdefault(variable,'1')
     report_dir=root/'artifacts/release_checks'; report_dir.mkdir(exist_ok=True)
     def command(name,args,cwd=root,timeout=600):
         try:
@@ -124,6 +126,7 @@ def run_checks(full=True, root=ROOT):
     status='FAIL' if any(c['status']=='FAIL' for c in checks.values()) else 'PARTIAL' if any(c['status']=='NOT TESTED' for c in checks.values()) else 'PASS'
     result={'version':'1.0.0','recorded_at':datetime.now(timezone.utc).isoformat(),'status':status,
             'platform':platform.platform(),'python':platform.python_version(),'checks':checks,
+            'thread_environment':{key:env.get(key) for key in ('OMP_NUM_THREADS','OPENBLAS_NUM_THREADS','MKL_NUM_THREADS','NUMEXPR_NUM_THREADS','LOKY_MAX_CPU_COUNT')},
             'scope':'Local verification only. No deployment, model fitting or new Hidden Test evaluation.'}
     (root/'artifacts/release_readiness.json').write_text(json.dumps(result,indent=2),encoding='utf-8')
     (root/'artifacts/release_readiness.md').write_text('# Release readiness\n\n'+status+'\n\n'+ '\n'.join(f"- **{name}: {c['status']}** — {c.get('reason',c.get('scope',c.get('error','See JSON and retained log.')))}" for name,c in checks.items())+'\n',encoding='utf-8')

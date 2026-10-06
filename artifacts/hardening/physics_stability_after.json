@@ -1,0 +1,949 @@
+{
+  "schema_version": 1,
+  "solver_version": "lumped RLC Marx equivalent v2.1",
+  "source": "C:\\Users\\shara\\Documents\\Codex\\2026-10-03\\github-plugin-github-openai-curated-remote\\work\\Impulse\\backend\\app\\physics\\circuit.py",
+  "numpy_version": "2.1.3",
+  "scope": "Deterministic generated circuit inputs for numerical regression; not training data, independent measured evidence, a search-quality benchmark, or a statistical reliability estimate.",
+  "protocols": [
+    {
+      "name": "ordinary_extremes",
+      "fixed_inputs": {
+        "stages": 11,
+        "charge_kv_stage": 180,
+        "stage_c_uf": 0.125,
+        "efficiency": 0.83,
+        "impulse_type": "Lightning",
+        "include_waveform": false
+      },
+      "varying_fields": [
+        "total_c_pf",
+        "l_uh",
+        "front_r_stage",
+        "tail_r_stage"
+      ],
+      "varying_values": [
+        [
+          0.1,
+          1,
+          100,
+          1500,
+          100000,
+          300000
+        ],
+        [
+          0,
+          1e-08,
+          1e-07,
+          0.0001,
+          0.01,
+          12,
+          10000
+        ],
+        [
+          0.01,
+          30,
+          465,
+          3700,
+          1000000.0
+        ],
+        [
+          0.01,
+          520,
+          22000,
+          100000000.0
+        ]
+      ],
+      "case_count": 840,
+      "resolved_case_count": 805,
+      "diagnostic_failure_count": 35,
+      "maximum_energy_ratio_among_resolved_cases": 1.0000000000000009,
+      "diagnostic_failures": [
+        {
+          "inputs": {
+            "stages": 11,
+            "charge_kv_stage": 180,
+            "stage_c_uf": 0.125,
+            "efficiency": 0.83,
+            "impulse_type": "Lightning",
+            "include_waveform": false,
+            "total_c_pf": 0.1,
+            "l_uh": 1e-07,
+            "front_r_stage": 0.01,
+            "tail_r_stage": 22000
+          },
+          "error_type": "ValueError",
+          "message": "Could not resolve a continuous interior circuit crest; no waveform result returned."
+        },
+        {
+          "inputs": {
+            "stages": 11,
+            "charge_kv_stage": 180,
+            "stage_c_uf": 0.125,
+            "efficiency": 0.83,
+            "impulse_type": "Lightning",
+            "include_waveform": false,
+            "total_c_pf": 0.1,
+            "l_uh": 1e-07,
+            "front_r_stage": 0.01,
+            "tail_r_stage": 100000000.0
+          },
+          "error_type": "ValueError",
+          "message": "Could not resolve a continuous interior circuit crest; no waveform result returned."
+        },
+        {
+          "inputs": {
+            "stages": 11,
+            "charge_kv_stage": 180,
+            "stage_c_uf": 0.125,
+            "efficiency": 0.83,
+            "impulse_type": "Lightning",
+            "include_waveform": false,
+            "total_c_pf": 1,
+            "l_uh": 1e-07,
+            "front_r_stage": 0.01,
+            "tail_r_stage": 22000
+          },
+          "error_type": "ValueError",
+          "message": "Could not resolve a continuous interior circuit crest; no waveform result returned."
+        },
+        {
+          "inputs": {
+            "stages": 11,
+            "charge_kv_stage": 180,
+            "stage_c_uf": 0.125,
+            "efficiency": 0.83,
+            "impulse_type": "Lightning",
+            "include_waveform": false,
+            "total_c_pf": 1,
+            "l_uh": 1e-07,
+            "front_r_stage": 0.01,
+            "tail_r_stage": 100000000.0
+          },
+          "error_type": "ValueError",
+          "message": "Could not resolve a continuous interior circuit crest; no waveform result returned."
+        },
+        {
+          "inputs": {
+            "stages": 11,
+            "charge_kv_stage": 180,
+            "stage_c_uf": 0.125,
+            "efficiency": 0.83,
+            "impulse_type": "Lightning",
+            "include_waveform": false,
+            "total_c_pf": 100,
+            "l_uh": 1e-07,
+            "front_r_stage": 1000000.0,
+            "tail_r_stage": 0.01
+          },
+          "error_type": "ValueError",
+          "message": "Could not resolve a continuous interior circuit crest; no waveform result returned."
+        },
+        {
+          "inputs": {
+            "stages": 11,
+            "charge_kv_stage": 180,
+            "stage_c_uf": 0.125,
+            "efficiency": 0.83,
+            "impulse_type": "Lightning",
+            "include_waveform": false,
+            "total_c_pf": 100,
+            "l_uh": 0.0001,
+            "front_r_stage": 1000000.0,
+            "tail_r_stage": 0.01
+          },
+          "error_type": "ValueError",
+          "message": "Could not resolve a continuous interior circuit crest; no waveform result returned."
+        },
+        {
+          "inputs": {
+            "stages": 11,
+            "charge_kv_stage": 180,
+            "stage_c_uf": 0.125,
+            "efficiency": 0.83,
+            "impulse_type": "Lightning",
+            "include_waveform": false,
+            "total_c_pf": 1500,
+            "l_uh": 1e-07,
+            "front_r_stage": 3700,
+            "tail_r_stage": 0.01
+          },
+          "error_type": "ValueError",
+          "message": "Could not resolve a continuous interior circuit crest; no waveform result returned."
+        },
+        {
+          "inputs": {
+            "stages": 11,
+            "charge_kv_stage": 180,
+            "stage_c_uf": 0.125,
+            "efficiency": 0.83,
+            "impulse_type": "Lightning",
+            "include_waveform": false,
+            "total_c_pf": 1500,
+            "l_uh": 1e-07,
+            "front_r_stage": 1000000.0,
+            "tail_r_stage": 0.01
+          },
+          "error_type": "ValueError",
+          "message": "Could not resolve a continuous interior circuit crest; no waveform result returned."
+        },
+        {
+          "inputs": {
+            "stages": 11,
+            "charge_kv_stage": 180,
+            "stage_c_uf": 0.125,
+            "efficiency": 0.83,
+            "impulse_type": "Lightning",
+            "include_waveform": false,
+            "total_c_pf": 1500,
+            "l_uh": 0.0001,
+            "front_r_stage": 3700,
+            "tail_r_stage": 0.01
+          },
+          "error_type": "ValueError",
+          "message": "Could not resolve a continuous interior circuit crest; no waveform result returned."
+        },
+        {
+          "inputs": {
+            "stages": 11,
+            "charge_kv_stage": 180,
+            "stage_c_uf": 0.125,
+            "efficiency": 0.83,
+            "impulse_type": "Lightning",
+            "include_waveform": false,
+            "total_c_pf": 1500,
+            "l_uh": 0.0001,
+            "front_r_stage": 1000000.0,
+            "tail_r_stage": 0.01
+          },
+          "error_type": "ValueError",
+          "message": "Could not resolve a continuous interior circuit crest; no waveform result returned."
+        },
+        {
+          "inputs": {
+            "stages": 11,
+            "charge_kv_stage": 180,
+            "stage_c_uf": 0.125,
+            "efficiency": 0.83,
+            "impulse_type": "Lightning",
+            "include_waveform": false,
+            "total_c_pf": 1500,
+            "l_uh": 0.01,
+            "front_r_stage": 3700,
+            "tail_r_stage": 0.01
+          },
+          "error_type": "ValueError",
+          "message": "Could not resolve a continuous interior circuit crest; no waveform result returned."
+        },
+        {
+          "inputs": {
+            "stages": 11,
+            "charge_kv_stage": 180,
+            "stage_c_uf": 0.125,
+            "efficiency": 0.83,
+            "impulse_type": "Lightning",
+            "include_waveform": false,
+            "total_c_pf": 1500,
+            "l_uh": 12,
+            "front_r_stage": 3700,
+            "tail_r_stage": 0.01
+          },
+          "error_type": "ValueError",
+          "message": "Could not resolve a continuous interior circuit crest; no waveform result returned."
+        },
+        {
+          "inputs": {
+            "stages": 11,
+            "charge_kv_stage": 180,
+            "stage_c_uf": 0.125,
+            "efficiency": 0.83,
+            "impulse_type": "Lightning",
+            "include_waveform": false,
+            "total_c_pf": 100000,
+            "l_uh": 1e-07,
+            "front_r_stage": 30,
+            "tail_r_stage": 0.01
+          },
+          "error_type": "ValueError",
+          "message": "Could not resolve a continuous interior circuit crest; no waveform result returned."
+        },
+        {
+          "inputs": {
+            "stages": 11,
+            "charge_kv_stage": 180,
+            "stage_c_uf": 0.125,
+            "efficiency": 0.83,
+            "impulse_type": "Lightning",
+            "include_waveform": false,
+            "total_c_pf": 100000,
+            "l_uh": 1e-07,
+            "front_r_stage": 3700,
+            "tail_r_stage": 0.01
+          },
+          "error_type": "ValueError",
+          "message": "Could not resolve a continuous interior circuit crest; no waveform result returned."
+        },
+        {
+          "inputs": {
+            "stages": 11,
+            "charge_kv_stage": 180,
+            "stage_c_uf": 0.125,
+            "efficiency": 0.83,
+            "impulse_type": "Lightning",
+            "include_waveform": false,
+            "total_c_pf": 100000,
+            "l_uh": 1e-07,
+            "front_r_stage": 1000000.0,
+            "tail_r_stage": 0.01
+          },
+          "error_type": "ValueError",
+          "message": "Could not resolve a continuous interior circuit crest; no waveform result returned."
+        },
+        {
+          "inputs": {
+            "stages": 11,
+            "charge_kv_stage": 180,
+            "stage_c_uf": 0.125,
+            "efficiency": 0.83,
+            "impulse_type": "Lightning",
+            "include_waveform": false,
+            "total_c_pf": 100000,
+            "l_uh": 1e-07,
+            "front_r_stage": 1000000.0,
+            "tail_r_stage": 520
+          },
+          "error_type": "ValueError",
+          "message": "Could not resolve a continuous interior circuit crest; no waveform result returned."
+        },
+        {
+          "inputs": {
+            "stages": 11,
+            "charge_kv_stage": 180,
+            "stage_c_uf": 0.125,
+            "efficiency": 0.83,
+            "impulse_type": "Lightning",
+            "include_waveform": false,
+            "total_c_pf": 100000,
+            "l_uh": 0.0001,
+            "front_r_stage": 30,
+            "tail_r_stage": 0.01
+          },
+          "error_type": "ValueError",
+          "message": "Could not resolve a continuous interior circuit crest; no waveform result returned."
+        },
+        {
+          "inputs": {
+            "stages": 11,
+            "charge_kv_stage": 180,
+            "stage_c_uf": 0.125,
+            "efficiency": 0.83,
+            "impulse_type": "Lightning",
+            "include_waveform": false,
+            "total_c_pf": 100000,
+            "l_uh": 0.0001,
+            "front_r_stage": 465,
+            "tail_r_stage": 0.01
+          },
+          "error_type": "ValueError",
+          "message": "Could not resolve a continuous interior circuit crest; no waveform result returned."
+        },
+        {
+          "inputs": {
+            "stages": 11,
+            "charge_kv_stage": 180,
+            "stage_c_uf": 0.125,
+            "efficiency": 0.83,
+            "impulse_type": "Lightning",
+            "include_waveform": false,
+            "total_c_pf": 100000,
+            "l_uh": 0.01,
+            "front_r_stage": 30,
+            "tail_r_stage": 0.01
+          },
+          "error_type": "ValueError",
+          "message": "Could not resolve a continuous interior circuit crest; no waveform result returned."
+        },
+        {
+          "inputs": {
+            "stages": 11,
+            "charge_kv_stage": 180,
+            "stage_c_uf": 0.125,
+            "efficiency": 0.83,
+            "impulse_type": "Lightning",
+            "include_waveform": false,
+            "total_c_pf": 100000,
+            "l_uh": 0.01,
+            "front_r_stage": 1000000.0,
+            "tail_r_stage": 0.01
+          },
+          "error_type": "ValueError",
+          "message": "Could not resolve a continuous interior circuit crest; no waveform result returned."
+        },
+        {
+          "inputs": {
+            "stages": 11,
+            "charge_kv_stage": 180,
+            "stage_c_uf": 0.125,
+            "efficiency": 0.83,
+            "impulse_type": "Lightning",
+            "include_waveform": false,
+            "total_c_pf": 100000,
+            "l_uh": 12,
+            "front_r_stage": 3700,
+            "tail_r_stage": 0.01
+          },
+          "error_type": "ValueError",
+          "message": "Could not resolve a continuous interior circuit crest; no waveform result returned."
+        },
+        {
+          "inputs": {
+            "stages": 11,
+            "charge_kv_stage": 180,
+            "stage_c_uf": 0.125,
+            "efficiency": 0.83,
+            "impulse_type": "Lightning",
+            "include_waveform": false,
+            "total_c_pf": 100000,
+            "l_uh": 10000,
+            "front_r_stage": 1000000.0,
+            "tail_r_stage": 0.01
+          },
+          "error_type": "ValueError",
+          "message": "Could not resolve a continuous interior circuit crest; no waveform result returned."
+        },
+        {
+          "inputs": {
+            "stages": 11,
+            "charge_kv_stage": 180,
+            "stage_c_uf": 0.125,
+            "efficiency": 0.83,
+            "impulse_type": "Lightning",
+            "include_waveform": false,
+            "total_c_pf": 100000,
+            "l_uh": 10000,
+            "front_r_stage": 1000000.0,
+            "tail_r_stage": 520
+          },
+          "error_type": "ValueError",
+          "message": "Could not resolve a continuous interior circuit crest; no waveform result returned."
+        },
+        {
+          "inputs": {
+            "stages": 11,
+            "charge_kv_stage": 180,
+            "stage_c_uf": 0.125,
+            "efficiency": 0.83,
+            "impulse_type": "Lightning",
+            "include_waveform": false,
+            "total_c_pf": 300000,
+            "l_uh": 1e-07,
+            "front_r_stage": 30,
+            "tail_r_stage": 0.01
+          },
+          "error_type": "ValueError",
+          "message": "Could not resolve a continuous interior circuit crest; no waveform result returned."
+        },
+        {
+          "inputs": {
+            "stages": 11,
+            "charge_kv_stage": 180,
+            "stage_c_uf": 0.125,
+            "efficiency": 0.83,
+            "impulse_type": "Lightning",
+            "include_waveform": false,
+            "total_c_pf": 300000,
+            "l_uh": 1e-07,
+            "front_r_stage": 465,
+            "tail_r_stage": 0.01
+          },
+          "error_type": "ValueError",
+          "message": "Could not resolve a continuous interior circuit crest; no waveform result returned."
+        },
+        {
+          "inputs": {
+            "stages": 11,
+            "charge_kv_stage": 180,
+            "stage_c_uf": 0.125,
+            "efficiency": 0.83,
+            "impulse_type": "Lightning",
+            "include_waveform": false,
+            "total_c_pf": 300000,
+            "l_uh": 1e-07,
+            "front_r_stage": 1000000.0,
+            "tail_r_stage": 0.01
+          },
+          "error_type": "ValueError",
+          "message": "Could not resolve a continuous interior circuit crest; no waveform result returned."
+        },
+        {
+          "inputs": {
+            "stages": 11,
+            "charge_kv_stage": 180,
+            "stage_c_uf": 0.125,
+            "efficiency": 0.83,
+            "impulse_type": "Lightning",
+            "include_waveform": false,
+            "total_c_pf": 300000,
+            "l_uh": 1e-07,
+            "front_r_stage": 1000000.0,
+            "tail_r_stage": 520
+          },
+          "error_type": "ValueError",
+          "message": "Could not resolve a continuous interior circuit crest; no waveform result returned."
+        },
+        {
+          "inputs": {
+            "stages": 11,
+            "charge_kv_stage": 180,
+            "stage_c_uf": 0.125,
+            "efficiency": 0.83,
+            "impulse_type": "Lightning",
+            "include_waveform": false,
+            "total_c_pf": 300000,
+            "l_uh": 0.0001,
+            "front_r_stage": 30,
+            "tail_r_stage": 0.01
+          },
+          "error_type": "ValueError",
+          "message": "Could not resolve a continuous interior circuit crest; no waveform result returned."
+        },
+        {
+          "inputs": {
+            "stages": 11,
+            "charge_kv_stage": 180,
+            "stage_c_uf": 0.125,
+            "efficiency": 0.83,
+            "impulse_type": "Lightning",
+            "include_waveform": false,
+            "total_c_pf": 300000,
+            "l_uh": 0.0001,
+            "front_r_stage": 465,
+            "tail_r_stage": 0.01
+          },
+          "error_type": "ValueError",
+          "message": "Could not resolve a continuous interior circuit crest; no waveform result returned."
+        },
+        {
+          "inputs": {
+            "stages": 11,
+            "charge_kv_stage": 180,
+            "stage_c_uf": 0.125,
+            "efficiency": 0.83,
+            "impulse_type": "Lightning",
+            "include_waveform": false,
+            "total_c_pf": 300000,
+            "l_uh": 0.0001,
+            "front_r_stage": 1000000.0,
+            "tail_r_stage": 520
+          },
+          "error_type": "ValueError",
+          "message": "Could not resolve a continuous interior circuit crest; no waveform result returned."
+        },
+        {
+          "inputs": {
+            "stages": 11,
+            "charge_kv_stage": 180,
+            "stage_c_uf": 0.125,
+            "efficiency": 0.83,
+            "impulse_type": "Lightning",
+            "include_waveform": false,
+            "total_c_pf": 300000,
+            "l_uh": 0.01,
+            "front_r_stage": 3700,
+            "tail_r_stage": 0.01
+          },
+          "error_type": "ValueError",
+          "message": "Could not resolve a continuous interior circuit crest; no waveform result returned."
+        },
+        {
+          "inputs": {
+            "stages": 11,
+            "charge_kv_stage": 180,
+            "stage_c_uf": 0.125,
+            "efficiency": 0.83,
+            "impulse_type": "Lightning",
+            "include_waveform": false,
+            "total_c_pf": 300000,
+            "l_uh": 12,
+            "front_r_stage": 465,
+            "tail_r_stage": 0.01
+          },
+          "error_type": "ValueError",
+          "message": "Could not resolve a continuous interior circuit crest; no waveform result returned."
+        },
+        {
+          "inputs": {
+            "stages": 11,
+            "charge_kv_stage": 180,
+            "stage_c_uf": 0.125,
+            "efficiency": 0.83,
+            "impulse_type": "Lightning",
+            "include_waveform": false,
+            "total_c_pf": 300000,
+            "l_uh": 10000,
+            "front_r_stage": 3700,
+            "tail_r_stage": 0.01
+          },
+          "error_type": "ValueError",
+          "message": "Could not resolve a continuous interior circuit crest; no waveform result returned."
+        },
+        {
+          "inputs": {
+            "stages": 11,
+            "charge_kv_stage": 180,
+            "stage_c_uf": 0.125,
+            "efficiency": 0.83,
+            "impulse_type": "Lightning",
+            "include_waveform": false,
+            "total_c_pf": 300000,
+            "l_uh": 10000,
+            "front_r_stage": 1000000.0,
+            "tail_r_stage": 0.01
+          },
+          "error_type": "ValueError",
+          "message": "Could not resolve a continuous interior circuit crest; no waveform result returned."
+        },
+        {
+          "inputs": {
+            "stages": 11,
+            "charge_kv_stage": 180,
+            "stage_c_uf": 0.125,
+            "efficiency": 0.83,
+            "impulse_type": "Lightning",
+            "include_waveform": false,
+            "total_c_pf": 300000,
+            "l_uh": 10000,
+            "front_r_stage": 1000000.0,
+            "tail_r_stage": 520
+          },
+          "error_type": "ValueError",
+          "message": "Could not resolve a continuous interior circuit crest; no waveform result returned."
+        }
+      ]
+    },
+    {
+      "name": "extreme_stiffness",
+      "fixed_inputs": {
+        "charge_kv_stage": 180,
+        "efficiency": 0.83,
+        "impulse_type": "Switching",
+        "include_waveform": false
+      },
+      "varying_fields": [
+        "stages",
+        "stage_c_uf",
+        "total_c_pf",
+        "l_uh",
+        "front_r_stage",
+        "tail_r_stage"
+      ],
+      "varying_values": [
+        [
+          2,
+          12,
+          30
+        ],
+        [
+          0.125,
+          3
+        ],
+        [
+          0.001,
+          100,
+          300000
+        ],
+        [
+          1.01e-08,
+          1e-06,
+          1,
+          10000
+        ],
+        [
+          30,
+          100000000.0
+        ],
+        [
+          520,
+          100000000.0
+        ]
+      ],
+      "case_count": 288,
+      "resolved_case_count": 271,
+      "diagnostic_failure_count": 17,
+      "maximum_energy_ratio_among_resolved_cases": 1.000000000000001,
+      "diagnostic_failures": [
+        {
+          "inputs": {
+            "charge_kv_stage": 180,
+            "efficiency": 0.83,
+            "impulse_type": "Switching",
+            "include_waveform": false,
+            "stages": 2,
+            "stage_c_uf": 0.125,
+            "total_c_pf": 0.001,
+            "l_uh": 1.01e-08,
+            "front_r_stage": 30,
+            "tail_r_stage": 100000000.0
+          },
+          "error_type": "ValueError",
+          "message": "Could not resolve finite stable decay modes of the passive equivalent circuit. Review extreme circuit ratios; no waveform result returned."
+        },
+        {
+          "inputs": {
+            "charge_kv_stage": 180,
+            "efficiency": 0.83,
+            "impulse_type": "Switching",
+            "include_waveform": false,
+            "stages": 2,
+            "stage_c_uf": 0.125,
+            "total_c_pf": 0.001,
+            "l_uh": 1e-06,
+            "front_r_stage": 30,
+            "tail_r_stage": 100000000.0
+          },
+          "error_type": "ValueError",
+          "message": "Could not resolve a continuous interior circuit crest; no waveform result returned."
+        },
+        {
+          "inputs": {
+            "charge_kv_stage": 180,
+            "efficiency": 0.83,
+            "impulse_type": "Switching",
+            "include_waveform": false,
+            "stages": 2,
+            "stage_c_uf": 0.125,
+            "total_c_pf": 300000,
+            "l_uh": 1e-06,
+            "front_r_stage": 100000000.0,
+            "tail_r_stage": 520
+          },
+          "error_type": "ValueError",
+          "message": "Could not resolve a continuous interior circuit crest; no waveform result returned."
+        },
+        {
+          "inputs": {
+            "charge_kv_stage": 180,
+            "efficiency": 0.83,
+            "impulse_type": "Switching",
+            "include_waveform": false,
+            "stages": 2,
+            "stage_c_uf": 0.125,
+            "total_c_pf": 300000,
+            "l_uh": 1,
+            "front_r_stage": 100000000.0,
+            "tail_r_stage": 520
+          },
+          "error_type": "ValueError",
+          "message": "Could not resolve a continuous interior circuit crest; no waveform result returned."
+        },
+        {
+          "inputs": {
+            "charge_kv_stage": 180,
+            "efficiency": 0.83,
+            "impulse_type": "Switching",
+            "include_waveform": false,
+            "stages": 2,
+            "stage_c_uf": 3,
+            "total_c_pf": 0.001,
+            "l_uh": 1e-06,
+            "front_r_stage": 30,
+            "tail_r_stage": 100000000.0
+          },
+          "error_type": "ValueError",
+          "message": "Could not resolve a continuous interior circuit crest; no waveform result returned."
+        },
+        {
+          "inputs": {
+            "charge_kv_stage": 180,
+            "efficiency": 0.83,
+            "impulse_type": "Switching",
+            "include_waveform": false,
+            "stages": 2,
+            "stage_c_uf": 3,
+            "total_c_pf": 300000,
+            "l_uh": 1.01e-08,
+            "front_r_stage": 100000000.0,
+            "tail_r_stage": 520
+          },
+          "error_type": "ValueError",
+          "message": "Could not resolve a continuous interior circuit crest; no waveform result returned."
+        },
+        {
+          "inputs": {
+            "charge_kv_stage": 180,
+            "efficiency": 0.83,
+            "impulse_type": "Switching",
+            "include_waveform": false,
+            "stages": 2,
+            "stage_c_uf": 3,
+            "total_c_pf": 300000,
+            "l_uh": 1e-06,
+            "front_r_stage": 100000000.0,
+            "tail_r_stage": 520
+          },
+          "error_type": "ValueError",
+          "message": "Could not resolve a continuous interior circuit crest; no waveform result returned."
+        },
+        {
+          "inputs": {
+            "charge_kv_stage": 180,
+            "efficiency": 0.83,
+            "impulse_type": "Switching",
+            "include_waveform": false,
+            "stages": 2,
+            "stage_c_uf": 3,
+            "total_c_pf": 300000,
+            "l_uh": 1,
+            "front_r_stage": 100000000.0,
+            "tail_r_stage": 520
+          },
+          "error_type": "ValueError",
+          "message": "Could not resolve a continuous interior circuit crest; no waveform result returned."
+        },
+        {
+          "inputs": {
+            "charge_kv_stage": 180,
+            "efficiency": 0.83,
+            "impulse_type": "Switching",
+            "include_waveform": false,
+            "stages": 12,
+            "stage_c_uf": 0.125,
+            "total_c_pf": 300000,
+            "l_uh": 1e-06,
+            "front_r_stage": 100000000.0,
+            "tail_r_stage": 520
+          },
+          "error_type": "ValueError",
+          "message": "Could not resolve a continuous interior circuit crest; no waveform result returned."
+        },
+        {
+          "inputs": {
+            "charge_kv_stage": 180,
+            "efficiency": 0.83,
+            "impulse_type": "Switching",
+            "include_waveform": false,
+            "stages": 12,
+            "stage_c_uf": 0.125,
+            "total_c_pf": 300000,
+            "l_uh": 10000,
+            "front_r_stage": 100000000.0,
+            "tail_r_stage": 520
+          },
+          "error_type": "ValueError",
+          "message": "Could not resolve a continuous interior circuit crest; no waveform result returned."
+        },
+        {
+          "inputs": {
+            "charge_kv_stage": 180,
+            "efficiency": 0.83,
+            "impulse_type": "Switching",
+            "include_waveform": false,
+            "stages": 12,
+            "stage_c_uf": 3,
+            "total_c_pf": 0.001,
+            "l_uh": 1e-06,
+            "front_r_stage": 30,
+            "tail_r_stage": 100000000.0
+          },
+          "error_type": "ValueError",
+          "message": "Could not resolve finite stable decay modes of the passive equivalent circuit. Review extreme circuit ratios; no waveform result returned."
+        },
+        {
+          "inputs": {
+            "charge_kv_stage": 180,
+            "efficiency": 0.83,
+            "impulse_type": "Switching",
+            "include_waveform": false,
+            "stages": 12,
+            "stage_c_uf": 3,
+            "total_c_pf": 300000,
+            "l_uh": 1e-06,
+            "front_r_stage": 100000000.0,
+            "tail_r_stage": 520
+          },
+          "error_type": "ValueError",
+          "message": "Could not resolve a continuous interior circuit crest; no waveform result returned."
+        },
+        {
+          "inputs": {
+            "charge_kv_stage": 180,
+            "efficiency": 0.83,
+            "impulse_type": "Switching",
+            "include_waveform": false,
+            "stages": 12,
+            "stage_c_uf": 3,
+            "total_c_pf": 300000,
+            "l_uh": 10000,
+            "front_r_stage": 100000000.0,
+            "tail_r_stage": 520
+          },
+          "error_type": "ValueError",
+          "message": "Could not resolve a continuous interior circuit crest; no waveform result returned."
+        },
+        {
+          "inputs": {
+            "charge_kv_stage": 180,
+            "efficiency": 0.83,
+            "impulse_type": "Switching",
+            "include_waveform": false,
+            "stages": 30,
+            "stage_c_uf": 0.125,
+            "total_c_pf": 300000,
+            "l_uh": 1,
+            "front_r_stage": 100000000.0,
+            "tail_r_stage": 520
+          },
+          "error_type": "ValueError",
+          "message": "Could not resolve a continuous interior circuit crest; no waveform result returned."
+        },
+        {
+          "inputs": {
+            "charge_kv_stage": 180,
+            "efficiency": 0.83,
+            "impulse_type": "Switching",
+            "include_waveform": false,
+            "stages": 30,
+            "stage_c_uf": 3,
+            "total_c_pf": 0.001,
+            "l_uh": 1e-06,
+            "front_r_stage": 30,
+            "tail_r_stage": 100000000.0
+          },
+          "error_type": "ValueError",
+          "message": "Could not resolve finite stable decay modes of the passive equivalent circuit. Review extreme circuit ratios; no waveform result returned."
+        },
+        {
+          "inputs": {
+            "charge_kv_stage": 180,
+            "efficiency": 0.83,
+            "impulse_type": "Switching",
+            "include_waveform": false,
+            "stages": 30,
+            "stage_c_uf": 3,
+            "total_c_pf": 300000,
+            "l_uh": 1e-06,
+            "front_r_stage": 100000000.0,
+            "tail_r_stage": 520
+          },
+          "error_type": "ValueError",
+          "message": "Could not resolve a continuous interior circuit crest; no waveform result returned."
+        },
+        {
+          "inputs": {
+            "charge_kv_stage": 180,
+            "efficiency": 0.83,
+            "impulse_type": "Switching",
+            "include_waveform": false,
+            "stages": 30,
+            "stage_c_uf": 3,
+            "total_c_pf": 300000,
+            "l_uh": 1,
+            "front_r_stage": 100000000.0,
+            "tail_r_stage": 520
+          },
+          "error_type": "ValueError",
+          "message": "Could not resolve a continuous interior circuit crest; no waveform result returned."
+        }
+      ]
+    }
+  ]
+}

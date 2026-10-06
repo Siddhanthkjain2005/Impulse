@@ -1,5 +1,19 @@
 # Continue ImpulseTwin AI
 
+## Engineering hardening handoff — 6 October 2026
+
+Continue `feat/engineering-hardening`, based on main `047841f587c4b00bc8d018d5174961d3356eebbf`. Read `AGENTS.md`, `OPTIMIZATION_REPORT.md`, `artifacts/optimization_report.json`, `PROJECT_STATE.md` and `docs/assumptions.md`. **Final verification:** 263 backend tests, frontend typecheck/build, frozen hashes, fresh-database/local assets and desktop/mobile browser checks pass. Four exhaustive fixtures retain rank 1/zero gap; 4,096 inference outputs match original code exactly. Overall readiness is PARTIAL for unexecuted platform/disconnected-browser checks. Historical counts and archives below retain their earlier scope.
+
+The engineering UI/Judge default is the CPRI physical profile with circuit physics and workbook residual ML disabled. The supplied clarification identifies its 12-stage / 200 kV / 0.125 µF / 2.5 kJ-per-stage / 30 kJ-total values as the actual/reference generator parameters. Workbook 15-stage / 3 µF remains a separate synthetic reference and frozen V1 benchmark. CPRI stock is unknown: require explicit counted inventory/provenance before optimizing. Load/parasitic/efficiency example inputs and the configured 50 kV/two-stage application floors must not be presented as measurements or verified operating minima. Include 545 pF only when it is not already represented elsewhere.
+
+Circuit v2.1 changes numerical handling, not the physical equations: stable analytic RC modes/peak, a dimensionless safeguard for significant tiny inductance, scale-aware crossing roots and explicit unresolved crest/decay diagnostics. Earlier solver-version calibrations are rejected. The matched 1425 kV CPRI Lightning case and poor-resistor timing failures are protected by regression tests. The unchanged baseline passed 237 tests in isolation after an initial native Windows crash; the hardened full suite passes 263. Keep the failed process log and avoid claiming its root cause is established.
+
+Keep nominal model compliance, uncertainty containment, sampled scenario fractions, generated feedback and measured evaluation distinct. Preserve frozen V1–V5 evidence and the exposed Hidden Test. Do not train another model, deploy, fabricate laboratory claims or expand product scope. Remaining physical facts to obtain are actual stock, pulse ratings, mounting/topology rules and minimum operating limits. Independent measured waveforms can validate future laboratory performance; they are not required to solve the current challenge.
+
+The sections below are preserved historical handoffs. Use the current source and final hardening report for this pass rather than assuming an earlier ZIP or QA count is current.
+
+Two additional predeclared CPRI circuit development comparisons (LI and SI) pass nominally and retain bounded/exhaustive top-1/top-3 agreement with zero gap before/after. Their explicit assumed stock and shared-physics limitations are recorded in `artifacts/hardening/circuit_search_comparison.json`; they are not held-out evaluation or physical validation.
+
 ## Evidence and Judge Mode update — 3 October 2026
 
 The evidence/release feature branch adds unified capture provenance, Laboratory Evidence, Hardware Verification, a versioned test-object catalog, deterministic recommendation evidence levels, a controlled exhaustive search benchmark, saved-artifact experiment timeline and seven-step Judge Mode. Existing engineering workflows and frozen V1–V5 evidence remain preserved. README now links deep history rather than accumulating every release note.

@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "recorded_at": "2026-10-03T12:19:41.005817+00:00",
+  "recorded_at": "2026-10-06T14:47:11.912792+00:00",
   "status": "PARTIAL",
   "platform": "Windows-11-10.0.26200-SP0",
   "python": "3.12.14",
@@ -40,7 +40,9 @@
         "run",
         "typecheck"
       ],
-      "log": "artifacts/release_checks/frontend_typecheck.txt"
+      "log": "artifacts/release_checks/frontend_typecheck.txt",
+      "recorded_at": "2026-10-06T14:47:11.912792+00:00",
+      "scope": "Repeated after the evidenced frontend locale/hydration fix; retained log corresponds to final source/export. Backend tests remain the preceding full263-test run; no backend production changes followed it."
     },
     "frontend_build": {
       "status": "PASS",
@@ -52,34 +54,36 @@
         "--",
         "--webpack"
       ],
-      "log": "artifacts/release_checks/frontend_build.txt"
+      "log": "artifacts/release_checks/frontend_build.txt",
+      "recorded_at": "2026-10-06T14:47:11.912792+00:00",
+      "scope": "Repeated after the evidenced frontend locale/hydration fix; retained log corresponds to final source/export. Backend tests remain the preceding full263-test run; no backend production changes followed it."
     },
     "static_assets": {
       "status": "PASS",
       "pages": 14,
       "local_assets": [
-        "/_next/static/chunks/305-c35b44a6c763d812.js",
-        "/_next/static/chunks/410-324ca76808000542.js",
+        "/_next/static/chunks/305-795f4c15f7758194.js",
+        "/_next/static/chunks/410-70c7128c641fea33.js",
         "/_next/static/chunks/4bd1b696-92152b0f5947070d.js",
         "/_next/static/chunks/699-8cb61db040cec60b.js",
-        "/_next/static/chunks/756-8be41ffe5602184c.js",
+        "/_next/static/chunks/756-9969beddde67cd5b.js",
         "/_next/static/chunks/794-71ff2c1735abeddf.js",
         "/_next/static/chunks/app/compare/page-605ac92694840fa2.js",
         "/_next/static/chunks/app/experiment-timeline/page-f0947143e0e53076.js",
         "/_next/static/chunks/app/hardware-verification/page-f0947143e0e53076.js",
-        "/_next/static/chunks/app/judge/page-96858ecb634f6925.js",
+        "/_next/static/chunks/app/judge/page-380a76d4e77ec690.js",
         "/_next/static/chunks/app/laboratory-evidence/page-f0947143e0e53076.js",
-        "/_next/static/chunks/app/layout-765a68f032eda2d9.js",
+        "/_next/static/chunks/app/layout-1d15cff0f0f6edb6.js",
         "/_next/static/chunks/app/model-lab/page-ace8dc2c62140d1a.js",
-        "/_next/static/chunks/app/page-65d67c69550cf2e2.js",
+        "/_next/static/chunks/app/page-ed3fd8b03e46548c.js",
         "/_next/static/chunks/app/profiles/page-b94cf39509221d4d.js",
         "/_next/static/chunks/app/runs/page-6816b0f9e27ad859.js",
         "/_next/static/chunks/app/search-quality/page-f0947143e0e53076.js",
         "/_next/static/chunks/app/trial-calibrator/page-4a97ccc534840807.js",
         "/_next/static/chunks/main-app-0d65f5e8c1b736c6.js",
         "/_next/static/chunks/polyfills-42372ed130431b0a.js",
-        "/_next/static/chunks/webpack-cfa9f38815d940bc.js",
-        "/_next/static/css/b97264fc96ca9dc0.css",
+        "/_next/static/chunks/webpack-bad63bec55e1c6db.js",
+        "/_next/static/css/bf78e47fd28d037b.css",
         "/icon.svg"
       ],
       "missing_assets": [],
@@ -93,7 +97,9 @@
         "-m",
         "scripts.release_smoke"
       ],
-      "log": "artifacts/release_checks/fresh_database_offline_smoke.txt"
+      "log": "artifacts/release_checks/fresh_database_offline_smoke.txt",
+      "recorded_at": "2026-10-06T14:47:11.912792+00:00",
+      "scope": "Repeated after the evidenced frontend locale/hydration fix; retained log corresponds to final source/export. Backend tests remain the preceding full263-test run; no backend production changes followed it."
     },
     "platform_macOS": {
       "status": "NOT TESTED",
@@ -121,5 +127,13 @@
       "scope": "Fresh checkout/dependency environments on the current Windows host, not a second physical machine. Baseline exposed Windows line-ending, text encoding and test portability issues; documented in docs/release_readiness.md."
     }
   },
-  "scope": "Local verification only. No deployment, model fitting or new Hidden Test evaluation."
+  "thread_environment": {
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "LOKY_MAX_CPU_COUNT": "4"
+  },
+  "scope": "Local verification only. No deployment, model fitting or new Hidden Test evaluation.",
+  "frontend_followup_reason": "Fresh browser found pre-existing en-IN build vs en-US client numeric hint mismatch. Deterministic locale fix, typecheck/build, final asset check and fresh-database network-denied smoke repeated."
 }

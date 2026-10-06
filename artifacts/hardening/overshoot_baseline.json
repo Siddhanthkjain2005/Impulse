@@ -1,0 +1,136 @@
+{
+  "input": {
+    "profile_id": "workbook_reference_profile",
+    "impulse_type": "Lightning",
+    "test_kv": 1425,
+    "load_c_pf": 850,
+    "divider_c_pf": 500,
+    "stray_c_pf": 150,
+    "l_uh": 80.0,
+    "efficiency": 0.82,
+    "solver": "circuit",
+    "model_mode": "physics",
+    "require_model_agreement": false,
+    "connection_mode": "series_marx_equivalent",
+    "layout_id": "default-layout",
+    "stage_min": 8,
+    "stage_max": 8,
+    "inventory_override": {
+      "front": [
+        {
+          "ohm": 30.0,
+          "count_per_stage": 1
+        }
+      ],
+      "tail": [
+        {
+          "ohm": 30.0,
+          "count_per_stage": 1
+        }
+      ],
+      "provenance": "Controlled development regression; not physical CPRI inventory"
+    },
+    "max_components_per_network": 1,
+    "include_base_c": false,
+    "uncertainty_pct": 0.0,
+    "monte_carlo_samples": 8,
+    "equipment_reference_kv": null,
+    "test_object_id": null,
+    "equipment_reference_source": null,
+    "confirm_reference_mismatch": false,
+    "calibration_id": null
+  },
+  "initial_ideal_charge_kv_stage": 217.22560975609758,
+  "actual_solved_charge_kv_stage": 191.41973095838708,
+  "normalized_physics": {
+    "front_us": 0.9126521228010289,
+    "tail_us": 51.12568745137562,
+    "crest_kv": 1425.0000000000002,
+    "peak_time_us": 1.2602717108781498,
+    "t30_us": 0.34930317475998524,
+    "t90_us": 0.8958014518863499,
+    "t50_us": 51.20174148757242,
+    "virtual_origin_us": 0.0760540361968029,
+    "polarity": 1,
+    "local_maxima_count": 2,
+    "ringing_detected": true,
+    "baseline_kv": 0.0,
+    "time_origin_us": 0.0,
+    "definition": "virtual front/origin",
+    "diagnostics": {
+      "model": "lumped RLC Marx equivalent v2",
+      "metric_extraction": "Continuous modal peak and bracketed 30/90/50% root refinement; plot samples are not the final crossing metrics.",
+      "damping_ratio": 0.5196152422706632,
+      "eigenvalues_per_second": [
+        {
+          "real": -11066.668030893497,
+          "imaginary": 0.0
+        },
+        {
+          "real": -1500022.2215401088,
+          "imaginary": 2473202.951428851
+        },
+        {
+          "real": -1500022.2215401088,
+          "imaginary": -2473202.951428851
+        }
+      ],
+      "efficiency_convention": "One voltage factor applied to erected initial voltage; includes assumed spark/connection loss.",
+      "limitations": "No spark-gap dynamics, distributed capacitances, electromagnetic fields or pulse-rating model. Needs lab validation.",
+      "maximum_energy_ratio": 1.0000000000000007,
+      "maximum_energy_increase_ratio": 0.0
+    }
+  },
+  "normalized_compliance": {
+    "profile_id": "powernext_challenge",
+    "version": "1.0.0",
+    "source": "Workbook Hybrid Calculator H13; briefing 17:24\u201318:00",
+    "rows": [
+      {
+        "name": "Front / peak time",
+        "target": 1.2,
+        "predicted": 0.9126521228010289,
+        "lower": 0.84,
+        "upper": 1.56,
+        "deviation": -0.28734787719897104,
+        "deviation_pct": -23.945656433247585,
+        "pass": true,
+        "robust": false,
+        "unit": "\u00b5s",
+        "reason": "Inside challenge limits"
+      },
+      {
+        "name": "Time to half-value",
+        "target": 50,
+        "predicted": 51.12568745137562,
+        "lower": 40,
+        "upper": 60,
+        "deviation": 1.1256874513756188,
+        "deviation_pct": 2.2513749027512464,
+        "pass": true,
+        "robust": false,
+        "unit": "\u00b5s",
+        "reason": "Inside challenge limits"
+      },
+      {
+        "name": "Crest voltage",
+        "target": 1425,
+        "predicted": 1425.0000000000002,
+        "lower": 1382.25,
+        "upper": 1467.75,
+        "deviation": 2.2737367544323206e-13,
+        "deviation_pct": 2.220446049250313e-14,
+        "pass": true,
+        "robust": false,
+        "unit": "kV",
+        "reason": "Inside challenge limits"
+      }
+    ],
+    "nominal_pass": true,
+    "robust_pass": false,
+    "status": "MARGINAL",
+    "hardware_pass": true,
+    "definition": "1.67 \u00d7 rising 30\u201390%; half-value relative to virtual origin"
+  },
+  "optimizer_error": "Requested test voltage exceeds available stages and charging capability at the entered efficiency."
+}

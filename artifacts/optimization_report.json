@@ -1,0 +1,3303 @@
+{
+  "schema_version": 1,
+  "recorded_at": "2026-10-06T15:00:14.516876+00:00",
+  "status": "COMPLETE",
+  "repository": "Siddhanthkjain2005/Impulse",
+  "branch": "feat/engineering-hardening",
+  "baseline_commit": "047841f587c4b00bc8d018d5174961d3356eebbf",
+  "scope": {
+    "new_product_features": false,
+    "deployment": false,
+    "model_training": false,
+    "hidden_test_tuning": false,
+    "laboratory_validation_claim": false
+  },
+  "baseline": {
+    "backend_tests": {
+      "name": "pytest",
+      "errors": "0",
+      "failures": "0",
+      "skipped": "0",
+      "tests": "237",
+      "time": "408.190",
+      "timestamp": "2026-10-06T19:42:41.719313+05:30",
+      "hostname": "sharayukulkarni"
+    },
+    "initial_backend_attempt": "FAILED PROCESS: Windows native pandas/access violation; no completed assertion summary. Retained failure log.",
+    "frontend_typecheck": "PASS",
+    "frontend_build": "PASS",
+    "initial_runtime": "artifacts/hardening/baseline/runtime.json",
+    "controlled_runtime": "artifacts/hardening/baseline_controlled/runtime.json"
+  },
+  "changes": [
+    {
+      "area": "physics",
+      "hypothesis": "Generic RC eigensolving loses slow decay for extreme resistance ratios; absolute tiny-L cutoff can suppress significant oscillations; silent unresolved-crest fallback can overstate numerical resolution.",
+      "change": "Stable analytic two-mode RC decay/crest; dimensionless safeguard for tiny L; bracket-scaled crossing tolerance; explicit unresolved continuous crest/decay errors; approximate damping label and null at zero L; numerical solver version v2.1.",
+      "physical_equations_changed": false,
+      "decision": "KEEP",
+      "validation": "11 new unit/numerical regressions; focused existing+new physics suite44PASS; full regression; unchanged CPRI result;1,128-case generated stress comparison."
+    },
+    {
+      "area": "optimizer",
+      "hypothesis": "Ideal n*charge*efficiency voltage estimate prematurely excludes valid passive inductive overshoot.",
+      "change": "Reference keeps exact early voltage guard; circuit solves actual charge before voltage/per-stage and total-energy filters. Retain profile operating-window constraints.",
+      "decision": "KEEP",
+      "validation": "8-stage controlled LI case newly feasible at191.419731kV/stage;1490kV and lower-energy-rating rejection;11 optimizer regressions;4 exhaustive benchmarks unchanged."
+    },
+    {
+      "area": "runtime",
+      "hypothesis": "Fixed linear RLC normalization needlessly repeats the same modal solve.",
+      "change": "Scale charge/crest after one solve; reuse time/eigenvalue/normalized-energy diagnostics. Recompute final displayed circuit waveform at solved charge.",
+      "decision": "KEEP",
+      "validation": "Separate full solves match LI100/1300/1425kV and SI100/1100kV; candidate hardware filters preserved; end-to-end observations recorded."
+    },
+    {
+      "area": "ML runtime",
+      "hypothesis": "Repeated row-wise scalar reference calculations and pandas physics-base slicing dominate inference.",
+      "change": "Batch-local reference cache keyed by all environment inputs including impulse type; vectorized hardware-support comparisons retaining asymmetric frozen tolerances; one ordered base extraction.",
+      "decision": "KEEP",
+      "validation": "4096 exact complete dictionaries in8conditions; tolerance-boundary/cache tests; paired9-repetition512-row microbench; all frozen hashes preserved."
+    },
+    {
+      "area": "hardware/API",
+      "hypothesis": "Physical minima were over-attributed to the source and direct simulation did not enforce an independently stated energy rating.",
+      "change": "50kV/two-stage application minima explicitly ASSUMED; direct simulation checks stated per-stage and total energy.",
+      "decision": "KEEP",
+      "validation": "4 new engineering/API regressions and full suite; source values unchanged."
+    },
+    {
+      "area": "UX",
+      "hypothesis": "Workbook-first defaults, circuit-as-crosscheck wording and ambiguous saved-trial provenance obscure actual backend scope.",
+      "change": "CPRI/circuit/physics fresh defaults; idle until explicit stock; clear single-model/MLoff/base-C labels; preserve operator inputs on profile change; correct saved-trial admission wording; larger typography, consistent spacing/focus and mobile navigation.",
+      "decision": "KEEP",
+      "validation": "Typecheck/build and recorded desktop/mobile browser review; existing11destinations and7Judge steps retained."
+    },
+    {
+      "area": "reproducibility",
+      "hypothesis": "Native Windows libraries and hash/configuration history need explicit environmental context.",
+      "change": "Bounded native-thread defaults in dev/verifier/audit harnesses, caller overrides respected; retain initial crash and isolated rerun; protected hashes and reproducible numerical/inference/performance scripts.",
+      "decision": "KEEP",
+      "validation": "Isolated baseline237PASS and final263PASS; verifier fresh-database/network-denied smoke;45/45protected hashes. Native crash root cause remains unproven."
+    }
+  ],
+  "performance": {
+    "default_lightning": {
+      "before_seconds": [
+        9.64685619994998,
+        7.184833999956027,
+        7.095149700064212
+      ],
+      "after_seconds": [
+        7.8484639001544565,
+        4.98070179997012,
+        4.449701700126752
+      ],
+      "before_warm_median_seconds": 7.139991850010119,
+      "after_warm_median_seconds": 4.715201750048436,
+      "speedup": 1.5142494910078397,
+      "runtime_change_pct": -33.96068442232531,
+      "before_serialization_ms": 38.33779995329678,
+      "after_serialization_ms": 29.86470004543662,
+      "before_report_ms": 6.273300154134631,
+      "after_report_ms": 5.488499999046326,
+      "before_evaluated": 1081,
+      "after_evaluated": 1081
+    },
+    "default_switching": {
+      "before_seconds": [
+        5.931185600114986,
+        6.795213799923658,
+        5.904541400028393
+      ],
+      "after_seconds": [
+        4.132286800071597,
+        5.757083999924362,
+        5.497880900045857
+      ],
+      "before_warm_median_seconds": 6.3498775999760255,
+      "after_warm_median_seconds": 5.627482449985109,
+      "speedup": 1.1283691519984798,
+      "runtime_change_pct": -11.376520863861117,
+      "before_serialization_ms": 38.93649997189641,
+      "after_serialization_ms": 37.55140001885593,
+      "before_report_ms": 6.08070008456707,
+      "after_report_ms": 6.616899976506829,
+      "before_evaluated": 304,
+      "after_evaluated": 304
+    },
+    "cpri_matched_1425": {
+      "before_seconds": [
+        3.511190799996257,
+        4.429001400014386,
+        3.6185161999892443
+      ],
+      "after_seconds": [
+        4.26439330005087,
+        4.004707199987024,
+        4.385190600063652
+      ],
+      "before_warm_median_seconds": 4.023758800001815,
+      "after_warm_median_seconds": 4.194948900025338,
+      "speedup": 0.9591913741732375,
+      "runtime_change_pct": 4.254482152942307,
+      "before_serialization_ms": 23.408700013533235,
+      "after_serialization_ms": 22.32180000282824,
+      "before_report_ms": 4.683800041675568,
+      "after_report_ms": 4.0623999666422606,
+      "before_evaluated": 4,
+      "after_evaluated": 11
+    }
+  },
+  "output_comparisons": {
+    "default_lightning": {
+      "top_settings_exactly_equal": true,
+      "ranked_settings_exactly_equal": true,
+      "top_metric_differences": {
+        "front_us": 0.0,
+        "tail_us": 0.0,
+        "crest_kv": 0.0
+      },
+      "nominal_pass_unchanged": true,
+      "fixed_verification_counts_unchanged": true
+    },
+    "default_switching": {
+      "top_settings_exactly_equal": true,
+      "ranked_settings_exactly_equal": true,
+      "top_metric_differences": {
+        "front_us": 0.0,
+        "tail_us": 0.0,
+        "crest_kv": 0.0
+      },
+      "nominal_pass_unchanged": true,
+      "fixed_verification_counts_unchanged": true
+    },
+    "cpri_matched_1425": {
+      "top_settings_exactly_equal": true,
+      "ranked_settings_exactly_equal": true,
+      "top_metric_differences": {
+        "front_us": -8.881784197001252e-16,
+        "tail_us": -7.105427357601002e-15,
+        "crest_kv": -2.2737367544323206e-13
+      },
+      "nominal_pass_unchanged": true,
+      "fixed_verification_counts_unchanged": true
+    }
+  },
+  "implementation_sha256": {
+    "backend/app/physics/circuit.py": "e4c9242a80fce08f31d9768108f106cb868a4444e0ef240b8863e873a26c3a23",
+    "backend/app/optimization/engine.py": "269d82f69cca4e374b2dae5e89582204a050d147281d71e39de22991b56f5da7",
+    "backend/app/ml/registry.py": "b4aea480b2e76e2393d1cb0db7e82c9696aafc5c83566eda4fae0827184a008a",
+    "backend/app/main.py": "6c4901e178f35941903abe2b4eb05247149b4029eae23e1a5b48a7added3c4ba",
+    "backend/app/test_objects.py": "56b4a617ee35a8be03768eaebbce274d4736655fb75e4c53ddeb1b82053c99a1",
+    "backend/app/hardware_integrity.py": "b835668acbf254afb03bdf3a698e130d92e8cce0a75b54081af354d64ef7b442",
+    "frontend/lib/api.ts": "2f0d051a1da222309f3db24259e84b822ba566bd8f5bd38e4bd8046c077be077",
+    "frontend/components/optimizer.tsx": "2d5bc8cfe8f6103dc670b6276be4d6b683b70face854abfd645c505e195cb986",
+    "frontend/components/judge-mode.tsx": "738fe387c844947ae425a186dde692c3dfe64545146fc4f224e402afc6288293",
+    "frontend/components/workspace.tsx": "8f9ae042435aa47a37bc237b5fe4ad069fa3929d30672c6d99ecfd6db733d61e",
+    "frontend/components/evidence-pages.tsx": "5c6535ae11aedb71455cb6507d752a240ee5a259b99c0dce4aa01393247fb55d",
+    "frontend/out/index.html": "e84b317e54d5ea4d2e8a7347ad92aeb980c52a974b554d47acd562cac468ff6e"
+  },
+  "timing_method": {
+    "repetitions": 3,
+    "warm_median": "Median of repetitions2and3; cold first call separately retained.",
+    "environment": {
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "NUMEXPR_NUM_THREADS": "1",
+      "LOKY_MAX_CPU_COUNT": "4"
+    },
+    "paired_source": "Immutable baseline checkout using same Python environment, sequential idle-host runs, no profiled time mixed into walltime.",
+    "limitations": "Small machine-dependent sample. cProfile cumulative times overlap/nest and carry instrumentation overhead. CPRI evaluated4\u219211stage/networkpairs, same3hardwarefeasible."
+  },
+  "inference_equivalence": {
+    "source_type": "controlled_development",
+    "rows_per_batch": 512,
+    "types": {
+      "Lightning": {
+        "exact_full_output_equivalence": true,
+        "support_exact_equivalence": true,
+        "old_support": {
+          "median_seconds": 0.18749639997258782,
+          "minimum_seconds": 0.1762287998571992,
+          "repetitions": 9
+        },
+        "new_support": {
+          "median_seconds": 0.0049958000890910625,
+          "minimum_seconds": 0.004545000148937106,
+          "repetitions": 9
+        },
+        "old_infer": {
+          "median_seconds": 0.6454358000773937,
+          "minimum_seconds": 0.6364114000461996,
+          "repetitions": 9
+        },
+        "new_infer": {
+          "median_seconds": 0.08518670010380447,
+          "minimum_seconds": 0.08453579992055893,
+          "repetitions": 9
+        },
+        "support_speedup": 37.53080520215551,
+        "infer_speedup": 7.576720301301685
+      },
+      "Switching": {
+        "exact_full_output_equivalence": true,
+        "support_exact_equivalence": true,
+        "old_support": {
+          "median_seconds": 0.18152209999971092,
+          "minimum_seconds": 0.17561920010484755,
+          "repetitions": 9
+        },
+        "new_support": {
+          "median_seconds": 0.00465349992737174,
+          "minimum_seconds": 0.0044413001742213964,
+          "repetitions": 9
+        },
+        "old_infer": {
+          "median_seconds": 0.8435275999363512,
+          "minimum_seconds": 0.4361476998310536,
+          "repetitions": 9
+        },
+        "new_infer": {
+          "median_seconds": 0.22046969993971288,
+          "minimum_seconds": 0.20851819985546172,
+          "repetitions": 9
+        },
+        "support_speedup": 39.007650764536095,
+        "infer_speedup": 3.8260477524440435
+      }
+    },
+    "equivalence_matrix": [
+      {
+        "impulse_type": "Lightning",
+        "profile_id": "workbook_reference_profile",
+        "mode": "hybrid",
+        "rows": 512,
+        "exact_complete_output_equivalence": true,
+        "unsupported_correction_disabled": null
+      },
+      {
+        "impulse_type": "Lightning",
+        "profile_id": "workbook_reference_profile",
+        "mode": "physics",
+        "rows": 512,
+        "exact_complete_output_equivalence": true,
+        "unsupported_correction_disabled": true
+      },
+      {
+        "impulse_type": "Lightning",
+        "profile_id": "cpri_problem_brief_profile",
+        "mode": "hybrid",
+        "rows": 512,
+        "exact_complete_output_equivalence": true,
+        "unsupported_correction_disabled": true
+      },
+      {
+        "impulse_type": "Lightning",
+        "profile_id": "cpri_problem_brief_profile",
+        "mode": "physics",
+        "rows": 512,
+        "exact_complete_output_equivalence": true,
+        "unsupported_correction_disabled": true
+      },
+      {
+        "impulse_type": "Switching",
+        "profile_id": "workbook_reference_profile",
+        "mode": "hybrid",
+        "rows": 512,
+        "exact_complete_output_equivalence": true,
+        "unsupported_correction_disabled": null
+      },
+      {
+        "impulse_type": "Switching",
+        "profile_id": "workbook_reference_profile",
+        "mode": "physics",
+        "rows": 512,
+        "exact_complete_output_equivalence": true,
+        "unsupported_correction_disabled": true
+      },
+      {
+        "impulse_type": "Switching",
+        "profile_id": "cpri_problem_brief_profile",
+        "mode": "hybrid",
+        "rows": 512,
+        "exact_complete_output_equivalence": true,
+        "unsupported_correction_disabled": true
+      },
+      {
+        "impulse_type": "Switching",
+        "profile_id": "cpri_problem_brief_profile",
+        "mode": "physics",
+        "rows": 512,
+        "exact_complete_output_equivalence": true,
+        "unsupported_correction_disabled": true
+      }
+    ]
+  },
+  "search_quality": {
+    "before": [
+      {
+        "id": "li-low-load",
+        "source_type": "synthetic_benchmark",
+        "inputs": {
+          "profile_id": "workbook_reference_profile",
+          "impulse_type": "Lightning",
+          "test_kv": 1400.0,
+          "load_c_pf": 650.0,
+          "divider_c_pf": 500,
+          "stray_c_pf": 150,
+          "l_uh": 18.5,
+          "efficiency": 0.82,
+          "solver": "reference",
+          "model_mode": "physics",
+          "require_model_agreement": false,
+          "connection_mode": "series_marx_equivalent",
+          "layout_id": "default-layout",
+          "stage_min": 9,
+          "stage_max": 10,
+          "inventory_override": {
+            "front": [
+              {
+                "ohm": 30.0,
+                "count_per_stage": 2
+              },
+              {
+                "ohm": 100.0,
+                "count_per_stage": 1
+              }
+            ],
+            "tail": [
+              {
+                "ohm": 10.0,
+                "count_per_stage": 1
+              },
+              {
+                "ohm": 30.0,
+                "count_per_stage": 1
+              }
+            ],
+            "provenance": "Controlled synthetic benchmark inventory; not CPRI stock"
+          },
+          "max_components_per_network": 3,
+          "include_base_c": false,
+          "uncertainty_pct": 5,
+          "monte_carlo_samples": 8,
+          "equipment_reference_kv": null,
+          "test_object_id": null,
+          "equipment_reference_source": null,
+          "confirm_reference_mismatch": false,
+          "calibration_id": null
+        },
+        "same_best_candidate": true,
+        "exhaustive_best_in_bounded_top3": true,
+        "bounded_winner_exhaustive_rank": 1,
+        "rank_difference": 0,
+        "objective_gap": 0.0,
+        "waveform_error_difference": 0.0,
+        "component_count_difference": 0,
+        "waveform_metric_difference": {
+          "front_us": 0.0,
+          "tail_us": 0.0,
+          "crest_kv": 0.0
+        },
+        "worst_waveform_margin_difference": 0.0,
+        "bounded_seconds": 4.416978199966252,
+        "exhaustive_seconds": 8.091187099926174,
+        "speedup": 1.8318376803372032,
+        "bounded_evaluated": 40,
+        "exhaustive_evaluated": 96,
+        "bounded_nominal_pass": false,
+        "exhaustive_nominal_pass": false,
+        "bounded_settings": {
+          "stages": 9,
+          "charge_kv_stage": 189.7018970189702,
+          "front_r_stage": 60.0,
+          "tail_r_stage": 30.0,
+          "stage_utilization": 0.9485094850948509,
+          "stored_energy_kj": 485.82193139004556,
+          "voltage_margin_kv_stage": 10.298102981029814,
+          "energy_margin_kj": 414.17806860995444,
+          "energy_margin_pct": 46.01978540110605
+        },
+        "exhaustive_settings": {
+          "stages": 9,
+          "charge_kv_stage": 189.7018970189702,
+          "front_r_stage": 60.0,
+          "tail_r_stage": 30.0,
+          "stage_utilization": 0.9485094850948509,
+          "stored_energy_kj": 485.82193139004556,
+          "voltage_margin_kv_stage": 10.298102981029814,
+          "energy_margin_kj": 414.17806860995444,
+          "energy_margin_pct": 46.01978540110605
+        },
+        "bounded_rank_key": [
+          true,
+          true,
+          0.6420656367193147
+        ],
+        "exhaustive_rank_key": [
+          true,
+          true,
+          0.6420656367193147
+        ]
+      },
+      {
+        "id": "li-high-load",
+        "source_type": "synthetic_benchmark",
+        "inputs": {
+          "profile_id": "workbook_reference_profile",
+          "impulse_type": "Lightning",
+          "test_kv": 1450.0,
+          "load_c_pf": 1100.0,
+          "divider_c_pf": 500,
+          "stray_c_pf": 150,
+          "l_uh": 18.5,
+          "efficiency": 0.82,
+          "solver": "reference",
+          "model_mode": "physics",
+          "require_model_agreement": false,
+          "connection_mode": "series_marx_equivalent",
+          "layout_id": "default-layout",
+          "stage_min": 9,
+          "stage_max": 10,
+          "inventory_override": {
+            "front": [
+              {
+                "ohm": 20.0,
+                "count_per_stage": 2
+              },
+              {
+                "ohm": 75.0,
+                "count_per_stage": 1
+              }
+            ],
+            "tail": [
+              {
+                "ohm": 15.0,
+                "count_per_stage": 1
+              },
+              {
+                "ohm": 40.0,
+                "count_per_stage": 1
+              }
+            ],
+            "provenance": "Controlled synthetic benchmark inventory; not CPRI stock"
+          },
+          "max_components_per_network": 3,
+          "include_base_c": false,
+          "uncertainty_pct": 5,
+          "monte_carlo_samples": 8,
+          "equipment_reference_kv": null,
+          "test_object_id": null,
+          "equipment_reference_source": null,
+          "confirm_reference_mismatch": false,
+          "calibration_id": null
+        },
+        "same_best_candidate": true,
+        "exhaustive_best_in_bounded_top3": true,
+        "bounded_winner_exhaustive_rank": 1,
+        "rank_difference": 0,
+        "objective_gap": 0.0,
+        "waveform_error_difference": 0.0,
+        "component_count_difference": 0,
+        "waveform_metric_difference": {
+          "front_us": 0.0,
+          "tail_us": 0.0,
+          "crest_kv": 0.0
+        },
+        "worst_waveform_margin_difference": 0.0,
+        "bounded_seconds": 4.834851900115609,
+        "exhaustive_seconds": 7.822123600170016,
+        "speedup": 1.6178620900431255,
+        "bounded_evaluated": 40,
+        "exhaustive_evaluated": 96,
+        "bounded_nominal_pass": false,
+        "exhaustive_nominal_pass": false,
+        "bounded_settings": {
+          "stages": 9,
+          "charge_kv_stage": 196.4769647696477,
+          "front_r_stage": 40.0,
+          "tail_r_stage": 15.0,
+          "stage_utilization": 0.9823848238482386,
+          "stored_energy_kj": 521.1431687487608,
+          "voltage_margin_kv_stage": 3.523035230352292,
+          "energy_margin_kj": 378.8568312512392,
+          "energy_margin_pct": 42.09520347235991
+        },
+        "exhaustive_settings": {
+          "stages": 9,
+          "charge_kv_stage": 196.4769647696477,
+          "front_r_stage": 40.0,
+          "tail_r_stage": 15.0,
+          "stage_utilization": 0.9823848238482386,
+          "stored_energy_kj": 521.1431687487608,
+          "voltage_margin_kv_stage": 3.523035230352292,
+          "energy_margin_kj": 378.8568312512392,
+          "energy_margin_pct": 42.09520347235991
+        },
+        "bounded_rank_key": [
+          true,
+          true,
+          0.8245208300681827
+        ],
+        "exhaustive_rank_key": [
+          true,
+          true,
+          0.8245208300681827
+        ]
+      },
+      {
+        "id": "si-low-load",
+        "source_type": "synthetic_benchmark",
+        "inputs": {
+          "profile_id": "workbook_reference_profile",
+          "impulse_type": "Switching",
+          "test_kv": 1000.0,
+          "load_c_pf": 900.0,
+          "divider_c_pf": 500,
+          "stray_c_pf": 150,
+          "l_uh": 18.5,
+          "efficiency": 0.82,
+          "solver": "reference",
+          "model_mode": "physics",
+          "require_model_agreement": false,
+          "connection_mode": "series_marx_equivalent",
+          "layout_id": "default-layout",
+          "stage_min": 7,
+          "stage_max": 8,
+          "inventory_override": {
+            "front": [
+              {
+                "ohm": 1000.0,
+                "count_per_stage": 2
+              },
+              {
+                "ohm": 4000.0,
+                "count_per_stage": 1
+              }
+            ],
+            "tail": [
+              {
+                "ohm": 500.0,
+                "count_per_stage": 1
+              },
+              {
+                "ohm": 1500.0,
+                "count_per_stage": 1
+              }
+            ],
+            "provenance": "Controlled synthetic benchmark inventory; not CPRI stock"
+          },
+          "max_components_per_network": 3,
+          "include_base_c": false,
+          "uncertainty_pct": 5,
+          "monte_carlo_samples": 8,
+          "equipment_reference_kv": null,
+          "test_object_id": null,
+          "equipment_reference_source": null,
+          "confirm_reference_mismatch": false,
+          "calibration_id": null
+        },
+        "same_best_candidate": true,
+        "exhaustive_best_in_bounded_top3": true,
+        "bounded_winner_exhaustive_rank": 1,
+        "rank_difference": 0,
+        "objective_gap": 0.0,
+        "waveform_error_difference": 0.0,
+        "component_count_difference": 0,
+        "waveform_metric_difference": {
+          "front_us": 0.0,
+          "tail_us": 0.0,
+          "crest_kv": 0.0
+        },
+        "worst_waveform_margin_difference": 0.0,
+        "bounded_seconds": 4.6250089998357,
+        "exhaustive_seconds": 8.301688400097191,
+        "speedup": 1.794956161251168,
+        "bounded_evaluated": 40,
+        "exhaustive_evaluated": 96,
+        "bounded_nominal_pass": false,
+        "exhaustive_nominal_pass": false,
+        "bounded_settings": {
+          "stages": 8,
+          "charge_kv_stage": 152.4390243902439,
+          "front_r_stage": 6000.0,
+          "tail_r_stage": 1500.0,
+          "stage_utilization": 0.7621951219512195,
+          "stored_energy_kj": 278.8518738845925,
+          "voltage_margin_kv_stage": 47.5609756097561,
+          "energy_margin_kj": 621.1481261154074,
+          "energy_margin_pct": 69.01645845726749
+        },
+        "exhaustive_settings": {
+          "stages": 8,
+          "charge_kv_stage": 152.4390243902439,
+          "front_r_stage": 6000.0,
+          "tail_r_stage": 1500.0,
+          "stage_utilization": 0.7621951219512195,
+          "stored_energy_kj": 278.8518738845925,
+          "voltage_margin_kv_stage": 47.5609756097561,
+          "energy_margin_kj": 621.1481261154074,
+          "energy_margin_pct": 69.01645845726749
+        },
+        "bounded_rank_key": [
+          true,
+          true,
+          1.370840451243939
+        ],
+        "exhaustive_rank_key": [
+          true,
+          true,
+          1.370840451243939
+        ]
+      },
+      {
+        "id": "si-high-load",
+        "source_type": "synthetic_benchmark",
+        "inputs": {
+          "profile_id": "workbook_reference_profile",
+          "impulse_type": "Switching",
+          "test_kv": 1050.0,
+          "load_c_pf": 1350.0,
+          "divider_c_pf": 500,
+          "stray_c_pf": 150,
+          "l_uh": 18.5,
+          "efficiency": 0.82,
+          "solver": "reference",
+          "model_mode": "physics",
+          "require_model_agreement": false,
+          "connection_mode": "series_marx_equivalent",
+          "layout_id": "default-layout",
+          "stage_min": 7,
+          "stage_max": 8,
+          "inventory_override": {
+            "front": [
+              {
+                "ohm": 1500.0,
+                "count_per_stage": 2
+              },
+              {
+                "ohm": 3500.0,
+                "count_per_stage": 1
+              }
+            ],
+            "tail": [
+              {
+                "ohm": 750.0,
+                "count_per_stage": 1
+              },
+              {
+                "ohm": 2000.0,
+                "count_per_stage": 1
+              }
+            ],
+            "provenance": "Controlled synthetic benchmark inventory; not CPRI stock"
+          },
+          "max_components_per_network": 3,
+          "include_base_c": false,
+          "uncertainty_pct": 5,
+          "monte_carlo_samples": 8,
+          "equipment_reference_kv": null,
+          "test_object_id": null,
+          "equipment_reference_source": null,
+          "confirm_reference_mismatch": false,
+          "calibration_id": null
+        },
+        "same_best_candidate": true,
+        "exhaustive_best_in_bounded_top3": true,
+        "bounded_winner_exhaustive_rank": 1,
+        "rank_difference": 0,
+        "objective_gap": 0.0,
+        "waveform_error_difference": 0.0,
+        "component_count_difference": 0,
+        "waveform_metric_difference": {
+          "front_us": 0.0,
+          "tail_us": 0.0,
+          "crest_kv": 0.0
+        },
+        "worst_waveform_margin_difference": 0.0,
+        "bounded_seconds": 4.8825972999911755,
+        "exhaustive_seconds": 7.646220800001174,
+        "speedup": 1.5660150387612335,
+        "bounded_evaluated": 40,
+        "exhaustive_evaluated": 96,
+        "bounded_nominal_pass": false,
+        "exhaustive_nominal_pass": false,
+        "bounded_settings": {
+          "stages": 8,
+          "charge_kv_stage": 160.0609756097561,
+          "front_r_stage": 6500.0,
+          "tail_r_stage": 750.0,
+          "stage_utilization": 0.8003048780487805,
+          "stored_energy_kj": 307.4341909577633,
+          "voltage_margin_kv_stage": 39.9390243902439,
+          "energy_margin_kj": 592.5658090422367,
+          "energy_margin_pct": 65.84064544913741
+        },
+        "exhaustive_settings": {
+          "stages": 8,
+          "charge_kv_stage": 160.0609756097561,
+          "front_r_stage": 6500.0,
+          "tail_r_stage": 750.0,
+          "stage_utilization": 0.8003048780487805,
+          "stored_energy_kj": 307.4341909577633,
+          "voltage_margin_kv_stage": 39.9390243902439,
+          "energy_margin_kj": 592.5658090422367,
+          "energy_margin_pct": 65.84064544913741
+        },
+        "bounded_rank_key": [
+          true,
+          true,
+          1.2546264330539012
+        ],
+        "exhaustive_rank_key": [
+          true,
+          true,
+          1.2546264330539012
+        ]
+      }
+    ],
+    "after": [
+      {
+        "id": "li-low-load",
+        "source_type": "synthetic_benchmark",
+        "inputs": {
+          "profile_id": "workbook_reference_profile",
+          "impulse_type": "Lightning",
+          "test_kv": 1400.0,
+          "load_c_pf": 650.0,
+          "divider_c_pf": 500,
+          "stray_c_pf": 150,
+          "l_uh": 18.5,
+          "efficiency": 0.82,
+          "solver": "reference",
+          "model_mode": "physics",
+          "require_model_agreement": false,
+          "connection_mode": "series_marx_equivalent",
+          "layout_id": "default-layout",
+          "stage_min": 9,
+          "stage_max": 10,
+          "inventory_override": {
+            "front": [
+              {
+                "ohm": 30.0,
+                "count_per_stage": 2
+              },
+              {
+                "ohm": 100.0,
+                "count_per_stage": 1
+              }
+            ],
+            "tail": [
+              {
+                "ohm": 10.0,
+                "count_per_stage": 1
+              },
+              {
+                "ohm": 30.0,
+                "count_per_stage": 1
+              }
+            ],
+            "provenance": "Controlled synthetic benchmark inventory; not CPRI stock"
+          },
+          "max_components_per_network": 3,
+          "include_base_c": false,
+          "uncertainty_pct": 5,
+          "monte_carlo_samples": 8,
+          "equipment_reference_kv": null,
+          "test_object_id": null,
+          "equipment_reference_source": null,
+          "confirm_reference_mismatch": false,
+          "calibration_id": null
+        },
+        "same_best_candidate": true,
+        "exhaustive_best_in_bounded_top3": true,
+        "bounded_winner_exhaustive_rank": 1,
+        "rank_difference": 0,
+        "objective_gap": 0.0,
+        "waveform_error_difference": 0.0,
+        "component_count_difference": 0,
+        "waveform_metric_difference": {
+          "front_us": 0.0,
+          "tail_us": 0.0,
+          "crest_kv": 0.0
+        },
+        "worst_waveform_margin_difference": 0.0,
+        "bounded_seconds": 3.8758025001734495,
+        "exhaustive_seconds": 6.311342200031504,
+        "speedup": 1.6283962352955446,
+        "bounded_evaluated": 40,
+        "exhaustive_evaluated": 96,
+        "bounded_nominal_pass": false,
+        "exhaustive_nominal_pass": false,
+        "bounded_settings": {
+          "stages": 9,
+          "charge_kv_stage": 189.7018970189702,
+          "front_r_stage": 60.0,
+          "tail_r_stage": 30.0,
+          "stage_utilization": 0.9485094850948509,
+          "stored_energy_kj": 485.82193139004556,
+          "voltage_margin_kv_stage": 10.298102981029814,
+          "energy_margin_kj": 414.17806860995444,
+          "energy_margin_pct": 46.01978540110605
+        },
+        "exhaustive_settings": {
+          "stages": 9,
+          "charge_kv_stage": 189.7018970189702,
+          "front_r_stage": 60.0,
+          "tail_r_stage": 30.0,
+          "stage_utilization": 0.9485094850948509,
+          "stored_energy_kj": 485.82193139004556,
+          "voltage_margin_kv_stage": 10.298102981029814,
+          "energy_margin_kj": 414.17806860995444,
+          "energy_margin_pct": 46.01978540110605
+        },
+        "bounded_rank_key": [
+          true,
+          true,
+          0.6420656367193147
+        ],
+        "exhaustive_rank_key": [
+          true,
+          true,
+          0.6420656367193147
+        ]
+      },
+      {
+        "id": "li-high-load",
+        "source_type": "synthetic_benchmark",
+        "inputs": {
+          "profile_id": "workbook_reference_profile",
+          "impulse_type": "Lightning",
+          "test_kv": 1450.0,
+          "load_c_pf": 1100.0,
+          "divider_c_pf": 500,
+          "stray_c_pf": 150,
+          "l_uh": 18.5,
+          "efficiency": 0.82,
+          "solver": "reference",
+          "model_mode": "physics",
+          "require_model_agreement": false,
+          "connection_mode": "series_marx_equivalent",
+          "layout_id": "default-layout",
+          "stage_min": 9,
+          "stage_max": 10,
+          "inventory_override": {
+            "front": [
+              {
+                "ohm": 20.0,
+                "count_per_stage": 2
+              },
+              {
+                "ohm": 75.0,
+                "count_per_stage": 1
+              }
+            ],
+            "tail": [
+              {
+                "ohm": 15.0,
+                "count_per_stage": 1
+              },
+              {
+                "ohm": 40.0,
+                "count_per_stage": 1
+              }
+            ],
+            "provenance": "Controlled synthetic benchmark inventory; not CPRI stock"
+          },
+          "max_components_per_network": 3,
+          "include_base_c": false,
+          "uncertainty_pct": 5,
+          "monte_carlo_samples": 8,
+          "equipment_reference_kv": null,
+          "test_object_id": null,
+          "equipment_reference_source": null,
+          "confirm_reference_mismatch": false,
+          "calibration_id": null
+        },
+        "same_best_candidate": true,
+        "exhaustive_best_in_bounded_top3": true,
+        "bounded_winner_exhaustive_rank": 1,
+        "rank_difference": 0,
+        "objective_gap": 0.0,
+        "waveform_error_difference": 0.0,
+        "component_count_difference": 0,
+        "waveform_metric_difference": {
+          "front_us": 0.0,
+          "tail_us": 0.0,
+          "crest_kv": 0.0
+        },
+        "worst_waveform_margin_difference": 0.0,
+        "bounded_seconds": 3.3999489000998437,
+        "exhaustive_seconds": 6.458804199937731,
+        "speedup": 1.8996768450690715,
+        "bounded_evaluated": 40,
+        "exhaustive_evaluated": 96,
+        "bounded_nominal_pass": false,
+        "exhaustive_nominal_pass": false,
+        "bounded_settings": {
+          "stages": 9,
+          "charge_kv_stage": 196.4769647696477,
+          "front_r_stage": 40.0,
+          "tail_r_stage": 15.0,
+          "stage_utilization": 0.9823848238482386,
+          "stored_energy_kj": 521.1431687487608,
+          "voltage_margin_kv_stage": 3.523035230352292,
+          "energy_margin_kj": 378.8568312512392,
+          "energy_margin_pct": 42.09520347235991
+        },
+        "exhaustive_settings": {
+          "stages": 9,
+          "charge_kv_stage": 196.4769647696477,
+          "front_r_stage": 40.0,
+          "tail_r_stage": 15.0,
+          "stage_utilization": 0.9823848238482386,
+          "stored_energy_kj": 521.1431687487608,
+          "voltage_margin_kv_stage": 3.523035230352292,
+          "energy_margin_kj": 378.8568312512392,
+          "energy_margin_pct": 42.09520347235991
+        },
+        "bounded_rank_key": [
+          true,
+          true,
+          0.8245208300681827
+        ],
+        "exhaustive_rank_key": [
+          true,
+          true,
+          0.8245208300681827
+        ]
+      },
+      {
+        "id": "si-low-load",
+        "source_type": "synthetic_benchmark",
+        "inputs": {
+          "profile_id": "workbook_reference_profile",
+          "impulse_type": "Switching",
+          "test_kv": 1000.0,
+          "load_c_pf": 900.0,
+          "divider_c_pf": 500,
+          "stray_c_pf": 150,
+          "l_uh": 18.5,
+          "efficiency": 0.82,
+          "solver": "reference",
+          "model_mode": "physics",
+          "require_model_agreement": false,
+          "connection_mode": "series_marx_equivalent",
+          "layout_id": "default-layout",
+          "stage_min": 7,
+          "stage_max": 8,
+          "inventory_override": {
+            "front": [
+              {
+                "ohm": 1000.0,
+                "count_per_stage": 2
+              },
+              {
+                "ohm": 4000.0,
+                "count_per_stage": 1
+              }
+            ],
+            "tail": [
+              {
+                "ohm": 500.0,
+                "count_per_stage": 1
+              },
+              {
+                "ohm": 1500.0,
+                "count_per_stage": 1
+              }
+            ],
+            "provenance": "Controlled synthetic benchmark inventory; not CPRI stock"
+          },
+          "max_components_per_network": 3,
+          "include_base_c": false,
+          "uncertainty_pct": 5,
+          "monte_carlo_samples": 8,
+          "equipment_reference_kv": null,
+          "test_object_id": null,
+          "equipment_reference_source": null,
+          "confirm_reference_mismatch": false,
+          "calibration_id": null
+        },
+        "same_best_candidate": true,
+        "exhaustive_best_in_bounded_top3": true,
+        "bounded_winner_exhaustive_rank": 1,
+        "rank_difference": 0,
+        "objective_gap": 0.0,
+        "waveform_error_difference": 0.0,
+        "component_count_difference": 0,
+        "waveform_metric_difference": {
+          "front_us": 0.0,
+          "tail_us": 0.0,
+          "crest_kv": 0.0
+        },
+        "worst_waveform_margin_difference": 0.0,
+        "bounded_seconds": 3.878996000159532,
+        "exhaustive_seconds": 6.288315499899909,
+        "speedup": 1.621119356565794,
+        "bounded_evaluated": 40,
+        "exhaustive_evaluated": 96,
+        "bounded_nominal_pass": false,
+        "exhaustive_nominal_pass": false,
+        "bounded_settings": {
+          "stages": 8,
+          "charge_kv_stage": 152.4390243902439,
+          "front_r_stage": 6000.0,
+          "tail_r_stage": 1500.0,
+          "stage_utilization": 0.7621951219512195,
+          "stored_energy_kj": 278.8518738845925,
+          "voltage_margin_kv_stage": 47.5609756097561,
+          "energy_margin_kj": 621.1481261154074,
+          "energy_margin_pct": 69.01645845726749
+        },
+        "exhaustive_settings": {
+          "stages": 8,
+          "charge_kv_stage": 152.4390243902439,
+          "front_r_stage": 6000.0,
+          "tail_r_stage": 1500.0,
+          "stage_utilization": 0.7621951219512195,
+          "stored_energy_kj": 278.8518738845925,
+          "voltage_margin_kv_stage": 47.5609756097561,
+          "energy_margin_kj": 621.1481261154074,
+          "energy_margin_pct": 69.01645845726749
+        },
+        "bounded_rank_key": [
+          true,
+          true,
+          1.370840451243939
+        ],
+        "exhaustive_rank_key": [
+          true,
+          true,
+          1.370840451243939
+        ]
+      },
+      {
+        "id": "si-high-load",
+        "source_type": "synthetic_benchmark",
+        "inputs": {
+          "profile_id": "workbook_reference_profile",
+          "impulse_type": "Switching",
+          "test_kv": 1050.0,
+          "load_c_pf": 1350.0,
+          "divider_c_pf": 500,
+          "stray_c_pf": 150,
+          "l_uh": 18.5,
+          "efficiency": 0.82,
+          "solver": "reference",
+          "model_mode": "physics",
+          "require_model_agreement": false,
+          "connection_mode": "series_marx_equivalent",
+          "layout_id": "default-layout",
+          "stage_min": 7,
+          "stage_max": 8,
+          "inventory_override": {
+            "front": [
+              {
+                "ohm": 1500.0,
+                "count_per_stage": 2
+              },
+              {
+                "ohm": 3500.0,
+                "count_per_stage": 1
+              }
+            ],
+            "tail": [
+              {
+                "ohm": 750.0,
+                "count_per_stage": 1
+              },
+              {
+                "ohm": 2000.0,
+                "count_per_stage": 1
+              }
+            ],
+            "provenance": "Controlled synthetic benchmark inventory; not CPRI stock"
+          },
+          "max_components_per_network": 3,
+          "include_base_c": false,
+          "uncertainty_pct": 5,
+          "monte_carlo_samples": 8,
+          "equipment_reference_kv": null,
+          "test_object_id": null,
+          "equipment_reference_source": null,
+          "confirm_reference_mismatch": false,
+          "calibration_id": null
+        },
+        "same_best_candidate": true,
+        "exhaustive_best_in_bounded_top3": true,
+        "bounded_winner_exhaustive_rank": 1,
+        "rank_difference": 0,
+        "objective_gap": 0.0,
+        "waveform_error_difference": 0.0,
+        "component_count_difference": 0,
+        "waveform_metric_difference": {
+          "front_us": 0.0,
+          "tail_us": 0.0,
+          "crest_kv": 0.0
+        },
+        "worst_waveform_margin_difference": 0.0,
+        "bounded_seconds": 4.152648800052702,
+        "exhaustive_seconds": 7.005742700072005,
+        "speedup": 1.6870539834678757,
+        "bounded_evaluated": 40,
+        "exhaustive_evaluated": 96,
+        "bounded_nominal_pass": false,
+        "exhaustive_nominal_pass": false,
+        "bounded_settings": {
+          "stages": 8,
+          "charge_kv_stage": 160.0609756097561,
+          "front_r_stage": 6500.0,
+          "tail_r_stage": 750.0,
+          "stage_utilization": 0.8003048780487805,
+          "stored_energy_kj": 307.4341909577633,
+          "voltage_margin_kv_stage": 39.9390243902439,
+          "energy_margin_kj": 592.5658090422367,
+          "energy_margin_pct": 65.84064544913741
+        },
+        "exhaustive_settings": {
+          "stages": 8,
+          "charge_kv_stage": 160.0609756097561,
+          "front_r_stage": 6500.0,
+          "tail_r_stage": 750.0,
+          "stage_utilization": 0.8003048780487805,
+          "stored_energy_kj": 307.4341909577633,
+          "voltage_margin_kv_stage": 39.9390243902439,
+          "energy_margin_kj": 592.5658090422367,
+          "energy_margin_pct": 65.84064544913741
+        },
+        "bounded_rank_key": [
+          true,
+          true,
+          1.2546264330539012
+        ],
+        "exhaustive_rank_key": [
+          true,
+          true,
+          1.2546264330539012
+        ]
+      }
+    ],
+    "all_top1_and_top3_match": true,
+    "all_objective_gaps_zero": true,
+    "limitation": "Bounded nearest-five network search is not globally optimal. The four unchanged exhaustive fixtures are reference-solver spaces and all winners fail nominal waveform limits; they demonstrate ranking agreement only.",
+    "cpri_circuit_development": {
+      "version": "1.0.0",
+      "source_type": "controlled_development",
+      "split": "development",
+      "status": "COMPLETE",
+      "declaration_file": "artifacts/hardening/circuit_search_cases.json",
+      "declaration_sha256": "a8209196931929accb2b9d9f3c3c4d53d6c9efffa4a0d2bf037b77d918b3d42c",
+      "predeclared_before_execution": true,
+      "thread_settings": {
+        "OMP_NUM_THREADS": "1",
+        "OPENBLAS_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "NUMEXPR_NUM_THREADS": "1"
+      },
+      "execution_order": [
+        "unchanged baseline: Lightning then Switching",
+        "hardened working tree: Lightning then Switching"
+      ],
+      "method": "Call unchanged scripts.benchmark_search_quality.compare for each declared case in separate baseline/current processes using the same virtual environment. Explicitly replace only the request stock provenance string with the declared hypothetical-stock assumption. Physics mode, maximum three parts per network, eight production scenario samples and all declared stage choices. Do not train, tune or inspect Hidden Test.",
+      "before": {
+        "source_context": {
+          "repository": "C:\\Users\\shara\\Documents\\Codex\\2026-10-03\\github-plugin-github-openai-curated-remote\\work\\Impulse\\..\\hardening-baseline",
+          "head_commit": "047841f587c4b00bc8d018d5174961d3356eebbf",
+          "implementation_sha256": {
+            "backend/app/optimization/engine.py": "0b82c898f881547fbe6a755f69b87100dfeeec6fef646dd9ab41b76a47395f09",
+            "backend/app/optimization/networks.py": "dba89a49a134b138d185180ecc500f8af3a601c4a71f06e70498b182c9d57513",
+            "backend/app/ml/registry.py": "86f93cd586ff25259ad21fbfd75be884c324a24e963cce0e61a73be1b96a4a59",
+            "backend/app/physics/circuit.py": "76c4824114d9603239bed9d60f58e4c061df5a30e254a02d5e20553b3abf3183",
+            "backend/app/test_objects.py": "b5844ca3fb6b46cb9e77c3c47fb1a946147eb68e51937e1f47363df023557481",
+            "config/generator_profiles.json": "4fa804116e31602f7bbf7df14d7204e42b2216b9647c3af84ad4d6eba49b8296",
+            "config/optimization.json": "572e4e19a427e4216ae4ab71b5632ff9df70be52e587db215c66e71ba36201d7",
+            "scripts/benchmark_search_quality.py": "d83f42c300d4bad1359385c4f7984afbe31e1322ee0a310ff8972b52c86ca774"
+          }
+        },
+        "declared_cases_sha256": "a8209196931929accb2b9d9f3c3c4d53d6c9efffa4a0d2bf037b77d918b3d42c",
+        "cases": [
+          {
+            "id": "dev-cpri-circuit-li",
+            "source_type": "controlled_development",
+            "inputs": {
+              "profile_id": "cpri_problem_brief_profile",
+              "impulse_type": "Lightning",
+              "test_kv": 1425.0,
+              "load_c_pf": 650.0,
+              "divider_c_pf": 250.0,
+              "stray_c_pf": 55.0,
+              "l_uh": 12.0,
+              "efficiency": 0.83,
+              "solver": "circuit",
+              "model_mode": "physics",
+              "require_model_agreement": false,
+              "connection_mode": "series_marx_equivalent",
+              "layout_id": "default-layout",
+              "stage_min": 10,
+              "stage_max": 12,
+              "inventory_override": {
+                "front": [
+                  {
+                    "ohm": 30.0,
+                    "count_per_stage": 2
+                  },
+                  {
+                    "ohm": 465.0,
+                    "count_per_stage": 1
+                  }
+                ],
+                "tail": [
+                  {
+                    "ohm": 520.0,
+                    "count_per_stage": 2
+                  }
+                ],
+                "provenance": "Explicit hypothetical per-stage stock assumption for controlled development; quantities and mounting feasibility are not verified CPRI inventory."
+              },
+              "max_components_per_network": 3,
+              "include_base_c": true,
+              "uncertainty_pct": 5,
+              "monte_carlo_samples": 8,
+              "equipment_reference_kv": null,
+              "test_object_id": null,
+              "equipment_reference_source": null,
+              "confirm_reference_mismatch": false,
+              "calibration_id": null
+            },
+            "same_best_candidate": true,
+            "exhaustive_best_in_bounded_top3": true,
+            "bounded_winner_exhaustive_rank": 1,
+            "rank_difference": 0,
+            "objective_gap": 0.0,
+            "waveform_error_difference": 0.0,
+            "component_count_difference": 0,
+            "waveform_metric_difference": {
+              "front_us": 0.0,
+              "tail_us": 0.0,
+              "crest_kv": 0.0
+            },
+            "worst_waveform_margin_difference": 0.0,
+            "bounded_seconds": 6.230139099992812,
+            "exhaustive_seconds": 11.11648379988037,
+            "speedup": 1.7843074803728214,
+            "bounded_evaluated": 45,
+            "exhaustive_evaluated": 108,
+            "bounded_nominal_pass": true,
+            "exhaustive_nominal_pass": true,
+            "bounded_settings": {
+              "stages": 11,
+              "charge_kv_stage": 181.90279026170387,
+              "front_r_stage": 30.0,
+              "tail_r_stage": 520.0,
+              "stage_utilization": 0.9095139513085193,
+              "stored_energy_kj": 22.74842975968298,
+              "voltage_margin_kv_stage": 18.09720973829613,
+              "energy_margin_kj": 7.251570240317019,
+              "energy_margin_pct": 24.171900801056733
+            },
+            "exhaustive_settings": {
+              "stages": 11,
+              "charge_kv_stage": 181.90279026170387,
+              "front_r_stage": 30.0,
+              "tail_r_stage": 520.0,
+              "stage_utilization": 0.9095139513085193,
+              "stored_energy_kj": 22.74842975968298,
+              "voltage_margin_kv_stage": 18.09720973829613,
+              "energy_margin_kj": 7.251570240317019,
+              "energy_margin_pct": 24.171900801056733
+            },
+            "bounded_rank_key": [
+              false,
+              true,
+              0.33661322137378186
+            ],
+            "exhaustive_rank_key": [
+              false,
+              true,
+              0.33661322137378186
+            ],
+            "status": "COMPLETE"
+          },
+          {
+            "id": "dev-cpri-circuit-si",
+            "source_type": "controlled_development",
+            "inputs": {
+              "profile_id": "cpri_problem_brief_profile",
+              "impulse_type": "Switching",
+              "test_kv": 1050.0,
+              "load_c_pf": 650.0,
+              "divider_c_pf": 250.0,
+              "stray_c_pf": 55.0,
+              "l_uh": 12.0,
+              "efficiency": 0.83,
+              "solver": "circuit",
+              "model_mode": "physics",
+              "require_model_agreement": false,
+              "connection_mode": "series_marx_equivalent",
+              "layout_id": "default-layout",
+              "stage_min": 10,
+              "stage_max": 12,
+              "inventory_override": {
+                "front": [
+                  {
+                    "ohm": 465.0,
+                    "count_per_stage": 1
+                  },
+                  {
+                    "ohm": 3700.0,
+                    "count_per_stage": 2
+                  }
+                ],
+                "tail": [
+                  {
+                    "ohm": 22000.0,
+                    "count_per_stage": 2
+                  }
+                ],
+                "provenance": "Explicit hypothetical per-stage stock assumption for controlled development; quantities and mounting feasibility are not verified CPRI inventory."
+              },
+              "max_components_per_network": 3,
+              "include_base_c": true,
+              "uncertainty_pct": 5,
+              "monte_carlo_samples": 8,
+              "equipment_reference_kv": null,
+              "test_object_id": null,
+              "equipment_reference_source": null,
+              "confirm_reference_mismatch": false,
+              "calibration_id": null
+            },
+            "same_best_candidate": true,
+            "exhaustive_best_in_bounded_top3": true,
+            "bounded_winner_exhaustive_rank": 1,
+            "rank_difference": 0,
+            "objective_gap": 0.0,
+            "waveform_error_difference": 0.0,
+            "component_count_difference": 0,
+            "waveform_metric_difference": {
+              "front_us": 0.0,
+              "tail_us": 0.0,
+              "crest_kv": 0.0
+            },
+            "worst_waveform_margin_difference": 0.0,
+            "bounded_seconds": 6.758331400109455,
+            "exhaustive_seconds": 15.572009899886325,
+            "speedup": 2.304120496315722,
+            "bounded_evaluated": 45,
+            "exhaustive_evaluated": 108,
+            "bounded_nominal_pass": true,
+            "exhaustive_nominal_pass": true,
+            "bounded_settings": {
+              "stages": 11,
+              "charge_kv_stage": 141.1162262393799,
+              "front_r_stage": 4165.0,
+              "tail_r_stage": 22000.0,
+              "stage_utilization": 0.7055811311968995,
+              "stored_energy_kj": 13.69073014928015,
+              "voltage_margin_kv_stage": 58.8837737606201,
+              "energy_margin_kj": 16.30926985071985,
+              "energy_margin_pct": 54.36423283573284
+            },
+            "exhaustive_settings": {
+              "stages": 11,
+              "charge_kv_stage": 141.1162262393799,
+              "front_r_stage": 4165.0,
+              "tail_r_stage": 22000.0,
+              "stage_utilization": 0.7055811311968995,
+              "stored_energy_kj": 13.69073014928015,
+              "voltage_margin_kv_stage": 58.8837737606201,
+              "energy_margin_kj": 16.30926985071985,
+              "energy_margin_pct": 54.36423283573284
+            },
+            "bounded_rank_key": [
+              false,
+              true,
+              0.30017227202800334
+            ],
+            "exhaustive_rank_key": [
+              false,
+              true,
+              0.30017227202800334
+            ],
+            "status": "COMPLETE"
+          }
+        ]
+      },
+      "after": {
+        "source_context": {
+          "repository": "C:\\Users\\shara\\Documents\\Codex\\2026-10-03\\github-plugin-github-openai-curated-remote\\work\\Impulse",
+          "head_commit": "047841f587c4b00bc8d018d5174961d3356eebbf",
+          "implementation_sha256": {
+            "backend/app/optimization/engine.py": "269d82f69cca4e374b2dae5e89582204a050d147281d71e39de22991b56f5da7",
+            "backend/app/optimization/networks.py": "dba89a49a134b138d185180ecc500f8af3a601c4a71f06e70498b182c9d57513",
+            "backend/app/ml/registry.py": "b4aea480b2e76e2393d1cb0db7e82c9696aafc5c83566eda4fae0827184a008a",
+            "backend/app/physics/circuit.py": "e4c9242a80fce08f31d9768108f106cb868a4444e0ef240b8863e873a26c3a23",
+            "backend/app/test_objects.py": "56b4a617ee35a8be03768eaebbce274d4736655fb75e4c53ddeb1b82053c99a1",
+            "config/generator_profiles.json": "4fa804116e31602f7bbf7df14d7204e42b2216b9647c3af84ad4d6eba49b8296",
+            "config/optimization.json": "572e4e19a427e4216ae4ab71b5632ff9df70be52e587db215c66e71ba36201d7",
+            "scripts/benchmark_search_quality.py": "d83f42c300d4bad1359385c4f7984afbe31e1322ee0a310ff8972b52c86ca774"
+          }
+        },
+        "declared_cases_sha256": "a8209196931929accb2b9d9f3c3c4d53d6c9efffa4a0d2bf037b77d918b3d42c",
+        "cases": [
+          {
+            "id": "dev-cpri-circuit-li",
+            "source_type": "controlled_development",
+            "inputs": {
+              "profile_id": "cpri_problem_brief_profile",
+              "impulse_type": "Lightning",
+              "test_kv": 1425.0,
+              "load_c_pf": 650.0,
+              "divider_c_pf": 250.0,
+              "stray_c_pf": 55.0,
+              "l_uh": 12.0,
+              "efficiency": 0.83,
+              "solver": "circuit",
+              "model_mode": "physics",
+              "require_model_agreement": false,
+              "connection_mode": "series_marx_equivalent",
+              "layout_id": "default-layout",
+              "stage_min": 10,
+              "stage_max": 12,
+              "inventory_override": {
+                "front": [
+                  {
+                    "ohm": 30.0,
+                    "count_per_stage": 2
+                  },
+                  {
+                    "ohm": 465.0,
+                    "count_per_stage": 1
+                  }
+                ],
+                "tail": [
+                  {
+                    "ohm": 520.0,
+                    "count_per_stage": 2
+                  }
+                ],
+                "provenance": "Explicit hypothetical per-stage stock assumption for controlled development; quantities and mounting feasibility are not verified CPRI inventory."
+              },
+              "max_components_per_network": 3,
+              "include_base_c": true,
+              "uncertainty_pct": 5,
+              "monte_carlo_samples": 8,
+              "equipment_reference_kv": null,
+              "test_object_id": null,
+              "equipment_reference_source": null,
+              "confirm_reference_mismatch": false,
+              "calibration_id": null
+            },
+            "same_best_candidate": true,
+            "exhaustive_best_in_bounded_top3": true,
+            "bounded_winner_exhaustive_rank": 1,
+            "rank_difference": 0,
+            "objective_gap": 0.0,
+            "waveform_error_difference": 0.0,
+            "component_count_difference": 0,
+            "waveform_metric_difference": {
+              "front_us": 0.0,
+              "tail_us": 0.0,
+              "crest_kv": 0.0
+            },
+            "worst_waveform_margin_difference": 0.0,
+            "bounded_seconds": 4.891264700097963,
+            "exhaustive_seconds": 9.4802125999704,
+            "speedup": 1.9381925087351188,
+            "bounded_evaluated": 45,
+            "exhaustive_evaluated": 108,
+            "bounded_nominal_pass": true,
+            "exhaustive_nominal_pass": true,
+            "bounded_settings": {
+              "stages": 11,
+              "charge_kv_stage": 181.90279026170387,
+              "front_r_stage": 30.0,
+              "tail_r_stage": 520.0,
+              "stage_utilization": 0.9095139513085193,
+              "stored_energy_kj": 22.74842975968298,
+              "voltage_margin_kv_stage": 18.09720973829613,
+              "energy_margin_kj": 7.251570240317019,
+              "energy_margin_pct": 24.171900801056733
+            },
+            "exhaustive_settings": {
+              "stages": 11,
+              "charge_kv_stage": 181.90279026170387,
+              "front_r_stage": 30.0,
+              "tail_r_stage": 520.0,
+              "stage_utilization": 0.9095139513085193,
+              "stored_energy_kj": 22.74842975968298,
+              "voltage_margin_kv_stage": 18.09720973829613,
+              "energy_margin_kj": 7.251570240317019,
+              "energy_margin_pct": 24.171900801056733
+            },
+            "bounded_rank_key": [
+              false,
+              true,
+              0.3366132213737804
+            ],
+            "exhaustive_rank_key": [
+              false,
+              true,
+              0.3366132213737804
+            ],
+            "status": "COMPLETE"
+          },
+          {
+            "id": "dev-cpri-circuit-si",
+            "source_type": "controlled_development",
+            "inputs": {
+              "profile_id": "cpri_problem_brief_profile",
+              "impulse_type": "Switching",
+              "test_kv": 1050.0,
+              "load_c_pf": 650.0,
+              "divider_c_pf": 250.0,
+              "stray_c_pf": 55.0,
+              "l_uh": 12.0,
+              "efficiency": 0.83,
+              "solver": "circuit",
+              "model_mode": "physics",
+              "require_model_agreement": false,
+              "connection_mode": "series_marx_equivalent",
+              "layout_id": "default-layout",
+              "stage_min": 10,
+              "stage_max": 12,
+              "inventory_override": {
+                "front": [
+                  {
+                    "ohm": 465.0,
+                    "count_per_stage": 1
+                  },
+                  {
+                    "ohm": 3700.0,
+                    "count_per_stage": 2
+                  }
+                ],
+                "tail": [
+                  {
+                    "ohm": 22000.0,
+                    "count_per_stage": 2
+                  }
+                ],
+                "provenance": "Explicit hypothetical per-stage stock assumption for controlled development; quantities and mounting feasibility are not verified CPRI inventory."
+              },
+              "max_components_per_network": 3,
+              "include_base_c": true,
+              "uncertainty_pct": 5,
+              "monte_carlo_samples": 8,
+              "equipment_reference_kv": null,
+              "test_object_id": null,
+              "equipment_reference_source": null,
+              "confirm_reference_mismatch": false,
+              "calibration_id": null
+            },
+            "same_best_candidate": true,
+            "exhaustive_best_in_bounded_top3": true,
+            "bounded_winner_exhaustive_rank": 1,
+            "rank_difference": 0,
+            "objective_gap": 0.0,
+            "waveform_error_difference": 0.0,
+            "component_count_difference": 0,
+            "waveform_metric_difference": {
+              "front_us": 0.0,
+              "tail_us": 0.0,
+              "crest_kv": 0.0
+            },
+            "worst_waveform_margin_difference": 0.0,
+            "bounded_seconds": 5.004953800002113,
+            "exhaustive_seconds": 13.749941000016406,
+            "speedup": 2.747266318424478,
+            "bounded_evaluated": 45,
+            "exhaustive_evaluated": 108,
+            "bounded_nominal_pass": true,
+            "exhaustive_nominal_pass": true,
+            "bounded_settings": {
+              "stages": 11,
+              "charge_kv_stage": 141.1162262393799,
+              "front_r_stage": 4165.0,
+              "tail_r_stage": 22000.0,
+              "stage_utilization": 0.7055811311968995,
+              "stored_energy_kj": 13.69073014928015,
+              "voltage_margin_kv_stage": 58.8837737606201,
+              "energy_margin_kj": 16.30926985071985,
+              "energy_margin_pct": 54.36423283573284
+            },
+            "exhaustive_settings": {
+              "stages": 11,
+              "charge_kv_stage": 141.1162262393799,
+              "front_r_stage": 4165.0,
+              "tail_r_stage": 22000.0,
+              "stage_utilization": 0.7055811311968995,
+              "stored_energy_kj": 13.69073014928015,
+              "voltage_margin_kv_stage": 58.8837737606201,
+              "energy_margin_kj": 16.30926985071985,
+              "energy_margin_pct": 54.36423283573284
+            },
+            "bounded_rank_key": [
+              false,
+              true,
+              0.3001722720280035
+            ],
+            "exhaustive_rank_key": [
+              false,
+              true,
+              0.3001722720280035
+            ],
+            "status": "COMPLETE"
+          }
+        ]
+      },
+      "summary": {
+        "before": {
+          "declared_cases": 2,
+          "completed_cases": 2,
+          "failed_cases": 0,
+          "top1_match_rate": 1.0,
+          "top3_containment_rate": 1.0,
+          "worst_objective_gap": 0.0,
+          "compliance_differences": 0,
+          "bounded_nominal_passes": 2,
+          "exhaustive_nominal_passes": 2,
+          "median_bounded_seconds": 6.494235250051133,
+          "median_exhaustive_seconds": 13.344246849883348
+        },
+        "after": {
+          "declared_cases": 2,
+          "completed_cases": 2,
+          "failed_cases": 0,
+          "top1_match_rate": 1.0,
+          "top3_containment_rate": 1.0,
+          "worst_objective_gap": 0.0,
+          "compliance_differences": 0,
+          "bounded_nominal_passes": 2,
+          "exhaustive_nominal_passes": 2,
+          "median_bounded_seconds": 4.948109250050038,
+          "median_exhaustive_seconds": 11.615076799993403
+        }
+      },
+      "paired_case_deltas": [
+        {
+          "id": "dev-cpri-circuit-li",
+          "before_status": "COMPLETE",
+          "after_status": "COMPLETE",
+          "same_bounded_settings_to_1e_minus_7": true,
+          "bounded_nominal_pass_preserved": true,
+          "objective_gap_change": 0.0,
+          "bounded_seconds_before": 6.230139099992812,
+          "bounded_seconds_after": 4.891264700097963,
+          "bounded_runtime_speedup": 1.2737276516374247,
+          "exhaustive_seconds_before": 11.11648379988037,
+          "exhaustive_seconds_after": 9.4802125999704,
+          "bounded_evaluated_before": 45,
+          "bounded_evaluated_after": 45,
+          "exhaustive_evaluated_before": 108,
+          "exhaustive_evaluated_after": 108
+        },
+        {
+          "id": "dev-cpri-circuit-si",
+          "before_status": "COMPLETE",
+          "after_status": "COMPLETE",
+          "same_bounded_settings_to_1e_minus_7": true,
+          "bounded_nominal_pass_preserved": true,
+          "objective_gap_change": 0.0,
+          "bounded_seconds_before": 6.758331400109455,
+          "bounded_seconds_after": 5.004953800002113,
+          "bounded_runtime_speedup": 1.3503284286273736,
+          "exhaustive_seconds_before": 15.572009899886325,
+          "exhaustive_seconds_after": 13.749941000016406,
+          "bounded_evaluated_before": 45,
+          "bounded_evaluated_after": 45,
+          "exhaustive_evaluated_before": 108,
+          "exhaustive_evaluated_after": 108
+        }
+      ],
+      "limitations": "Two controlled DEVELOPMENT cases, not a held-out benchmark or optimization objective. Shared physics, charge solver, hard constraints and ranking mean agreement checks bounded discrete search coverage only, not model accuracy or continuous/global optimality. Stock quantities and mounting remain assumptions. The exhaustive catalog is limited to bridge-free series/parallel networks of up to three parts. Nominal PASS, interval containment and post-ranking challenges remain distinct. Single-run times are machine/cache dependent and do not support statistical performance claims.",
+      "production_tuning_performed": false,
+      "laboratory_accuracy_claim": null
+    }
+  },
+  "physics_stress": {
+    "before": {
+      "schema_version": 1,
+      "solver_version": "lumped RLC Marx equivalent v2",
+      "source": "C:\\Users\\shara\\Documents\\Codex\\2026-10-03\\github-plugin-github-openai-curated-remote\\work\\Impulse\\..\\physics_baseline_v2.py",
+      "numpy_version": "2.1.3",
+      "scope": "Deterministic generated circuit inputs for numerical regression; not training data, independent measured evidence, a search-quality benchmark, or a statistical reliability estimate.",
+      "protocols": [
+        {
+          "name": "ordinary_extremes",
+          "fixed_inputs": {
+            "stages": 11,
+            "charge_kv_stage": 180,
+            "stage_c_uf": 0.125,
+            "efficiency": 0.83,
+            "impulse_type": "Lightning",
+            "include_waveform": false
+          },
+          "varying_fields": [
+            "total_c_pf",
+            "l_uh",
+            "front_r_stage",
+            "tail_r_stage"
+          ],
+          "varying_values": [
+            [
+              0.1,
+              1,
+              100,
+              1500,
+              100000,
+              300000
+            ],
+            [
+              0,
+              1e-08,
+              1e-07,
+              0.0001,
+              0.01,
+              12,
+              10000
+            ],
+            [
+              0.01,
+              30,
+              465,
+              3700,
+              1000000.0
+            ],
+            [
+              0.01,
+              520,
+              22000,
+              100000000.0
+            ]
+          ],
+          "case_count": 840,
+          "resolved_case_count": 840,
+          "diagnostic_failure_count": 0,
+          "maximum_energy_ratio_among_resolved_cases": 1.0000000000000009,
+          "diagnostic_failures": []
+        },
+        {
+          "name": "extreme_stiffness",
+          "fixed_inputs": {
+            "charge_kv_stage": 180,
+            "efficiency": 0.83,
+            "impulse_type": "Switching",
+            "include_waveform": false
+          },
+          "varying_fields": [
+            "stages",
+            "stage_c_uf",
+            "total_c_pf",
+            "l_uh",
+            "front_r_stage",
+            "tail_r_stage"
+          ],
+          "varying_values": [
+            [
+              2,
+              12,
+              30
+            ],
+            [
+              0.125,
+              3
+            ],
+            [
+              0.001,
+              100,
+              300000
+            ],
+            [
+              1.01e-08,
+              1e-06,
+              1,
+              10000
+            ],
+            [
+              30,
+              100000000.0
+            ],
+            [
+              520,
+              100000000.0
+            ]
+          ],
+          "case_count": 288,
+          "resolved_case_count": 285,
+          "diagnostic_failure_count": 3,
+          "maximum_energy_ratio_among_resolved_cases": 1.000000000000001,
+          "diagnostic_failures": [
+            {
+              "inputs": {
+                "charge_kv_stage": 180,
+                "efficiency": 0.83,
+                "impulse_type": "Switching",
+                "include_waveform": false,
+                "stages": 2,
+                "stage_c_uf": 0.125,
+                "total_c_pf": 0.001,
+                "l_uh": 1.01e-08,
+                "front_r_stage": 30,
+                "tail_r_stage": 100000000.0
+              },
+              "error_type": "ValueError",
+              "message": "Unstable equivalent circuit."
+            },
+            {
+              "inputs": {
+                "charge_kv_stage": 180,
+                "efficiency": 0.83,
+                "impulse_type": "Switching",
+                "include_waveform": false,
+                "stages": 12,
+                "stage_c_uf": 3,
+                "total_c_pf": 0.001,
+                "l_uh": 1e-06,
+                "front_r_stage": 30,
+                "tail_r_stage": 100000000.0
+              },
+              "error_type": "ValueError",
+              "message": "Unstable equivalent circuit."
+            },
+            {
+              "inputs": {
+                "charge_kv_stage": 180,
+                "efficiency": 0.83,
+                "impulse_type": "Switching",
+                "include_waveform": false,
+                "stages": 30,
+                "stage_c_uf": 3,
+                "total_c_pf": 0.001,
+                "l_uh": 1e-06,
+                "front_r_stage": 30,
+                "tail_r_stage": 100000000.0
+              },
+              "error_type": "ValueError",
+              "message": "Unstable equivalent circuit."
+            }
+          ]
+        }
+      ]
+    },
+    "after": {
+      "schema_version": 1,
+      "solver_version": "lumped RLC Marx equivalent v2.1",
+      "source": "C:\\Users\\shara\\Documents\\Codex\\2026-10-03\\github-plugin-github-openai-curated-remote\\work\\Impulse\\backend\\app\\physics\\circuit.py",
+      "numpy_version": "2.1.3",
+      "scope": "Deterministic generated circuit inputs for numerical regression; not training data, independent measured evidence, a search-quality benchmark, or a statistical reliability estimate.",
+      "protocols": [
+        {
+          "name": "ordinary_extremes",
+          "fixed_inputs": {
+            "stages": 11,
+            "charge_kv_stage": 180,
+            "stage_c_uf": 0.125,
+            "efficiency": 0.83,
+            "impulse_type": "Lightning",
+            "include_waveform": false
+          },
+          "varying_fields": [
+            "total_c_pf",
+            "l_uh",
+            "front_r_stage",
+            "tail_r_stage"
+          ],
+          "varying_values": [
+            [
+              0.1,
+              1,
+              100,
+              1500,
+              100000,
+              300000
+            ],
+            [
+              0,
+              1e-08,
+              1e-07,
+              0.0001,
+              0.01,
+              12,
+              10000
+            ],
+            [
+              0.01,
+              30,
+              465,
+              3700,
+              1000000.0
+            ],
+            [
+              0.01,
+              520,
+              22000,
+              100000000.0
+            ]
+          ],
+          "case_count": 840,
+          "resolved_case_count": 805,
+          "diagnostic_failure_count": 35,
+          "maximum_energy_ratio_among_resolved_cases": 1.0000000000000009,
+          "diagnostic_failures": [
+            {
+              "inputs": {
+                "stages": 11,
+                "charge_kv_stage": 180,
+                "stage_c_uf": 0.125,
+                "efficiency": 0.83,
+                "impulse_type": "Lightning",
+                "include_waveform": false,
+                "total_c_pf": 0.1,
+                "l_uh": 1e-07,
+                "front_r_stage": 0.01,
+                "tail_r_stage": 22000
+              },
+              "error_type": "ValueError",
+              "message": "Could not resolve a continuous interior circuit crest; no waveform result returned."
+            },
+            {
+              "inputs": {
+                "stages": 11,
+                "charge_kv_stage": 180,
+                "stage_c_uf": 0.125,
+                "efficiency": 0.83,
+                "impulse_type": "Lightning",
+                "include_waveform": false,
+                "total_c_pf": 0.1,
+                "l_uh": 1e-07,
+                "front_r_stage": 0.01,
+                "tail_r_stage": 100000000.0
+              },
+              "error_type": "ValueError",
+              "message": "Could not resolve a continuous interior circuit crest; no waveform result returned."
+            },
+            {
+              "inputs": {
+                "stages": 11,
+                "charge_kv_stage": 180,
+                "stage_c_uf": 0.125,
+                "efficiency": 0.83,
+                "impulse_type": "Lightning",
+                "include_waveform": false,
+                "total_c_pf": 1,
+                "l_uh": 1e-07,
+                "front_r_stage": 0.01,
+                "tail_r_stage": 22000
+              },
+              "error_type": "ValueError",
+              "message": "Could not resolve a continuous interior circuit crest; no waveform result returned."
+            },
+            {
+              "inputs": {
+                "stages": 11,
+                "charge_kv_stage": 180,
+                "stage_c_uf": 0.125,
+                "efficiency": 0.83,
+                "impulse_type": "Lightning",
+                "include_waveform": false,
+                "total_c_pf": 1,
+                "l_uh": 1e-07,
+                "front_r_stage": 0.01,
+                "tail_r_stage": 100000000.0
+              },
+              "error_type": "ValueError",
+              "message": "Could not resolve a continuous interior circuit crest; no waveform result returned."
+            },
+            {
+              "inputs": {
+                "stages": 11,
+                "charge_kv_stage": 180,
+                "stage_c_uf": 0.125,
+                "efficiency": 0.83,
+                "impulse_type": "Lightning",
+                "include_waveform": false,
+                "total_c_pf": 100,
+                "l_uh": 1e-07,
+                "front_r_stage": 1000000.0,
+                "tail_r_stage": 0.01
+              },
+              "error_type": "ValueError",
+              "message": "Could not resolve a continuous interior circuit crest; no waveform result returned."
+            },
+            {
+              "inputs": {
+                "stages": 11,
+                "charge_kv_stage": 180,
+                "stage_c_uf": 0.125,
+                "efficiency": 0.83,
+                "impulse_type": "Lightning",
+                "include_waveform": false,
+                "total_c_pf": 100,
+                "l_uh": 0.0001,
+                "front_r_stage": 1000000.0,
+                "tail_r_stage": 0.01
+              },
+              "error_type": "ValueError",
+              "message": "Could not resolve a continuous interior circuit crest; no waveform result returned."
+            },
+            {
+              "inputs": {
+                "stages": 11,
+                "charge_kv_stage": 180,
+                "stage_c_uf": 0.125,
+                "efficiency": 0.83,
+                "impulse_type": "Lightning",
+                "include_waveform": false,
+                "total_c_pf": 1500,
+                "l_uh": 1e-07,
+                "front_r_stage": 3700,
+                "tail_r_stage": 0.01
+              },
+              "error_type": "ValueError",
+              "message": "Could not resolve a continuous interior circuit crest; no waveform result returned."
+            },
+            {
+              "inputs": {
+                "stages": 11,
+                "charge_kv_stage": 180,
+                "stage_c_uf": 0.125,
+                "efficiency": 0.83,
+                "impulse_type": "Lightning",
+                "include_waveform": false,
+                "total_c_pf": 1500,
+                "l_uh": 1e-07,
+                "front_r_stage": 1000000.0,
+                "tail_r_stage": 0.01
+              },
+              "error_type": "ValueError",
+              "message": "Could not resolve a continuous interior circuit crest; no waveform result returned."
+            },
+            {
+              "inputs": {
+                "stages": 11,
+                "charge_kv_stage": 180,
+                "stage_c_uf": 0.125,
+                "efficiency": 0.83,
+                "impulse_type": "Lightning",
+                "include_waveform": false,
+                "total_c_pf": 1500,
+                "l_uh": 0.0001,
+                "front_r_stage": 3700,
+                "tail_r_stage": 0.01
+              },
+              "error_type": "ValueError",
+              "message": "Could not resolve a continuous interior circuit crest; no waveform result returned."
+            },
+            {
+              "inputs": {
+                "stages": 11,
+                "charge_kv_stage": 180,
+                "stage_c_uf": 0.125,
+                "efficiency": 0.83,
+                "impulse_type": "Lightning",
+                "include_waveform": false,
+                "total_c_pf": 1500,
+                "l_uh": 0.0001,
+                "front_r_stage": 1000000.0,
+                "tail_r_stage": 0.01
+              },
+              "error_type": "ValueError",
+              "message": "Could not resolve a continuous interior circuit crest; no waveform result returned."
+            },
+            {
+              "inputs": {
+                "stages": 11,
+                "charge_kv_stage": 180,
+                "stage_c_uf": 0.125,
+                "efficiency": 0.83,
+                "impulse_type": "Lightning",
+                "include_waveform": false,
+                "total_c_pf": 1500,
+                "l_uh": 0.01,
+                "front_r_stage": 3700,
+                "tail_r_stage": 0.01
+              },
+              "error_type": "ValueError",
+              "message": "Could not resolve a continuous interior circuit crest; no waveform result returned."
+            },
+            {
+              "inputs": {
+                "stages": 11,
+                "charge_kv_stage": 180,
+                "stage_c_uf": 0.125,
+                "efficiency": 0.83,
+                "impulse_type": "Lightning",
+                "include_waveform": false,
+                "total_c_pf": 1500,
+                "l_uh": 12,
+                "front_r_stage": 3700,
+                "tail_r_stage": 0.01
+              },
+              "error_type": "ValueError",
+              "message": "Could not resolve a continuous interior circuit crest; no waveform result returned."
+            },
+            {
+              "inputs": {
+                "stages": 11,
+                "charge_kv_stage": 180,
+                "stage_c_uf": 0.125,
+                "efficiency": 0.83,
+                "impulse_type": "Lightning",
+                "include_waveform": false,
+                "total_c_pf": 100000,
+                "l_uh": 1e-07,
+                "front_r_stage": 30,
+                "tail_r_stage": 0.01
+              },
+              "error_type": "ValueError",
+              "message": "Could not resolve a continuous interior circuit crest; no waveform result returned."
+            },
+            {
+              "inputs": {
+                "stages": 11,
+                "charge_kv_stage": 180,
+                "stage_c_uf": 0.125,
+                "efficiency": 0.83,
+                "impulse_type": "Lightning",
+                "include_waveform": false,
+                "total_c_pf": 100000,
+                "l_uh": 1e-07,
+                "front_r_stage": 3700,
+                "tail_r_stage": 0.01
+              },
+              "error_type": "ValueError",
+              "message": "Could not resolve a continuous interior circuit crest; no waveform result returned."
+            },
+            {
+              "inputs": {
+                "stages": 11,
+                "charge_kv_stage": 180,
+                "stage_c_uf": 0.125,
+                "efficiency": 0.83,
+                "impulse_type": "Lightning",
+                "include_waveform": false,
+                "total_c_pf": 100000,
+                "l_uh": 1e-07,
+                "front_r_stage": 1000000.0,
+                "tail_r_stage": 0.01
+              },
+              "error_type": "ValueError",
+              "message": "Could not resolve a continuous interior circuit crest; no waveform result returned."
+            },
+            {
+              "inputs": {
+                "stages": 11,
+                "charge_kv_stage": 180,
+                "stage_c_uf": 0.125,
+                "efficiency": 0.83,
+                "impulse_type": "Lightning",
+                "include_waveform": false,
+                "total_c_pf": 100000,
+                "l_uh": 1e-07,
+                "front_r_stage": 1000000.0,
+                "tail_r_stage": 520
+              },
+              "error_type": "ValueError",
+              "message": "Could not resolve a continuous interior circuit crest; no waveform result returned."
+            },
+            {
+              "inputs": {
+                "stages": 11,
+                "charge_kv_stage": 180,
+                "stage_c_uf": 0.125,
+                "efficiency": 0.83,
+                "impulse_type": "Lightning",
+                "include_waveform": false,
+                "total_c_pf": 100000,
+                "l_uh": 0.0001,
+                "front_r_stage": 30,
+                "tail_r_stage": 0.01
+              },
+              "error_type": "ValueError",
+              "message": "Could not resolve a continuous interior circuit crest; no waveform result returned."
+            },
+            {
+              "inputs": {
+                "stages": 11,
+                "charge_kv_stage": 180,
+                "stage_c_uf": 0.125,
+                "efficiency": 0.83,
+                "impulse_type": "Lightning",
+                "include_waveform": false,
+                "total_c_pf": 100000,
+                "l_uh": 0.0001,
+                "front_r_stage": 465,
+                "tail_r_stage": 0.01
+              },
+              "error_type": "ValueError",
+              "message": "Could not resolve a continuous interior circuit crest; no waveform result returned."
+            },
+            {
+              "inputs": {
+                "stages": 11,
+                "charge_kv_stage": 180,
+                "stage_c_uf": 0.125,
+                "efficiency": 0.83,
+                "impulse_type": "Lightning",
+                "include_waveform": false,
+                "total_c_pf": 100000,
+                "l_uh": 0.01,
+                "front_r_stage": 30,
+                "tail_r_stage": 0.01
+              },
+              "error_type": "ValueError",
+              "message": "Could not resolve a continuous interior circuit crest; no waveform result returned."
+            },
+            {
+              "inputs": {
+                "stages": 11,
+                "charge_kv_stage": 180,
+                "stage_c_uf": 0.125,
+                "efficiency": 0.83,
+                "impulse_type": "Lightning",
+                "include_waveform": false,
+                "total_c_pf": 100000,
+                "l_uh": 0.01,
+                "front_r_stage": 1000000.0,
+                "tail_r_stage": 0.01
+              },
+              "error_type": "ValueError",
+              "message": "Could not resolve a continuous interior circuit crest; no waveform result returned."
+            },
+            {
+              "inputs": {
+                "stages": 11,
+                "charge_kv_stage": 180,
+                "stage_c_uf": 0.125,
+                "efficiency": 0.83,
+                "impulse_type": "Lightning",
+                "include_waveform": false,
+                "total_c_pf": 100000,
+                "l_uh": 12,
+                "front_r_stage": 3700,
+                "tail_r_stage": 0.01
+              },
+              "error_type": "ValueError",
+              "message": "Could not resolve a continuous interior circuit crest; no waveform result returned."
+            },
+            {
+              "inputs": {
+                "stages": 11,
+                "charge_kv_stage": 180,
+                "stage_c_uf": 0.125,
+                "efficiency": 0.83,
+                "impulse_type": "Lightning",
+                "include_waveform": false,
+                "total_c_pf": 100000,
+                "l_uh": 10000,
+                "front_r_stage": 1000000.0,
+                "tail_r_stage": 0.01
+              },
+              "error_type": "ValueError",
+              "message": "Could not resolve a continuous interior circuit crest; no waveform result returned."
+            },
+            {
+              "inputs": {
+                "stages": 11,
+                "charge_kv_stage": 180,
+                "stage_c_uf": 0.125,
+                "efficiency": 0.83,
+                "impulse_type": "Lightning",
+                "include_waveform": false,
+                "total_c_pf": 100000,
+                "l_uh": 10000,
+                "front_r_stage": 1000000.0,
+                "tail_r_stage": 520
+              },
+              "error_type": "ValueError",
+              "message": "Could not resolve a continuous interior circuit crest; no waveform result returned."
+            },
+            {
+              "inputs": {
+                "stages": 11,
+                "charge_kv_stage": 180,
+                "stage_c_uf": 0.125,
+                "efficiency": 0.83,
+                "impulse_type": "Lightning",
+                "include_waveform": false,
+                "total_c_pf": 300000,
+                "l_uh": 1e-07,
+                "front_r_stage": 30,
+                "tail_r_stage": 0.01
+              },
+              "error_type": "ValueError",
+              "message": "Could not resolve a continuous interior circuit crest; no waveform result returned."
+            },
+            {
+              "inputs": {
+                "stages": 11,
+                "charge_kv_stage": 180,
+                "stage_c_uf": 0.125,
+                "efficiency": 0.83,
+                "impulse_type": "Lightning",
+                "include_waveform": false,
+                "total_c_pf": 300000,
+                "l_uh": 1e-07,
+                "front_r_stage": 465,
+                "tail_r_stage": 0.01
+              },
+              "error_type": "ValueError",
+              "message": "Could not resolve a continuous interior circuit crest; no waveform result returned."
+            },
+            {
+              "inputs": {
+                "stages": 11,
+                "charge_kv_stage": 180,
+                "stage_c_uf": 0.125,
+                "efficiency": 0.83,
+                "impulse_type": "Lightning",
+                "include_waveform": false,
+                "total_c_pf": 300000,
+                "l_uh": 1e-07,
+                "front_r_stage": 1000000.0,
+                "tail_r_stage": 0.01
+              },
+              "error_type": "ValueError",
+              "message": "Could not resolve a continuous interior circuit crest; no waveform result returned."
+            },
+            {
+              "inputs": {
+                "stages": 11,
+                "charge_kv_stage": 180,
+                "stage_c_uf": 0.125,
+                "efficiency": 0.83,
+                "impulse_type": "Lightning",
+                "include_waveform": false,
+                "total_c_pf": 300000,
+                "l_uh": 1e-07,
+                "front_r_stage": 1000000.0,
+                "tail_r_stage": 520
+              },
+              "error_type": "ValueError",
+              "message": "Could not resolve a continuous interior circuit crest; no waveform result returned."
+            },
+            {
+              "inputs": {
+                "stages": 11,
+                "charge_kv_stage": 180,
+                "stage_c_uf": 0.125,
+                "efficiency": 0.83,
+                "impulse_type": "Lightning",
+                "include_waveform": false,
+                "total_c_pf": 300000,
+                "l_uh": 0.0001,
+                "front_r_stage": 30,
+                "tail_r_stage": 0.01
+              },
+              "error_type": "ValueError",
+              "message": "Could not resolve a continuous interior circuit crest; no waveform result returned."
+            },
+            {
+              "inputs": {
+                "stages": 11,
+                "charge_kv_stage": 180,
+                "stage_c_uf": 0.125,
+                "efficiency": 0.83,
+                "impulse_type": "Lightning",
+                "include_waveform": false,
+                "total_c_pf": 300000,
+                "l_uh": 0.0001,
+                "front_r_stage": 465,
+                "tail_r_stage": 0.01
+              },
+              "error_type": "ValueError",
+              "message": "Could not resolve a continuous interior circuit crest; no waveform result returned."
+            },
+            {
+              "inputs": {
+                "stages": 11,
+                "charge_kv_stage": 180,
+                "stage_c_uf": 0.125,
+                "efficiency": 0.83,
+                "impulse_type": "Lightning",
+                "include_waveform": false,
+                "total_c_pf": 300000,
+                "l_uh": 0.0001,
+                "front_r_stage": 1000000.0,
+                "tail_r_stage": 520
+              },
+              "error_type": "ValueError",
+              "message": "Could not resolve a continuous interior circuit crest; no waveform result returned."
+            },
+            {
+              "inputs": {
+                "stages": 11,
+                "charge_kv_stage": 180,
+                "stage_c_uf": 0.125,
+                "efficiency": 0.83,
+                "impulse_type": "Lightning",
+                "include_waveform": false,
+                "total_c_pf": 300000,
+                "l_uh": 0.01,
+                "front_r_stage": 3700,
+                "tail_r_stage": 0.01
+              },
+              "error_type": "ValueError",
+              "message": "Could not resolve a continuous interior circuit crest; no waveform result returned."
+            },
+            {
+              "inputs": {
+                "stages": 11,
+                "charge_kv_stage": 180,
+                "stage_c_uf": 0.125,
+                "efficiency": 0.83,
+                "impulse_type": "Lightning",
+                "include_waveform": false,
+                "total_c_pf": 300000,
+                "l_uh": 12,
+                "front_r_stage": 465,
+                "tail_r_stage": 0.01
+              },
+              "error_type": "ValueError",
+              "message": "Could not resolve a continuous interior circuit crest; no waveform result returned."
+            },
+            {
+              "inputs": {
+                "stages": 11,
+                "charge_kv_stage": 180,
+                "stage_c_uf": 0.125,
+                "efficiency": 0.83,
+                "impulse_type": "Lightning",
+                "include_waveform": false,
+                "total_c_pf": 300000,
+                "l_uh": 10000,
+                "front_r_stage": 3700,
+                "tail_r_stage": 0.01
+              },
+              "error_type": "ValueError",
+              "message": "Could not resolve a continuous interior circuit crest; no waveform result returned."
+            },
+            {
+              "inputs": {
+                "stages": 11,
+                "charge_kv_stage": 180,
+                "stage_c_uf": 0.125,
+                "efficiency": 0.83,
+                "impulse_type": "Lightning",
+                "include_waveform": false,
+                "total_c_pf": 300000,
+                "l_uh": 10000,
+                "front_r_stage": 1000000.0,
+                "tail_r_stage": 0.01
+              },
+              "error_type": "ValueError",
+              "message": "Could not resolve a continuous interior circuit crest; no waveform result returned."
+            },
+            {
+              "inputs": {
+                "stages": 11,
+                "charge_kv_stage": 180,
+                "stage_c_uf": 0.125,
+                "efficiency": 0.83,
+                "impulse_type": "Lightning",
+                "include_waveform": false,
+                "total_c_pf": 300000,
+                "l_uh": 10000,
+                "front_r_stage": 1000000.0,
+                "tail_r_stage": 520
+              },
+              "error_type": "ValueError",
+              "message": "Could not resolve a continuous interior circuit crest; no waveform result returned."
+            }
+          ]
+        },
+        {
+          "name": "extreme_stiffness",
+          "fixed_inputs": {
+            "charge_kv_stage": 180,
+            "efficiency": 0.83,
+            "impulse_type": "Switching",
+            "include_waveform": false
+          },
+          "varying_fields": [
+            "stages",
+            "stage_c_uf",
+            "total_c_pf",
+            "l_uh",
+            "front_r_stage",
+            "tail_r_stage"
+          ],
+          "varying_values": [
+            [
+              2,
+              12,
+              30
+            ],
+            [
+              0.125,
+              3
+            ],
+            [
+              0.001,
+              100,
+              300000
+            ],
+            [
+              1.01e-08,
+              1e-06,
+              1,
+              10000
+            ],
+            [
+              30,
+              100000000.0
+            ],
+            [
+              520,
+              100000000.0
+            ]
+          ],
+          "case_count": 288,
+          "resolved_case_count": 271,
+          "diagnostic_failure_count": 17,
+          "maximum_energy_ratio_among_resolved_cases": 1.000000000000001,
+          "diagnostic_failures": [
+            {
+              "inputs": {
+                "charge_kv_stage": 180,
+                "efficiency": 0.83,
+                "impulse_type": "Switching",
+                "include_waveform": false,
+                "stages": 2,
+                "stage_c_uf": 0.125,
+                "total_c_pf": 0.001,
+                "l_uh": 1.01e-08,
+                "front_r_stage": 30,
+                "tail_r_stage": 100000000.0
+              },
+              "error_type": "ValueError",
+              "message": "Could not resolve finite stable decay modes of the passive equivalent circuit. Review extreme circuit ratios; no waveform result returned."
+            },
+            {
+              "inputs": {
+                "charge_kv_stage": 180,
+                "efficiency": 0.83,
+                "impulse_type": "Switching",
+                "include_waveform": false,
+                "stages": 2,
+                "stage_c_uf": 0.125,
+                "total_c_pf": 0.001,
+                "l_uh": 1e-06,
+                "front_r_stage": 30,
+                "tail_r_stage": 100000000.0
+              },
+              "error_type": "ValueError",
+              "message": "Could not resolve a continuous interior circuit crest; no waveform result returned."
+            },
+            {
+              "inputs": {
+                "charge_kv_stage": 180,
+                "efficiency": 0.83,
+                "impulse_type": "Switching",
+                "include_waveform": false,
+                "stages": 2,
+                "stage_c_uf": 0.125,
+                "total_c_pf": 300000,
+                "l_uh": 1e-06,
+                "front_r_stage": 100000000.0,
+                "tail_r_stage": 520
+              },
+              "error_type": "ValueError",
+              "message": "Could not resolve a continuous interior circuit crest; no waveform result returned."
+            },
+            {
+              "inputs": {
+                "charge_kv_stage": 180,
+                "efficiency": 0.83,
+                "impulse_type": "Switching",
+                "include_waveform": false,
+                "stages": 2,
+                "stage_c_uf": 0.125,
+                "total_c_pf": 300000,
+                "l_uh": 1,
+                "front_r_stage": 100000000.0,
+                "tail_r_stage": 520
+              },
+              "error_type": "ValueError",
+              "message": "Could not resolve a continuous interior circuit crest; no waveform result returned."
+            },
+            {
+              "inputs": {
+                "charge_kv_stage": 180,
+                "efficiency": 0.83,
+                "impulse_type": "Switching",
+                "include_waveform": false,
+                "stages": 2,
+                "stage_c_uf": 3,
+                "total_c_pf": 0.001,
+                "l_uh": 1e-06,
+                "front_r_stage": 30,
+                "tail_r_stage": 100000000.0
+              },
+              "error_type": "ValueError",
+              "message": "Could not resolve a continuous interior circuit crest; no waveform result returned."
+            },
+            {
+              "inputs": {
+                "charge_kv_stage": 180,
+                "efficiency": 0.83,
+                "impulse_type": "Switching",
+                "include_waveform": false,
+                "stages": 2,
+                "stage_c_uf": 3,
+                "total_c_pf": 300000,
+                "l_uh": 1.01e-08,
+                "front_r_stage": 100000000.0,
+                "tail_r_stage": 520
+              },
+              "error_type": "ValueError",
+              "message": "Could not resolve a continuous interior circuit crest; no waveform result returned."
+            },
+            {
+              "inputs": {
+                "charge_kv_stage": 180,
+                "efficiency": 0.83,
+                "impulse_type": "Switching",
+                "include_waveform": false,
+                "stages": 2,
+                "stage_c_uf": 3,
+                "total_c_pf": 300000,
+                "l_uh": 1e-06,
+                "front_r_stage": 100000000.0,
+                "tail_r_stage": 520
+              },
+              "error_type": "ValueError",
+              "message": "Could not resolve a continuous interior circuit crest; no waveform result returned."
+            },
+            {
+              "inputs": {
+                "charge_kv_stage": 180,
+                "efficiency": 0.83,
+                "impulse_type": "Switching",
+                "include_waveform": false,
+                "stages": 2,
+                "stage_c_uf": 3,
+                "total_c_pf": 300000,
+                "l_uh": 1,
+                "front_r_stage": 100000000.0,
+                "tail_r_stage": 520
+              },
+              "error_type": "ValueError",
+              "message": "Could not resolve a continuous interior circuit crest; no waveform result returned."
+            },
+            {
+              "inputs": {
+                "charge_kv_stage": 180,
+                "efficiency": 0.83,
+                "impulse_type": "Switching",
+                "include_waveform": false,
+                "stages": 12,
+                "stage_c_uf": 0.125,
+                "total_c_pf": 300000,
+                "l_uh": 1e-06,
+                "front_r_stage": 100000000.0,
+                "tail_r_stage": 520
+              },
+              "error_type": "ValueError",
+              "message": "Could not resolve a continuous interior circuit crest; no waveform result returned."
+            },
+            {
+              "inputs": {
+                "charge_kv_stage": 180,
+                "efficiency": 0.83,
+                "impulse_type": "Switching",
+                "include_waveform": false,
+                "stages": 12,
+                "stage_c_uf": 0.125,
+                "total_c_pf": 300000,
+                "l_uh": 10000,
+                "front_r_stage": 100000000.0,
+                "tail_r_stage": 520
+              },
+              "error_type": "ValueError",
+              "message": "Could not resolve a continuous interior circuit crest; no waveform result returned."
+            },
+            {
+              "inputs": {
+                "charge_kv_stage": 180,
+                "efficiency": 0.83,
+                "impulse_type": "Switching",
+                "include_waveform": false,
+                "stages": 12,
+                "stage_c_uf": 3,
+                "total_c_pf": 0.001,
+                "l_uh": 1e-06,
+                "front_r_stage": 30,
+                "tail_r_stage": 100000000.0
+              },
+              "error_type": "ValueError",
+              "message": "Could not resolve finite stable decay modes of the passive equivalent circuit. Review extreme circuit ratios; no waveform result returned."
+            },
+            {
+              "inputs": {
+                "charge_kv_stage": 180,
+                "efficiency": 0.83,
+                "impulse_type": "Switching",
+                "include_waveform": false,
+                "stages": 12,
+                "stage_c_uf": 3,
+                "total_c_pf": 300000,
+                "l_uh": 1e-06,
+                "front_r_stage": 100000000.0,
+                "tail_r_stage": 520
+              },
+              "error_type": "ValueError",
+              "message": "Could not resolve a continuous interior circuit crest; no waveform result returned."
+            },
+            {
+              "inputs": {
+                "charge_kv_stage": 180,
+                "efficiency": 0.83,
+                "impulse_type": "Switching",
+                "include_waveform": false,
+                "stages": 12,
+                "stage_c_uf": 3,
+                "total_c_pf": 300000,
+                "l_uh": 10000,
+                "front_r_stage": 100000000.0,
+                "tail_r_stage": 520
+              },
+              "error_type": "ValueError",
+              "message": "Could not resolve a continuous interior circuit crest; no waveform result returned."
+            },
+            {
+              "inputs": {
+                "charge_kv_stage": 180,
+                "efficiency": 0.83,
+                "impulse_type": "Switching",
+                "include_waveform": false,
+                "stages": 30,
+                "stage_c_uf": 0.125,
+                "total_c_pf": 300000,
+                "l_uh": 1,
+                "front_r_stage": 100000000.0,
+                "tail_r_stage": 520
+              },
+              "error_type": "ValueError",
+              "message": "Could not resolve a continuous interior circuit crest; no waveform result returned."
+            },
+            {
+              "inputs": {
+                "charge_kv_stage": 180,
+                "efficiency": 0.83,
+                "impulse_type": "Switching",
+                "include_waveform": false,
+                "stages": 30,
+                "stage_c_uf": 3,
+                "total_c_pf": 0.001,
+                "l_uh": 1e-06,
+                "front_r_stage": 30,
+                "tail_r_stage": 100000000.0
+              },
+              "error_type": "ValueError",
+              "message": "Could not resolve finite stable decay modes of the passive equivalent circuit. Review extreme circuit ratios; no waveform result returned."
+            },
+            {
+              "inputs": {
+                "charge_kv_stage": 180,
+                "efficiency": 0.83,
+                "impulse_type": "Switching",
+                "include_waveform": false,
+                "stages": 30,
+                "stage_c_uf": 3,
+                "total_c_pf": 300000,
+                "l_uh": 1e-06,
+                "front_r_stage": 100000000.0,
+                "tail_r_stage": 520
+              },
+              "error_type": "ValueError",
+              "message": "Could not resolve a continuous interior circuit crest; no waveform result returned."
+            },
+            {
+              "inputs": {
+                "charge_kv_stage": 180,
+                "efficiency": 0.83,
+                "impulse_type": "Switching",
+                "include_waveform": false,
+                "stages": 30,
+                "stage_c_uf": 3,
+                "total_c_pf": 300000,
+                "l_uh": 1,
+                "front_r_stage": 100000000.0,
+                "tail_r_stage": 520
+              },
+              "error_type": "ValueError",
+              "message": "Could not resolve a continuous interior circuit crest; no waveform result returned."
+            }
+          ]
+        }
+      ]
+    },
+    "interpretation": "More explicit failures replace unrefined plotting-grid crest acceptance, not evidence of physical instability or improved laboratory accuracy."
+  },
+  "cpri_regression": {
+    "inputs": {
+      "profile_id": "cpri_problem_brief_profile",
+      "impulse_type": "Lightning",
+      "test_kv": 1425,
+      "load_c_pf": 650.0,
+      "divider_c_pf": 250.0,
+      "stray_c_pf": 55.0,
+      "l_uh": 12.0,
+      "efficiency": 0.83,
+      "solver": "circuit",
+      "model_mode": "physics",
+      "require_model_agreement": false,
+      "connection_mode": "series_marx_equivalent",
+      "layout_id": "default-layout",
+      "stage_min": null,
+      "stage_max": null,
+      "inventory_override": {
+        "front": [
+          {
+            "ohm": 30.0,
+            "count_per_stage": 1
+          }
+        ],
+        "tail": [
+          {
+            "ohm": 520.0,
+            "count_per_stage": 1
+          }
+        ],
+        "provenance": "Regression assumption: one 30 ohm front and one 520 ohm tail unit per stage; stock unverified"
+      },
+      "max_components_per_network": 1,
+      "include_base_c": true,
+      "uncertainty_pct": 5,
+      "monte_carlo_samples": 32,
+      "equipment_reference_kv": null,
+      "test_object_id": null,
+      "equipment_reference_source": null,
+      "confirm_reference_mismatch": false,
+      "calibration_id": null
+    },
+    "settings": {
+      "stages": 11,
+      "charge_kv_stage": 181.90279026170387,
+      "front_r_stage": 30.0,
+      "tail_r_stage": 520.0,
+      "stage_utilization": 0.9095139513085193,
+      "stored_energy_kj": 22.74842975968298,
+      "voltage_margin_kv_stage": 18.09720973829613,
+      "energy_margin_kj": 7.251570240317019,
+      "energy_margin_pct": 24.171900801056733
+    },
+    "prediction": {
+      "front_us": 1.1867806844403412,
+      "tail_us": 53.743526646565364,
+      "crest_kv": 1425.0
+    },
+    "nominal_pass": true,
+    "verification": {
+      "version": "fixed-settings-verification-v1",
+      "seed": 617,
+      "used_for_ranking": false,
+      "models_checked": [
+        "Circuit prediction"
+      ],
+      "parameters": [
+        "load_c_pf",
+        "divider_c_pf",
+        "stray_c_pf",
+        "l_uh"
+      ],
+      "uncertainty_pct": 5,
+      "fresh_samples": {
+        "total": 128,
+        "passed": 128,
+        "primary_passed": 128,
+        "circuit_passed": null
+      },
+      "boundary_corners": {
+        "total": 16,
+        "passed": 16,
+        "primary_passed": 16,
+        "circuit_passed": null
+      },
+      "total": 144,
+      "passed": 144,
+      "unique_scenarios": 144,
+      "nominal_all_models_pass": true,
+      "all_checks_pass": true,
+      "worst_case": {
+        "index": 143,
+        "group": "boundary_corners",
+        "inputs": {
+          "load_c_pf": 682.5,
+          "divider_c_pf": 262.5,
+          "stray_c_pf": 57.75,
+          "l_uh": 11.399999999999999
+        },
+        "primary_pass": true,
+        "circuit_pass": null,
+        "all_models_pass": true,
+        "minimum_margin_fraction": 0.5979671589099282,
+        "limiting_model": "Primary prediction",
+        "limiting_metric": "Time to half-value",
+        "predicted": 54.02032841090072,
+        "allowed_lower": 40,
+        "allowed_upper": 60,
+        "unit": "\u00b5s"
+      },
+      "calibrated_scenarios": 0,
+      "scope": "Fixed hardware checked after ranking using 128 separate-seed Latin-hypercube scenarios and 16 boundary corners. These checks do not select or reorder candidates. Finite simulation evidence only: not continuous-bound certification, independent model-accuracy testing or a laboratory success probability. Efficiency and hardware tolerances are held fixed; no statistical coverage claim."
+    },
+    "trust_weight": 0.0
+  },
+  "tests": {
+    "name": "pytest",
+    "errors": "0",
+    "failures": "0",
+    "skipped": "0",
+    "tests": "263",
+    "time": "302.270",
+    "timestamp": "2026-10-06T20:01:05.461152+05:30",
+    "hostname": "sharayukulkarni"
+  },
+  "release_checks": {
+    "version": "1.0.0",
+    "recorded_at": "2026-10-06T14:47:11.912792+00:00",
+    "status": "PARTIAL",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python": "3.12.14",
+    "checks": {
+      "required_files": {
+        "status": "PASS",
+        "missing": []
+      },
+      "frozen_evidence_hashes": {
+        "status": "PASS",
+        "checked_files": 45,
+        "mismatches": [],
+        "baseline_commit": "cd8add626343f57dc1884f50fa760ecdd6869b72"
+      },
+      "configuration_and_registry": {
+        "status": "PASS",
+        "active_model": "residual-competition-v1",
+        "profiles": 3,
+        "scope": "Loads frozen artifacts and compares metadata only; never reruns Hidden Test predictions."
+      },
+      "backend_tests": {
+        "status": "PASS",
+        "exit_code": 0,
+        "command": [
+          "C:\\Users\\shara\\Documents\\Codex\\2026-10-03\\github-plugin-github-openai-curated-remote\\work\\Impulse\\.venv\\Scripts\\python.exe",
+          "-m",
+          "pytest",
+          "--junitxml=artifacts/release_checks/backend-tests.xml"
+        ],
+        "log": "artifacts/release_checks/backend_tests.txt"
+      },
+      "frontend_typecheck": {
+        "status": "PASS",
+        "exit_code": 0,
+        "command": [
+          "C:\\Program Files\\nodejs\\npm.cmd",
+          "run",
+          "typecheck"
+        ],
+        "log": "artifacts/release_checks/frontend_typecheck.txt",
+        "recorded_at": "2026-10-06T14:47:11.912792+00:00",
+        "scope": "Repeated after the evidenced frontend locale/hydration fix; retained log corresponds to final source/export. Backend tests remain the preceding full263-test run; no backend production changes followed it."
+      },
+      "frontend_build": {
+        "status": "PASS",
+        "exit_code": 0,
+        "command": [
+          "C:\\Program Files\\nodejs\\npm.cmd",
+          "run",
+          "build",
+          "--",
+          "--webpack"
+        ],
+        "log": "artifacts/release_checks/frontend_build.txt",
+        "recorded_at": "2026-10-06T14:47:11.912792+00:00",
+        "scope": "Repeated after the evidenced frontend locale/hydration fix; retained log corresponds to final source/export. Backend tests remain the preceding full263-test run; no backend production changes followed it."
+      },
+      "static_assets": {
+        "status": "PASS",
+        "pages": 14,
+        "local_assets": [
+          "/_next/static/chunks/305-795f4c15f7758194.js",
+          "/_next/static/chunks/410-70c7128c641fea33.js",
+          "/_next/static/chunks/4bd1b696-92152b0f5947070d.js",
+          "/_next/static/chunks/699-8cb61db040cec60b.js",
+          "/_next/static/chunks/756-9969beddde67cd5b.js",
+          "/_next/static/chunks/794-71ff2c1735abeddf.js",
+          "/_next/static/chunks/app/compare/page-605ac92694840fa2.js",
+          "/_next/static/chunks/app/experiment-timeline/page-f0947143e0e53076.js",
+          "/_next/static/chunks/app/hardware-verification/page-f0947143e0e53076.js",
+          "/_next/static/chunks/app/judge/page-380a76d4e77ec690.js",
+          "/_next/static/chunks/app/laboratory-evidence/page-f0947143e0e53076.js",
+          "/_next/static/chunks/app/layout-1d15cff0f0f6edb6.js",
+          "/_next/static/chunks/app/model-lab/page-ace8dc2c62140d1a.js",
+          "/_next/static/chunks/app/page-ed3fd8b03e46548c.js",
+          "/_next/static/chunks/app/profiles/page-b94cf39509221d4d.js",
+          "/_next/static/chunks/app/runs/page-6816b0f9e27ad859.js",
+          "/_next/static/chunks/app/search-quality/page-f0947143e0e53076.js",
+          "/_next/static/chunks/app/trial-calibrator/page-4a97ccc534840807.js",
+          "/_next/static/chunks/main-app-0d65f5e8c1b736c6.js",
+          "/_next/static/chunks/polyfills-42372ed130431b0a.js",
+          "/_next/static/chunks/webpack-bad63bec55e1c6db.js",
+          "/_next/static/css/bf78e47fd28d037b.css",
+          "/icon.svg"
+        ],
+        "missing_assets": [],
+        "remote_assets": []
+      },
+      "fresh_database_offline_smoke": {
+        "status": "PASS",
+        "exit_code": 0,
+        "command": [
+          "C:\\Users\\shara\\Documents\\Codex\\2026-10-03\\github-plugin-github-openai-curated-remote\\work\\Impulse\\.venv\\Scripts\\python.exe",
+          "-m",
+          "scripts.release_smoke"
+        ],
+        "log": "artifacts/release_checks/fresh_database_offline_smoke.txt",
+        "recorded_at": "2026-10-06T14:47:11.912792+00:00",
+        "scope": "Repeated after the evidenced frontend locale/hydration fix; retained log corresponds to final source/export. Backend tests remain the preceding full263-test run; no backend production changes followed it."
+      },
+      "platform_macOS": {
+        "status": "NOT TESTED",
+        "scope": "Local fresh database and application smoke only; see separate build/test/install checks."
+      },
+      "platform_Linux": {
+        "status": "NOT TESTED",
+        "scope": "Local fresh database and application smoke only; see separate build/test/install checks."
+      },
+      "platform_Windows": {
+        "status": "PASS",
+        "scope": "Local fresh database and application smoke only; see separate build/test/install checks."
+      },
+      "physically_disconnected_browser": {
+        "status": "NOT TESTED",
+        "reason": "Network denial in the smoke process is not a physically disconnected laptop rehearsal."
+      },
+      "clean_install": {
+        "status": "PASS",
+        "platform": "Windows",
+        "python": "3.12",
+        "backend": "Fresh repository-local .venv, installed requirements.txt with pip.",
+        "frontend": "npm ci from the unchanged package-lock.json.",
+        "source_commit": "cd8add626343f57dc1884f50fa760ecdd6869b72",
+        "scope": "Fresh checkout/dependency environments on the current Windows host, not a second physical machine. Baseline exposed Windows line-ending, text encoding and test portability issues; documented in docs/release_readiness.md."
+      }
+    },
+    "thread_environment": {
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "NUMEXPR_NUM_THREADS": "1",
+      "LOKY_MAX_CPU_COUNT": "4"
+    },
+    "scope": "Local verification only. No deployment, model fitting or new Hidden Test evaluation.",
+    "frontend_followup_reason": "Fresh browser found pre-existing en-IN build vs en-US client numeric hint mismatch. Deterministic locale fix, typecheck/build, final asset check and fresh-database network-denied smoke repeated."
+  },
+  "browser_review": {
+    "recorded_at": "2026-10-06T14:48:05.322Z",
+    "status": "PASS",
+    "browser": "Codex in-app browser",
+    "scope": "Executed local browser checks on rebuilt production static export. Isolated audit database; no measured inputs.",
+    "checks": [
+      {
+        "name": "Fresh CPRI default",
+        "result": "PASS",
+        "observed": "CPRI/circuit/physics, ML off, no automatic optimization, stock-required guidance and disabled action."
+      },
+      {
+        "name": "Judge source/solver/base capacitance",
+        "result": "PASS",
+        "observed": "Primary RLC and MLoff;545pF include/exclude note updates; malformed inventory JSON rejected before optimization."
+      },
+      {
+        "name": "Matched circuit case and named preset",
+        "result": "PASS",
+        "observed": "Explicit assumedstock:11stages,181.90kV/stage,30/520ohm,1.187/53.744us,1425kV. Both explicit one-value stock and the labeled CPRI preset reproduce it."
+      },
+      {
+        "name": "Summary evidence scope",
+        "result": "PASS",
+        "observed": "Second-model comparison NOTPERFORMED; physics-only primary; measuredcaptures0."
+      },
+      {
+        "name": "Generated trial feedback",
+        "result": "PASS",
+        "observed": "GENERATEDDEMO/notlaboratory banner, backend admission wording; summary measuredcapturecount remains0."
+      },
+      {
+        "name": "Pending operator request navigation",
+        "result": "PASS",
+        "observed": "Changing load to710pF and profile toworkbook survives Optimizer\u2192Judge; previous resultssteps disabled. Switching draft backtoCPRI retains710/250/55pF,12uH,.83and clearsstock."
+      },
+      {
+        "name": "Responsive390px",
+        "result": "PASS",
+        "observed": "Documentwidth375\u2264viewport390; nav11links scrollwithin310px,7Judgesteps readable; requestfields onecolumn; no documenthorizontaloverflow."
+      },
+      {
+        "name": "Locale hydration correction",
+        "result": "PASS",
+        "observed": "Initial preexisting React418textmismatch onroot:Nodeen-IN grouping1,00,000 vsbrowser100,000. FixedSSRhint toexistingdeterministicen-USformatter; rebuiltHTML has0Indian/3USgroups. Fresh127.0.0.1root and presetnavigation finalconsoleerrors0."
+      }
+    ],
+    "initial_findings": [
+      {
+        "code": "React418",
+        "cause": "Unspecified numeric locale in static-rendered max-range hints",
+        "source": "https://react.dev/errors/418",
+        "disposition": "Fixed; fresh final origin has no console errors."
+      }
+    ],
+    "final_console_errors": [],
+    "screenshots": [
+      "artifacts/hardening/optimizer-desktop.jpg",
+      "artifacts/hardening/judge-desktop.jpg",
+      "artifacts/hardening/judge-mobile.jpg"
+    ],
+    "limitations": [
+      "No physically disconnected browser rehearsal, second physical laptop or cross-platform browser execution.",
+      "The isolated audit database contains explicitly generated trials only; not laboratory validation."
+    ]
+  },
+  "frozen_evidence": {
+    "checked_files": 45,
+    "all_match_original_manifest": true,
+    "sha256": {
+      "data/source/HV IG Problem Statement.pdf": "9ab169fbda5eb612a7ff9ccfbadca8e85f5b49c2257c23388945d4e7c5532e93",
+      "data/source/Hybrid_Physics_ML_Impulse_Generator_Optimiser.xlsx": "e855eadbe4d6da2579316e89e025e6990f9ba3c522a5af96d1dd2a5522d77480",
+      "data/processed/generated_stress_test.csv": "4559d600cea23b71bdc6e80dce95ad663cfd221940add41a43f167f1f42d0396",
+      "data/processed/hybrid_calculator.csv": "b0212907486ea7be195a9e0e65fd469bf88c6a5d217b3bc4a570f207833a63a1",
+      "data/processed/manifest.json": "0ebdf90c869007e5d7169f9aed078648d73d69067c3ec838f33054059213eab3",
+      "data/processed/ml_helper.csv": "cac8581efc459f7fb46ea88ced6908ad355418aacd3d16d0cfda20379357ec2e",
+      "data/processed/model_card.csv": "d69a2cd6a9bd094e4679a10af8beb5f2b6b5e6cc205b4aff9183299b1f8f8a95",
+      "data/processed/model_validation.csv": "73e4e586548ea4da66a662ec44e4b10c5bc911662cfb2bbd60645f98c0df7d7a",
+      "data/processed/resistor_inventory.csv": "b653ce4e67ff531b91c14325a9390eecfa61695de70673911517c9d2d872a348",
+      "data/processed/synthetic_dataset.csv": "9ab18ed1eca6b96629c367ea531bf8a9f204c9fbfe0ac61b03c8e64fc786eab2",
+      "artifacts/models/hidden_test_evaluation.json": "2cebd28690a0a7d93a2e9e4302e3f5bb82d284ee60dad8de3bd97aa37dbfba99",
+      "artifacts/models/registry.json": "ae45602b534ef80a6cc55545cdff3d97aad5f4ee8879c9b4787b78f95208396e",
+      "artifacts/models/residual_models.joblib": "026f7e1a3c3049bfed4ae1da99efbe5133f5a0e51625544e2477a997adc11e5a",
+      "artifacts/experiments/train_signal.json": "aec6258dd5472d2662392e57462eeb7e4f1a23837fd6c3a855ea31088711b122",
+      "artifacts/experiments/search_v4/before_demo_manifest.json": "d34990860e696a12f2ee52adf671c60b0fb5c0748e701a977a0e007904afa696",
+      "artifacts/experiments/search_v4/before_diagnostic.json": "1f0a82e04d4a96e943564c89578d416b2c3d7a24a62f12c272899b8f406c8025",
+      "artifacts/experiments/search_v4/final_protocol.json": "5aac839e3522343598b992186b4c263f7ad1029f3cc838cf5240a7a2e9e1f6d8",
+      "artifacts/experiments/search_v4/final_summary.json": "178fa6c1b0d6d5613fc88f877d127d353288d0af47a97dabbc12342cfe966582",
+      "artifacts/experiments/search_v4/protocol.json": "e6b4288248e3dd7618b338471e3dc69bff0ecaba4e240ec2987c00fb392cd2e3",
+      "artifacts/experiments/search_v4/summary.json": "6e838ff8aa9ecc561c01fa9637a7c811e1ce2a7ad4906ac21add020bf19a169e",
+      "artifacts/experiments/v2/calibrated_candidate_models.joblib": "9b76c82a1d5ebe564362517e6fc6e77b858726418baabbb31ad03577ca9cbf70",
+      "artifacts/experiments/v2/candidate_models.joblib": "024f5228fafbe6431d8252aec041c7a5c68642277fea6f1d7d3b9a005aee4105",
+      "artifacts/experiments/v2/frozen_configuration.json": "23ded54c4c9245edb555800baa5c9f4dedf67c168d949bd730df47bf7e491a5b",
+      "artifacts/experiments/v2/oof_predictions.json": "27fae2c631a4fdda7b6bb4049fae88d79c4fb6a91eca4720a608a4c3864cb157",
+      "artifacts/experiments/v2/outer-Lightning-0.json": "04f7cd57d85e2580d1b14bf1cdcac09dc91ef5f8f7ea8a63eb829951892681d9",
+      "artifacts/experiments/v2/outer-Lightning-1.json": "f088bdc0889354ad7db69497de4695d15b7f4ada50141edc67f4a0dfe0cdaa6a",
+      "artifacts/experiments/v2/outer-Lightning-2.json": "de7c940d44671fbb0a8d45b962ba6134ee0b67e44209f63549ce26eda004f00f",
+      "artifacts/experiments/v2/outer-Lightning-3.json": "a2b4230f87cd6ede522fb44e361a4c0839af899e2e6285607e5046ff1f6f241e",
+      "artifacts/experiments/v2/outer-Lightning-4.json": "6562de2d5fa6021d963ad4e5260f738128aa708c84a35f95b777328b45356c2c",
+      "artifacts/experiments/v2/outer-Switching-0.json": "fbad52f9b7202e443b8039467a438eca3848a3f477fc395ffea399979ec4e5c4",
+      "artifacts/experiments/v2/outer-Switching-1.json": "3504fc59efa7e790523257b5c3d020b905b7bf1dba481d9546f88e7e05e7a7fc",
+      "artifacts/experiments/v2/outer-Switching-2.json": "341d1363b2420ea168a6d59995d291bc7380837d3837c1967ce48a6a0f4059fc",
+      "artifacts/experiments/v2/outer-Switching-3.json": "c869cb6770ac303a7c0d9a6cbecd167272800e89ee959382ca6acbfbc48a19d3",
+      "artifacts/experiments/v2/outer-Switching-4.json": "e18d6c2b325158a374b5a3e9110859e0fdffaca8273ab7a4701dfe5ee0607fe5",
+      "artifacts/experiments/v2/protocol.json": "9881369852ae43f5ca7aadc35544d9bbb3ab75236d5ebd447591fdaba0cd5b61",
+      "artifacts/experiments/v2/summary.json": "b9e682c0544a795e18c3df10966c21d5b2a2c113e0b7a3f48a32b1fabd15a4f3",
+      "artifacts/experiments/v3/oof_predictions.json": "8d8aa21621ce566838059205eb4b755d486075b50935deee0a13e19186269af1",
+      "artifacts/experiments/v3/protocol.json": "fdff4ac25fefacd05712803f767a03fce523b8de22c554ad4650ed5c2196bb23",
+      "artifacts/experiments/v3/summary.json": "33c720ebf738707b1885f009972974ed7d675f4130251e95e22088c8337a6853",
+      "artifacts/experiments/v4/oof_predictions.json": "d79e63b5efcce21e96271c84740e00e230564a1c6df02714304c2a3cde8751a3",
+      "artifacts/experiments/v4/protocol.json": "7760fc1db2bffca916399343b16a8b59ea9cd0027f0a2f51e96e7a79f1e3eb51",
+      "artifacts/experiments/v4/summary.json": "2bdb8d80dc3a62243b21ae85d6233f292a416e37a961f918fa03cedd2d5dfdec",
+      "artifacts/experiments/v5/oof_predictions.json": "71ef7caf549709ee62ca187296ea042a782741a40c44e7c760292b544cb66f15",
+      "artifacts/experiments/v5/protocol.json": "314cf21764d857606ed4a841b503c24523012e2c66ea3c3907f8bb8432c97861",
+      "artifacts/experiments/v5/summary.json": "5b7a6416623759dd9c80854c8ca8087a8b189736cc8a6ac988a968413f2b60e1"
+    }
+  },
+  "remaining_assumptions": [
+    "CPRI source values are primary physical references per the organizer clarification supplied by the user; this pass is not independent machine-nameplate verification.",
+    "Actual resistor quantities, pulse ratings, voltage grading, permitted mounting/connections and physical operating minima remain unknown; demo counts are operator assumptions.",
+    "650/250/55pF load/divider/stray,12uH and0.83efficiency are editable example inputs, not measurements;545pF additional shunt interpretation must avoid double-counting.",
+    "One lumped capacitor/tail-shunt/front-RL/load topology; auxiliary charging/potential/discharge resistors and sphere gaps are preserved metadata but omitted from pulse equations.",
+    "Efficiency is applied once as voltage loss; charging rating energy is before loss, circuit initial energy is smaller by efficiency squared.",
+    "Waveform metric definitions and tolerances follow the challenge/workbook provenance; no universal standards-conformance claim is created."
+  ],
+  "remaining_weaknesses": [
+    "No measured laboratory accuracy is established. Measurements are not a prerequisite for this challenge; generated tests do not replace independent physical evaluation.",
+    "Bounded nearest-five network search is not globally optimal. The four unchanged exhaustive fixtures are reference-solver spaces and all winners fail nominal waveform limits; they demonstrate ranking agreement only.",
+    "CPRI residual ML remains disabled. Synthetic interval widths and unsupported-profile sensitivity envelopes have no calibrated CPRI/laboratory coverage; finite scenario fractions are not success probabilities.",
+    "Extreme stiff circuits may explicitly fail continuous crest/decay resolution. The stress grid includes values outside practical/accepted UI ranges and is not a reliability population.",
+    "The separately mentioned CPRI pseudo-laboratory pack was not present in main or the attachment. Existing generated acquisition fixtures and new controlled cases were used instead.",
+    "macOS/Linux, a second physical laptop and physically disconnected browser rehearsal were not newly executed; Python transitive dependencies are not fully locked. The verifier carries forward its historical clean-install record; no new dependency installation was performed in this hardening.",
+    "The initial Windows pandas/native access violation is retained; bounded-thread isolated/full reruns passed, but this does not prove its root cause or universal prevention.",
+    "Historical release ZIP/QA/experiment records remain historical. Use this branch source and regenerated static export for the current build; no new distributable ZIP or deployment."
+  ],
+  "attempts_rejected_or_not_pursued": [
+    {
+      "proposal": "Deduplicate selected per-output model predictions",
+      "reason": "Frozen V1 already selects distinct estimators for all three outputs in each impulse type; no redundant prediction to remove. Not implemented."
+    },
+    {
+      "proposal": "Tune weights, enlarge production shortlist, add new network logic",
+      "reason": "Four declared comparisons showed zero gaps; no evidence justified more complexity. Existing weights, tie/rank priority and catalogs retained."
+    },
+    {
+      "proposal": "Change CPRI topology/equations to chase benchmark timing or force workbook ML transfer",
+      "reason": "Dimensional/passive-energy audit and matched regression support existing equations; transfer evidence is absent. Not attempted."
+    },
+    {
+      "proposal": "Accept plotting-grid crest after continuous root failure",
+      "reason": "Removed existing fallback; unresolved numerical claims are reported as failures."
+    },
+    {
+      "proposal": "Add persistent cross-request cache, train V6 or tune exposed Hidden Test",
+      "reason": "Unnecessary state/evaluation risks and outside authorized scientific scope. No fitting, model promotion or Hidden Test tuning."
+    }
+  ],
+  "recommended_hackathon_configuration": {
+    "physical_engineering": {
+      "profile_id": "cpri_problem_brief_profile",
+      "impulse_type": "Lightning",
+      "test_kv": 1425,
+      "load_c_pf": 650.0,
+      "divider_c_pf": 250.0,
+      "stray_c_pf": 55.0,
+      "l_uh": 12.0,
+      "efficiency": 0.83,
+      "solver": "circuit",
+      "model_mode": "physics",
+      "require_model_agreement": false,
+      "connection_mode": "series_marx_equivalent",
+      "layout_id": "default-layout",
+      "stage_min": null,
+      "stage_max": null,
+      "inventory_override": {
+        "front": [
+          {
+            "ohm": 30.0,
+            "count_per_stage": 1
+          }
+        ],
+        "tail": [
+          {
+            "ohm": 520.0,
+            "count_per_stage": 1
+          }
+        ],
+        "provenance": "Regression assumption: one 30 ohm front and one 520 ohm tail unit per stage; stock unverified"
+      },
+      "max_components_per_network": 1,
+      "include_base_c": true,
+      "uncertainty_pct": 5,
+      "monte_carlo_samples": 32,
+      "equipment_reference_kv": null,
+      "test_object_id": null,
+      "equipment_reference_source": null,
+      "confirm_reference_mismatch": false,
+      "calibration_id": null
+    },
+    "actual_stock_requirement": "Replace assumption with verified counts/provenance before physical setup; no autogenerated stock.",
+    "workbook_benchmark": "Explicit workbook_reference_profile/reference/frozen V1 only under existing support gate, separate from physical CPRI.",
+    "demonstration": "Use CPRI Lightning matched preset labeled assumed stock;7Judge steps; generated trial declared generated; no measured-accuracy statement; keep uncertainty/second-model scope visible."
+  }
+}

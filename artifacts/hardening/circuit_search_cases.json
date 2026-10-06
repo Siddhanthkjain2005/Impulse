@@ -1,0 +1,46 @@
+{
+  "version": "1.0.0",
+  "split": "development",
+  "source_type": "controlled_development",
+  "predeclared_before_execution": true,
+  "purpose": "Two fixed CPRI circuit-path development comparisons, added to test primary engineering-path coverage. They are not new held-out benchmarks and will not be used to tune ranking weights, network shortlists or ML.",
+  "inventory_provenance": "Explicit hypothetical per-stage stock assumption for controlled development; quantities and mounting feasibility are not verified CPRI inventory.",
+  "protocol": "Compare production bounded search with the existing exact rational catalog of all bridge-free series/parallel trees up to three parts and the declared stock limits. Use physics mode, eight production ranking scenarios, the existing charge solver and ranking policy, and all declared stage choices. Post-ranking checks remain separate. No training, generated capture fitting or Hidden Test access.",
+  "limitations": "Two development cases only. Shared physics, charging, constraints and scorer mean this checks discrete search coverage, not physical accuracy, continuous/global optimality or laboratory compliance. Inventory quantities are assumptions.",
+  "cases": [
+    {
+      "id": "dev-cpri-circuit-li",
+      "profile_id": "cpri_problem_brief_profile",
+      "impulse_type": "Lightning",
+      "solver": "circuit",
+      "test_kv": 1425,
+      "include_base_c": true,
+      "load_c_pf": 650,
+      "divider_c_pf": 250,
+      "stray_c_pf": 55,
+      "l_uh": 12,
+      "efficiency": 0.83,
+      "stage_min": 10,
+      "stage_max": 12,
+      "front": [[30, 2], [465, 1]],
+      "tail": [[520, 2]]
+    },
+    {
+      "id": "dev-cpri-circuit-si",
+      "profile_id": "cpri_problem_brief_profile",
+      "impulse_type": "Switching",
+      "solver": "circuit",
+      "test_kv": 1050,
+      "include_base_c": true,
+      "load_c_pf": 650,
+      "divider_c_pf": 250,
+      "stray_c_pf": 55,
+      "l_uh": 12,
+      "efficiency": 0.83,
+      "stage_min": 10,
+      "stage_max": 12,
+      "front": [[465, 1], [3700, 2]],
+      "tail": [[22000, 2]]
+    }
+  ]
+}

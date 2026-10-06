@@ -1,5 +1,19 @@
 # ImpulseTwin AI project state
 
+## Engineering hardening — 6 October 2026
+
+Current work starts from main commit `047841f587c4b00bc8d018d5174961d3356eebbf` on `feat/engineering-hardening`. Its scope is correctness, numerical stability, bounded-search/runtime efficiency, source clarity and restrained UI polish. No new product features, deployment, model training or Hidden Test tuning are part of this pass. The task record is in `AGENTS.md`; the final rationale and measured comparison are in `OPTIMIZATION_REPORT.md` and `artifacts/optimization_report.json`.
+
+The organizer clarification supplied for this task identifies the problem-statement parameters as the actual/reference CPRI generator inputs. The UI and Judge Mode therefore start with the **CPRI physical profile, circuit solver and residual ML off**. The separate workbook 15-stage / 3 µF reference retains frozen V1 synthetic benchmarking and its supported reference-solver ML path. Unknown CPRI stock quantities require explicit counts and provenance. The UI's parasitic/efficiency values are editable model examples; configured 50 kV/two-stage lower bounds are application assumptions, not established physical minima. The 545 pF contribution is explicit and must be counted only once.
+
+Circuit v2.1 preserves the nodal equations and topology while stabilizing analytic zero-inductance modes/crest, retaining significant tiny inductance and refining fast crossings at a scale-aware tolerance. Unresolved continuous crests or stable decay modes produce diagnostic failures. Older calibration scopes do not transfer to the new solver version. The CPRI Lightning regression retains 11 stages, approximately 181.90 kV/stage, 1.187 µs front, 53.744 µs tail, 1425 kV crest and 22.75 kJ charging-bank energy. See `docs/assumptions.md` for equations, units, numerical policy and omitted physical dynamics.
+
+Final verification passes **263 backend tests** (all 237 previous tests plus 26 targeted regressions), frontend typecheck/build, 45 protected hashes, local asset/fresh-database smoke and desktop/mobile browser checks. Four exhaustive fixtures retain top-1/top-3 agreement and zero gap; 4,096 inference outputs match original code. Workbook LI/SI warm runtime improves 34.0%/11.4%; CPRI checks more stage counts and is 4.3% slower. The final optimization report records methods, the initial native Windows baseline crash and all limits. Prior test counts, release ZIPs and dated QA below describe their original releases. Nominal pass, interval containment and finite scenario fractions remain separate model statements. Generated data remains generated; measured laboratory accuracy remains unestablished.
+
+For physical application, obtain actual stock counts, pulse ratings, permitted mounting/connection rules and minimum operating limits. Measured voltage-time captures are not a prerequisite for the current challenge solution; they can later support independent laboratory performance evaluation. Keep the historical record below intact when continuing.
+
+The primary path also has two newly predeclared CPRI circuit development comparisons, LI and SI. Before and after, both bounded/exhaustive winners nominally pass with top-1/top-3 agreement and zero gap. These use assumed stock and shared physics/scoring, so they improve search coverage evidence without becoming physical or held-out validation. No tuning followed the results.
+
 ## Evidence and Judge Mode update — 3 October 2026
 
 The evidence/release feature branch adds unified capture provenance, Laboratory Evidence, Hardware Verification, a versioned test-object catalog, deterministic recommendation evidence levels, a controlled exhaustive search benchmark, saved-artifact experiment timeline and seven-step Judge Mode. Existing engineering workflows and frozen V1–V5 evidence remain preserved. README now links deep history rather than accumulating every release note.

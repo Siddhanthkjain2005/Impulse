@@ -1,0 +1,66 @@
+{
+  "recorded_at": "2026-10-06T14:48:05.322Z",
+  "status": "PASS",
+  "browser": "Codex in-app browser",
+  "scope": "Executed local browser checks on rebuilt production static export. Isolated audit database; no measured inputs.",
+  "checks": [
+    {
+      "name": "Fresh CPRI default",
+      "result": "PASS",
+      "observed": "CPRI/circuit/physics, ML off, no automatic optimization, stock-required guidance and disabled action."
+    },
+    {
+      "name": "Judge source/solver/base capacitance",
+      "result": "PASS",
+      "observed": "Primary RLC and MLoff;545pF include/exclude note updates; malformed inventory JSON rejected before optimization."
+    },
+    {
+      "name": "Matched circuit case and named preset",
+      "result": "PASS",
+      "observed": "Explicit assumedstock:11stages,181.90kV/stage,30/520ohm,1.187/53.744us,1425kV. Both explicit one-value stock and the labeled CPRI preset reproduce it."
+    },
+    {
+      "name": "Summary evidence scope",
+      "result": "PASS",
+      "observed": "Second-model comparison NOTPERFORMED; physics-only primary; measuredcaptures0."
+    },
+    {
+      "name": "Generated trial feedback",
+      "result": "PASS",
+      "observed": "GENERATEDDEMO/notlaboratory banner, backend admission wording; summary measuredcapturecount remains0."
+    },
+    {
+      "name": "Pending operator request navigation",
+      "result": "PASS",
+      "observed": "Changing load to710pF and profile toworkbook survives Optimizer→Judge; previous resultssteps disabled. Switching draft backtoCPRI retains710/250/55pF,12uH,.83and clearsstock."
+    },
+    {
+      "name": "Responsive390px",
+      "result": "PASS",
+      "observed": "Documentwidth375≤viewport390; nav11links scrollwithin310px,7Judgesteps readable; requestfields onecolumn; no documenthorizontaloverflow."
+    },
+    {
+      "name": "Locale hydration correction",
+      "result": "PASS",
+      "observed": "Initial preexisting React418textmismatch onroot:Nodeen-IN grouping1,00,000 vsbrowser100,000. FixedSSRhint toexistingdeterministicen-USformatter; rebuiltHTML has0Indian/3USgroups. Fresh127.0.0.1root and presetnavigation finalconsoleerrors0."
+    }
+  ],
+  "initial_findings": [
+    {
+      "code": "React418",
+      "cause": "Unspecified numeric locale in static-rendered max-range hints",
+      "source": "https://react.dev/errors/418",
+      "disposition": "Fixed; fresh final origin has no console errors."
+    }
+  ],
+  "final_console_errors": [],
+  "screenshots": [
+    "artifacts/hardening/optimizer-desktop.jpg",
+    "artifacts/hardening/judge-desktop.jpg",
+    "artifacts/hardening/judge-mobile.jpg"
+  ],
+  "limitations": [
+    "No physically disconnected browser rehearsal, second physical laptop or cross-platform browser execution.",
+    "The isolated audit database contains explicitly generated trials only; not laboratory validation."
+  ]
+}
