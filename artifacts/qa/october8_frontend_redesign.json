@@ -1,0 +1,136 @@
+{
+  "recorded_at_utc": "2026-10-07T20:09:21+00:00",
+  "scope": "Frontend redesign on codex/frontend-redesign (base 64209d1). Frontend source/assets and documentation only; backend, configuration, models and evidence unchanged.",
+  "status": "partial",
+  "status_reason": "Production next build/static export not executed in this session; owner must rebuild frontend/out before review.",
+  "environments": {
+    "sandbox": "Linux x86_64 cloud sandbox, Node 22.22.0, TypeScript 6.0.3, next type shim, Python 3.13, pytest 9.0.0 built from source; npm/pip registries blocked",
+    "owner_machine_vm": "Linux aarch64 VM on the owner's Mac via the desktop app, Node 22.23.2, project TypeScript 5.9.3 with real next 16.3.7 / react types from the existing node_modules; npm registry unreachable"
+  },
+  "frontend": {
+    "typecheck_project_typescript_5_9_3": "PASS",
+    "typecheck_typescript_6_0_3": "PASS",
+    "unit_tests": {
+      "command": "npm run test:unit",
+      "tests": 10,
+      "passed": 10
+    },
+    "production_build_passed": null,
+    "production_build_note": "NOT EXECUTED: npm registry blocked and no Linux SWC binary available; next build --webpack fails before compiling while downloading @next/swc-linux-arm64-gnu.",
+    "static_export_rebuilt": false,
+    "browser_preview_for_owner": false
+  },
+  "backend": {
+    "tests": 337,
+    "failures": 0,
+    "errors": 0,
+    "note": "Unchanged backend; sandbox interpreter differs from the project's recorded Python 3.12 environment."
+  },
+  "frozen_evidence": {
+    "status": "PASS",
+    "checked_files": 45,
+    "mismatches": []
+  },
+  "configuration_and_registry": {
+    "status": "PASS",
+    "active_model": "residual-competition-v1",
+    "profiles": 3
+  },
+  "fresh_database_offline_smoke": {
+    "status": "PASS",
+    "local_assets": 23,
+    "note": "Ran against the previously committed frontend/out, not the redesigned export."
+  },
+  "harness_checks": {
+    "description": "Real backend FastAPI app serving the redesigned frontend bundled with esbuild (not Next) in headless Chromium with SwiftShader WebGL. Self-review only; screenshots were not committed.",
+    "routes": [
+      "/",
+      "/judge/",
+      "/model-lab/",
+      "/profiles/",
+      "/trial-calibrator/",
+      "/runs/",
+      "/compare/",
+      "/laboratory-evidence/",
+      "/hardware-verification/",
+      "/experiment-timeline/",
+      "/search-quality/"
+    ],
+    "render_widths_px": [
+      390,
+      768,
+      1024,
+      1440
+    ],
+    "render_result": "no console errors, no page errors, no horizontal overflow on all 44 route/width loads",
+    "server_render_and_hydration": "11/11 routes render with renderToString and hydrate without mismatch",
+    "behaviour_checks": {
+      "passed": 27,
+      "total": 27,
+      "names": [
+        "CPRI default blocks optimize without counted stock",
+        "Stock guidance visible",
+        "Lightning demo solves",
+        "Assumed stock provenance is shown",
+        "Five ranked candidates listed",
+        "Candidate switch updates hall",
+        "Selected candidate marked pressed",
+        "Edited request shows stale hall banner",
+        "Run chip flags edited request",
+        "Reverting the edit clears the stale banner",
+        "Impossible preset without stock stays unsubmittable (pre-existing behaviour)",
+        "Rejection keeps previous run and says so (2800 kV, backend 422)",
+        "Mismatch stops before solving",
+        "Confirmed mismatch solves",
+        "Agreement panel shown for agreement search",
+        "Reference engine shows circuit trace",
+        "Switching CPRI demo solves",
+        "Profile change clears explicit inventory",
+        "RLC sensitivity preview renders",
+        "Changed sensitivity input hides stale preview",
+        "Command palette navigates",
+        "Judge arrow keys move steps",
+        "Edited judge request locks later steps",
+        "Scene shows outline for unsolved request",
+        "Solving from Judge moves to Configuration",
+        "Keyboard selects a stage",
+        "No uncaught page errors"
+      ]
+    },
+    "webgl_fallback": {
+      "webgl_unavailable_shows_2d": true,
+      "context_loss_shows_2d_and_restart": true,
+      "restart_restores_3d": true,
+      "manual_2d_toggle": true
+    },
+    "reduced_motion": {
+      "durations_zero": true,
+      "chart_reveal_skipped": true
+    },
+    "topology_verification": "All 50 topology strings from local backend runs parse to trees reproducing saved equivalent_ohm and per-stage counts"
+  },
+  "api_contract": {
+    "endpoints_dropped": [],
+    "endpoints_added": [],
+    "request_body_changes": "None. Trial upload now also sends the existing optional form fields captured_at, measurement_instrument and operator_notes when the operator fills them."
+  },
+  "behaviour_changes": [
+    "Request edits made while a solve is in flight are kept and marked unsolved instead of being overwritten by the returned run's inputs."
+  ],
+  "findings_not_changed": [
+    "Demo preset 'CPRI \u00b7 out-of-range rejection' has no stock and is unsubmittable on CPRI (same as the original UI)."
+  ],
+  "not_executed": [
+    "next build / static export",
+    "offline asset check of the new export",
+    "real GPU, Safari, Firefox, touch devices, projector",
+    "screen reader pass",
+    "frame-rate measurement",
+    "release archive regeneration",
+    "physically disconnected laptop rehearsal"
+  ],
+  "model_weights_changed": false,
+  "old_test_predictions_rerun": false,
+  "cloud_spend_usd": 0,
+  "cloud_deployed": false
+}

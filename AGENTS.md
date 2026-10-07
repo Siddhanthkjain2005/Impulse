@@ -1,5 +1,19 @@
 # ImpulseTwin AI — engineering handoff and progress
 
+## Frontend redesign continuation — 8 October 2026
+
+Branch `codex/frontend-redesign` (base `64209d1`) redesigns the frontend only; read `docs/frontend_redesign.md` and `artifacts/qa/october8_frontend_redesign.json`. Keep backend, physics, optimisation, schemas, storage, configuration, supplied sources, frozen models, benchmark records and provenance protected. Keep the preservation checklist true when editing UI.
+
+Frontend rules for future changes:
+
+- `lib/api.ts` original exports stay as they are.
+- The 3D view must keep its "Conceptual schematic" label and the 2D fallback.
+- Wiring may only be drawn from topologies that `verifiedTree` accepts.
+- Motion must respect reduced-motion and the Quiet switch.
+- No runtime CDN assets.
+
+Rebuild and review `frontend/out` before merging; the production build was not executed in the redesign session. Do not merge, force-push or deploy without the owner.
+
 ## Latest authorized continuation — 7 October 2026
 
 The owner requested trusted external data or properly generated data for six-output improvement. That work is complete as a bounded source review and separately registered independent numerical verification. Read `docs/trusted_waveform_data_search.md` and `docs/independent_simulation_results.md`. External sources lack the full compatible generator input/output mapping; do not invent units/settings or merge them into frozen residual training. Generated 240 cases pass 6/6 numerical agreement channels using independent Radau/BDF/refinement against the same assumed CPRI topology. This does NOT replace V1's saved 5/6-versus-kNN result or establish laboratory accuracy. All new numerical evaluation labels are now exposed. Preserve them; do not tune or overwrite the completed study. All V1–V7 hashes and models remain preserved.

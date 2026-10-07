@@ -1,5 +1,30 @@
 # Continue ImpulseTwin AI
 
+## Frontend redesign — 8 October 2026
+
+The owner requested a full frontend redesign. It is on `codex/frontend-redesign`, based on `codex/switching-crest-review` at `64209d1`. Read `docs/frontend_redesign.md`. Only `frontend/` source and assets, that document and `artifacts/qa/october8_frontend_redesign.json` changed. Backend, configuration, models, supplied sources and evidence are untouched.
+
+What it adds:
+
+- One control-room and test-hall design system across all 11 routes.
+- A conceptual 3D Marx stack (three.js r170, vendored under MIT) built from the saved candidate, with a 2D SVG fallback.
+- A scope time cursor that drives the stack's illustrative output glow.
+- A Judge Mode presentation layout, a structured stock editor that emits the same `inventory_override` payload, a command palette, and a Quiet motion switch.
+
+Every endpoint, default, profile/solver reset, preset, Try V2 and the 7 Judge steps are preserved. The checklist is in the doc.
+
+**The committed `frontend/out` is the previous export.** Rebuild it with Node 22: `cd frontend && npm run build -- --webpack`. Then run `python -m scripts.release_smoke` and commit the export after review. `next build` could not run in this session.
+
+Executed checks:
+
+- TypeScript 5.9.3 typecheck with real Next types: passes.
+- 10 frontend unit tests: pass.
+- 337 backend tests (unchanged backend): pass.
+- 45 frozen hashes and the registry check: pass.
+- Headless SwiftShader harness: 11 routes at 4 widths, SSR and hydration, 27 behaviour checks, WebGL fallback and reduced-motion checks all pass.
+
+Not yet done: real-GPU, Safari/Firefox, touch, projector and screen-reader review.
+
 ## Trusted data and independent numerical verification — 7 October 2026
 
 The latest request authorizes trusted-source data search and separately labeled generation. Read `docs/trusted_waveform_data_search.md`, `docs/reference_waveform_data_review.md` and `docs/independent_simulation_results.md`. Three CC BY 4.0 numeric external sources and public metadata were preserved under `data/external/`. None supplies the complete compatible generator-input / six-output mapping needed for a fresh final accuracy claim. Missing CSV units/parameters were not invented; external data stays quarantined from frozen residual training and laboratory histories.

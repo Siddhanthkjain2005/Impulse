@@ -1,5 +1,17 @@
 # ImpulseTwin AI project state
 
+## Frontend redesign — 8 October 2026
+
+`codex/frontend-redesign` replaces the frontend presentation across all 11 routes. Data flow, endpoints and evidence semantics are unchanged.
+
+- New pure modules: `lib/generator-model.ts`, `lib/inventory.ts`, `lib/series.ts` and `lib/motion.ts`, covered by `npm run test:unit`.
+- New assets: vendored three.js r170 (MIT) and bundled Barlow fonts (OFL).
+- No npm dependency changes.
+- One behaviour change: request edits made during an in-flight solve are kept and shown as unsolved.
+- One pre-existing issue reported but not changed: the CPRI out-of-range demo preset cannot be submitted without stock.
+
+Status is **partial** until the owner rebuilds the static export (Node 22, `npm run build -- --webpack`) and reviews it on real hardware. See `docs/frontend_redesign.md` and `artifacts/qa/october8_frontend_redesign.json`. No cloud resources, deployment or model changes.
+
 ## Trusted data and independent numerical verification — 7 October 2026
 
 The latest request authorizes trusted-source data search and separately labeled generation. Read `docs/trusted_waveform_data_search.md`, `docs/reference_waveform_data_review.md` and `docs/independent_simulation_results.md`. Three CC BY 4.0 numeric external sources and public metadata were preserved under `data/external/`. None supplies the complete compatible generator-input / six-output mapping needed for a fresh final accuracy claim. Missing CSV units/parameters were not invented; external data stays quarantined from frozen residual training and laboratory histories.

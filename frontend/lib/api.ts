@@ -14,3 +14,55 @@ export async function api(path:string, options:RequestInit={}) {const res=await 
 export const post=(path:string,body:unknown)=>api(path,{method:'POST',body:JSON.stringify(body)});
 export const fmt=(v:unknown,digits=2)=>typeof v==='number'&&Number.isFinite(v)?(Number(v.toFixed(digits))===0?0:v).toLocaleString('en-US',{maximumFractionDigits:digits,minimumFractionDigits:digits}):'—';
 export const human=(s:string)=>s?.replaceAll('_',' ').replace(/\b\w/g,c=>c.toUpperCase());
+
+/** True when a value is a finite number (zero included); null/undefined/NaN stay "missing". */
+export const isNum=(v:unknown):v is number=>typeof v==='number'&&Number.isFinite(v);
+
+/** Signed, fixed-precision text such as "+1.25". Missing values stay an em dash. */
+export function signed(v:unknown,digits=2){
+  if(!isNum(v))return '—';
+  const text=fmt(v,digits);
+  return Number(v.toFixed(digits))>0?`+${text}`:text;
+}
+
+/** Order-independent serialization used to compare a draft request with the saved run inputs. */
+export function stableKey(value:unknown):string{
+  if(value===undefined)return 'null';
+  if(value===null||typeof value!=='object')return JSON.stringify(value);
+  if(Array.isArray(value))return `[${value.map(stableKey).join(',')}]`;
+  const entries=Object.entries(value as Data).filter(([,v])=>v!==undefined).sort(([a],[b])=>a<b?-1:a>b?1:0);
+  return `{${entries.map(([k,v])=>`${JSON.stringify(k)}:${stableKey(v)}`).join(',')}}`;
+}
+
+/** Normalizes optional request fields so that "absent" and null compare equal. */
+export function requestKey(values:Data|null|undefined):string{
+  if(!values)return '';
+  const optional=['stage_min','stage_max','inventory_override','equipment_reference_kv','test_object_id','equipment_reference_source','calibration_id'];
+  const normalized:Data={confirm_reference_mismatch:false,...values};
+  optional.forEach(k=>{if(normalized[k]===undefined||normalized[k]==='')normalized[k]=null});
+  return stableKey(normalized);
+}
+
+/** Deterministic timestamp text for saved records (rendered client-side only). */
+export function stamp(iso:unknown){
+  if(typeof iso!=='string')return 'Not recorded';
+  const d=new Date(iso);
+  if(Number.isNaN(d.getTime()))return 'Not recorded';
+  return d.toLocaleString('en-GB',{day:'2-digit',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'});
+}
+
+/** Relative age of a saved record; callers pass the current time explicitly. */
+export function age(iso:unknown,now:number){
+  if(typeof iso!=='string')return '';
+  const t=new Date(iso).getTime();
+  if(!Number.isFinite(t))return '';
+  const s=Math.max(0,Math.round((now-t)/1000));
+  if(s<45)return 'just now';
+  const m=Math.round(s/60);
+  if(m<60)return `${m} min ago`;
+  const h=Math.round(m/60);
+  if(h<36)return `${h} h ago`;
+  return `${Math.round(h/24)} d ago`;
+}
+
+export const shortId=(id:unknown)=>typeof id==='string'?id.slice(0,8):'—';
