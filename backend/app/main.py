@@ -231,7 +231,16 @@ def models():
         if path.exists():
             study=json.loads(path.read_text(encoding='utf-8'))
             result[f'experiment_{version}']={k:study[k] for k in ['version','scope','per_seed','combined_repeated_development_metrics','folds_beating_both_baselines','promotion_eligible','decision','hidden_test_evaluated','calibration_evaluated','validation_evaluated','final_models_created','production_model_changed','elapsed_seconds']}
+    independent=ROOT/'artifacts/independent_simulation/v1/summary.json'
+    if independent.exists():
+        result['independent_circuit_verification']=json.loads(independent.read_text(encoding='utf-8'))
     return result
+
+@app.get('/api/verification/independent-circuit')
+def independent_circuit_verification():
+    path=ROOT/'artifacts/independent_simulation/v1/summary.json'
+    if not path.is_file():raise HTTPException(404,'Independent circuit verification is not recorded.')
+    return json.loads(path.read_text(encoding='utf-8'))
 
 @app.get('/api/models/{id}/metrics')
 def model_metrics(id:str):
@@ -400,7 +409,7 @@ def calibrate(id:str):
 
 @app.get('/api/documents/{name}')
 def document(name:str):
-    paths={'source_reconciliation':ROOT/'docs/source_reconciliation.md','data_audit':ROOT/'reports/data_audit.html','assumptions':ROOT/'docs/assumptions.md','accuracy_v2_results':ROOT/'docs/accuracy_v2_results.md','accuracy_v4_results':ROOT/'docs/accuracy_v4_results.md','accuracy_v5_results':ROOT/'docs/accuracy_v5_results.md','accuracy_v6_results':ROOT/'docs/accuracy_v6_results.md','accuracy_v7_results':ROOT/'docs/accuracy_v7_results.md','judging_criteria':ROOT/'docs/judging_criteria_evidence.md','capture_resolution':ROOT/'docs/capture_resolution_review.md'}
+    paths={'source_reconciliation':ROOT/'docs/source_reconciliation.md','data_audit':ROOT/'reports/data_audit.html','assumptions':ROOT/'docs/assumptions.md','accuracy_v2_results':ROOT/'docs/accuracy_v2_results.md','accuracy_v4_results':ROOT/'docs/accuracy_v4_results.md','accuracy_v5_results':ROOT/'docs/accuracy_v5_results.md','accuracy_v6_results':ROOT/'docs/accuracy_v6_results.md','accuracy_v7_results':ROOT/'docs/accuracy_v7_results.md','independent_simulation_results':ROOT/'docs/independent_simulation_results.md','trusted_waveform_data_search':ROOT/'docs/trusted_waveform_data_search.md','judging_criteria':ROOT/'docs/judging_criteria_evidence.md','capture_resolution':ROOT/'docs/capture_resolution_review.md'}
     p=paths.get(name)
     if p is None or not p.exists():raise HTTPException(404,'Document not found')
     return FileResponse(p,media_type='text/html' if p.suffix=='.html' else 'text/plain')

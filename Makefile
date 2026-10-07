@@ -20,6 +20,8 @@ experiment-v6:
 	OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 $(PYTHON) -m backend.app.ml.experiment_v6
 experiment-v7:
 	OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 $(PYTHON) -m backend.app.ml.experiment_v7
+verify-independent-circuit:
+	OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 $(PYTHON) -m scripts.benchmark_independent_impulses
 audit:
 	$(PYTHON) -m backend.app.data.audit
 test:

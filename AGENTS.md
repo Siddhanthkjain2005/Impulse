@@ -1,5 +1,11 @@
 # ImpulseTwin AI — engineering handoff and progress
 
+## Latest authorized continuation — 7 October 2026
+
+The owner requested trusted external data or properly generated data for six-output improvement. That work is complete as a bounded source review and separately registered independent numerical verification. Read `docs/trusted_waveform_data_search.md` and `docs/independent_simulation_results.md`. External sources lack the full compatible generator input/output mapping; do not invent units/settings or merge them into frozen residual training. Generated 240 cases pass 6/6 numerical agreement channels using independent Radau/BDF/refinement against the same assumed CPRI topology. This does NOT replace V1's saved 5/6-versus-kNN result or establish laboratory accuracy. All new numerical evaluation labels are now exposed. Preserve them; do not tune or overwrite the completed study. All V1–V7 hashes and models remain preserved.
+
+Acquisition review v3 rejects incomplete falling limbs for calibration/evaluation while retaining original samples and metrics. The independently reproduced VTT/PTB step-response failure is covered by source regressions plus suitable LI/SI controls. Thresholds are application heuristics, not IEC certification. CPRI/circuit defaults and unsupported-profile ML gates remain unchanged. Latest checks pass 337 backend tests, Node 22 typecheck/build, 23 local assets and fresh-database external-network-denied smoke. Latest automated checks are in `artifacts/qa/october7_independent_verification.json`. User still defers cloud deployment and browser previews; $0 cloud was needed.
+
 ## Current continuation — 7 October 2026
 
 The owner explicitly requested review of friends' commits and further improvement
