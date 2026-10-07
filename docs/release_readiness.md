@@ -37,7 +37,9 @@ cd ..
 
 Open `http://127.0.0.1:8000/judge/`. Setup needs internet for packages; normal inference uses local models/data/assets. `Ctrl+C` stops the server. Port 8000 must be free. `IMPULSETWIN_DB` can select an isolated SQLite path. Model absence produces a clear restore-artifacts message, never a request to retrain on the exposed Hidden Test.
 
-The existing Makefile and Mac double-click launcher remain convenience paths. macOS/Linux were **NOT TESTED in this change**. Windows received fresh Python/npm dependency installations, full tests/build and a fresh-database application smoke. A second physical laptop and actual disconnected-network/browser rehearsal remain **NOT TESTED**.
+The existing Makefile and Mac double-click launcher remain convenience paths. macOS/Linux were **NOT TESTED in this hardening**. The earlier release recorded fresh Python/npm installations; this pass reuses those dependencies because the dependency files are unchanged. Windows passes 263 tests, typecheck/build, 23 local static assets and a fresh-database external-network-denied smoke. Desktop/mobile browser review also passes. A second physical laptop and actual disconnected-network/browser rehearsal remain **NOT TESTED**.
+
+The 6 October baseline initially terminated with a native pandas/access violation; the unchanged isolated checkout passed 237 tests with native threads bounded to one. Final tests passed 263 with two existing warnings and two pytest-cache permission warnings. The crash's root cause is unproven. `dev.py`, the verifier and audit scripts now default OMP/OpenBLAS/MKL/NumExpr threads to one before numerical imports; explicit caller overrides remain supported. Browser review found a pre-existing host/browser locale mismatch in number hints; deterministic formatting, a repeated typecheck/build and a fresh-origin console check resolve it. See `OPTIMIZATION_REPORT.md` and `artifacts/hardening/` for retained before/after evidence.
 
 ## Verifier
 

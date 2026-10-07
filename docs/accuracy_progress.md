@@ -1,5 +1,27 @@
 # Accuracy progress and the next independent check
 
+## Trusted data and independent numerical verification — 7 October 2026
+
+The latest request authorizes trusted-source data search and separately labeled generation. Read `docs/trusted_waveform_data_search.md`, `docs/reference_waveform_data_review.md` and `docs/independent_simulation_results.md`. Three CC BY 4.0 numeric external sources and public metadata were preserved under `data/external/`. None supplies the complete compatible generator-input / six-output mapping needed for a fresh final accuracy claim. Missing CSV units/parameters were not invented; external data stays quarantined from frozen residual training and laboratory histories.
+
+A separately registered independent charge/flux integrator produced 240 generated cases, 120 per impulse type, before importing production circuit predictions. Radau/BDF/refinement and passive energy checks accept all 240. The fixed 40-case-per-type evaluation passes **6/6 numerical agreement channels**. This verifies the existing CPRI lumped circuit implementation against another solver of the same assumed topology; it is NOT V1-versus-kNN accuracy or laboratory validation. V1 stays 5/6 versus kNN on its saved test, V2 stays 6/6 in separate development CV. Evaluation labels are now exposed; do not retune against them or claim them as untouched for future changes. No ML weights or physics equations changed.
+
+Trusted VTT/PTB step responses reproduced an admission weakness: a final capture transition could masquerade as an impulse tail. Acquisition review v3 requires four acquired intervals and 2% of the extracted tail duration beyond the half crossing. It retains raw/extracted values and requests longer captures. These are application heuristics, not IEC limits or waveform classification. Regression coverage includes the unchanged source workbook and complete positive/negative LI/SI controls. Existing calibration/evaluation workflows recheck acquisition quality.
+
+The Model lab exposes numerical verification separately; `/api/verification/independent-circuit` reads the saved result. All protocol, generated waveform/label files, retained failures, source attribution and checksums are committed. **337 backend tests pass**; Node 22 frontend typecheck/build, 23 local asset checks and fresh-database external-network-denied smoke pass. Latest checks are in `artifacts/qa/october7_independent_verification.json`; prior dated counts remain below. No cloud resources/spend, deployment, paid-source purchase, organizer contact or browser preview occurred. Fresh complete real captures or an unused organizer evaluator set are still needed for a new independent generator-accuracy claim.
+
+## Latest crest follow-up — 7 October 2026
+
+V7 compares 12 fixed multi-input spline/envelope/quantile/Bayesian configurations in three new nested fold arrangements. Switching-crest repeated-development RMSE is **3.494530 kV**, versus historical V2 refit's **3.586253 kV** and matched exact kNN's **3.918090 kV**: 2.5576% and 10.8104% lower error respectively. It wins 14/15 folds, but seed 607's 1.9599% reduction versus V2 misses the fixed 2% gate. The compact spline control is slightly better overall, so more complexity is not justified. No serving artifacts or earlier scores changed. Read `accuracy_v7_results.md` for the complete failure and scope.
+
+Optional V2's existing 6/6 development comparison remains separate from V1's 5/6 saved synthetic final test. Further independent accuracy evidence requires unused outcomes, not another random split of these explored rows. The owner will ask their friend whether new data exists; no new files have been supplied. The existing capture/evaluation workflow below is prepared for independent shots with recorded setup metadata.
+
+## Focused continuation — 7 October 2026
+
+Frozen V1 is still 5/6 versus exact workbook kNN and 6/6 versus physics. Existing V2 development CV is 6/6 versus matched kNN; these are separate evaluations. A new repeated nested Switching-crest study records RMSE 3.488831 kV versus V2 refit's 3.552288 kV and exact kNN's 3.837058 kV: 1.7864% and 9.0754% lower error respectively, with 14/15 fold wins. It misses its fixed 2%-in-every-seed gate and creates no serving weights. See `accuracy_v6_results.md`. The saved final test and all earlier experiment artifacts remain preserved.
+
+The current circuit additionally rejects an independently demonstrated inaccurate stable-looking pole, and new calibration creation preserves conservative generated provenance. These are correctness fixes, not a new measured-accuracy result. The older summary below retains its dated scope.
+
 Updated 3 October 2026. Numerical source: `artifacts/models/hidden_test_evaluation.json`. The active model remains frozen V1; no new final-test predictions were generated for this review.
 
 ## Recorded improvement so far

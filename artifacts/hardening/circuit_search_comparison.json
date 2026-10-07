@@ -1,0 +1,533 @@
+{
+  "version": "1.0.0",
+  "source_type": "controlled_development",
+  "split": "development",
+  "status": "COMPLETE",
+  "declaration_file": "artifacts/hardening/circuit_search_cases.json",
+  "declaration_sha256": "a8209196931929accb2b9d9f3c3c4d53d6c9efffa4a0d2bf037b77d918b3d42c",
+  "predeclared_before_execution": true,
+  "thread_settings": {
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1"
+  },
+  "execution_order": [
+    "unchanged baseline: Lightning then Switching",
+    "hardened working tree: Lightning then Switching"
+  ],
+  "method": "Call unchanged scripts.benchmark_search_quality.compare for each declared case in separate baseline/current processes using the same virtual environment. Explicitly replace only the request stock provenance string with the declared hypothetical-stock assumption. Physics mode, maximum three parts per network, eight production scenario samples and all declared stage choices. Do not train, tune or inspect Hidden Test.",
+  "before": {
+    "source_context": {
+      "repository": "C:\\Users\\shara\\Documents\\Codex\\2026-10-03\\github-plugin-github-openai-curated-remote\\work\\Impulse\\..\\hardening-baseline",
+      "head_commit": "047841f587c4b00bc8d018d5174961d3356eebbf",
+      "implementation_sha256": {
+        "backend/app/optimization/engine.py": "0b82c898f881547fbe6a755f69b87100dfeeec6fef646dd9ab41b76a47395f09",
+        "backend/app/optimization/networks.py": "dba89a49a134b138d185180ecc500f8af3a601c4a71f06e70498b182c9d57513",
+        "backend/app/ml/registry.py": "86f93cd586ff25259ad21fbfd75be884c324a24e963cce0e61a73be1b96a4a59",
+        "backend/app/physics/circuit.py": "76c4824114d9603239bed9d60f58e4c061df5a30e254a02d5e20553b3abf3183",
+        "backend/app/test_objects.py": "b5844ca3fb6b46cb9e77c3c47fb1a946147eb68e51937e1f47363df023557481",
+        "config/generator_profiles.json": "4fa804116e31602f7bbf7df14d7204e42b2216b9647c3af84ad4d6eba49b8296",
+        "config/optimization.json": "572e4e19a427e4216ae4ab71b5632ff9df70be52e587db215c66e71ba36201d7",
+        "scripts/benchmark_search_quality.py": "d83f42c300d4bad1359385c4f7984afbe31e1322ee0a310ff8972b52c86ca774"
+      }
+    },
+    "declared_cases_sha256": "a8209196931929accb2b9d9f3c3c4d53d6c9efffa4a0d2bf037b77d918b3d42c",
+    "cases": [
+      {
+        "id": "dev-cpri-circuit-li",
+        "source_type": "controlled_development",
+        "inputs": {
+          "profile_id": "cpri_problem_brief_profile",
+          "impulse_type": "Lightning",
+          "test_kv": 1425.0,
+          "load_c_pf": 650.0,
+          "divider_c_pf": 250.0,
+          "stray_c_pf": 55.0,
+          "l_uh": 12.0,
+          "efficiency": 0.83,
+          "solver": "circuit",
+          "model_mode": "physics",
+          "require_model_agreement": false,
+          "connection_mode": "series_marx_equivalent",
+          "layout_id": "default-layout",
+          "stage_min": 10,
+          "stage_max": 12,
+          "inventory_override": {
+            "front": [
+              {
+                "ohm": 30.0,
+                "count_per_stage": 2
+              },
+              {
+                "ohm": 465.0,
+                "count_per_stage": 1
+              }
+            ],
+            "tail": [
+              {
+                "ohm": 520.0,
+                "count_per_stage": 2
+              }
+            ],
+            "provenance": "Explicit hypothetical per-stage stock assumption for controlled development; quantities and mounting feasibility are not verified CPRI inventory."
+          },
+          "max_components_per_network": 3,
+          "include_base_c": true,
+          "uncertainty_pct": 5,
+          "monte_carlo_samples": 8,
+          "equipment_reference_kv": null,
+          "test_object_id": null,
+          "equipment_reference_source": null,
+          "confirm_reference_mismatch": false,
+          "calibration_id": null
+        },
+        "same_best_candidate": true,
+        "exhaustive_best_in_bounded_top3": true,
+        "bounded_winner_exhaustive_rank": 1,
+        "rank_difference": 0,
+        "objective_gap": 0.0,
+        "waveform_error_difference": 0.0,
+        "component_count_difference": 0,
+        "waveform_metric_difference": {
+          "front_us": 0.0,
+          "tail_us": 0.0,
+          "crest_kv": 0.0
+        },
+        "worst_waveform_margin_difference": 0.0,
+        "bounded_seconds": 6.230139099992812,
+        "exhaustive_seconds": 11.11648379988037,
+        "speedup": 1.7843074803728214,
+        "bounded_evaluated": 45,
+        "exhaustive_evaluated": 108,
+        "bounded_nominal_pass": true,
+        "exhaustive_nominal_pass": true,
+        "bounded_settings": {
+          "stages": 11,
+          "charge_kv_stage": 181.90279026170387,
+          "front_r_stage": 30.0,
+          "tail_r_stage": 520.0,
+          "stage_utilization": 0.9095139513085193,
+          "stored_energy_kj": 22.74842975968298,
+          "voltage_margin_kv_stage": 18.09720973829613,
+          "energy_margin_kj": 7.251570240317019,
+          "energy_margin_pct": 24.171900801056733
+        },
+        "exhaustive_settings": {
+          "stages": 11,
+          "charge_kv_stage": 181.90279026170387,
+          "front_r_stage": 30.0,
+          "tail_r_stage": 520.0,
+          "stage_utilization": 0.9095139513085193,
+          "stored_energy_kj": 22.74842975968298,
+          "voltage_margin_kv_stage": 18.09720973829613,
+          "energy_margin_kj": 7.251570240317019,
+          "energy_margin_pct": 24.171900801056733
+        },
+        "bounded_rank_key": [
+          false,
+          true,
+          0.33661322137378186
+        ],
+        "exhaustive_rank_key": [
+          false,
+          true,
+          0.33661322137378186
+        ],
+        "status": "COMPLETE"
+      },
+      {
+        "id": "dev-cpri-circuit-si",
+        "source_type": "controlled_development",
+        "inputs": {
+          "profile_id": "cpri_problem_brief_profile",
+          "impulse_type": "Switching",
+          "test_kv": 1050.0,
+          "load_c_pf": 650.0,
+          "divider_c_pf": 250.0,
+          "stray_c_pf": 55.0,
+          "l_uh": 12.0,
+          "efficiency": 0.83,
+          "solver": "circuit",
+          "model_mode": "physics",
+          "require_model_agreement": false,
+          "connection_mode": "series_marx_equivalent",
+          "layout_id": "default-layout",
+          "stage_min": 10,
+          "stage_max": 12,
+          "inventory_override": {
+            "front": [
+              {
+                "ohm": 465.0,
+                "count_per_stage": 1
+              },
+              {
+                "ohm": 3700.0,
+                "count_per_stage": 2
+              }
+            ],
+            "tail": [
+              {
+                "ohm": 22000.0,
+                "count_per_stage": 2
+              }
+            ],
+            "provenance": "Explicit hypothetical per-stage stock assumption for controlled development; quantities and mounting feasibility are not verified CPRI inventory."
+          },
+          "max_components_per_network": 3,
+          "include_base_c": true,
+          "uncertainty_pct": 5,
+          "monte_carlo_samples": 8,
+          "equipment_reference_kv": null,
+          "test_object_id": null,
+          "equipment_reference_source": null,
+          "confirm_reference_mismatch": false,
+          "calibration_id": null
+        },
+        "same_best_candidate": true,
+        "exhaustive_best_in_bounded_top3": true,
+        "bounded_winner_exhaustive_rank": 1,
+        "rank_difference": 0,
+        "objective_gap": 0.0,
+        "waveform_error_difference": 0.0,
+        "component_count_difference": 0,
+        "waveform_metric_difference": {
+          "front_us": 0.0,
+          "tail_us": 0.0,
+          "crest_kv": 0.0
+        },
+        "worst_waveform_margin_difference": 0.0,
+        "bounded_seconds": 6.758331400109455,
+        "exhaustive_seconds": 15.572009899886325,
+        "speedup": 2.304120496315722,
+        "bounded_evaluated": 45,
+        "exhaustive_evaluated": 108,
+        "bounded_nominal_pass": true,
+        "exhaustive_nominal_pass": true,
+        "bounded_settings": {
+          "stages": 11,
+          "charge_kv_stage": 141.1162262393799,
+          "front_r_stage": 4165.0,
+          "tail_r_stage": 22000.0,
+          "stage_utilization": 0.7055811311968995,
+          "stored_energy_kj": 13.69073014928015,
+          "voltage_margin_kv_stage": 58.8837737606201,
+          "energy_margin_kj": 16.30926985071985,
+          "energy_margin_pct": 54.36423283573284
+        },
+        "exhaustive_settings": {
+          "stages": 11,
+          "charge_kv_stage": 141.1162262393799,
+          "front_r_stage": 4165.0,
+          "tail_r_stage": 22000.0,
+          "stage_utilization": 0.7055811311968995,
+          "stored_energy_kj": 13.69073014928015,
+          "voltage_margin_kv_stage": 58.8837737606201,
+          "energy_margin_kj": 16.30926985071985,
+          "energy_margin_pct": 54.36423283573284
+        },
+        "bounded_rank_key": [
+          false,
+          true,
+          0.30017227202800334
+        ],
+        "exhaustive_rank_key": [
+          false,
+          true,
+          0.30017227202800334
+        ],
+        "status": "COMPLETE"
+      }
+    ]
+  },
+  "after": {
+    "source_context": {
+      "repository": "C:\\Users\\shara\\Documents\\Codex\\2026-10-03\\github-plugin-github-openai-curated-remote\\work\\Impulse",
+      "head_commit": "047841f587c4b00bc8d018d5174961d3356eebbf",
+      "implementation_sha256": {
+        "backend/app/optimization/engine.py": "269d82f69cca4e374b2dae5e89582204a050d147281d71e39de22991b56f5da7",
+        "backend/app/optimization/networks.py": "dba89a49a134b138d185180ecc500f8af3a601c4a71f06e70498b182c9d57513",
+        "backend/app/ml/registry.py": "b4aea480b2e76e2393d1cb0db7e82c9696aafc5c83566eda4fae0827184a008a",
+        "backend/app/physics/circuit.py": "e4c9242a80fce08f31d9768108f106cb868a4444e0ef240b8863e873a26c3a23",
+        "backend/app/test_objects.py": "56b4a617ee35a8be03768eaebbce274d4736655fb75e4c53ddeb1b82053c99a1",
+        "config/generator_profiles.json": "4fa804116e31602f7bbf7df14d7204e42b2216b9647c3af84ad4d6eba49b8296",
+        "config/optimization.json": "572e4e19a427e4216ae4ab71b5632ff9df70be52e587db215c66e71ba36201d7",
+        "scripts/benchmark_search_quality.py": "d83f42c300d4bad1359385c4f7984afbe31e1322ee0a310ff8972b52c86ca774"
+      }
+    },
+    "declared_cases_sha256": "a8209196931929accb2b9d9f3c3c4d53d6c9efffa4a0d2bf037b77d918b3d42c",
+    "cases": [
+      {
+        "id": "dev-cpri-circuit-li",
+        "source_type": "controlled_development",
+        "inputs": {
+          "profile_id": "cpri_problem_brief_profile",
+          "impulse_type": "Lightning",
+          "test_kv": 1425.0,
+          "load_c_pf": 650.0,
+          "divider_c_pf": 250.0,
+          "stray_c_pf": 55.0,
+          "l_uh": 12.0,
+          "efficiency": 0.83,
+          "solver": "circuit",
+          "model_mode": "physics",
+          "require_model_agreement": false,
+          "connection_mode": "series_marx_equivalent",
+          "layout_id": "default-layout",
+          "stage_min": 10,
+          "stage_max": 12,
+          "inventory_override": {
+            "front": [
+              {
+                "ohm": 30.0,
+                "count_per_stage": 2
+              },
+              {
+                "ohm": 465.0,
+                "count_per_stage": 1
+              }
+            ],
+            "tail": [
+              {
+                "ohm": 520.0,
+                "count_per_stage": 2
+              }
+            ],
+            "provenance": "Explicit hypothetical per-stage stock assumption for controlled development; quantities and mounting feasibility are not verified CPRI inventory."
+          },
+          "max_components_per_network": 3,
+          "include_base_c": true,
+          "uncertainty_pct": 5,
+          "monte_carlo_samples": 8,
+          "equipment_reference_kv": null,
+          "test_object_id": null,
+          "equipment_reference_source": null,
+          "confirm_reference_mismatch": false,
+          "calibration_id": null
+        },
+        "same_best_candidate": true,
+        "exhaustive_best_in_bounded_top3": true,
+        "bounded_winner_exhaustive_rank": 1,
+        "rank_difference": 0,
+        "objective_gap": 0.0,
+        "waveform_error_difference": 0.0,
+        "component_count_difference": 0,
+        "waveform_metric_difference": {
+          "front_us": 0.0,
+          "tail_us": 0.0,
+          "crest_kv": 0.0
+        },
+        "worst_waveform_margin_difference": 0.0,
+        "bounded_seconds": 4.891264700097963,
+        "exhaustive_seconds": 9.4802125999704,
+        "speedup": 1.9381925087351188,
+        "bounded_evaluated": 45,
+        "exhaustive_evaluated": 108,
+        "bounded_nominal_pass": true,
+        "exhaustive_nominal_pass": true,
+        "bounded_settings": {
+          "stages": 11,
+          "charge_kv_stage": 181.90279026170387,
+          "front_r_stage": 30.0,
+          "tail_r_stage": 520.0,
+          "stage_utilization": 0.9095139513085193,
+          "stored_energy_kj": 22.74842975968298,
+          "voltage_margin_kv_stage": 18.09720973829613,
+          "energy_margin_kj": 7.251570240317019,
+          "energy_margin_pct": 24.171900801056733
+        },
+        "exhaustive_settings": {
+          "stages": 11,
+          "charge_kv_stage": 181.90279026170387,
+          "front_r_stage": 30.0,
+          "tail_r_stage": 520.0,
+          "stage_utilization": 0.9095139513085193,
+          "stored_energy_kj": 22.74842975968298,
+          "voltage_margin_kv_stage": 18.09720973829613,
+          "energy_margin_kj": 7.251570240317019,
+          "energy_margin_pct": 24.171900801056733
+        },
+        "bounded_rank_key": [
+          false,
+          true,
+          0.3366132213737804
+        ],
+        "exhaustive_rank_key": [
+          false,
+          true,
+          0.3366132213737804
+        ],
+        "status": "COMPLETE"
+      },
+      {
+        "id": "dev-cpri-circuit-si",
+        "source_type": "controlled_development",
+        "inputs": {
+          "profile_id": "cpri_problem_brief_profile",
+          "impulse_type": "Switching",
+          "test_kv": 1050.0,
+          "load_c_pf": 650.0,
+          "divider_c_pf": 250.0,
+          "stray_c_pf": 55.0,
+          "l_uh": 12.0,
+          "efficiency": 0.83,
+          "solver": "circuit",
+          "model_mode": "physics",
+          "require_model_agreement": false,
+          "connection_mode": "series_marx_equivalent",
+          "layout_id": "default-layout",
+          "stage_min": 10,
+          "stage_max": 12,
+          "inventory_override": {
+            "front": [
+              {
+                "ohm": 465.0,
+                "count_per_stage": 1
+              },
+              {
+                "ohm": 3700.0,
+                "count_per_stage": 2
+              }
+            ],
+            "tail": [
+              {
+                "ohm": 22000.0,
+                "count_per_stage": 2
+              }
+            ],
+            "provenance": "Explicit hypothetical per-stage stock assumption for controlled development; quantities and mounting feasibility are not verified CPRI inventory."
+          },
+          "max_components_per_network": 3,
+          "include_base_c": true,
+          "uncertainty_pct": 5,
+          "monte_carlo_samples": 8,
+          "equipment_reference_kv": null,
+          "test_object_id": null,
+          "equipment_reference_source": null,
+          "confirm_reference_mismatch": false,
+          "calibration_id": null
+        },
+        "same_best_candidate": true,
+        "exhaustive_best_in_bounded_top3": true,
+        "bounded_winner_exhaustive_rank": 1,
+        "rank_difference": 0,
+        "objective_gap": 0.0,
+        "waveform_error_difference": 0.0,
+        "component_count_difference": 0,
+        "waveform_metric_difference": {
+          "front_us": 0.0,
+          "tail_us": 0.0,
+          "crest_kv": 0.0
+        },
+        "worst_waveform_margin_difference": 0.0,
+        "bounded_seconds": 5.004953800002113,
+        "exhaustive_seconds": 13.749941000016406,
+        "speedup": 2.747266318424478,
+        "bounded_evaluated": 45,
+        "exhaustive_evaluated": 108,
+        "bounded_nominal_pass": true,
+        "exhaustive_nominal_pass": true,
+        "bounded_settings": {
+          "stages": 11,
+          "charge_kv_stage": 141.1162262393799,
+          "front_r_stage": 4165.0,
+          "tail_r_stage": 22000.0,
+          "stage_utilization": 0.7055811311968995,
+          "stored_energy_kj": 13.69073014928015,
+          "voltage_margin_kv_stage": 58.8837737606201,
+          "energy_margin_kj": 16.30926985071985,
+          "energy_margin_pct": 54.36423283573284
+        },
+        "exhaustive_settings": {
+          "stages": 11,
+          "charge_kv_stage": 141.1162262393799,
+          "front_r_stage": 4165.0,
+          "tail_r_stage": 22000.0,
+          "stage_utilization": 0.7055811311968995,
+          "stored_energy_kj": 13.69073014928015,
+          "voltage_margin_kv_stage": 58.8837737606201,
+          "energy_margin_kj": 16.30926985071985,
+          "energy_margin_pct": 54.36423283573284
+        },
+        "bounded_rank_key": [
+          false,
+          true,
+          0.3001722720280035
+        ],
+        "exhaustive_rank_key": [
+          false,
+          true,
+          0.3001722720280035
+        ],
+        "status": "COMPLETE"
+      }
+    ]
+  },
+  "summary": {
+    "before": {
+      "declared_cases": 2,
+      "completed_cases": 2,
+      "failed_cases": 0,
+      "top1_match_rate": 1.0,
+      "top3_containment_rate": 1.0,
+      "worst_objective_gap": 0.0,
+      "compliance_differences": 0,
+      "bounded_nominal_passes": 2,
+      "exhaustive_nominal_passes": 2,
+      "median_bounded_seconds": 6.494235250051133,
+      "median_exhaustive_seconds": 13.344246849883348
+    },
+    "after": {
+      "declared_cases": 2,
+      "completed_cases": 2,
+      "failed_cases": 0,
+      "top1_match_rate": 1.0,
+      "top3_containment_rate": 1.0,
+      "worst_objective_gap": 0.0,
+      "compliance_differences": 0,
+      "bounded_nominal_passes": 2,
+      "exhaustive_nominal_passes": 2,
+      "median_bounded_seconds": 4.948109250050038,
+      "median_exhaustive_seconds": 11.615076799993403
+    }
+  },
+  "paired_case_deltas": [
+    {
+      "id": "dev-cpri-circuit-li",
+      "before_status": "COMPLETE",
+      "after_status": "COMPLETE",
+      "same_bounded_settings_to_1e_minus_7": true,
+      "bounded_nominal_pass_preserved": true,
+      "objective_gap_change": 0.0,
+      "bounded_seconds_before": 6.230139099992812,
+      "bounded_seconds_after": 4.891264700097963,
+      "bounded_runtime_speedup": 1.2737276516374247,
+      "exhaustive_seconds_before": 11.11648379988037,
+      "exhaustive_seconds_after": 9.4802125999704,
+      "bounded_evaluated_before": 45,
+      "bounded_evaluated_after": 45,
+      "exhaustive_evaluated_before": 108,
+      "exhaustive_evaluated_after": 108
+    },
+    {
+      "id": "dev-cpri-circuit-si",
+      "before_status": "COMPLETE",
+      "after_status": "COMPLETE",
+      "same_bounded_settings_to_1e_minus_7": true,
+      "bounded_nominal_pass_preserved": true,
+      "objective_gap_change": 0.0,
+      "bounded_seconds_before": 6.758331400109455,
+      "bounded_seconds_after": 5.004953800002113,
+      "bounded_runtime_speedup": 1.3503284286273736,
+      "exhaustive_seconds_before": 15.572009899886325,
+      "exhaustive_seconds_after": 13.749941000016406,
+      "bounded_evaluated_before": 45,
+      "bounded_evaluated_after": 45,
+      "exhaustive_evaluated_before": 108,
+      "exhaustive_evaluated_after": 108
+    }
+  ],
+  "limitations": "Two controlled DEVELOPMENT cases, not a held-out benchmark or optimization objective. Shared physics, charge solver, hard constraints and ranking mean agreement checks bounded discrete search coverage only, not model accuracy or continuous/global optimality. Stock quantities and mounting remain assumptions. The exhaustive catalog is limited to bridge-free series/parallel networks of up to three parts. Nominal PASS, interval containment and post-ranking challenges remain distinct. Single-run times are machine/cache dependent and do not support statistical performance claims.",
+  "production_tuning_performed": false,
+  "laboratory_accuracy_claim": null
+}

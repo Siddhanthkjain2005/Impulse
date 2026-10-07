@@ -26,9 +26,11 @@ def validate_request(req, profile, data=None):
         raise ValueError('Profile is incomplete. Verified capacitance, energy and inventory are required.')
     if not profile['voltage_min_kv'] <= req.test_kv <= profile['voltage_max_kv']:
         raise ValueError('Requested test voltage is outside selected generator profile capability.')
-    # Even ideal transfer cannot exceed the stage/efficiency limit used by search.
+    # The workbook crest is exactly erected charge times efficiency. A passive
+    # RLC load can overshoot that initial voltage, so circuit feasibility must
+    # be decided from its solved charge and the actual voltage/energy limits.
     stages = min(profile['max_stages'], req.stage_max or profile['max_stages'])
-    if req.test_kv > stages * profile['stage_kv'] * req.efficiency:
+    if req.solver == 'reference' and req.test_kv > stages * profile['stage_kv'] * req.efficiency:
         raise ValueError('Requested test voltage exceeds available stages and charging capability at the entered efficiency.')
     obj = None
     if req.test_object_id:

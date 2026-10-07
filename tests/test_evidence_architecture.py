@@ -108,10 +108,15 @@ def test_invalid_request_reference_or_capability_rejected(changes):
 
 def test_timeline_reads_saved_decisions_and_hashes():
     result=timeline(); entries=result['experiments']
-    assert [x['status'] for x in entries]==['PROMOTED','EXPERIMENTAL','REJECTED','REJECTED','REJECTED']
+    assert [x['status'] for x in entries[:6]]==['PROMOTED','EXPERIMENTAL','REJECTED','REJECTED','REJECTED','REJECTED']
     assert all(x['protocol_hash_matches'] for x in entries[1:])
     assert all(not x['hidden_test_evaluated'] for x in entries[1:])
     assert entries[1]['performance_change_pct']==pytest.approx(5.365555163706571)
+    assert len(entries)==7
+    assert entries[-1]['name']=='V7'
+    summary=json.loads(Path('artifacts/experiments/v7/summary.json').read_text())
+    assert entries[-1]['status']==('REVIEW REQUIRED' if summary['promotion_eligible'] else 'REJECTED')
+    assert entries[-1]['performance_change_scope'].startswith('Switching crest only')
 
 
 def test_exact_enumerator_includes_every_two_part_tree():

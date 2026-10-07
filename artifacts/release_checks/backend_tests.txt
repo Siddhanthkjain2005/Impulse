@@ -1,7 +1,7 @@
-........................................................................ [ 30%]
-........................................................................ [ 60%]
-........................................................................ [ 91%]
-.....................                                                    [100%]
+........................................................................ [ 27%]
+........................................................................ [ 54%]
+........................................................................ [ 82%]
+...............................................                          [100%]
 ============================== warnings summary ===============================
 .venv\Lib\site-packages\_pytest\config\__init__.py:1441
   C:\Users\shara\Documents\Codex\2026-10-03\github-plugin-github-openai-curated-remote\work\Impulse\.venv\Lib\site-packages\_pytest\config\__init__.py:1441: PytestConfigWarning: Unknown config option: asyncio_default_fixture_loop_scope
@@ -12,7 +12,15 @@
   C:\Users\shara\Documents\Codex\2026-10-03\github-plugin-github-openai-curated-remote\work\Impulse\.venv\Lib\site-packages\starlette\testclient.py:40: DeprecationWarning: The anyio.abc.BlockingPortal alias is deprecated, use anyio.from_thread.BlockingPortal instead.
     _PortalFactoryType = typing.Callable[[], typing.ContextManager[anyio.abc.BlockingPortal]]
 
+.venv\Lib\site-packages\_pytest\cacheprovider.py:475
+  C:\Users\shara\Documents\Codex\2026-10-03\github-plugin-github-openai-curated-remote\work\Impulse\.venv\Lib\site-packages\_pytest\cacheprovider.py:475: PytestCacheWarning: could not create cache path C:\Users\shara\Documents\Codex\2026-10-03\github-plugin-github-openai-curated-remote\work\Impulse\.pytest_cache\v\cache\nodeids: [WinError 5] Access is denied: 'C:\\Users\\shara\\Documents\\Codex\\2026-10-03\\github-plugin-github-openai-curated-remote\\work\\Impulse\\.pytest_cache\\v\\cache'
+    config.cache.set("cache/nodeids", sorted(self.cached_nodeids))
+
+.venv\Lib\site-packages\_pytest\stepwise.py:51
+  C:\Users\shara\Documents\Codex\2026-10-03\github-plugin-github-openai-curated-remote\work\Impulse\.venv\Lib\site-packages\_pytest\stepwise.py:51: PytestCacheWarning: could not create cache path C:\Users\shara\Documents\Codex\2026-10-03\github-plugin-github-openai-curated-remote\work\Impulse\.pytest_cache\v\cache\stepwise: [WinError 5] Access is denied: 'C:\\Users\\shara\\Documents\\Codex\\2026-10-03\\github-plugin-github-openai-curated-remote\\work\\Impulse\\.pytest_cache\\v\\cache'
+    session.config.cache.set(STEPWISE_CACHE_DIR, [])
+
 -- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
 - generated xml file: C:\Users\shara\Documents\Codex\2026-10-03\github-plugin-github-openai-curated-remote\work\Impulse\artifacts\release_checks\backend-tests.xml -
-237 passed, 2 warnings in 178.11s (0:02:58)
+263 passed, 4 warnings in 302.28s (0:05:02)
 

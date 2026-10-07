@@ -1,0 +1,124 @@
+{
+  "source_type": "controlled_development",
+  "rows_per_batch": 512,
+  "types": {
+    "Lightning": {
+      "exact_full_output_equivalence": true,
+      "support_exact_equivalence": true,
+      "old_support": {
+        "median_seconds": 0.18749639997258782,
+        "minimum_seconds": 0.1762287998571992,
+        "repetitions": 9
+      },
+      "new_support": {
+        "median_seconds": 0.0049958000890910625,
+        "minimum_seconds": 0.004545000148937106,
+        "repetitions": 9
+      },
+      "old_infer": {
+        "median_seconds": 0.6454358000773937,
+        "minimum_seconds": 0.6364114000461996,
+        "repetitions": 9
+      },
+      "new_infer": {
+        "median_seconds": 0.08518670010380447,
+        "minimum_seconds": 0.08453579992055893,
+        "repetitions": 9
+      },
+      "support_speedup": 37.53080520215551,
+      "infer_speedup": 7.576720301301685
+    },
+    "Switching": {
+      "exact_full_output_equivalence": true,
+      "support_exact_equivalence": true,
+      "old_support": {
+        "median_seconds": 0.18152209999971092,
+        "minimum_seconds": 0.17561920010484755,
+        "repetitions": 9
+      },
+      "new_support": {
+        "median_seconds": 0.00465349992737174,
+        "minimum_seconds": 0.0044413001742213964,
+        "repetitions": 9
+      },
+      "old_infer": {
+        "median_seconds": 0.8435275999363512,
+        "minimum_seconds": 0.4361476998310536,
+        "repetitions": 9
+      },
+      "new_infer": {
+        "median_seconds": 0.22046969993971288,
+        "minimum_seconds": 0.20851819985546172,
+        "repetitions": 9
+      },
+      "support_speedup": 39.007650764536095,
+      "infer_speedup": 3.8260477524440435
+    }
+  },
+  "equivalence_matrix": [
+    {
+      "impulse_type": "Lightning",
+      "profile_id": "workbook_reference_profile",
+      "mode": "hybrid",
+      "rows": 512,
+      "exact_complete_output_equivalence": true,
+      "unsupported_correction_disabled": null
+    },
+    {
+      "impulse_type": "Lightning",
+      "profile_id": "workbook_reference_profile",
+      "mode": "physics",
+      "rows": 512,
+      "exact_complete_output_equivalence": true,
+      "unsupported_correction_disabled": true
+    },
+    {
+      "impulse_type": "Lightning",
+      "profile_id": "cpri_problem_brief_profile",
+      "mode": "hybrid",
+      "rows": 512,
+      "exact_complete_output_equivalence": true,
+      "unsupported_correction_disabled": true
+    },
+    {
+      "impulse_type": "Lightning",
+      "profile_id": "cpri_problem_brief_profile",
+      "mode": "physics",
+      "rows": 512,
+      "exact_complete_output_equivalence": true,
+      "unsupported_correction_disabled": true
+    },
+    {
+      "impulse_type": "Switching",
+      "profile_id": "workbook_reference_profile",
+      "mode": "hybrid",
+      "rows": 512,
+      "exact_complete_output_equivalence": true,
+      "unsupported_correction_disabled": null
+    },
+    {
+      "impulse_type": "Switching",
+      "profile_id": "workbook_reference_profile",
+      "mode": "physics",
+      "rows": 512,
+      "exact_complete_output_equivalence": true,
+      "unsupported_correction_disabled": true
+    },
+    {
+      "impulse_type": "Switching",
+      "profile_id": "cpri_problem_brief_profile",
+      "mode": "hybrid",
+      "rows": 512,
+      "exact_complete_output_equivalence": true,
+      "unsupported_correction_disabled": true
+    },
+    {
+      "impulse_type": "Switching",
+      "profile_id": "cpri_problem_brief_profile",
+      "mode": "physics",
+      "rows": 512,
+      "exact_complete_output_equivalence": true,
+      "unsupported_correction_disabled": true
+    }
+  ]
+}

@@ -43,5 +43,21 @@ def timeline(root=ROOT):
                        'hidden_test_evaluated': summary['hidden_test_evaluated'],
                        'protocol_hash_matches': digest(path + '/protocol.json') == summary['protocol_sha256'],
                        'evidence_path': path + '/summary.json', 'evidence_sha256': digest(path + '/summary.json')})
+    for version, model_name in (('v6', 'V6 champion search'), ('v7', 'V7 envelope search')):
+        path = f'artifacts/experiments/{version}'
+        if not (root / path / 'summary.json').is_file():
+            continue
+        summary, protocol = read(path + '/summary.json'), read(path + '/protocol.json')
+        table = summary['combined_repeated_development_metrics']
+        gain = 100 * (1 - table[model_name]['rmse_kv'] / table['Historical V2 refit']['rmse_kv'])
+        result.append({'version': summary['version'], 'name': version.upper(),
+                       'status': 'REVIEW REQUIRED' if summary['promotion_eligible'] else 'REJECTED',
+                       'hypothesis': protocol['hypothesis'], 'baseline': 'Historical V2 refit and matched exact kNN',
+                       'dataset': protocol['dataset_sha256'], 'protocol': summary['scope'],
+                       'performance_change_pct': gain, 'performance_change_scope': 'Switching crest only; repeated development rows',
+                       'promotion_criterion': protocol['promotion'], 'decision': summary['decision'],
+                       'evidence_type': 'SYNTHETIC DEVELOPMENT CV', 'hidden_test_evaluated': False,
+                       'protocol_hash_matches': digest(path + '/protocol.json') == summary['protocol_sha256'],
+                       'evidence_path': path + '/summary.json', 'evidence_sha256': digest(path + '/summary.json')})
     return {'active_model': registry['version'], 'experiments': result,
-            'scope': 'Different comparators and protocols: improvements cannot be added. Development CV is not an independent test. No new training or Hidden Test evaluation was performed.'}
+            'scope': 'Different comparators and protocols: improvements cannot be added. Development CV is not an independent test. This view reads saved artifacts and never triggers training or Hidden Test predictions.'}

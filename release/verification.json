@@ -1,19 +1,30 @@
 {
-  "recorded_at_utc": "2026-10-03T05:34:59.955257+00:00",
+  "verified_at_utc": "2026-10-07T13:56:07.741471+00:00",
   "status": "passed",
-  "files_verified": 297,
-  "zip_integrity_passed": true,
-  "all_archive_and_workspace_file_hashes_match": true,
-  "live_history_and_raw_uploads_excluded": true,
-  "archive_bytes": 13393901,
-  "archive_sha256": "0f925d11c0a0ebc88211e52eb7997ae441807bf8737b710de7d391f584d447a1",
-  "application_verification": "artifacts/qa/release_validation.json",
-  "backend_tests": 198,
-  "frontend_production_build_passed": true,
-  "browser_preview_this_update": false,
-  "browser_preview_omitted_at_user_request": true,
+  "archive": "release/ImpulseTwin_AI_Local_PoC.zip",
+  "archive_sha256": "8ef0aa41f553c906f9be56e950d1389c45dee8c906d1a5024bad8dc40b319533",
+  "archive_bytes": 20151977,
+  "manifest_file_count": 714,
+  "all_archive_and_workspace_hashes_match": true,
+  "extracted_release_fresh_database_offline_smoke": {
+    "status": "PASS",
+    "fresh_database": true,
+    "external_network_denied": true,
+    "local_assets": 23,
+    "saved_recommendation": true
+  },
+  "current_automated_verification_record": "artifacts/qa/october7_independent_verification.json",
+  "backend_tests": 337,
   "cloud_deployed": false,
-  "scope": "Extracted application through TestClient on current machine with installed dependencies; not a clean second machine.",
-  "continuation_prompt_included": true,
-  "handoff_repack_note": "Documentation-only changes after the recorded application checks; archive integrity, full per-file hashes and exclusions verified again. Backend/frontend application code is unchanged since that verification."
+  "website_preview": false,
+  "scope": "All archive and workspace bytes match the manifest; extracted fresh-database smoke denies external network in-process. Numerical verification6/6 remains distinct from saved workbook test5/6 and measured physical accuracy. No disconnected-machine/browser review claimed.",
+  "raw_data_git_line_endings_preserved": true,
+  "extracted_smoke_verified_archive_sha256": "79dc98607d8da9cb8f6ac40b47c5d5ee1e574a25ceb9ffdfa12cd2085d8a185c",
+  "metadata_only_repack_after_smoke": {
+    "changed_files": [
+      ".gitattributes"
+    ],
+    "all_other_application_data_and_document_bytes_identical": true,
+    "reason": "Preserve generated CSV CRLF bytes and recognize CR as a line terminator in whitespace checks."
+  }
 }

@@ -105,9 +105,12 @@ def optimize(req:OptimizeRequest,calibration=None,*,_benchmark_networks=None):
     c2=(req.load_c_pf+req.divider_c_pf+req.stray_c_pf+((p['base_c_pf'] or 0) if req.include_base_c else 0))*1e-12
     for n in range(min_n,max_n+1):
         charge=req.test_kv/(req.efficiency*n)
-        # Circuit load transfer reduces crest, so solve charge from unit linear response
-        # individually below. Initial estimate is only used for network targeting.
-        if charge>p['stage_kv']: rejected['stage_voltage_or_energy']+=1; continue
+        # Reference crest is n × charge × efficiency. In the circuit, passive
+        # underdamped charge transfer may raise load crest above the initial
+        # generator voltage, so this estimate cannot reject a circuit stage count.
+        # Actual solved charge and both energy ratings are filtered below.
+        if req.solver=='reference' and charge>p['stage_kv']:
+            rejected['stage_voltage_or_energy']+=1; continue
         rf_target=math.sqrt(max(1e-18,(rule['front_target_us']/1e6/1.67)**2-2.5*req.l_uh*1e-6*c2))/c2/n
         if req.solver=='circuit':
             rf_target=rule['front_target_us']/1e6/(3.2*c2*n) if req.impulse_type=='Lightning' else rf_target*.25
@@ -154,7 +157,11 @@ def optimize(req:OptimizeRequest,calibration=None,*,_benchmark_networks=None):
                     cross={**cross,'crest_kv':cross['crest_kv']*scale}
                     cross['compliance']=check(req.impulse_type,req.test_kv,cross)
                 if req.solver=='circuit':
-                    q*=req.test_kv/ph['crest_kv']; ph=physics(req,p,n,q,rf,rt)
+                    # This fixed linear RLC system is homogeneous in its initial
+                    # charge voltage: crest scales, while times, eigenvalues and
+                    # normalized energy diagnostics do not. Avoid a second solve.
+                    q*=req.test_kv/ph['crest_kv']
+                    ph={**ph,'crest_kv':req.test_kv}
                 energy=n*.5*p['stage_c_uf']*1e-6*(q*1000)**2/1000
                 if q>p['stage_kv']+1e-9 or energy>p['energy_total_kj']+1e-9 or energy/n>p['energy_stage_kj']+1e-9:
                     rejected['stage_voltage_or_energy']+=1; continue

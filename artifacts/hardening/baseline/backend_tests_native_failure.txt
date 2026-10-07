@@ -1,0 +1,25 @@
+============================= test session starts =============================
+platform win32 -- Python 3.12.14, pytest-8.3.4, pluggy-1.6.0
+rootdir: C:\Users\shara\Documents\Codex\2026-10-03\github-plugin-github-openai-curated-remote\work\Impulse
+configfile: pytest.ini
+testpaths: tests
+plugins: anyio-4.15.1
+collected 237 items
+
+tests\test_accuracy_experiment.py ....                                   [  1%]
+tests\test_accuracy_v5.py ..............                                 [  7%]
+tests\test_api_workflows.py ....................                         [ 16%]
+tests\test_capture_resolution.py ................                        [ 22%]
+tests\test_circuit_precision.py ...                                      [ 24%]
+tests\test_data_ml.py .........                                          [ 27%]
+tests\test_decision_metrics.py ........                                  [ 31%]
+tests\test_engineering.py ..............................                 [ 43%]
+Windows fatal exception: access violation
+
+Thread 0x00004948 (most recent call first):
+  File "C:\Users\shara\Documents\Codex\2026-10-03\github-plugin-github-openai-curated-remote\work\Impulse\.venv\Lib\site-packages\pandas\core\common.py", line 551 in asarray_tuplesafe
+  File "C:\Users\shara\Documents\Codex\2026-10-03\github-plugin-github-openai-curated-remote\work\Impulse\.venv\Lib\site-packages\pandas\core\indexes\base.py", line 565 in __new__
+  File "C:\Users\shara\Documents\Codex\2026-10-03\github-plugin-github-openai-curated-remote\work\Impulse\.venv\Lib\site-packages\pandas\core\indexes\base.py", line 561 in ensure_index
+  File Windows fatal exception: access violation
+
+tests\test_evidence_architecture.py ...........................

@@ -1,0 +1,29 @@
+{
+  "reviewed_at": "2026-10-07T10:25:47.936506+00:00",
+  "repository": "https://github.com/Siddhanthkjain2005/Impulse",
+  "remote_heads_source": "git ls-remote --heads origin; all four published branch heads verified on 7 October 2026",
+  "reviewed_local_head": "b7191e0ace4b18c7384abe7e3d130edd1b74ea70",
+  "branches": [
+    {
+      "branch": "main",
+      "remote_head_sha": "047841f587c4b00bc8d018d5174961d3356eebbf",
+      "included_in_reviewed_head": true
+    },
+    {
+      "branch": "feat/evidence-judge-release",
+      "remote_head_sha": "66f4feea4a1540a96103b08054b690a25fc9e52e",
+      "included_in_reviewed_head": true
+    },
+    {
+      "branch": "feat/engineering-hardening",
+      "remote_head_sha": "efde726266a06721cceb4de406bb019d3b617393",
+      "included_in_reviewed_head": true
+    },
+    {
+      "branch": "codex/switching-crest-review",
+      "remote_head_sha": "b7191e0ace4b18c7384abe7e3d130edd1b74ea70",
+      "included_in_reviewed_head": true
+    }
+  ],
+  "scope": "All current published branch heads are ancestors of the continuation branch. No new friend commits since the preceding review. Later commits require another refresh. This is source integration evidence, not model accuracy evidence."
+}

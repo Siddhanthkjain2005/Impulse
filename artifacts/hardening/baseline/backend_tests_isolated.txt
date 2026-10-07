@@ -1,0 +1,42 @@
+============================= test session starts =============================
+platform win32 -- Python 3.12.14, pytest-8.3.4, pluggy-1.6.0
+rootdir: C:\Users\shara\Documents\Codex\2026-10-03\github-plugin-github-openai-curated-remote\work\hardening-baseline
+configfile: pytest.ini
+testpaths: tests
+plugins: anyio-4.15.1
+collected 237 items
+
+tests\test_accuracy_experiment.py ....                                   [  1%]
+tests\test_accuracy_v5.py ..............                                 [  7%]
+tests\test_api_workflows.py ....................                         [ 16%]
+tests\test_capture_resolution.py ................                        [ 22%]
+tests\test_circuit_precision.py ...                                      [ 24%]
+tests\test_data_ml.py .........                                          [ 27%]
+tests\test_decision_metrics.py ........                                  [ 31%]
+tests\test_engineering.py ..............................                 [ 43%]
+tests\test_evidence_architecture.py ............................         [ 55%]
+tests\test_model_agreement.py ........                                   [ 59%]
+tests\test_network_search.py .....                                       [ 61%]
+tests\test_pooled_accuracy_experiment.py .........                       [ 64%]
+tests\test_release_readiness.py .......                                  [ 67%]
+tests\test_run_evidence.py ...                                           [ 69%]
+tests\test_sensitivity.py ............                                   [ 74%]
+tests\test_settings_verification.py ...                                  [ 75%]
+tests\test_setup_transition.py ..............                            [ 81%]
+tests\test_trial_evaluation.py ..........................                [ 92%]
+tests\test_trial_feedback.py ..............                              [ 98%]
+tests\test_workbook_parity.py ....                                       [100%]
+
+============================== warnings summary ===============================
+..\Impulse\.venv\Lib\site-packages\_pytest\config\__init__.py:1441
+  C:\Users\shara\Documents\Codex\2026-10-03\github-plugin-github-openai-curated-remote\work\Impulse\.venv\Lib\site-packages\_pytest\config\__init__.py:1441: PytestConfigWarning: Unknown config option: asyncio_default_fixture_loop_scope
+
+    self._warn_or_fail_if_strict(f"Unknown config option: {key}\n")
+
+..\Impulse\.venv\Lib\site-packages\starlette\testclient.py:40
+  C:\Users\shara\Documents\Codex\2026-10-03\github-plugin-github-openai-curated-remote\work\Impulse\.venv\Lib\site-packages\starlette\testclient.py:40: DeprecationWarning: The anyio.abc.BlockingPortal alias is deprecated, use anyio.from_thread.BlockingPortal instead.
+    _PortalFactoryType = typing.Callable[[], typing.ContextManager[anyio.abc.BlockingPortal]]
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+- generated xml file: C:\Users\shara\Documents\Codex\2026-10-03\github-plugin-github-openai-curated-remote\work\hardening-records\baseline\backend-tests-isolated.xml -
+================= 237 passed, 2 warnings in 408.22s (0:06:48) =================

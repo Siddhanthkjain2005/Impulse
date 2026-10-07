@@ -1,0 +1,18 @@
+{
+  "scope": "Exploratory OOF error diagnostics on 560 original Train fit IDs only; distribution shape is not proof of irreducible noise or known noise bounds. No new fit or model selection.",
+  "relative_error_mean": 5.988478116042405e-06,
+  "relative_error_std": 0.0033979428276108077,
+  "relative_error_quantiles": {
+    "0": -0.006945178680955288,
+    "0.01": -0.006386144179693053,
+    "0.05": -0.005593972067095779,
+    "0.25": -0.002813925082609801,
+    "0.5": 0.0002230070985913129,
+    "0.75": 0.002885811262867667,
+    "0.95": 0.00504063433489026,
+    "0.99": 0.0059300047559012695,
+    "1": 0.007058184098332307
+  },
+  "excess_kurtosis": -1.0592963346545492,
+  "rms_relative_percent": 0.33979481046039944
+}

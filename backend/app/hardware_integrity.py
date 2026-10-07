@@ -26,9 +26,10 @@ def hardware_integrity(profile):
         if workbook and key in ('voltage_max_kv', 'energy_stage_kj', 'energy_total_kj'):
             status = 'DERIVED'
             note = 'Mathematical reference: stage count × voltage or 0.5 C V²; not verified physical ratings.'
-        if workbook and key in ('voltage_min_kv', 'min_stages', 'base_c_pf'):
+        if key in ('voltage_min_kv', 'min_stages') or (workbook and key == 'base_c_pf'):
             status = 'ASSUMED'
-            note = 'Application operating/default assumption for the synthetic reference profile.'
+            source = 'Application operating bounds; not supplied physical minima'
+            note = 'Application operating/default assumption; confirm permitted minimum stages and operating voltage with the operator.'
         if key == 'base_c_pf' and profile['id'] == 'cpri_problem_brief_profile':
             note = 'REVIEW REQUIRED: role of 545 pF is ambiguous; do not double-count divider/system capacitance.'
         rows.append({'parameter': key, 'label': label, 'value': value, 'status': status,

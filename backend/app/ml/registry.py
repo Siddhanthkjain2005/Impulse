@@ -26,19 +26,33 @@ def experimental_registry():
 
 def calculator_setting_support(q):
     """Training has only calculator-selected settings, no resistor interventions."""
-    supported=[]
-    for _,r in q.iterrows():
-        ref=calculate(impulse_type=r.Impulse_Type,test_kv=float(r.Test_kV),
-            load_c_pf=float(r.Load_C_pF),divider_c_pf=float(r.Divider_C_pF),
-            stray_c_pf=float(r.Stray_C_pF),l_uh=float(r.L_uH),efficiency=float(r.Efficiency))
-        values=[r.Stages,r.Charge_kV_Stage,r.Front_R_Stage,r.Tail_R_Stage]
-        expected=[ref[k] for k in ['stages','charge_kv_stage','front_r_stage','tail_r_stage']]
-        supported.append(bool(np.allclose(values,expected,rtol=1e-10,atol=1e-8)))
-    return np.array(supported,dtype=bool)
+    # Candidate batches share environmental inputs but vary hardware. Keep the
+    # exact scalar workbook calculator (including its rounding) and reuse its
+    # result only within this batch; no cached state survives an inference call.
+    inputs=q[['Impulse_Type','Test_kV','Load_C_pF','Divider_C_pF','Stray_C_pF','L_uH','Efficiency']]
+    expected=[]; references={}
+    for row in inputs.itertuples(index=False,name=None):
+        if row not in references:
+            typ,test,load,divider,stray,inductance,efficiency=row
+            ref=calculate(impulse_type=typ,test_kv=float(test),load_c_pf=float(load),
+                divider_c_pf=float(divider),stray_c_pf=float(stray),
+                l_uh=float(inductance),efficiency=float(efficiency))
+            references[row]=[ref[k] for k in ['stages','charge_kv_stage','front_r_stage','tail_r_stage']]
+        expected.append(references[row])
+    values=q[['Stages','Charge_kV_Stage','Front_R_Stage','Tail_R_Stage']].to_numpy(float)
+    # The reference remains the second argument: np.isclose's relative tolerance
+    # is intentionally asymmetric, exactly as the previous scalar allclose gate.
+    return np.isclose(values,np.asarray(expected).reshape(-1,4),rtol=1e-10,atol=1e-8).all(axis=1)
 
 def infer(rows, profile_id='workbook_reference_profile', mode='hybrid'):
+    """Infer one homogeneous impulse-type batch; callers must split LI and SI.
+
+    Estimator selection, support envelopes and widths use the batch's first type.
+    Production optimization and verification already honor this contract.
+    """
     if not rows: return []
     bundle,meta=registry(); q=pd.DataFrame(rows); typ=q.iloc[0].Impulse_Type; b=bundle[typ]; x=features(q)
+    base_values=q[['Physics_FrontPeak_us','Physics_Tail_us','Physics_Crest_kV']].to_numpy(float)
     raw=np.column_stack([np.zeros(len(q)) if name=='Physics only' else b['models'][name].predict(x)[:,j] for j,name in enumerate(b['chosen'])])
     version=VERSION; chosen=b['chosen']; interval_widths=b['interval_halfwidth']
     coverage_limit='Marginal under synthetic exchangeability; not joint, conditional-on-support, optimizer-selected or laboratory coverage.'
@@ -69,7 +83,7 @@ def infer(rows, profile_id='workbook_reference_profile', mode='hybrid'):
         if profile_id!='workbook_reference_profile': support='profile_not_calibrated'
         if mode=='physics': support='physics_mode'
         correction=raw[i]*t
-        base=q.iloc[i][['Physics_FrontPeak_us','Physics_Tail_us','Physics_Crest_kV']].to_numpy(float)
+        base=base_values[i]
         # Extrapolation sensitivity envelope is explicitly uncalibrated.
         interval=interval_widths*(1+(1-t)*2)+abs(base)*np.array([.05,.05,.03])*(1-t)
         pred=base+correction

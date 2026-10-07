@@ -1,0 +1,1800 @@
+{
+  "cases": {
+    "default_lightning": {
+      "inputs": {
+        "profile_id": "workbook_reference_profile",
+        "impulse_type": "Lightning",
+        "test_kv": 1425,
+        "load_c_pf": 850,
+        "divider_c_pf": 500,
+        "stray_c_pf": 150,
+        "l_uh": 18.5,
+        "efficiency": 0.82,
+        "solver": "reference",
+        "model_mode": "hybrid",
+        "require_model_agreement": false,
+        "connection_mode": "series_marx_equivalent",
+        "layout_id": "default-layout",
+        "stage_min": null,
+        "stage_max": null,
+        "inventory_override": null,
+        "max_components_per_network": 24,
+        "include_base_c": false,
+        "uncertainty_pct": 5,
+        "monte_carlo_samples": 32,
+        "equipment_reference_kv": null,
+        "test_object_id": null,
+        "equipment_reference_source": null,
+        "confirm_reference_mismatch": false,
+        "calibration_id": null
+      },
+      "seconds": [
+        7.8484639001544565,
+        4.98070179997012,
+        4.449701700126752
+      ],
+      "cold_seconds": 7.8484639001544565,
+      "warm_median_seconds": 4.715201750048436,
+      "serialization_seconds": 0.02986470004543662,
+      "report_seconds": 0.005488499999046326,
+      "response_bytes": 595284,
+      "profile": [
+        {
+          "function": "engine.py:90 optimize",
+          "calls": 1,
+          "self_seconds": 0.0215363,
+          "cumulative_seconds": 6.3054806
+        },
+        {
+          "function": "verification.py:15 verify_settings",
+          "calls": 5,
+          "self_seconds": 0.06183230000000001,
+          "cumulative_seconds": 3.4796354000000003
+        },
+        {
+          "function": "circuit.py:9 simulate",
+          "calls": 725,
+          "self_seconds": 0.9237303,
+          "cumulative_seconds": 2.9530327
+        },
+        {
+          "function": "networks.py:79 nearest_networks",
+          "calls": 14,
+          "self_seconds": 0.0215048,
+          "cumulative_seconds": 1.6762492
+        },
+        {
+          "function": "networks.py:82 shortlist",
+          "calls": 28,
+          "self_seconds": 0.11295490000000001,
+          "cumulative_seconds": 1.6541455
+        },
+        {
+          "function": "registry.py:47 infer",
+          "calls": 16,
+          "self_seconds": 0.09900840000000001,
+          "cumulative_seconds": 1.1523129
+        },
+        {
+          "function": "networks.py:81 <lambda>",
+          "calls": 450405,
+          "self_seconds": 0.5811667,
+          "cumulative_seconds": 1.0896951000000001
+        },
+        {
+          "function": "~:0 <built-in method builtins.sorted>",
+          "calls": 102,
+          "self_seconds": 0.27762040000000004,
+          "cumulative_seconds": 1.0706739
+        },
+        {
+          "function": "_zeros_py.py:712 brentq",
+          "calls": 3802,
+          "self_seconds": 0.021500000000000002,
+          "cumulative_seconds": 1.0093504
+        },
+        {
+          "function": "~:0 <built-in method scipy.optimize._zeros._brentq>",
+          "calls": 3802,
+          "self_seconds": 0.0391183,
+          "cumulative_seconds": 0.9829783000000001
+        },
+        {
+          "function": "_zeros_py.py:93 f_raise",
+          "calls": 28013,
+          "self_seconds": 0.1659633,
+          "cumulative_seconds": 0.9544524000000001
+        },
+        {
+          "function": "circuit.py:71 exact_crossing",
+          "calls": 2175,
+          "self_seconds": 0.054605200000000007,
+          "cumulative_seconds": 0.7391556
+        },
+        {
+          "function": "_target.py:300 predict",
+          "calls": 48,
+          "self_seconds": 0.0013299000000000002,
+          "cumulative_seconds": 0.6975811000000001
+        },
+        {
+          "function": "networks.py:83 <lambda>",
+          "calls": 209083,
+          "self_seconds": 0.1504118,
+          "cumulative_seconds": 0.6854594
+        },
+        {
+          "function": "pipeline.py:739 predict",
+          "calls": 48,
+          "self_seconds": 0.0011425,
+          "cumulative_seconds": 0.6532596
+        },
+        {
+          "function": "engine.py:281 robustness",
+          "calls": 10,
+          "self_seconds": 0.0108859,
+          "cumulative_seconds": 0.6256801000000001
+        },
+        {
+          "function": "parallel.py:54 __call__",
+          "calls": 48,
+          "self_seconds": 0.0003668,
+          "cumulative_seconds": 0.6182065
+        },
+        {
+          "function": "parallel.py:1969 __call__",
+          "calls": 48,
+          "self_seconds": 0.0021121,
+          "cumulative_seconds": 0.6176091
+        },
+        {
+          "function": "parallel.py:1888 _get_sequential_output",
+          "calls": 1440,
+          "self_seconds": 0.0090011,
+          "cumulative_seconds": 0.6127747
+        },
+        {
+          "function": "parallel.py:131 __call__",
+          "calls": 1344,
+          "self_seconds": 0.049980500000000004,
+          "cumulative_seconds": 0.5332382
+        },
+        {
+          "function": "circuit.py:77 <lambda>",
+          "calls": 12496,
+          "self_seconds": 0.0133542,
+          "cumulative_seconds": 0.48206990000000005
+        },
+        {
+          "function": "circuit.py:67 voltage",
+          "calls": 12496,
+          "self_seconds": 0.2701268,
+          "cumulative_seconds": 0.4687157
+        },
+        {
+          "function": "_forest.py:1044 predict",
+          "calls": 16,
+          "self_seconds": 0.0008241,
+          "cumulative_seconds": 0.38046440000000004
+        },
+        {
+          "function": "waveform_metrics.py:14 analyze",
+          "calls": 725,
+          "self_seconds": 0.08385980000000001,
+          "cumulative_seconds": 0.28535710000000003
+        },
+        {
+          "function": "fromnumeric.py:2349 sum",
+          "calls": 17746,
+          "self_seconds": 0.051502000000000006,
+          "cumulative_seconds": 0.2664725
+        },
+        {
+          "function": "~:0 <built-in method builtins.max>",
+          "calls": 463274,
+          "self_seconds": 0.22864120000000002,
+          "cumulative_seconds": 0.22864120000000002
+        },
+        {
+          "function": "multioutput.py:292 predict",
+          "calls": 16,
+          "self_seconds": 0.00032700000000000003,
+          "cumulative_seconds": 0.225328
+        },
+        {
+          "function": "~:0 <method 'reduce' of 'numpy.ufunc' objects>",
+          "calls": 27661,
+          "self_seconds": 0.21876920000000002,
+          "cumulative_seconds": 0.21876920000000002
+        },
+        {
+          "function": "gradient_boosting.py:1806 predict",
+          "calls": 48,
+          "self_seconds": 0.0004752,
+          "cumulative_seconds": 0.20983510000000002
+        },
+        {
+          "function": "fromnumeric.py:69 _wrapreduction",
+          "calls": 17802,
+          "self_seconds": 0.0690876,
+          "cumulative_seconds": 0.20834970000000003
+        },
+        {
+          "function": "gradient_boosting.py:1291 _raw_predict",
+          "calls": 48,
+          "self_seconds": 0.0018774000000000002,
+          "cumulative_seconds": 0.20549550000000003
+        },
+        {
+          "function": "_forest.py:723 _accumulate_prediction",
+          "calls": 1280,
+          "self_seconds": 0.0122112,
+          "cumulative_seconds": 0.1958255
+        },
+        {
+          "function": "gradient_boosting.py:1331 _predict_iterations",
+          "calls": 48,
+          "self_seconds": 0.041158600000000004,
+          "cumulative_seconds": 0.18956050000000002
+        },
+        {
+          "function": "waveform_metrics.py:38 waveform_from_metrics",
+          "calls": 11,
+          "self_seconds": 0.0018435,
+          "cumulative_seconds": 0.1890458
+        },
+        {
+          "function": "circuit.py:57 <lambda>",
+          "calls": 4349,
+          "self_seconds": 0.1082925,
+          "cumulative_seconds": 0.1826604
+        }
+      ],
+      "settings": {
+        "stages": 9,
+        "charge_kv_stage": 193.08943089430895,
+        "front_r_stage": 50.0,
+        "tail_r_stage": 25.0,
+        "stage_utilization": 0.9654471544715447,
+        "stored_energy_kj": 503.32763236168944,
+        "voltage_margin_kv_stage": 6.910569105691053,
+        "energy_margin_kj": 396.67236763831056,
+        "energy_margin_pct": 44.07470751536784
+      },
+      "prediction": {
+        "front_us": 1.206888149697565,
+        "tail_us": 52.08375232570821,
+        "crest_kv": 1431.7117279976035
+      },
+      "nominal_pass": true,
+      "uncertainty_status": "MARGINAL",
+      "ood": {
+        "state": "in_distribution",
+        "trust_weight": 1.0,
+        "nearest_distance": 1.3160417586489224,
+        "threshold_p95": 1.9782598510822709,
+        "outside_feature_envelope": false,
+        "calculator_setting_supported": true,
+        "support_limit": "Synthetic training uses only calculator-selected settings; arbitrary resistor or stage interventions are unsupported.",
+        "lab_calibrated": false
+      },
+      "verification": {
+        "version": "fixed-settings-verification-v1",
+        "seed": 617,
+        "used_for_ranking": false,
+        "models_checked": [
+          "Primary prediction",
+          "Independent circuit"
+        ],
+        "parameters": [
+          "load_c_pf",
+          "divider_c_pf",
+          "stray_c_pf",
+          "l_uh"
+        ],
+        "uncertainty_pct": 5,
+        "fresh_samples": {
+          "total": 128,
+          "passed": 0,
+          "primary_passed": 128,
+          "circuit_passed": 0
+        },
+        "boundary_corners": {
+          "total": 16,
+          "passed": 0,
+          "primary_passed": 16,
+          "circuit_passed": 0
+        },
+        "total": 144,
+        "passed": 0,
+        "unique_scenarios": 144,
+        "nominal_all_models_pass": false,
+        "all_checks_pass": false,
+        "worst_case": {
+          "index": 143,
+          "group": "boundary_corners",
+          "inputs": {
+            "load_c_pf": 892.5,
+            "divider_c_pf": 525.0,
+            "stray_c_pf": 157.5,
+            "l_uh": 17.575
+          },
+          "primary_pass": true,
+          "circuit_pass": false,
+          "all_models_pass": false,
+          "minimum_margin_fraction": -0.9847995412554125,
+          "limiting_model": "Independent circuit",
+          "limiting_metric": "Front / peak time",
+          "predicted": 1.9145278348519486,
+          "allowed_lower": 0.84,
+          "allowed_upper": 1.56,
+          "unit": "\u00b5s"
+        },
+        "calibrated_scenarios": 0,
+        "scope": "Fixed hardware checked after ranking using 128 separate-seed Latin-hypercube scenarios and 16 boundary corners. These checks do not select or reorder candidates. Finite simulation evidence only: not continuous-bound certification, independent model-accuracy testing or a laboratory success probability. Efficiency and hardware tolerances are held fixed; no statistical coverage claim."
+      },
+      "search": {
+        "evaluated": 1081,
+        "hardware_feasible": 1081,
+        "rejected": {
+          "stage_voltage_or_energy": 7,
+          "nonfinite_or_invalid_waveform": 0
+        },
+        "agreement_feasible": null,
+        "search_kind": "Bounded series DP + four-part series/parallel trees (six parts for small catalogs) and identical parallel banks; nearest five front/tail choices per stage, not exhaustive global optimization."
+      },
+      "score": 0.2554663006688445,
+      "ranked_candidates": [
+        {
+          "settings": {
+            "stages": 9,
+            "charge_kv_stage": 193.08943089430895,
+            "front_r_stage": 50.0,
+            "tail_r_stage": 25.0,
+            "stage_utilization": 0.9654471544715447,
+            "stored_energy_kj": 503.32763236168944,
+            "voltage_margin_kv_stage": 6.910569105691053,
+            "energy_margin_kj": 396.67236763831056,
+            "energy_margin_pct": 44.07470751536784
+          },
+          "prediction": {
+            "front_us": 1.206888149697565,
+            "tail_us": 52.08375232570821,
+            "crest_kv": 1431.7117279976035
+          },
+          "score": 0.2554663006688445,
+          "status": "MARGINAL"
+        },
+        {
+          "settings": {
+            "stages": 9,
+            "charge_kv_stage": 193.08943089430895,
+            "front_r_stage": 50.0,
+            "tail_r_stage": 23.953488372093023,
+            "stage_utilization": 0.9654471544715447,
+            "stored_energy_kj": 503.32763236168944,
+            "voltage_margin_kv_stage": 6.910569105691053,
+            "energy_margin_kj": 396.67236763831056,
+            "energy_margin_pct": 44.07470751536784
+          },
+          "prediction": {
+            "front_us": 1.2100299583068181,
+            "tail_us": 50.02339918604652,
+            "crest_kv": 1424.9999999999998
+          },
+          "score": 0.2646358762704434,
+          "status": "MARGINAL"
+        },
+        {
+          "settings": {
+            "stages": 9,
+            "charge_kv_stage": 193.08943089430895,
+            "front_r_stage": 50.0,
+            "tail_r_stage": 24.0,
+            "stage_utilization": 0.9654471544715447,
+            "stored_energy_kj": 503.32763236168944,
+            "voltage_margin_kv_stage": 6.910569105691053,
+            "energy_margin_kj": 396.67236763831056,
+            "energy_margin_pct": 44.07470751536784
+          },
+          "prediction": {
+            "front_us": 1.2100299583068181,
+            "tail_us": 50.120532000000004,
+            "crest_kv": 1424.9999999999998
+          },
+          "score": 0.2675571765195645,
+          "status": "MARGINAL"
+        },
+        {
+          "settings": {
+            "stages": 9,
+            "charge_kv_stage": 193.08943089430895,
+            "front_r_stage": 50.0,
+            "tail_r_stage": 23.863636363636363,
+            "stage_utilization": 0.9654471544715447,
+            "stored_energy_kj": 503.32763236168944,
+            "voltage_margin_kv_stage": 6.910569105691053,
+            "energy_margin_kj": 396.67236763831056,
+            "energy_margin_pct": 44.07470751536784
+          },
+          "prediction": {
+            "front_us": 1.2100299583068181,
+            "tail_us": 49.835756249999996,
+            "crest_kv": 1424.9999999999998
+          },
+          "score": 0.26884708033464094,
+          "status": "MARGINAL"
+        },
+        {
+          "settings": {
+            "stages": 9,
+            "charge_kv_stage": 193.08943089430895,
+            "front_r_stage": 50.0,
+            "tail_r_stage": 23.823529411764703,
+            "stage_utilization": 0.9654471544715447,
+            "stored_energy_kj": 503.32763236168944,
+            "voltage_margin_kv_stage": 6.910569105691053,
+            "energy_margin_kj": 396.67236763831056,
+            "energy_margin_pct": 44.07470751536784
+          },
+          "prediction": {
+            "front_us": 1.2100299583068181,
+            "tail_us": 49.751998676470585,
+            "crest_kv": 1424.9999999999998
+          },
+          "score": 0.27135349910378104,
+          "status": "MARGINAL"
+        }
+      ]
+    },
+    "default_switching": {
+      "inputs": {
+        "profile_id": "workbook_reference_profile",
+        "impulse_type": "Switching",
+        "test_kv": 1425,
+        "load_c_pf": 850,
+        "divider_c_pf": 500,
+        "stray_c_pf": 150,
+        "l_uh": 18.5,
+        "efficiency": 0.82,
+        "solver": "reference",
+        "model_mode": "hybrid",
+        "require_model_agreement": false,
+        "connection_mode": "series_marx_equivalent",
+        "layout_id": "default-layout",
+        "stage_min": null,
+        "stage_max": null,
+        "inventory_override": null,
+        "max_components_per_network": 24,
+        "include_base_c": false,
+        "uncertainty_pct": 5,
+        "monte_carlo_samples": 32,
+        "equipment_reference_kv": null,
+        "test_object_id": null,
+        "equipment_reference_source": null,
+        "confirm_reference_mismatch": false,
+        "calibration_id": null
+      },
+      "seconds": [
+        4.132286800071597,
+        5.757083999924362,
+        5.497880900045857
+      ],
+      "cold_seconds": 4.132286800071597,
+      "warm_median_seconds": 5.627482449985109,
+      "serialization_seconds": 0.03755140001885593,
+      "report_seconds": 0.006616899976506829,
+      "response_bytes": 591991,
+      "profile": [
+        {
+          "function": "engine.py:90 optimize",
+          "calls": 1,
+          "self_seconds": 0.011244800000000001,
+          "cumulative_seconds": 7.528305100000001
+        },
+        {
+          "function": "verification.py:15 verify_settings",
+          "calls": 5,
+          "self_seconds": 0.0772819,
+          "cumulative_seconds": 4.5445146
+        },
+        {
+          "function": "circuit.py:9 simulate",
+          "calls": 725,
+          "self_seconds": 1.2258954,
+          "cumulative_seconds": 3.8132496000000002
+        },
+        {
+          "function": "networks.py:79 nearest_networks",
+          "calls": 14,
+          "self_seconds": 0.0289807,
+          "cumulative_seconds": 1.7768378
+        },
+        {
+          "function": "networks.py:82 shortlist",
+          "calls": 28,
+          "self_seconds": 0.12421130000000001,
+          "cumulative_seconds": 1.7472129
+        },
+        {
+          "function": "registry.py:47 infer",
+          "calls": 16,
+          "self_seconds": 0.059637100000000005,
+          "cumulative_seconds": 1.3952161
+        },
+        {
+          "function": "_zeros_py.py:712 brentq",
+          "calls": 3814,
+          "self_seconds": 0.0254815,
+          "cumulative_seconds": 1.3006101
+        },
+        {
+          "function": "~:0 <built-in method scipy.optimize._zeros._brentq>",
+          "calls": 3814,
+          "self_seconds": 0.0489843,
+          "cumulative_seconds": 1.2681893000000002
+        },
+        {
+          "function": "_zeros_py.py:93 f_raise",
+          "calls": 28451,
+          "self_seconds": 0.2200155,
+          "cumulative_seconds": 1.2326855
+        },
+        {
+          "function": "networks.py:81 <lambda>",
+          "calls": 420338,
+          "self_seconds": 0.6005752000000001,
+          "cumulative_seconds": 1.1702558
+        },
+        {
+          "function": "~:0 <built-in method builtins.sorted>",
+          "calls": 102,
+          "self_seconds": 0.2846615,
+          "cumulative_seconds": 1.0662728000000001
+        },
+        {
+          "function": "_target.py:300 predict",
+          "calls": 48,
+          "self_seconds": 0.0015232000000000002,
+          "cumulative_seconds": 0.9795429000000001
+        },
+        {
+          "function": "circuit.py:71 exact_crossing",
+          "calls": 2175,
+          "self_seconds": 0.0687987,
+          "cumulative_seconds": 0.9404419
+        },
+        {
+          "function": "pipeline.py:739 predict",
+          "calls": 48,
+          "self_seconds": 0.0013194,
+          "cumulative_seconds": 0.9288931
+        },
+        {
+          "function": "parallel.py:54 __call__",
+          "calls": 48,
+          "self_seconds": 0.0004287,
+          "cumulative_seconds": 0.8712565000000001
+        },
+        {
+          "function": "parallel.py:1969 __call__",
+          "calls": 48,
+          "self_seconds": 0.0021717,
+          "cumulative_seconds": 0.8705972000000001
+        },
+        {
+          "function": "parallel.py:1888 _get_sequential_output",
+          "calls": 1440,
+          "self_seconds": 0.009653700000000001,
+          "cumulative_seconds": 0.8655473
+        },
+        {
+          "function": "parallel.py:131 __call__",
+          "calls": 1344,
+          "self_seconds": 0.037004800000000004,
+          "cumulative_seconds": 0.7886121
+        },
+        {
+          "function": "networks.py:83 <lambda>",
+          "calls": 209083,
+          "self_seconds": 0.16663630000000001,
+          "cumulative_seconds": 0.771378
+        },
+        {
+          "function": "engine.py:281 robustness",
+          "calls": 10,
+          "self_seconds": 0.011096900000000002,
+          "cumulative_seconds": 0.6984401
+        },
+        {
+          "function": "circuit.py:77 <lambda>",
+          "calls": 12704,
+          "self_seconds": 0.014314100000000001,
+          "cumulative_seconds": 0.6124172
+        },
+        {
+          "function": "circuit.py:67 voltage",
+          "calls": 12704,
+          "self_seconds": 0.35033640000000005,
+          "cumulative_seconds": 0.5981031
+        },
+        {
+          "function": "multioutput.py:292 predict",
+          "calls": 16,
+          "self_seconds": 0.00039010000000000005,
+          "cumulative_seconds": 0.5213416000000001
+        },
+        {
+          "function": "_base.py:420 predict",
+          "calls": 48,
+          "self_seconds": 0.0003106,
+          "cumulative_seconds": 0.5016377000000001
+        },
+        {
+          "function": "_base.py:440 _dense_predict",
+          "calls": 48,
+          "self_seconds": 0.4686691,
+          "cumulative_seconds": 0.46883210000000003
+        },
+        {
+          "function": "waveform_metrics.py:14 analyze",
+          "calls": 725,
+          "self_seconds": 0.10448110000000001,
+          "cumulative_seconds": 0.3577659
+        },
+        {
+          "function": "_forest.py:1044 predict",
+          "calls": 16,
+          "self_seconds": 0.0010028,
+          "cumulative_seconds": 0.3518279
+        },
+        {
+          "function": "fromnumeric.py:2349 sum",
+          "calls": 18286,
+          "self_seconds": 0.0699857,
+          "cumulative_seconds": 0.34479160000000003
+        },
+        {
+          "function": "~:0 <method 'reduce' of 'numpy.ufunc' objects>",
+          "calls": 28249,
+          "self_seconds": 0.2995763,
+          "cumulative_seconds": 0.2995763
+        },
+        {
+          "function": "~:0 <built-in method builtins.max>",
+          "calls": 428545,
+          "self_seconds": 0.2894184,
+          "cumulative_seconds": 0.2894184
+        },
+        {
+          "function": "fromnumeric.py:69 _wrapreduction",
+          "calls": 18342,
+          "self_seconds": 0.0812808,
+          "cumulative_seconds": 0.2665947
+        },
+        {
+          "function": "circuit.py:57 <lambda>",
+          "calls": 4633,
+          "self_seconds": 0.14108040000000002,
+          "cumulative_seconds": 0.2442803
+        },
+        {
+          "function": "waveform_metrics.py:38 waveform_from_metrics",
+          "calls": 11,
+          "self_seconds": 0.0024637,
+          "cumulative_seconds": 0.24316500000000002
+        },
+        {
+          "function": "waveform_metrics.py:40 unit",
+          "calls": 301,
+          "self_seconds": 0.0063235,
+          "cumulative_seconds": 0.2306841
+        },
+        {
+          "function": "waveform_metrics.py:51 <lambda>",
+          "calls": 145,
+          "self_seconds": 0.0021904000000000003,
+          "cumulative_seconds": 0.2257406
+        }
+      ],
+      "settings": {
+        "stages": 15,
+        "charge_kv_stage": 115.85365853658537,
+        "front_r_stage": 5000.0,
+        "tail_r_stage": 1200.0,
+        "stage_utilization": 0.5792682926829269,
+        "stored_energy_kj": 301.99657941701366,
+        "voltage_margin_kv_stage": 84.14634146341463,
+        "energy_margin_kj": 598.0034205829863,
+        "energy_margin_pct": 66.44482450922071
+      },
+      "prediction": {
+        "front_us": 187.87551491596105,
+        "tail_us": 2513.511,
+        "crest_kv": 1425.0
+      },
+      "nominal_pass": false,
+      "uncertainty_status": "FAIL",
+      "ood": {
+        "state": "out_of_distribution",
+        "trust_weight": 0.0,
+        "nearest_distance": 2298.4846578552265,
+        "threshold_p95": 2.0258820846378867,
+        "outside_feature_envelope": true,
+        "calculator_setting_supported": false,
+        "support_limit": "Synthetic training uses only calculator-selected settings; arbitrary resistor or stage interventions are unsupported.",
+        "lab_calibrated": false
+      },
+      "verification": {
+        "version": "fixed-settings-verification-v1",
+        "seed": 617,
+        "used_for_ranking": false,
+        "models_checked": [
+          "Primary prediction",
+          "Independent circuit"
+        ],
+        "parameters": [
+          "load_c_pf",
+          "divider_c_pf",
+          "stray_c_pf",
+          "l_uh"
+        ],
+        "uncertainty_pct": 5,
+        "fresh_samples": {
+          "total": 128,
+          "passed": 0,
+          "primary_passed": 0,
+          "circuit_passed": 0
+        },
+        "boundary_corners": {
+          "total": 16,
+          "passed": 0,
+          "primary_passed": 0,
+          "circuit_passed": 0
+        },
+        "total": 144,
+        "passed": 0,
+        "unique_scenarios": 144,
+        "nominal_all_models_pass": false,
+        "all_checks_pass": false,
+        "worst_case": {
+          "index": 143,
+          "group": "boundary_corners",
+          "inputs": {
+            "load_c_pf": 892.5,
+            "divider_c_pf": 525.0,
+            "stray_c_pf": 157.5,
+            "l_uh": 17.575
+          },
+          "primary_pass": false,
+          "circuit_pass": false,
+          "all_models_pass": false,
+          "minimum_margin_fraction": -2.847364174948663,
+          "limiting_model": "Independent circuit",
+          "limiting_metric": "Crest voltage",
+          "predicted": 1260.5251815209447,
+          "allowed_lower": 1382.25,
+          "allowed_upper": 1467.75,
+          "unit": "kV"
+        },
+        "calibrated_scenarios": 0,
+        "scope": "Fixed hardware checked after ranking using 128 separate-seed Latin-hypercube scenarios and 16 boundary corners. These checks do not select or reorder candidates. Finite simulation evidence only: not continuous-bound certification, independent model-accuracy testing or a laboratory success probability. Efficiency and hardware tolerances are held fixed; no statistical coverage claim."
+      },
+      "search": {
+        "evaluated": 304,
+        "hardware_feasible": 304,
+        "rejected": {
+          "stage_voltage_or_energy": 7,
+          "nonfinite_or_invalid_waveform": 0
+        },
+        "agreement_feasible": null,
+        "search_kind": "Bounded series DP + four-part series/parallel trees (six parts for small catalogs) and identical parallel banks; nearest five front/tail choices per stage, not exhaustive global optimization."
+      },
+      "score": 1.730441026895981,
+      "ranked_candidates": [
+        {
+          "settings": {
+            "stages": 15,
+            "charge_kv_stage": 115.85365853658537,
+            "front_r_stage": 5000.0,
+            "tail_r_stage": 1200.0,
+            "stage_utilization": 0.5792682926829269,
+            "stored_energy_kj": 301.99657941701366,
+            "voltage_margin_kv_stage": 84.14634146341463,
+            "energy_margin_kj": 598.0034205829863,
+            "energy_margin_pct": 66.44482450922071
+          },
+          "prediction": {
+            "front_us": 187.87551491596105,
+            "tail_us": 2513.511,
+            "crest_kv": 1425.0
+          },
+          "score": 1.730441026895981,
+          "status": "FAIL"
+        },
+        {
+          "settings": {
+            "stages": 15,
+            "charge_kv_stage": 115.85365853658537,
+            "front_r_stage": 4975.0,
+            "tail_r_stage": 1200.0,
+            "stage_utilization": 0.5792682926829269,
+            "stored_energy_kj": 301.99657941701366,
+            "voltage_margin_kv_stage": 84.14634146341463,
+            "energy_margin_kj": 598.0034205829863,
+            "energy_margin_pct": 66.44482450922071
+          },
+          "prediction": {
+            "front_us": 186.9361425034713,
+            "tail_us": 2513.511,
+            "crest_kv": 1425.0
+          },
+          "score": 1.7360498426209336,
+          "status": "FAIL"
+        },
+        {
+          "settings": {
+            "stages": 15,
+            "charge_kv_stage": 115.85365853658537,
+            "front_r_stage": 4950.0,
+            "tail_r_stage": 1200.0,
+            "stage_utilization": 0.5792682926829269,
+            "stored_energy_kj": 301.99657941701366,
+            "voltage_margin_kv_stage": 84.14634146341463,
+            "energy_margin_kj": 598.0034205829863,
+            "energy_margin_pct": 66.44482450922071
+          },
+          "prediction": {
+            "front_us": 185.99677011711788,
+            "tail_us": 2513.511,
+            "crest_kv": 1425.0
+          },
+          "score": 1.7416586581892444,
+          "status": "FAIL"
+        },
+        {
+          "settings": {
+            "stages": 9,
+            "charge_kv_stage": 193.08943089430895,
+            "front_r_stage": 5300.0,
+            "tail_r_stage": 1200.0,
+            "stage_utilization": 0.9654471544715447,
+            "stored_energy_kj": 503.32763236168944,
+            "voltage_margin_kv_stage": 6.910569105691053,
+            "energy_margin_kj": 396.67236763831056,
+            "energy_margin_pct": 44.07470751536784
+          },
+          "prediction": {
+            "front_us": 119.48930961465757,
+            "tail_us": 2506.0266,
+            "crest_kv": 1424.9999999999998
+          },
+          "score": 1.7678350545766137,
+          "status": "FAIL"
+        },
+        {
+          "settings": {
+            "stages": 15,
+            "charge_kv_stage": 115.85365853658537,
+            "front_r_stage": 5000.0,
+            "tail_r_stage": 1195.0,
+            "stage_utilization": 0.5792682926829269,
+            "stored_energy_kj": 301.99657941701366,
+            "voltage_margin_kv_stage": 84.14634146341463,
+            "energy_margin_kj": 598.0034205829863,
+            "energy_margin_pct": 66.44482450922071
+          },
+          "prediction": {
+            "front_us": 187.87551491596105,
+            "tail_us": 2503.0380375,
+            "crest_kv": 1425.0
+          },
+          "score": 1.7691414293366297,
+          "status": "FAIL"
+        }
+      ]
+    },
+    "cpri_matched_1425": {
+      "inputs": {
+        "profile_id": "cpri_problem_brief_profile",
+        "impulse_type": "Lightning",
+        "test_kv": 1425,
+        "load_c_pf": 650.0,
+        "divider_c_pf": 250.0,
+        "stray_c_pf": 55.0,
+        "l_uh": 12.0,
+        "efficiency": 0.83,
+        "solver": "circuit",
+        "model_mode": "physics",
+        "require_model_agreement": false,
+        "connection_mode": "series_marx_equivalent",
+        "layout_id": "default-layout",
+        "stage_min": null,
+        "stage_max": null,
+        "inventory_override": {
+          "front": [
+            {
+              "ohm": 30.0,
+              "count_per_stage": 1
+            }
+          ],
+          "tail": [
+            {
+              "ohm": 520.0,
+              "count_per_stage": 1
+            }
+          ],
+          "provenance": "Regression assumption: one 30 ohm front and one 520 ohm tail unit per stage; stock unverified"
+        },
+        "max_components_per_network": 1,
+        "include_base_c": true,
+        "uncertainty_pct": 5,
+        "monte_carlo_samples": 32,
+        "equipment_reference_kv": null,
+        "test_object_id": null,
+        "equipment_reference_source": null,
+        "confirm_reference_mismatch": false,
+        "calibration_id": null
+      },
+      "seconds": [
+        4.26439330005087,
+        4.004707199987024,
+        4.385190600063652
+      ],
+      "cold_seconds": 4.26439330005087,
+      "warm_median_seconds": 4.194948900025338,
+      "serialization_seconds": 0.02232180000282824,
+      "report_seconds": 0.0040623999666422606,
+      "response_bytes": 343712,
+      "profile": [
+        {
+          "function": "engine.py:90 optimize",
+          "calls": 1,
+          "self_seconds": 0.0040108,
+          "cumulative_seconds": 5.4207152
+        },
+        {
+          "function": "engine.py:40 physics",
+          "calls": 938,
+          "self_seconds": 0.020096000000000003,
+          "cumulative_seconds": 4.8071788
+        },
+        {
+          "function": "circuit.py:9 simulate",
+          "calls": 938,
+          "self_seconds": 1.4512917,
+          "cumulative_seconds": 4.7870828
+        },
+        {
+          "function": "_zeros_py.py:712 brentq",
+          "calls": 3878,
+          "self_seconds": 0.026044900000000003,
+          "cumulative_seconds": 2.8166925000000003
+        },
+        {
+          "function": "~:0 <built-in method scipy.optimize._zeros._brentq>",
+          "calls": 3878,
+          "self_seconds": 0.046200000000000005,
+          "cumulative_seconds": 2.7822012000000003
+        },
+        {
+          "function": "_zeros_py.py:93 f_raise",
+          "calls": 23233,
+          "self_seconds": 0.2183959,
+          "cumulative_seconds": 2.7545417000000003
+        },
+        {
+          "function": "verification.py:15 verify_settings",
+          "calls": 3,
+          "self_seconds": 0.020444,
+          "cumulative_seconds": 2.4816178
+        },
+        {
+          "function": "circuit.py:71 exact_crossing",
+          "calls": 2814,
+          "self_seconds": 0.08422320000000001,
+          "cumulative_seconds": 1.2283655
+        },
+        {
+          "function": "engine.py:127 <lambda>",
+          "calls": 198,
+          "self_seconds": 0.0023416,
+          "cumulative_seconds": 0.9962747000000001
+        },
+        {
+          "function": "engine.py:124 <lambda>",
+          "calls": 186,
+          "self_seconds": 0.0014403,
+          "cumulative_seconds": 0.9748566000000001
+        },
+        {
+          "function": "engine.py:281 robustness",
+          "calls": 3,
+          "self_seconds": 0.0049625,
+          "cumulative_seconds": 0.7972774
+        },
+        {
+          "function": "circuit.py:77 <lambda>",
+          "calls": 16207,
+          "self_seconds": 0.0175871,
+          "cumulative_seconds": 0.7838329
+        },
+        {
+          "function": "circuit.py:67 voltage",
+          "calls": 16207,
+          "self_seconds": 0.4428694,
+          "cumulative_seconds": 0.7662458000000001
+        },
+        {
+          "function": "registry.py:47 infer",
+          "calls": 7,
+          "self_seconds": 0.029610400000000002,
+          "cumulative_seconds": 0.49187640000000005
+        },
+        {
+          "function": "waveform_metrics.py:14 analyze",
+          "calls": 938,
+          "self_seconds": 0.13249550000000002,
+          "cumulative_seconds": 0.46186130000000003
+        },
+        {
+          "function": "fromnumeric.py:2349 sum",
+          "calls": 22850,
+          "self_seconds": 0.0780406,
+          "cumulative_seconds": 0.4461413
+        },
+        {
+          "function": "~:0 <method 'reduce' of 'numpy.ufunc' objects>",
+          "calls": 35248,
+          "self_seconds": 0.37327180000000004,
+          "cumulative_seconds": 0.37327180000000004
+        },
+        {
+          "function": "fromnumeric.py:69 _wrapreduction",
+          "calls": 22869,
+          "self_seconds": 0.10880020000000001,
+          "cumulative_seconds": 0.3566673
+        },
+        {
+          "function": "_target.py:300 predict",
+          "calls": 21,
+          "self_seconds": 0.0006943,
+          "cumulative_seconds": 0.2928118
+        },
+        {
+          "function": "circuit.py:57 <lambda>",
+          "calls": 5628,
+          "self_seconds": 0.1727156,
+          "cumulative_seconds": 0.29207540000000004
+        },
+        {
+          "function": "pipeline.py:739 predict",
+          "calls": 21,
+          "self_seconds": 0.0006096000000000001,
+          "cumulative_seconds": 0.2694964
+        },
+        {
+          "function": "function_base.py:323 geomspace",
+          "calls": 938,
+          "self_seconds": 0.09335660000000001,
+          "cumulative_seconds": 0.2680902
+        },
+        {
+          "function": "_util.py:1203 wrapper",
+          "calls": 938,
+          "self_seconds": 0.0266212,
+          "cumulative_seconds": 0.2649917
+        },
+        {
+          "function": "parallel.py:54 __call__",
+          "calls": 21,
+          "self_seconds": 0.00020170000000000002,
+          "cumulative_seconds": 0.2480138
+        },
+        {
+          "function": "parallel.py:1969 __call__",
+          "calls": 21,
+          "self_seconds": 0.0010292,
+          "cumulative_seconds": 0.247706
+        },
+        {
+          "function": "parallel.py:1888 _get_sequential_output",
+          "calls": 630,
+          "self_seconds": 0.0039284,
+          "cumulative_seconds": 0.24528180000000002
+        },
+        {
+          "function": "_decomp.py:114 eig",
+          "calls": 938,
+          "self_seconds": 0.11166720000000001,
+          "cumulative_seconds": 0.235193
+        },
+        {
+          "function": "parallel.py:131 __call__",
+          "calls": 588,
+          "self_seconds": 0.019801100000000002,
+          "cumulative_seconds": 0.21111110000000002
+        },
+        {
+          "function": "_arraysetops_impl.py:145 unique",
+          "calls": 1877,
+          "self_seconds": 0.013836600000000001,
+          "cumulative_seconds": 0.20320660000000001
+        },
+        {
+          "function": "_arraysetops_impl.py:344 _unique1d",
+          "calls": 1877,
+          "self_seconds": 0.08044380000000001,
+          "cumulative_seconds": 0.18425170000000002
+        },
+        {
+          "function": "_forest.py:1044 predict",
+          "calls": 7,
+          "self_seconds": 0.00041220000000000004,
+          "cumulative_seconds": 0.1628957
+        },
+        {
+          "function": "function_base.py:25 linspace",
+          "calls": 1878,
+          "self_seconds": 0.09425280000000001,
+          "cumulative_seconds": 0.13881090000000001
+        },
+        {
+          "function": "waveform_metrics.py:5 crossing",
+          "calls": 2814,
+          "self_seconds": 0.0805951,
+          "cumulative_seconds": 0.1359546
+        },
+        {
+          "function": "_index_tricks_impl.py:346 __getitem__",
+          "calls": 1878,
+          "self_seconds": 0.09485060000000001,
+          "cumulative_seconds": 0.1248313
+        },
+        {
+          "function": "_linalg.py:320 solve",
+          "calls": 938,
+          "self_seconds": 0.0479563,
+          "cumulative_seconds": 0.1144507
+        }
+      ],
+      "settings": {
+        "stages": 11,
+        "charge_kv_stage": 181.90279026170387,
+        "front_r_stage": 30.0,
+        "tail_r_stage": 520.0,
+        "stage_utilization": 0.9095139513085193,
+        "stored_energy_kj": 22.74842975968298,
+        "voltage_margin_kv_stage": 18.09720973829613,
+        "energy_margin_kj": 7.251570240317019,
+        "energy_margin_pct": 24.171900801056733
+      },
+      "prediction": {
+        "front_us": 1.1867806844403412,
+        "tail_us": 53.743526646565364,
+        "crest_kv": 1425.0
+      },
+      "nominal_pass": true,
+      "uncertainty_status": "MARGINAL",
+      "ood": {
+        "state": "physics_mode",
+        "trust_weight": 0.0,
+        "nearest_distance": 496.28853822625473,
+        "threshold_p95": 1.9782598510822709,
+        "outside_feature_envelope": true,
+        "calculator_setting_supported": false,
+        "support_limit": "Synthetic training uses only calculator-selected settings; arbitrary resistor or stage interventions are unsupported.",
+        "lab_calibrated": false
+      },
+      "verification": {
+        "version": "fixed-settings-verification-v1",
+        "seed": 617,
+        "used_for_ranking": false,
+        "models_checked": [
+          "Circuit prediction"
+        ],
+        "parameters": [
+          "load_c_pf",
+          "divider_c_pf",
+          "stray_c_pf",
+          "l_uh"
+        ],
+        "uncertainty_pct": 5,
+        "fresh_samples": {
+          "total": 128,
+          "passed": 128,
+          "primary_passed": 128,
+          "circuit_passed": null
+        },
+        "boundary_corners": {
+          "total": 16,
+          "passed": 16,
+          "primary_passed": 16,
+          "circuit_passed": null
+        },
+        "total": 144,
+        "passed": 144,
+        "unique_scenarios": 144,
+        "nominal_all_models_pass": true,
+        "all_checks_pass": true,
+        "worst_case": {
+          "index": 143,
+          "group": "boundary_corners",
+          "inputs": {
+            "load_c_pf": 682.5,
+            "divider_c_pf": 262.5,
+            "stray_c_pf": 57.75,
+            "l_uh": 11.399999999999999
+          },
+          "primary_pass": true,
+          "circuit_pass": null,
+          "all_models_pass": true,
+          "minimum_margin_fraction": 0.5979671589099282,
+          "limiting_model": "Primary prediction",
+          "limiting_metric": "Time to half-value",
+          "predicted": 54.02032841090072,
+          "allowed_lower": 40,
+          "allowed_upper": 60,
+          "unit": "\u00b5s"
+        },
+        "calibrated_scenarios": 0,
+        "scope": "Fixed hardware checked after ranking using 128 separate-seed Latin-hypercube scenarios and 16 boundary corners. These checks do not select or reorder candidates. Finite simulation evidence only: not continuous-bound certification, independent model-accuracy testing or a laboratory success probability. Efficiency and hardware tolerances are held fixed; no statistical coverage claim."
+      },
+      "search": {
+        "evaluated": 11,
+        "hardware_feasible": 3,
+        "rejected": {
+          "stage_voltage_or_energy": 8,
+          "nonfinite_or_invalid_waveform": 0
+        },
+        "agreement_feasible": null,
+        "search_kind": "Bounded series DP + four-part series/parallel trees (six parts for small catalogs) and identical parallel banks; nearest five front/tail choices per stage, not exhaustive global optimization."
+      },
+      "score": 0.33734219365473467,
+      "ranked_candidates": [
+        {
+          "settings": {
+            "stages": 11,
+            "charge_kv_stage": 181.90279026170387,
+            "front_r_stage": 30.0,
+            "tail_r_stage": 520.0,
+            "stage_utilization": 0.9095139513085193,
+            "stored_energy_kj": 22.74842975968298,
+            "voltage_margin_kv_stage": 18.09720973829613,
+            "energy_margin_kj": 7.251570240317019,
+            "energy_margin_pct": 24.171900801056733
+          },
+          "prediction": {
+            "front_us": 1.1867806844403412,
+            "tail_us": 53.743526646565364,
+            "crest_kv": 1425.0
+          },
+          "score": 0.33734219365473467,
+          "status": "MARGINAL"
+        },
+        {
+          "settings": {
+            "stages": 10,
+            "charge_kv_stage": 197.52587826469636,
+            "front_r_stage": 30.0,
+            "tail_r_stage": 520.0,
+            "stage_utilization": 0.9876293913234818,
+            "stored_energy_kj": 24.385295365149776,
+            "voltage_margin_kv_stage": 2.4741217353036404,
+            "energy_margin_kj": 5.614704634850224,
+            "energy_margin_pct": 18.715682116167407
+          },
+          "prediction": {
+            "front_us": 1.0736975470617791,
+            "tail_us": 52.95766123619352,
+            "crest_kv": 1425.0
+          },
+          "score": 0.4038019584550492,
+          "status": "MARGINAL"
+        },
+        {
+          "settings": {
+            "stages": 12,
+            "charge_kv_stage": 168.86203809400405,
+            "front_r_stage": 30.0,
+            "tail_r_stage": 520.0,
+            "stage_utilization": 0.8443101904700202,
+            "stored_energy_kj": 21.38579093194566,
+            "voltage_margin_kv_stage": 31.13796190599595,
+            "energy_margin_kj": 8.61420906805434,
+            "energy_margin_pct": 28.714030226847797
+          },
+          "prediction": {
+            "front_us": 1.2946708871091537,
+            "tail_us": 54.516817984917225,
+            "crest_kv": 1425.0
+          },
+          "score": 0.4329886612327341,
+          "status": "MARGINAL"
+        }
+      ]
+    }
+  },
+  "source_type": "synthetic_development",
+  "scope": "Fixed requests, no laboratory observations; sequential idle-host repetitions; timings machine-dependent.",
+  "source_revision": "047841f587c4b00bc8d018d5174961d3356eebbf",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "python": "3.12.14",
+  "thread_environment": {
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "LOKY_MAX_CPU_COUNT": "4"
+  },
+  "search_quality": [
+    {
+      "id": "li-low-load",
+      "source_type": "synthetic_benchmark",
+      "inputs": {
+        "profile_id": "workbook_reference_profile",
+        "impulse_type": "Lightning",
+        "test_kv": 1400.0,
+        "load_c_pf": 650.0,
+        "divider_c_pf": 500,
+        "stray_c_pf": 150,
+        "l_uh": 18.5,
+        "efficiency": 0.82,
+        "solver": "reference",
+        "model_mode": "physics",
+        "require_model_agreement": false,
+        "connection_mode": "series_marx_equivalent",
+        "layout_id": "default-layout",
+        "stage_min": 9,
+        "stage_max": 10,
+        "inventory_override": {
+          "front": [
+            {
+              "ohm": 30.0,
+              "count_per_stage": 2
+            },
+            {
+              "ohm": 100.0,
+              "count_per_stage": 1
+            }
+          ],
+          "tail": [
+            {
+              "ohm": 10.0,
+              "count_per_stage": 1
+            },
+            {
+              "ohm": 30.0,
+              "count_per_stage": 1
+            }
+          ],
+          "provenance": "Controlled synthetic benchmark inventory; not CPRI stock"
+        },
+        "max_components_per_network": 3,
+        "include_base_c": false,
+        "uncertainty_pct": 5,
+        "monte_carlo_samples": 8,
+        "equipment_reference_kv": null,
+        "test_object_id": null,
+        "equipment_reference_source": null,
+        "confirm_reference_mismatch": false,
+        "calibration_id": null
+      },
+      "same_best_candidate": true,
+      "exhaustive_best_in_bounded_top3": true,
+      "bounded_winner_exhaustive_rank": 1,
+      "rank_difference": 0,
+      "objective_gap": 0.0,
+      "waveform_error_difference": 0.0,
+      "component_count_difference": 0,
+      "waveform_metric_difference": {
+        "front_us": 0.0,
+        "tail_us": 0.0,
+        "crest_kv": 0.0
+      },
+      "worst_waveform_margin_difference": 0.0,
+      "bounded_seconds": 3.8758025001734495,
+      "exhaustive_seconds": 6.311342200031504,
+      "speedup": 1.6283962352955446,
+      "bounded_evaluated": 40,
+      "exhaustive_evaluated": 96,
+      "bounded_nominal_pass": false,
+      "exhaustive_nominal_pass": false,
+      "bounded_settings": {
+        "stages": 9,
+        "charge_kv_stage": 189.7018970189702,
+        "front_r_stage": 60.0,
+        "tail_r_stage": 30.0,
+        "stage_utilization": 0.9485094850948509,
+        "stored_energy_kj": 485.82193139004556,
+        "voltage_margin_kv_stage": 10.298102981029814,
+        "energy_margin_kj": 414.17806860995444,
+        "energy_margin_pct": 46.01978540110605
+      },
+      "exhaustive_settings": {
+        "stages": 9,
+        "charge_kv_stage": 189.7018970189702,
+        "front_r_stage": 60.0,
+        "tail_r_stage": 30.0,
+        "stage_utilization": 0.9485094850948509,
+        "stored_energy_kj": 485.82193139004556,
+        "voltage_margin_kv_stage": 10.298102981029814,
+        "energy_margin_kj": 414.17806860995444,
+        "energy_margin_pct": 46.01978540110605
+      },
+      "bounded_rank_key": [
+        true,
+        true,
+        0.6420656367193147
+      ],
+      "exhaustive_rank_key": [
+        true,
+        true,
+        0.6420656367193147
+      ]
+    },
+    {
+      "id": "li-high-load",
+      "source_type": "synthetic_benchmark",
+      "inputs": {
+        "profile_id": "workbook_reference_profile",
+        "impulse_type": "Lightning",
+        "test_kv": 1450.0,
+        "load_c_pf": 1100.0,
+        "divider_c_pf": 500,
+        "stray_c_pf": 150,
+        "l_uh": 18.5,
+        "efficiency": 0.82,
+        "solver": "reference",
+        "model_mode": "physics",
+        "require_model_agreement": false,
+        "connection_mode": "series_marx_equivalent",
+        "layout_id": "default-layout",
+        "stage_min": 9,
+        "stage_max": 10,
+        "inventory_override": {
+          "front": [
+            {
+              "ohm": 20.0,
+              "count_per_stage": 2
+            },
+            {
+              "ohm": 75.0,
+              "count_per_stage": 1
+            }
+          ],
+          "tail": [
+            {
+              "ohm": 15.0,
+              "count_per_stage": 1
+            },
+            {
+              "ohm": 40.0,
+              "count_per_stage": 1
+            }
+          ],
+          "provenance": "Controlled synthetic benchmark inventory; not CPRI stock"
+        },
+        "max_components_per_network": 3,
+        "include_base_c": false,
+        "uncertainty_pct": 5,
+        "monte_carlo_samples": 8,
+        "equipment_reference_kv": null,
+        "test_object_id": null,
+        "equipment_reference_source": null,
+        "confirm_reference_mismatch": false,
+        "calibration_id": null
+      },
+      "same_best_candidate": true,
+      "exhaustive_best_in_bounded_top3": true,
+      "bounded_winner_exhaustive_rank": 1,
+      "rank_difference": 0,
+      "objective_gap": 0.0,
+      "waveform_error_difference": 0.0,
+      "component_count_difference": 0,
+      "waveform_metric_difference": {
+        "front_us": 0.0,
+        "tail_us": 0.0,
+        "crest_kv": 0.0
+      },
+      "worst_waveform_margin_difference": 0.0,
+      "bounded_seconds": 3.3999489000998437,
+      "exhaustive_seconds": 6.458804199937731,
+      "speedup": 1.8996768450690715,
+      "bounded_evaluated": 40,
+      "exhaustive_evaluated": 96,
+      "bounded_nominal_pass": false,
+      "exhaustive_nominal_pass": false,
+      "bounded_settings": {
+        "stages": 9,
+        "charge_kv_stage": 196.4769647696477,
+        "front_r_stage": 40.0,
+        "tail_r_stage": 15.0,
+        "stage_utilization": 0.9823848238482386,
+        "stored_energy_kj": 521.1431687487608,
+        "voltage_margin_kv_stage": 3.523035230352292,
+        "energy_margin_kj": 378.8568312512392,
+        "energy_margin_pct": 42.09520347235991
+      },
+      "exhaustive_settings": {
+        "stages": 9,
+        "charge_kv_stage": 196.4769647696477,
+        "front_r_stage": 40.0,
+        "tail_r_stage": 15.0,
+        "stage_utilization": 0.9823848238482386,
+        "stored_energy_kj": 521.1431687487608,
+        "voltage_margin_kv_stage": 3.523035230352292,
+        "energy_margin_kj": 378.8568312512392,
+        "energy_margin_pct": 42.09520347235991
+      },
+      "bounded_rank_key": [
+        true,
+        true,
+        0.8245208300681827
+      ],
+      "exhaustive_rank_key": [
+        true,
+        true,
+        0.8245208300681827
+      ]
+    },
+    {
+      "id": "si-low-load",
+      "source_type": "synthetic_benchmark",
+      "inputs": {
+        "profile_id": "workbook_reference_profile",
+        "impulse_type": "Switching",
+        "test_kv": 1000.0,
+        "load_c_pf": 900.0,
+        "divider_c_pf": 500,
+        "stray_c_pf": 150,
+        "l_uh": 18.5,
+        "efficiency": 0.82,
+        "solver": "reference",
+        "model_mode": "physics",
+        "require_model_agreement": false,
+        "connection_mode": "series_marx_equivalent",
+        "layout_id": "default-layout",
+        "stage_min": 7,
+        "stage_max": 8,
+        "inventory_override": {
+          "front": [
+            {
+              "ohm": 1000.0,
+              "count_per_stage": 2
+            },
+            {
+              "ohm": 4000.0,
+              "count_per_stage": 1
+            }
+          ],
+          "tail": [
+            {
+              "ohm": 500.0,
+              "count_per_stage": 1
+            },
+            {
+              "ohm": 1500.0,
+              "count_per_stage": 1
+            }
+          ],
+          "provenance": "Controlled synthetic benchmark inventory; not CPRI stock"
+        },
+        "max_components_per_network": 3,
+        "include_base_c": false,
+        "uncertainty_pct": 5,
+        "monte_carlo_samples": 8,
+        "equipment_reference_kv": null,
+        "test_object_id": null,
+        "equipment_reference_source": null,
+        "confirm_reference_mismatch": false,
+        "calibration_id": null
+      },
+      "same_best_candidate": true,
+      "exhaustive_best_in_bounded_top3": true,
+      "bounded_winner_exhaustive_rank": 1,
+      "rank_difference": 0,
+      "objective_gap": 0.0,
+      "waveform_error_difference": 0.0,
+      "component_count_difference": 0,
+      "waveform_metric_difference": {
+        "front_us": 0.0,
+        "tail_us": 0.0,
+        "crest_kv": 0.0
+      },
+      "worst_waveform_margin_difference": 0.0,
+      "bounded_seconds": 3.878996000159532,
+      "exhaustive_seconds": 6.288315499899909,
+      "speedup": 1.621119356565794,
+      "bounded_evaluated": 40,
+      "exhaustive_evaluated": 96,
+      "bounded_nominal_pass": false,
+      "exhaustive_nominal_pass": false,
+      "bounded_settings": {
+        "stages": 8,
+        "charge_kv_stage": 152.4390243902439,
+        "front_r_stage": 6000.0,
+        "tail_r_stage": 1500.0,
+        "stage_utilization": 0.7621951219512195,
+        "stored_energy_kj": 278.8518738845925,
+        "voltage_margin_kv_stage": 47.5609756097561,
+        "energy_margin_kj": 621.1481261154074,
+        "energy_margin_pct": 69.01645845726749
+      },
+      "exhaustive_settings": {
+        "stages": 8,
+        "charge_kv_stage": 152.4390243902439,
+        "front_r_stage": 6000.0,
+        "tail_r_stage": 1500.0,
+        "stage_utilization": 0.7621951219512195,
+        "stored_energy_kj": 278.8518738845925,
+        "voltage_margin_kv_stage": 47.5609756097561,
+        "energy_margin_kj": 621.1481261154074,
+        "energy_margin_pct": 69.01645845726749
+      },
+      "bounded_rank_key": [
+        true,
+        true,
+        1.370840451243939
+      ],
+      "exhaustive_rank_key": [
+        true,
+        true,
+        1.370840451243939
+      ]
+    },
+    {
+      "id": "si-high-load",
+      "source_type": "synthetic_benchmark",
+      "inputs": {
+        "profile_id": "workbook_reference_profile",
+        "impulse_type": "Switching",
+        "test_kv": 1050.0,
+        "load_c_pf": 1350.0,
+        "divider_c_pf": 500,
+        "stray_c_pf": 150,
+        "l_uh": 18.5,
+        "efficiency": 0.82,
+        "solver": "reference",
+        "model_mode": "physics",
+        "require_model_agreement": false,
+        "connection_mode": "series_marx_equivalent",
+        "layout_id": "default-layout",
+        "stage_min": 7,
+        "stage_max": 8,
+        "inventory_override": {
+          "front": [
+            {
+              "ohm": 1500.0,
+              "count_per_stage": 2
+            },
+            {
+              "ohm": 3500.0,
+              "count_per_stage": 1
+            }
+          ],
+          "tail": [
+            {
+              "ohm": 750.0,
+              "count_per_stage": 1
+            },
+            {
+              "ohm": 2000.0,
+              "count_per_stage": 1
+            }
+          ],
+          "provenance": "Controlled synthetic benchmark inventory; not CPRI stock"
+        },
+        "max_components_per_network": 3,
+        "include_base_c": false,
+        "uncertainty_pct": 5,
+        "monte_carlo_samples": 8,
+        "equipment_reference_kv": null,
+        "test_object_id": null,
+        "equipment_reference_source": null,
+        "confirm_reference_mismatch": false,
+        "calibration_id": null
+      },
+      "same_best_candidate": true,
+      "exhaustive_best_in_bounded_top3": true,
+      "bounded_winner_exhaustive_rank": 1,
+      "rank_difference": 0,
+      "objective_gap": 0.0,
+      "waveform_error_difference": 0.0,
+      "component_count_difference": 0,
+      "waveform_metric_difference": {
+        "front_us": 0.0,
+        "tail_us": 0.0,
+        "crest_kv": 0.0
+      },
+      "worst_waveform_margin_difference": 0.0,
+      "bounded_seconds": 4.152648800052702,
+      "exhaustive_seconds": 7.005742700072005,
+      "speedup": 1.6870539834678757,
+      "bounded_evaluated": 40,
+      "exhaustive_evaluated": 96,
+      "bounded_nominal_pass": false,
+      "exhaustive_nominal_pass": false,
+      "bounded_settings": {
+        "stages": 8,
+        "charge_kv_stage": 160.0609756097561,
+        "front_r_stage": 6500.0,
+        "tail_r_stage": 750.0,
+        "stage_utilization": 0.8003048780487805,
+        "stored_energy_kj": 307.4341909577633,
+        "voltage_margin_kv_stage": 39.9390243902439,
+        "energy_margin_kj": 592.5658090422367,
+        "energy_margin_pct": 65.84064544913741
+      },
+      "exhaustive_settings": {
+        "stages": 8,
+        "charge_kv_stage": 160.0609756097561,
+        "front_r_stage": 6500.0,
+        "tail_r_stage": 750.0,
+        "stage_utilization": 0.8003048780487805,
+        "stored_energy_kj": 307.4341909577633,
+        "voltage_margin_kv_stage": 39.9390243902439,
+        "energy_margin_kj": 592.5658090422367,
+        "energy_margin_pct": 65.84064544913741
+      },
+      "bounded_rank_key": [
+        true,
+        true,
+        1.2546264330539012
+      ],
+      "exhaustive_rank_key": [
+        true,
+        true,
+        1.2546264330539012
+      ]
+    }
+  ],
+  "protected_hashes": {
+    "data/source/HV IG Problem Statement.pdf": "9ab169fbda5eb612a7ff9ccfbadca8e85f5b49c2257c23388945d4e7c5532e93",
+    "data/source/Hybrid_Physics_ML_Impulse_Generator_Optimiser.xlsx": "e855eadbe4d6da2579316e89e025e6990f9ba3c522a5af96d1dd2a5522d77480",
+    "data/processed/generated_stress_test.csv": "4559d600cea23b71bdc6e80dce95ad663cfd221940add41a43f167f1f42d0396",
+    "data/processed/hybrid_calculator.csv": "b0212907486ea7be195a9e0e65fd469bf88c6a5d217b3bc4a570f207833a63a1",
+    "data/processed/manifest.json": "0ebdf90c869007e5d7169f9aed078648d73d69067c3ec838f33054059213eab3",
+    "data/processed/ml_helper.csv": "cac8581efc459f7fb46ea88ced6908ad355418aacd3d16d0cfda20379357ec2e",
+    "data/processed/model_card.csv": "d69a2cd6a9bd094e4679a10af8beb5f2b6b5e6cc205b4aff9183299b1f8f8a95",
+    "data/processed/model_validation.csv": "73e4e586548ea4da66a662ec44e4b10c5bc911662cfb2bbd60645f98c0df7d7a",
+    "data/processed/resistor_inventory.csv": "b653ce4e67ff531b91c14325a9390eecfa61695de70673911517c9d2d872a348",
+    "data/processed/synthetic_dataset.csv": "9ab18ed1eca6b96629c367ea531bf8a9f204c9fbfe0ac61b03c8e64fc786eab2",
+    "artifacts/models/hidden_test_evaluation.json": "2cebd28690a0a7d93a2e9e4302e3f5bb82d284ee60dad8de3bd97aa37dbfba99",
+    "artifacts/models/registry.json": "ae45602b534ef80a6cc55545cdff3d97aad5f4ee8879c9b4787b78f95208396e",
+    "artifacts/models/residual_models.joblib": "026f7e1a3c3049bfed4ae1da99efbe5133f5a0e51625544e2477a997adc11e5a",
+    "artifacts/experiments/train_signal.json": "aec6258dd5472d2662392e57462eeb7e4f1a23837fd6c3a855ea31088711b122",
+    "artifacts/experiments/search_v4/before_demo_manifest.json": "d34990860e696a12f2ee52adf671c60b0fb5c0748e701a977a0e007904afa696",
+    "artifacts/experiments/search_v4/before_diagnostic.json": "1f0a82e04d4a96e943564c89578d416b2c3d7a24a62f12c272899b8f406c8025",
+    "artifacts/experiments/search_v4/final_protocol.json": "5aac839e3522343598b992186b4c263f7ad1029f3cc838cf5240a7a2e9e1f6d8",
+    "artifacts/experiments/search_v4/final_summary.json": "178fa6c1b0d6d5613fc88f877d127d353288d0af47a97dabbc12342cfe966582",
+    "artifacts/experiments/search_v4/protocol.json": "e6b4288248e3dd7618b338471e3dc69bff0ecaba4e240ec2987c00fb392cd2e3",
+    "artifacts/experiments/search_v4/summary.json": "6e838ff8aa9ecc561c01fa9637a7c811e1ce2a7ad4906ac21add020bf19a169e",
+    "artifacts/experiments/v2/calibrated_candidate_models.joblib": "9b76c82a1d5ebe564362517e6fc6e77b858726418baabbb31ad03577ca9cbf70",
+    "artifacts/experiments/v2/candidate_models.joblib": "024f5228fafbe6431d8252aec041c7a5c68642277fea6f1d7d3b9a005aee4105",
+    "artifacts/experiments/v2/frozen_configuration.json": "23ded54c4c9245edb555800baa5c9f4dedf67c168d949bd730df47bf7e491a5b",
+    "artifacts/experiments/v2/oof_predictions.json": "27fae2c631a4fdda7b6bb4049fae88d79c4fb6a91eca4720a608a4c3864cb157",
+    "artifacts/experiments/v2/outer-Lightning-0.json": "04f7cd57d85e2580d1b14bf1cdcac09dc91ef5f8f7ea8a63eb829951892681d9",
+    "artifacts/experiments/v2/outer-Lightning-1.json": "f088bdc0889354ad7db69497de4695d15b7f4ada50141edc67f4a0dfe0cdaa6a",
+    "artifacts/experiments/v2/outer-Lightning-2.json": "de7c940d44671fbb0a8d45b962ba6134ee0b67e44209f63549ce26eda004f00f",
+    "artifacts/experiments/v2/outer-Lightning-3.json": "a2b4230f87cd6ede522fb44e361a4c0839af899e2e6285607e5046ff1f6f241e",
+    "artifacts/experiments/v2/outer-Lightning-4.json": "6562de2d5fa6021d963ad4e5260f738128aa708c84a35f95b777328b45356c2c",
+    "artifacts/experiments/v2/outer-Switching-0.json": "fbad52f9b7202e443b8039467a438eca3848a3f477fc395ffea399979ec4e5c4",
+    "artifacts/experiments/v2/outer-Switching-1.json": "3504fc59efa7e790523257b5c3d020b905b7bf1dba481d9546f88e7e05e7a7fc",
+    "artifacts/experiments/v2/outer-Switching-2.json": "341d1363b2420ea168a6d59995d291bc7380837d3837c1967ce48a6a0f4059fc",
+    "artifacts/experiments/v2/outer-Switching-3.json": "c869cb6770ac303a7c0d9a6cbecd167272800e89ee959382ca6acbfbc48a19d3",
+    "artifacts/experiments/v2/outer-Switching-4.json": "e18d6c2b325158a374b5a3e9110859e0fdffaca8273ab7a4701dfe5ee0607fe5",
+    "artifacts/experiments/v2/protocol.json": "9881369852ae43f5ca7aadc35544d9bbb3ab75236d5ebd447591fdaba0cd5b61",
+    "artifacts/experiments/v2/summary.json": "b9e682c0544a795e18c3df10966c21d5b2a2c113e0b7a3f48a32b1fabd15a4f3",
+    "artifacts/experiments/v3/oof_predictions.json": "8d8aa21621ce566838059205eb4b755d486075b50935deee0a13e19186269af1",
+    "artifacts/experiments/v3/protocol.json": "fdff4ac25fefacd05712803f767a03fce523b8de22c554ad4650ed5c2196bb23",
+    "artifacts/experiments/v3/summary.json": "33c720ebf738707b1885f009972974ed7d675f4130251e95e22088c8337a6853",
+    "artifacts/experiments/v4/oof_predictions.json": "d79e63b5efcce21e96271c84740e00e230564a1c6df02714304c2a3cde8751a3",
+    "artifacts/experiments/v4/protocol.json": "7760fc1db2bffca916399343b16a8b59ea9cd0027f0a2f51e96e7a79f1e3eb51",
+    "artifacts/experiments/v4/summary.json": "2bdb8d80dc3a62243b21ae85d6233f292a416e37a961f918fa03cedd2d5dfdec",
+    "artifacts/experiments/v5/oof_predictions.json": "71ef7caf549709ee62ca187296ea042a782741a40c44e7c760292b544cb66f15",
+    "artifacts/experiments/v5/protocol.json": "314cf21764d857606ed4a841b503c24523012e2c66ea3c3907f8bb8432c97861",
+    "artifacts/experiments/v5/summary.json": "5b7a6416623759dd9c80854c8ca8087a8b189736cc8a6ac988a968413f2b60e1"
+  },
+  "protected_hashes_match": true
+}
