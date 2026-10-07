@@ -226,10 +226,11 @@ def models():
         study=json.loads(v5.read_text(encoding="utf-8"))
         result['experiment_v5']={k:study[k] for k in ['version','scope','macro_improvement_pct','control_macro_improvement_pct','improvement_vs_matched_control_pct','worst_target_improvement_pct','promotion_eligible','decision','hidden_test_evaluated','calibration_evaluated','validation_evaluated','elapsed_seconds','nested_cv']}
     result['benchmark_scorecard']=scorecard(result['hidden_test'],result.get('experiment_v2'))
-    v6=ROOT/'artifacts/experiments/v6/summary.json'
-    if v6.exists():
-        study=json.loads(v6.read_text(encoding='utf-8'))
-        result['experiment_v6']={k:study[k] for k in ['version','scope','per_seed','combined_repeated_development_metrics','folds_beating_both_baselines','promotion_eligible','decision','hidden_test_evaluated','calibration_evaluated','validation_evaluated','final_models_created','production_model_changed','elapsed_seconds']}
+    for version in ('v6','v7'):
+        path=ROOT/f'artifacts/experiments/{version}/summary.json'
+        if path.exists():
+            study=json.loads(path.read_text(encoding='utf-8'))
+            result[f'experiment_{version}']={k:study[k] for k in ['version','scope','per_seed','combined_repeated_development_metrics','folds_beating_both_baselines','promotion_eligible','decision','hidden_test_evaluated','calibration_evaluated','validation_evaluated','final_models_created','production_model_changed','elapsed_seconds']}
     return result
 
 @app.get('/api/models/{id}/metrics')
@@ -240,8 +241,9 @@ def model_metrics(id:str):
         return json.loads((ROOT/'artifacts/experiments/v4/summary.json').read_text(encoding="utf-8"))
     if id==result.get('experiment_v5',{}).get('version'):
         return json.loads((ROOT/'artifacts/experiments/v5/summary.json').read_text(encoding="utf-8"))
-    if id==result.get('experiment_v6',{}).get('version'):
-        return json.loads((ROOT/'artifacts/experiments/v6/summary.json').read_text(encoding='utf-8'))
+    for version in ('v6','v7'):
+        if id==result.get(f'experiment_{version}',{}).get('version'):
+            return json.loads((ROOT/f'artifacts/experiments/{version}/summary.json').read_text(encoding='utf-8'))
     if id!=result['version']:raise HTTPException(404,'Unknown model version')
     return result
 
@@ -398,7 +400,7 @@ def calibrate(id:str):
 
 @app.get('/api/documents/{name}')
 def document(name:str):
-    paths={'source_reconciliation':ROOT/'docs/source_reconciliation.md','data_audit':ROOT/'reports/data_audit.html','assumptions':ROOT/'docs/assumptions.md','accuracy_v2_results':ROOT/'docs/accuracy_v2_results.md','accuracy_v4_results':ROOT/'docs/accuracy_v4_results.md','accuracy_v5_results':ROOT/'docs/accuracy_v5_results.md','accuracy_v6_results':ROOT/'docs/accuracy_v6_results.md','judging_criteria':ROOT/'docs/judging_criteria_evidence.md','capture_resolution':ROOT/'docs/capture_resolution_review.md'}
+    paths={'source_reconciliation':ROOT/'docs/source_reconciliation.md','data_audit':ROOT/'reports/data_audit.html','assumptions':ROOT/'docs/assumptions.md','accuracy_v2_results':ROOT/'docs/accuracy_v2_results.md','accuracy_v4_results':ROOT/'docs/accuracy_v4_results.md','accuracy_v5_results':ROOT/'docs/accuracy_v5_results.md','accuracy_v6_results':ROOT/'docs/accuracy_v6_results.md','accuracy_v7_results':ROOT/'docs/accuracy_v7_results.md','judging_criteria':ROOT/'docs/judging_criteria_evidence.md','capture_resolution':ROOT/'docs/capture_resolution_review.md'}
     p=paths.get(name)
     if p is None or not p.exists():raise HTTPException(404,'Document not found')
     return FileResponse(p,media_type='text/html' if p.suffix=='.html' else 'text/plain')

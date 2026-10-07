@@ -4,10 +4,10 @@
 
 The owner explicitly requested review of friends' commits and further improvement
 of the sixth output. Work continues on `codex/switching-crest-review`, incorporating
-main `047841f` and engineering hardening `efde726`. A bounded Train-only V6 crest
-study is complete; its gate failed and its results are frozen. Do not rerun/tune
-this completed study or overwrite V1/V2–V6 evidence. No model weights, exposed
-test outcomes or cloud deployment have changed. Read `docs/accuracy_v6_results.md`
+main `047841f` and engineering hardening `efde726`. Separately registered Train-only V6 and V7 crest
+studies are complete; both gates failed and their results are frozen. Do not rerun/tune
+these completed studies or overwrite V1/V2–V7 evidence. No model weights, exposed
+test outcomes or cloud deployment have changed. Read `docs/accuracy_v7_results.md`, `docs/accuracy_v6_results.md`
 and the latest HANDOFF/PROJECT_STATE sections. The historical hardening scope's
 no-new-fit instruction below applied to that earlier task; the owner's later
 accuracy request authorized this separately recorded development study.
@@ -17,10 +17,15 @@ provenance. New correctness checks reject unresolved RLC modes and conservativel
 classify calibration sources. Current tests/builds are recorded separately from
 the historical 6 October evidence. Website previews remain deferred to the owner.
 
-Final continuation verification: 301 backend tests, Node 22 typecheck/build,
+Earlier continuation verification: 301 backend tests, Node 22 typecheck/build,
 23 local asset checks, fresh-database/network-denied smoke and all 45 protected
 hashes pass. See `artifacts/qa/seventh_october_verification.json`. Release packaging
-now includes friends' hardening/release evidence and this separately recorded study.
+now includes friends' hardening/release evidence and these separately recorded studies.
+Latest checks pass 322 backend tests, Node 22 typecheck/build, 23 local assets
+and fresh-database external-network-denied smoke. Latest branch refresh and checks are in `artifacts/qa/october7_remote_branch_review.json`
+and `artifacts/qa/october7_envelope_verification.json`. All four published heads
+were included; no new friend commits were found. No new independent files have
+been supplied; the owner is checking with their friend.
 
 ## Current task — 6 October 2026
 

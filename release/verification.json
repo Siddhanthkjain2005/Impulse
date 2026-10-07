@@ -1,26 +1,21 @@
 {
-  "recorded_at_utc": "2026-10-07T09:57:29.782985+00:00",
+  "verified_at_utc": "2026-10-07T10:33:24.919667+00:00",
   "status": "passed",
-  "files_verified": 427,
-  "zip_integrity_passed": true,
-  "all_archive_and_workspace_file_hashes_match": true,
-  "live_history_and_raw_uploads_excluded": true,
-  "archive_bytes": 15112349,
-  "archive_sha256": "5ab740deb8a31a757a69e6d18e02ec93810c112478a4da99fd63817ae4cc815b",
-  "application_verification": "artifacts/qa/seventh_october_verification.json",
-  "extracted_application_smoke": {
+  "archive": "release/ImpulseTwin_AI_Local_PoC.zip",
+  "archive_sha256": "010cc8719884cfdc11c5cebf6c651bb47e2821314993772c3898753e83422a8b",
+  "archive_bytes": 15375987,
+  "manifest_file_count": 441,
+  "all_archive_and_workspace_hashes_match": true,
+  "extracted_release_fresh_database_offline_smoke": {
     "status": "PASS",
     "fresh_database": true,
     "external_network_denied": true,
     "local_assets": 23,
     "saved_recommendation": true
   },
-  "backend_tests": 301,
-  "frontend_production_build_passed": true,
-  "browser_preview_this_update": false,
-  "browser_preview_omitted_at_user_request": true,
+  "current_automated_verification_record": "artifacts/qa/october7_envelope_verification.json",
+  "backend_tests": 322,
   "cloud_deployed": false,
-  "cloud_spend_usd": 0,
-  "scope": "Per-file archive/workspace hashes and fresh-database network-denied application smoke from extracted archive on current macOS machine with installed dependencies; no clean install or browser rehearsal inferred.",
-  "post_smoke_repack_note": "Git attributes and packaging metadata added after extracted smoke. Verified application source hashes remain identical; full final archive/workspace hashes and exclusions checked again."
+  "website_preview": false,
+  "scope": "Archive bytes match each manifest entry and current workspace source. Extracted fresh-database smoke denies external network in-process. No physical disconnected-machine or browser review is claimed. Prior release verification remains recorded in dated QA."
 }

@@ -1,14 +1,14 @@
 {
-  "recorded_at_utc": "2026-10-07T09:53:52.026342+00:00",
+  "recorded_at_utc": "2026-10-07T10:32:27.953201+00:00",
   "version": "1.0.0",
   "backend_tests_passed": true,
   "backend": {
-    "tests": 301,
+    "tests": 322,
     "failures": 0,
     "errors": 0,
     "skipped": 0
   },
-  "backend_test_record": "artifacts/qa/seventh_october_final.xml",
+  "backend_test_record": "artifacts/qa/october7_envelope_final.xml",
   "frontend": {
     "typecheck_passed": true,
     "production_build_passed": true,
@@ -16,7 +16,7 @@
     "builder": "webpack",
     "browser_preview": false,
     "verification": "Node 22.23.2: direct TypeScript check and Next webpack production export passed.",
-    "source_sha256": "69cb5efc9379b2264f5c1ae5e68b6ed857f32ecc31e833775fcc583dd1640b8e",
+    "source_sha256": "41721b5bdec5b9dfaae47fe95876713f23a82c135d13e0d4de580145187dcf59",
     "source_hash_method": "SHA256 of compact sorted JSON mapping relative source paths to file SHA256; OS metadata excluded",
     "source_hash_files": [
       "frontend/app/compare/page.tsx",
@@ -703,5 +703,18 @@
     "production_model_changed": false,
     "archive_repack_pending": false,
     "archive_verification": "release/verification.json"
-  }
+  },
+  "verification_history": [
+    {
+      "record": "artifacts/qa/seventh_october_verification.json",
+      "recorded_at_utc": "2026-10-07T09:53:52.026342+00:00",
+      "backend": {
+        "tests": 301,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      }
+    }
+  ],
+  "current_verification_record": "artifacts/qa/october7_envelope_verification.json"
 }

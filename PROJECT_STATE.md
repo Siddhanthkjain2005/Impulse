@@ -1,5 +1,11 @@
 # ImpulseTwin AI project state
 
+## Latest crest follow-up — 7 October 2026
+
+All four current remote branch heads were verified and included in `codex/switching-crest-review`; no new friend commits were found. Draft PR #2 is the complete continuation. The V7 crest study records 3.494530 kV repeated-development RMSE versus V2 refit's 3.586253 kV and matched kNN's 3.918090 kV: **2.5576% / 10.8104% lower error**. It wins 14/15 folds but misses the fixed per-seed gate at seed 607 (1.9599% against V2). The compact V6 spline control is slightly better overall at 3.489836 kV. V7 is frozen and unpromoted, with no weights/calibration/test/production changes.
+
+**322 backend tests pass**; frontend typecheck/build, 23 local asset checks and fresh-database external-network-denied smoke pass. The Model lab and timeline read saved V7 evidence. See `docs/accuracy_v7_results.md`, `artifacts/qa/october7_remote_branch_review.json` and `artifacts/qa/october7_envelope_verification.json`. V2 remains optional with 6/6 lower-error development outputs against matched kNN; V1 remains the default with its saved 5/6 kNN test result. Additional independent files may exist with the owner's friend but have not been supplied. No cloud resources or browser previews were used. Previous sections retain earlier evidence.
+
 ## Latest continuation — 7 October 2026
 
 Reviewed and incorporated friends' main `047841f` and engineering branch `efde726` on `codex/switching-crest-review`. Focused V6 Switching crest development RMSE is 3.488831 kV, versus 3.552288 kV historical V2 refit and 3.837058 kV matched kNN across three repeated fold arrangements. It wins 14/15 folds but misses the fixed 2% gain in every seed, so no weights or intervals were activated. The original V1 test stays 5/6 versus kNN and 6/6 versus physics; V2's separate development comparison is already 6/6 versus kNN.

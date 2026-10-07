@@ -1,5 +1,15 @@
 # Continue ImpulseTwin AI
 
+## Final crest comparison and branch refresh — 7 October 2026
+
+All four published branches were checked: `main`, `feat/evidence-judge-release`, `feat/engineering-hardening` and `codex/switching-crest-review`. Their heads are included in this continuation; there were no new friend commits. The verified heads and ancestry are saved in `artifacts/qa/october7_remote_branch_review.json`. Continue from `codex/switching-crest-review`; draft PR #2 contains both friends' feature work and the subsequent fixes: https://github.com/Siddhanthkjain2005/Impulse/pull/2.
+
+The separately registered V7 spline-envelope study lowers repeated development Switching-crest RMSE **2.5576% versus V2** and **10.8104% versus matched exact kNN**, winning 14/15 folds. It fails the fixed gate because seed 607 gains 1.9599% against V2, below 2%; the fixed compact spline is also slightly better overall. All rejected candidates, solver outcomes and predictions are preserved. No serving weights, intervals or final-test scores changed. Read `docs/accuracy_v7_results.md`; the Model lab and timeline show its development scope.
+
+**6/6 already exists for optional V2 versus matched kNN in development CV. Frozen V1 remains 5/6 versus kNN on its saved final test.** These are output error comparisons, not percentages of correct physical shots. Fresh fold seeds do not make fresh data. The owner is asking their friend whether additional waveforms/evaluation files exist; none have been supplied during this continuation. Follow `docs/laboratory_capture_plan.md` for untouched raw captures and separate evaluation outcomes. Keep setup/provenance metadata and original files; do not use previously exposed Hidden Test outcomes to force a 6/6 score.
+
+**322 backend tests pass**; Node 22 frontend typecheck/build, 23 local asset checks and fresh-database external-network-denied smoke pass. Current checks are recorded in `artifacts/qa/october7_envelope_verification.json`; older counts below retain their dated scope. No cloud spending, deployment or website preview occurred. CPRI/circuit defaults and workbook support boundaries are preserved.
+
 ## Crest and correctness review — 7 October 2026
 
 The continuation branch `codex/switching-crest-review` incorporates merged main `047841f` and your friend's `feat/engineering-hardening` commit `efde726`. Read `docs/accuracy_v6_results.md` first for this update. Frozen V1 remains 5/6 versus workbook kNN and 6/6 versus physics; optional V2 already reaches 6/6 versus matched kNN in separate development CV. The new focused V6 study lowers repeated development Switching crest RMSE 1.7864% versus V2 and 9.0754% versus kNN, winning 14/15 folds, but fails the stricter per-seed gate. It creates no serving weights and changes no preserved test scores.

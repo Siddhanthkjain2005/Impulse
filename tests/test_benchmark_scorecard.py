@@ -53,8 +53,12 @@ def test_models_endpoint_returns_separate_evidence_and_focused_study():
     data = response.json()
     assert data['benchmark_scorecard']['frozen_v1']['comparisons'][1]['lower_error_targets'] == 5
     assert data['benchmark_scorecard']['development_v2']['comparisons'][1]['lower_error_targets'] == 6
-    study = data['experiment_v6']
-    assert study['production_model_changed'] is False
-    detail = client.get(f"/api/models/{study['version']}/metrics")
-    assert detail.status_code == 200
-    assert len(detail.json()['folds']) == 15
+    for version in ('v6', 'v7'):
+        study = data[f'experiment_{version}']
+        assert study['production_model_changed'] is False
+        assert study['hidden_test_evaluated'] is False
+        detail = client.get(f"/api/models/{study['version']}/metrics")
+        assert detail.status_code == 200
+        assert len(detail.json()['folds']) == 15
+        saved = json.loads((ROOT / f'artifacts/experiments/{version}/summary.json').read_text())
+        assert detail.json()['combined_repeated_development_metrics'] == saved['combined_repeated_development_metrics']

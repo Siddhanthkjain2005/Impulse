@@ -1,5 +1,11 @@
 # Accuracy progress and the next independent check
 
+## Latest crest follow-up — 7 October 2026
+
+V7 compares 12 fixed multi-input spline/envelope/quantile/Bayesian configurations in three new nested fold arrangements. Switching-crest repeated-development RMSE is **3.494530 kV**, versus historical V2 refit's **3.586253 kV** and matched exact kNN's **3.918090 kV**: 2.5576% and 10.8104% lower error respectively. It wins 14/15 folds, but seed 607's 1.9599% reduction versus V2 misses the fixed 2% gate. The compact spline control is slightly better overall, so more complexity is not justified. No serving artifacts or earlier scores changed. Read `accuracy_v7_results.md` for the complete failure and scope.
+
+Optional V2's existing 6/6 development comparison remains separate from V1's 5/6 saved synthetic final test. Further independent accuracy evidence requires unused outcomes, not another random split of these explored rows. The owner will ask their friend whether new data exists; no new files have been supplied. The existing capture/evaluation workflow below is prepared for independent shots with recorded setup metadata.
+
 ## Focused continuation — 7 October 2026
 
 Frozen V1 is still 5/6 versus exact workbook kNN and 6/6 versus physics. Existing V2 development CV is 6/6 versus matched kNN; these are separate evaluations. A new repeated nested Switching-crest study records RMSE 3.488831 kV versus V2 refit's 3.552288 kV and exact kNN's 3.837058 kV: 1.7864% and 9.0754% lower error respectively, with 14/15 fold wins. It misses its fixed 2%-in-every-seed gate and creates no serving weights. See `accuracy_v6_results.md`. The saved final test and all earlier experiment artifacts remain preserved.

@@ -43,12 +43,14 @@ def timeline(root=ROOT):
                        'hidden_test_evaluated': summary['hidden_test_evaluated'],
                        'protocol_hash_matches': digest(path + '/protocol.json') == summary['protocol_sha256'],
                        'evidence_path': path + '/summary.json', 'evidence_sha256': digest(path + '/summary.json')})
-    path = 'artifacts/experiments/v6'
-    if (root / path / 'summary.json').is_file():
+    for version, model_name in (('v6', 'V6 champion search'), ('v7', 'V7 envelope search')):
+        path = f'artifacts/experiments/{version}'
+        if not (root / path / 'summary.json').is_file():
+            continue
         summary, protocol = read(path + '/summary.json'), read(path + '/protocol.json')
         table = summary['combined_repeated_development_metrics']
-        gain = 100 * (1 - table['V6 champion search']['rmse_kv'] / table['Historical V2 refit']['rmse_kv'])
-        result.append({'version': summary['version'], 'name': 'V6',
+        gain = 100 * (1 - table[model_name]['rmse_kv'] / table['Historical V2 refit']['rmse_kv'])
+        result.append({'version': summary['version'], 'name': version.upper(),
                        'status': 'REVIEW REQUIRED' if summary['promotion_eligible'] else 'REJECTED',
                        'hypothesis': protocol['hypothesis'], 'baseline': 'Historical V2 refit and matched exact kNN',
                        'dataset': protocol['dataset_sha256'], 'protocol': summary['scope'],
