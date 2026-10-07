@@ -1,0 +1,19 @@
+{
+  "scope": "Exploratory Train-only crest studies before the fixed V6 protocol; all scores are development evidence and were available when choosing its grid. Not an independent evaluation.",
+  "files": {
+    "aggregate.json": "9bb921f092bb8f584508cb646c8dcff5245d0237a49a8b38e8791f19effad3ae",
+    "benchmark.py": "c884c2c884143f26fb3d05fff68e7d5ae849ed1949e67dbdc4bdc4dba9644f03",
+    "compact_evidence.json": "9ef8fb2be6dbb297be748a45e72976db2b494efcb83f5e34ebd23d7bb40fec10",
+    "nested-101.npz": "00d4a10fa31674b4c1cd7206a416a24154ce3784363cb40318931d0c7527cc58",
+    "nested-211.npz": "f1c723b5274faf722fa7d9c9cc38b063c8d3be11d971054686a41a47ebadab20",
+    "nested-71.npz": "70011b7c323e095af0990adc3ab4794f518b4108a9c981775dca4b4ce0607a70",
+    "nested.py": "08edcdd8b855728556eadcaaa24a4359574406a6332d5954016c0d045c4122c8",
+    "nested_protocol.json": "2e5f5c75f22a97463f68a97aaa78635aa1903371b29bf5b0262e1b7d65dadbd0",
+    "nested_results.json": "7e26f28eac271c45aee4e8ade78a8a480cb1aa770a3d1258944afc0014599c96",
+    "predictions-101.npz": "41008f8d4ff35c63f7ec60835fb09f29d86e2118cdc62d240ee7ecdf7da736b6",
+    "predictions-211.npz": "398e5a2b996a4c35dc56d7db5d3032daca5e5bf62785f436b35e4590f76f3699",
+    "predictions-71.npz": "a9eb87eea5cc248403a3bec875e017311ac2d5b9012c10a3878d47d6eb4c79d3",
+    "protocol.json": "2d94856b83fb986be8b41538f32ed89fbdf037565274ee4f3b0970dc31f15af1",
+    "results.json": "ef597e3371a06b7b87223949951e2333ba42b760b69ea848d7293070de8de5ac"
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "best_fixed": {
+    "method": "Spline",
+    "basis": "c_l_lc",
+    "relative": true,
+    "knots": 3,
+    "alpha": 1
+  },
+  "table": [
+    {
+      "seed": 71,
+      "fixed_spline_rmse": 3.5096316606397386,
+      "fixed_spline_vs_v2_pct": 2.288748470708468,
+      "nested_rmse": 3.556672650647942,
+      "nested_vs_v2_pct": 0.979085676624647,
+      "nested_fold_wins_v2": 3,
+      "v2_rmse": 3.591839840049161,
+      "knn_rmse": 3.8700687302942947
+    },
+    {
+      "seed": 101,
+      "fixed_spline_rmse": 3.4865397503569584,
+      "fixed_spline_vs_v2_pct": 0.7727009071176072,
+      "nested_rmse": 3.5024487603248824,
+      "nested_vs_v2_pct": 0.31992875954716116,
+      "nested_fold_wins_v2": 3,
+      "v2_rmse": 3.5136900653653376,
+      "knn_rmse": 3.861924982968034
+    },
+    {
+      "seed": 211,
+      "fixed_spline_rmse": 3.5077752863230978,
+      "fixed_spline_vs_v2_pct": 1.6166066658525713,
+      "nested_rmse": 3.547183233233135,
+      "nested_vs_v2_pct": 0.5113227679762522,
+      "nested_fold_wins_v2": 2,
+      "v2_rmse": 3.5654140068226337,
+      "knn_rmse": 3.8887686863245317
+    }
+  ],
+  "all_seeds_two_percent_gate": false
+}

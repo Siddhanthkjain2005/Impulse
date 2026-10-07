@@ -1,5 +1,11 @@
 # Accuracy progress and the next independent check
 
+## Focused continuation — 7 October 2026
+
+Frozen V1 is still 5/6 versus exact workbook kNN and 6/6 versus physics. Existing V2 development CV is 6/6 versus matched kNN; these are separate evaluations. A new repeated nested Switching-crest study records RMSE 3.488831 kV versus V2 refit's 3.552288 kV and exact kNN's 3.837058 kV: 1.7864% and 9.0754% lower error respectively, with 14/15 fold wins. It misses its fixed 2%-in-every-seed gate and creates no serving weights. See `accuracy_v6_results.md`. The saved final test and all earlier experiment artifacts remain preserved.
+
+The current circuit additionally rejects an independently demonstrated inaccurate stable-looking pole, and new calibration creation preserves conservative generated provenance. These are correctness fixes, not a new measured-accuracy result. The older summary below retains its dated scope.
+
 Updated 3 October 2026. Numerical source: `artifacts/models/hidden_test_evaluation.json`. The active model remains frozen V1; no new final-test predictions were generated for this review.
 
 ## Recorded improvement so far

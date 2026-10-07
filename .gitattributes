@@ -5,3 +5,5 @@
 *.zip binary
 *.png binary
 *.jpg binary
+# Preserve emitted failure text in historical test evidence.
+artifacts/qa/*.xml whitespace=-blank-at-eol

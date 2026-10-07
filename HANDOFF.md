@@ -1,5 +1,13 @@
 # Continue ImpulseTwin AI
 
+## Crest and correctness review — 7 October 2026
+
+The continuation branch `codex/switching-crest-review` incorporates merged main `047841f` and your friend's `feat/engineering-hardening` commit `efde726`. Read `docs/accuracy_v6_results.md` first for this update. Frozen V1 remains 5/6 versus workbook kNN and 6/6 versus physics; optional V2 already reaches 6/6 versus matched kNN in separate development CV. The new focused V6 study lowers repeated development Switching crest RMSE 1.7864% versus V2 and 9.0754% versus kNN, winning 14/15 folds, but fails the stricter per-seed gate. It creates no serving weights and changes no preserved test scores.
+
+Additional fixes reject inaccurate stable-looking RLC modes and preserve generated provenance when creating or reusing calibrations. Historical Judge Mode evidence is rechecked without rewriting saved predictions. The Model lab now separates baseline win counts and shows the focused study; Experiment Timeline labels its gain as crest-only. Final automated checks are recorded under `artifacts/qa/seventh_october_*`; the failed initial baseline remains recorded. No website preview or cloud deployment was performed. Earlier counts/archives below are historical; use the current source and latest verification records.
+
+Current checks: **301 backend tests pass**, Node 22 frontend typecheck/build pass, all 23 referenced static assets are local and present, and the fresh-database external-network-denied smoke passes. All 45 files in the protected source/model/experiment manifest match their original bytes. See `artifacts/qa/seventh_october_verification.json` for exact scope. The release archive is regenerated from this continuation; source is authoritative for subsequent changes.
+
 ## Engineering hardening handoff — 6 October 2026
 
 Continue `feat/engineering-hardening`, based on main `047841f587c4b00bc8d018d5174961d3356eebbf`. Read `AGENTS.md`, `OPTIMIZATION_REPORT.md`, `artifacts/optimization_report.json`, `PROJECT_STATE.md` and `docs/assumptions.md`. **Final verification:** 263 backend tests, frontend typecheck/build, frozen hashes, fresh-database/local assets and desktop/mobile browser checks pass. Four exhaustive fixtures retain rank 1/zero gap; 4,096 inference outputs match original code exactly. Overall readiness is PARTIAL for unexecuted platform/disconnected-browser checks. Historical counts and archives below retain their earlier scope.

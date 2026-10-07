@@ -1,5 +1,27 @@
 # ImpulseTwin AI — engineering handoff and progress
 
+## Current continuation — 7 October 2026
+
+The owner explicitly requested review of friends' commits and further improvement
+of the sixth output. Work continues on `codex/switching-crest-review`, incorporating
+main `047841f` and engineering hardening `efde726`. A bounded Train-only V6 crest
+study is complete; its gate failed and its results are frozen. Do not rerun/tune
+this completed study or overwrite V1/V2–V6 evidence. No model weights, exposed
+test outcomes or cloud deployment have changed. Read `docs/accuracy_v6_results.md`
+and the latest HANDOFF/PROJECT_STATE sections. The historical hardening scope's
+no-new-fit instruction below applied to that earlier task; the owner's later
+accuracy request authorized this separately recorded development study.
+
+Preserve CPRI/circuit defaults, unknown stock/rating facts and generated/measured
+provenance. New correctness checks reject unresolved RLC modes and conservatively
+classify calibration sources. Current tests/builds are recorded separately from
+the historical 6 October evidence. Website previews remain deferred to the owner.
+
+Final continuation verification: 301 backend tests, Node 22 typecheck/build,
+23 local asset checks, fresh-database/network-denied smoke and all 45 protected
+hashes pass. See `artifacts/qa/seventh_october_verification.json`. Release packaging
+now includes friends' hardening/release evidence and this separately recorded study.
+
 ## Current task — 6 October 2026
 
 Work from `feat/engineering-hardening`, based on current main commit

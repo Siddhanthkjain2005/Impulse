@@ -1,39 +1,44 @@
 {
-  "recorded_at_utc": "2026-10-03T05:17:20.329138+00:00",
+  "recorded_at_utc": "2026-10-07T09:53:52.026342+00:00",
   "version": "1.0.0",
   "backend_tests_passed": true,
   "backend": {
-    "tests": 198,
+    "tests": 301,
     "failures": 0,
     "errors": 0,
     "skipped": 0
   },
-  "backend_test_record": "artifacts/qa/backend-tests.xml",
+  "backend_test_record": "artifacts/qa/seventh_october_final.xml",
   "frontend": {
     "typecheck_passed": true,
     "production_build_passed": true,
-    "verification": "TypeScript and production static build passed with Node 22.23.2 using npm run build -- --webpack. Turbopack local-port restriction avoided with supported webpack builder.",
-    "source_sha256": "37da1a71b792fb54af1821fc904326499c1092f1a7debb4b0b6822cb5fd9584a",
-    "routes": [
-      "/",
-      "/model-lab/",
-      "/profiles/",
-      "/trial-calibrator/",
-      "/runs/",
-      "/compare/"
-    ],
+    "node_version": "22.23.2",
+    "builder": "webpack",
+    "browser_preview": false,
+    "verification": "Node 22.23.2: direct TypeScript check and Next webpack production export passed.",
+    "source_sha256": "69cb5efc9379b2264f5c1ae5e68b6ed857f32ecc31e833775fcc583dd1640b8e",
     "source_hash_method": "SHA256 of compact sorted JSON mapping relative source paths to file SHA256; OS metadata excluded",
     "source_hash_files": [
       "frontend/app/compare/page.tsx",
+      "frontend/app/evidence.css",
+      "frontend/app/experiment-timeline/page.tsx",
       "frontend/app/globals.css",
+      "frontend/app/hardware-verification/page.tsx",
       "frontend/app/icon.svg",
+      "frontend/app/judge/page.tsx",
+      "frontend/app/laboratory-evidence/page.tsx",
       "frontend/app/layout.tsx",
       "frontend/app/model-lab/page.tsx",
       "frontend/app/page.tsx",
+      "frontend/app/polish.css",
       "frontend/app/profiles/page.tsx",
       "frontend/app/runs/page.tsx",
+      "frontend/app/search-quality/page.tsx",
       "frontend/app/trial-calibrator/page.tsx",
+      "frontend/components/benchmark-comparison.tsx",
       "frontend/components/engineering-chart.tsx",
+      "frontend/components/evidence-pages.tsx",
+      "frontend/components/judge-mode.tsx",
       "frontend/components/optimizer.tsx",
       "frontend/components/pooled-experiment.tsx",
       "frontend/components/rlc-sensitivity.tsx",
@@ -54,7 +59,20 @@
       "frontend/postcss.config.mjs",
       "frontend/tsconfig.json"
     ],
-    "visual_review_this_update": "No website preview or screenshot was performed, as requested by the user. Prior dated browser reviews do not validate the new panels."
+    "routes": [
+      "/",
+      "/compare/",
+      "/experiment-timeline/",
+      "/hardware-verification/",
+      "/judge/",
+      "/laboratory-evidence/",
+      "/model-lab/",
+      "/profiles/",
+      "/runs/",
+      "/search-quality/",
+      "/trial-calibrator/"
+    ],
+    "visual_review_this_update": "No website preview or screenshot, per owner request. Historical browser evidence has its original scope."
   },
   "browser": {
     "tested_at": "2026-10-01",
@@ -275,9 +293,9 @@
       "viewport_override_reset": true
     },
     "latest_update_review": {
-      "date": "2026-10-03",
+      "date": "2026-10-07",
       "performed": false,
-      "reason": "User explicitly requested no website previews; automated verification only."
+      "reason": "Owner requested no website previews; automated checks only."
     }
   },
   "offline_static_assets": {
@@ -616,5 +634,74 @@
     },
     "launch_scope": "Extracted application through TestClient on current machine with installed dependencies; not a clean second machine.",
     "note": "Only QA metadata changes after application verification; final per-file hashes verified again after packaging."
+  },
+  "previous_top_level_verification": {
+    "recorded_at_utc": "2026-10-03T05:17:20.329138+00:00",
+    "backend": {
+      "tests": 198,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "backend_test_record": "artifacts/qa/backend-tests.xml",
+    "frontend": {
+      "typecheck_passed": true,
+      "production_build_passed": true,
+      "verification": "TypeScript and production static build passed with Node 22.23.2 using npm run build -- --webpack. Turbopack local-port restriction avoided with supported webpack builder.",
+      "source_sha256": "37da1a71b792fb54af1821fc904326499c1092f1a7debb4b0b6822cb5fd9584a",
+      "routes": [
+        "/",
+        "/model-lab/",
+        "/profiles/",
+        "/trial-calibrator/",
+        "/runs/",
+        "/compare/"
+      ],
+      "source_hash_method": "SHA256 of compact sorted JSON mapping relative source paths to file SHA256; OS metadata excluded",
+      "source_hash_files": [
+        "frontend/app/compare/page.tsx",
+        "frontend/app/globals.css",
+        "frontend/app/icon.svg",
+        "frontend/app/layout.tsx",
+        "frontend/app/model-lab/page.tsx",
+        "frontend/app/page.tsx",
+        "frontend/app/profiles/page.tsx",
+        "frontend/app/runs/page.tsx",
+        "frontend/app/trial-calibrator/page.tsx",
+        "frontend/components/engineering-chart.tsx",
+        "frontend/components/optimizer.tsx",
+        "frontend/components/pooled-experiment.tsx",
+        "frontend/components/rlc-sensitivity.tsx",
+        "frontend/components/run-evidence.tsx",
+        "frontend/components/secondary-pages.tsx",
+        "frontend/components/settings-verification.tsx",
+        "frontend/components/setup-transition-planner.tsx",
+        "frontend/components/trial-decision-evidence.tsx",
+        "frontend/components/trial-evaluator.tsx",
+        "frontend/components/trial-quality.tsx",
+        "frontend/components/workspace.tsx",
+        "frontend/lib/api.ts",
+        "frontend/lib/trial-waveform.ts",
+        "frontend/next-env.d.ts",
+        "frontend/next.config.ts",
+        "frontend/package-lock.json",
+        "frontend/package.json",
+        "frontend/postcss.config.mjs",
+        "frontend/tsconfig.json"
+      ],
+      "visual_review_this_update": "No website preview or screenshot was performed, as requested by the user. Prior dated browser reviews do not validate the new panels."
+    }
+  },
+  "seventh_october_update": {
+    "verification_record": "artifacts/qa/seventh_october_verification.json",
+    "backend_tests": 301,
+    "friends_commits_integrated": [
+      "047841f",
+      "efde726"
+    ],
+    "v6_promotion_eligible": false,
+    "production_model_changed": false,
+    "archive_repack_pending": false,
+    "archive_verification": "release/verification.json"
   }
 }

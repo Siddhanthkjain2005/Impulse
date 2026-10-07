@@ -37,9 +37,26 @@ def simulate(stages,charge_kv_stage,front_r_stage,tail_r_stage,stage_c_uf,
         vectors=np.array([[1-rf*cl*alpha,1-rf*cl*beta],[1.,1.]])
     else:
         eigen,vectors=eig(a)
-    coefficients=np.linalg.solve(vectors,z)
-    if not np.isfinite(eigen).all() or np.any(eigen.real>=0):
+    resolved=np.isfinite(eigen).all() and np.all(eigen.real<0)
+    if resolved and out_index==2:
+        # A stable-looking eig result can still lose the slow pole when the
+        # passive circuit spans many orders of magnitude. Verify every pole
+        # against the independently formed nodal characteristic polynomial.
+        # Scaling the polynomial avoids comparing the slow-pole error with the
+        # much larger fast matrix entries, which would hide a wrong tail.
+        g=1/(rt*cg); r=rf/l
+        scale=max(float(np.max(np.abs(eigen))),g,r)
+        x=eigen/scale; gs=g/scale; rs=r/scale
+        ls=1/l/scale; cgs=1/cg/scale; cls=1/cl/scale
+        terms=np.array([x**3,(gs+rs)*x*x,
+                        (ls*(cgs+cls)+gs*rs)*x,
+                        np.full_like(x,gs*ls*cls)])
+        denominator=np.sum(np.abs(terms),axis=0)
+        residual=np.abs(np.sum(terms,axis=0))/denominator
+        resolved=np.isfinite(residual).all() and np.all(residual<=1e-8)
+    if not resolved:
         raise ValueError('Could not resolve finite stable decay modes of the passive equivalent circuit. Review extreme circuit ratios; no waveform result returned.')
+    coefficients=np.linalg.solve(vectors,z)
     slow=1/min(-eigen.real); fast=max(rf*cl,np.sqrt(l_uh*1e-6*cl),1e-10)
     t=np.unique(np.r_[np.linspace(0,min(20*fast,slow),550),np.geomspace(max(fast*.001,1e-12),12*slow,650)])
     if out_index==1:

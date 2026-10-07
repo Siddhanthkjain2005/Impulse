@@ -1,5 +1,13 @@
 # ImpulseTwin AI project state
 
+## Latest continuation — 7 October 2026
+
+Reviewed and incorporated friends' main `047841f` and engineering branch `efde726` on `codex/switching-crest-review`. Focused V6 Switching crest development RMSE is 3.488831 kV, versus 3.552288 kV historical V2 refit and 3.837058 kV matched kNN across three repeated fold arrangements. It wins 14/15 folds but misses the fixed 2% gain in every seed, so no weights or intervals were activated. The original V1 test stays 5/6 versus kNN and 6/6 versus physics; V2's separate development comparison is already 6/6 versus kNN.
+
+The integrated source additionally fixes incorrect extreme RLC decay acceptance and generated-calibration provenance, with regression coverage. Model lab and the experiment timeline expose the comparison's scope. See `docs/accuracy_v6_results.md` and `artifacts/experiments/v6/`; current automated checks are recorded separately from older QA below. No cloud resources, deployment or browser preview were used. CPRI/circuit defaults from the engineering branch are retained.
+
+**301 backend tests pass**; frontend typecheck and webpack export pass with Node 22.23.2. All 23 referenced assets are local/present, fresh-database external-network-denied smoke passes, and the 45 protected artifact hashes match. Current scope is recorded in `artifacts/qa/seventh_october_verification.json`; physically disconnected-browser and newly untested platforms remain outside this check.
+
 ## Engineering hardening — 6 October 2026
 
 Current work starts from main commit `047841f587c4b00bc8d018d5174961d3356eebbf` on `feat/engineering-hardening`. Its scope is correctness, numerical stability, bounded-search/runtime efficiency, source clarity and restrained UI polish. No new product features, deployment, model training or Hidden Test tuning are part of this pass. The task record is in `AGENTS.md`; the final rationale and measured comparison are in `OPTIMIZATION_REPORT.md` and `artifacts/optimization_report.json`.

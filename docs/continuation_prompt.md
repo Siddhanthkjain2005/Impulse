@@ -2,6 +2,8 @@
 
 Use this prompt with a coding assistant in a checkout of https://github.com/Siddhanthkjain2005/Impulse.
 
+Latest context, 7 October: branch `codex/switching-crest-review` incorporates main `047841f` and the friend's `feat/engineering-hardening` commit `efde726`. Read the newest HANDOFF/PROJECT_STATE sections and `accuracy_v6_results.md` before the historical prompt below. V6 is a focused crest-only development study (1.7864% lower repeated RMSE than V2, 9.0754% lower than kNN, 14/15 fold wins) that failed its per-seed gate. It is not activated. V1 remains 5/6 versus kNN on its saved test; V2 is already 6/6 versus matched kNN in separate development CV. Current source also rejects inaccurate stable-looking RLC decay and rechecks old calibration origin. The friends' CPRI/circuit/physics defaults are retained. Historical test counts/ZIP references below precede this continuation; consult latest verification and archive manifests.
+
 ```text
 Continue ImpulseTwin AI for POWERnext-AI 2026 Track 1. Our readiness deadline is 10 October 2026; the published event dates are 10–11 October. Improve useful engineering accuracy, credible evidence, hardware feasibility and presentation readiness. Read HANDOFF.md, PROJECT_STATE.md, docs/judging_criteria_evidence.md, docs/accuracy_progress.md and docs/source_reconciliation.md before changing the project. The master prompt, briefing transcript and original Track 1 material are preserved in the repository; consult them for the exact problem.
 

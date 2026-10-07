@@ -19,6 +19,7 @@ from .physics.compliance import check,RULES
 from .data.workbook_reference import calculate
 from .ml.reference_knn import WorkbookKNN
 from .ml.registry import registry
+from .ml.benchmark_scorecard import scorecard
 from . import storage
 from .reports import report_html
 from .run_evidence import summarize_evidence
@@ -29,7 +30,7 @@ from .trial_evaluation import evaluate_trials
 from .setup_transition import plan_transition
 from .transition_report import transition_report
 from .sensitivity import compare_sensitivity
-from .evidence import evidence_record, laboratory_summary, recommendation_evidence, validated_evaluation_ids, SOURCES
+from .evidence import evidence_record, laboratory_summary, recommendation_evidence, validated_evaluation_ids, reviewed_calibration_origin, SOURCES
 from .hardware_integrity import hardware_integrity
 from .test_objects import catalog, validate_request
 from .experiment_timeline import timeline
@@ -115,10 +116,32 @@ def laboratory_evidence():
 @app.get('/api/runs/{id}/judge')
 def judge_run(id:str):
     run=saved(id,'run'); evaluations=storage.list_records('evaluation',None)
+    calibration_views={}
+    def origin_view(calibration_id):
+        if calibration_id not in calibration_views:
+            try:
+                calibration=storage.get(calibration_id,'calibration')
+                calibration_views[calibration_id]=reviewed_calibration_origin(calibration,storage.get,ROOT)
+            except KeyError:
+                calibration_views[calibration_id]={'source_type':'unknown','source_review':{
+                    'status':'UNVERIFIABLE','message':'Original calibration audit record is missing.',
+                    'audit_record_changed':False}}
+        return calibration_views[calibration_id]
     candidates=[]
     for candidate in run['candidates']:
         ids=validated_evaluation_ids(run,candidate,evaluations,storage.get,ROOT)
-        candidates.append({**candidate,'evidence':recommendation_evidence(candidate,ids)})
+        view={**candidate}
+        if (candidate.get('calibration') or {}).get('id'):
+            reviewed=origin_view(candidate['calibration']['id'])
+            view['calibration']={**candidate['calibration'],'source_type':reviewed['source_type'],
+                                 'source_review':reviewed['source_review']}
+            view['ood']={**candidate.get('ood',{}),'lab_calibrated':reviewed['source_type']=='measured_lab'}
+        candidates.append({**view,'evidence':recommendation_evidence(view,ids)})
+    calibration_review=run.get('calibration_review')
+    if calibration_review and calibration_review.get('id'):
+        reviewed=origin_view(calibration_review['id'])
+        calibration_review={**calibration_review,'source_type':reviewed['source_type'],
+                            'source_review':reviewed['source_review']}
     alternatives=[]
     for label,key in [('Best waveform match',lambda c:c['accuracy_cost']),
                       ('Fewest components',lambda c:c['setup_component_count']),
@@ -132,7 +155,7 @@ def judge_run(id:str):
         if not any(a['candidate']['id']==candidate['id'] for a in alternatives):
             alternatives.append({'labels':[f"Ranked alternative {candidate['rank']}"],'candidate':candidate})
     trials=[{**t,'evidence':evidence_record(t,run)} for t in storage.list_records('trial',None) if t['run_id']==id]
-    return {**run,'candidates':candidates,'alternatives':alternatives,'trials':trials,
+    return {**run,'candidates':candidates,'calibration_review':calibration_review,'alternatives':alternatives,'trials':trials,
             'alternative_scope':'Trade-offs among the returned shortlist; fewest components is not fewest changes from an existing setup. Nominal failures remain diagnostic.',
             'laboratory':laboratory_evidence()}
 
@@ -155,6 +178,9 @@ def reference(impulse_type:str='Lightning'):
 def run_optimize(req:OptimizeRequest):
     try:
         cal=saved(req.calibration_id,'calibration') if req.calibration_id else None
+        if cal:
+            cal=reviewed_calibration_origin(cal,storage.get,ROOT)
+            if cal['source_type']=='unknown':raise ValueError(cal['source_review']['message'])
         result=optimize(req,cal)
     except ValueError as e:raise HTTPException(422,str(e))
     id=uuid.uuid4().hex[:12]; result['run_id']=id
@@ -199,6 +225,11 @@ def models():
     if v5.exists():
         study=json.loads(v5.read_text(encoding="utf-8"))
         result['experiment_v5']={k:study[k] for k in ['version','scope','macro_improvement_pct','control_macro_improvement_pct','improvement_vs_matched_control_pct','worst_target_improvement_pct','promotion_eligible','decision','hidden_test_evaluated','calibration_evaluated','validation_evaluated','elapsed_seconds','nested_cv']}
+    result['benchmark_scorecard']=scorecard(result['hidden_test'],result.get('experiment_v2'))
+    v6=ROOT/'artifacts/experiments/v6/summary.json'
+    if v6.exists():
+        study=json.loads(v6.read_text(encoding='utf-8'))
+        result['experiment_v6']={k:study[k] for k in ['version','scope','per_seed','combined_repeated_development_metrics','folds_beating_both_baselines','promotion_eligible','decision','hidden_test_evaluated','calibration_evaluated','validation_evaluated','final_models_created','production_model_changed','elapsed_seconds']}
     return result
 
 @app.get('/api/models/{id}/metrics')
@@ -209,6 +240,8 @@ def model_metrics(id:str):
         return json.loads((ROOT/'artifacts/experiments/v4/summary.json').read_text(encoding="utf-8"))
     if id==result.get('experiment_v5',{}).get('version'):
         return json.loads((ROOT/'artifacts/experiments/v5/summary.json').read_text(encoding="utf-8"))
+    if id==result.get('experiment_v6',{}).get('version'):
+        return json.loads((ROOT/'artifacts/experiments/v6/summary.json').read_text(encoding='utf-8'))
     if id!=result['version']:raise HTTPException(404,'Unknown model version')
     return result
 
@@ -331,8 +364,12 @@ def evaluation_json(id:str):
 @app.post('/api/trials/{id}/calibrate')
 def calibrate(id:str):
     trial=saved(id,'trial'); run=saved(trial['run_id'],'run'); c=selected_candidate(run,trial['candidate_id'])
-    if evidence_record(trial,run)['source_type'] not in ('generated_demo','measured_lab'):
+    classified=evidence_record(trial,run)['source_type']
+    if classified not in ('generated_demo','measured_lab'):
         raise HTTPException(422,'Only explicitly classified trial waveforms can create a local correction.')
+    # Preserve the existing demo-calibration label after provenance downgrades;
+    # historical operator labels must never turn a generated source into measured evidence.
+    calibration_source='generated_stress_test' if classified=='generated_demo' else classified
     raw=(ROOT/trial['raw_path']).resolve()
     if not raw.is_relative_to(ROOT.resolve()) or not raw.is_file() or hashlib.sha256(raw.read_bytes()).hexdigest()!=trial['raw_sha256']:
         raise HTTPException(422,'Original trial CSV is missing or changed. Restore its original bytes before calibration.')
@@ -353,7 +390,7 @@ def calibrate(id:str):
         'generator_profile':run['profile'],'rules_version':run['rules']['version'],
         'front_topology':c['front_network']['topology'],'tail_topology':c['tail_network']['topology'],
         **{k:c['settings'][k] for k in ['stages','front_r_stage','tail_r_stage','charge_kv_stage']}}
-    return storage.put('calibration',uuid.uuid4().hex[:12],{'trial_id':id,'source_type':trial['source_type'],
+    return storage.put('calibration',uuid.uuid4().hex[:12],{'trial_id':id,'source_type':calibration_source,
         'bias':total_bias,'scope':scope,'production_model_changed':False,
         'observed_residual':trial['bias'],'calibration_lineage':lineage,'quality':quality,
         'retraining_queue':'Stored for later engineer-reviewed retraining; no automatic training',
@@ -361,7 +398,7 @@ def calibrate(id:str):
 
 @app.get('/api/documents/{name}')
 def document(name:str):
-    paths={'source_reconciliation':ROOT/'docs/source_reconciliation.md','data_audit':ROOT/'reports/data_audit.html','assumptions':ROOT/'docs/assumptions.md','accuracy_v2_results':ROOT/'docs/accuracy_v2_results.md','accuracy_v4_results':ROOT/'docs/accuracy_v4_results.md','accuracy_v5_results':ROOT/'docs/accuracy_v5_results.md','judging_criteria':ROOT/'docs/judging_criteria_evidence.md','capture_resolution':ROOT/'docs/capture_resolution_review.md'}
+    paths={'source_reconciliation':ROOT/'docs/source_reconciliation.md','data_audit':ROOT/'reports/data_audit.html','assumptions':ROOT/'docs/assumptions.md','accuracy_v2_results':ROOT/'docs/accuracy_v2_results.md','accuracy_v4_results':ROOT/'docs/accuracy_v4_results.md','accuracy_v5_results':ROOT/'docs/accuracy_v5_results.md','accuracy_v6_results':ROOT/'docs/accuracy_v6_results.md','judging_criteria':ROOT/'docs/judging_criteria_evidence.md','capture_resolution':ROOT/'docs/capture_resolution_review.md'}
     p=paths.get(name)
     if p is None or not p.exists():raise HTTPException(404,'Document not found')
     return FileResponse(p,media_type='text/html' if p.suffix=='.html' else 'text/plain')
