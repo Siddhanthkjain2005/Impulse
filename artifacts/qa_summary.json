@@ -1,5 +1,5 @@
 {
-  "recorded_at_utc": "2026-10-07T13:48:54.928682+00:00",
+  "recorded_at_utc": "2026-10-08T00:52:47.664685+00:00",
   "version": "1.0.0",
   "backend_tests_passed": true,
   "backend": {
@@ -8,7 +8,7 @@
     "errors": 0,
     "skipped": 0
   },
-  "backend_test_record": "artifacts/qa/october7_independent_final.xml",
+  "backend_test_record": "artifacts/qa/october8_redesign_audit.xml",
   "frontend": {
     "typecheck_passed": true,
     "production_build_passed": true,
@@ -16,11 +16,11 @@
     "builder": "webpack",
     "browser_preview": false,
     "verification": "Node 22.23.2: direct TypeScript check and Next webpack production export passed.",
-    "source_sha256": "a9a6219b388b1b7228147dd8c0a07bcc129d4670169df1b526f56cf84d4bf3d3",
+    "source_sha256": "aed54b65db3f7b7ec669d69a21c79cadbc9e6e79f342b3b335209dc29dc08559",
     "source_hash_method": "SHA256 of compact sorted JSON mapping relative source paths to file SHA256; OS metadata excluded",
     "source_hash_files": [
+      "frontend/app/.DS_Store",
       "frontend/app/compare/page.tsx",
-      "frontend/app/evidence.css",
       "frontend/app/experiment-timeline/page.tsx",
       "frontend/app/globals.css",
       "frontend/app/hardware-verification/page.tsx",
@@ -30,34 +30,63 @@
       "frontend/app/layout.tsx",
       "frontend/app/model-lab/page.tsx",
       "frontend/app/page.tsx",
-      "frontend/app/polish.css",
+      "frontend/app/pages.css",
       "frontend/app/profiles/page.tsx",
       "frontend/app/runs/page.tsx",
       "frontend/app/search-quality/page.tsx",
       "frontend/app/trial-calibrator/page.tsx",
+      "frontend/app/workbench.css",
       "frontend/components/benchmark-comparison.tsx",
+      "frontend/components/compare.tsx",
       "frontend/components/engineering-chart.tsx",
       "frontend/components/evidence-pages.tsx",
+      "frontend/components/generator/elevation.tsx",
+      "frontend/components/generator/engine.ts",
+      "frontend/components/generator/generator-view.tsx",
+      "frontend/components/hall.tsx",
+      "frontend/components/inventory-editor.tsx",
       "frontend/components/judge-mode.tsx",
+      "frontend/components/model-lab.tsx",
+      "frontend/components/network-schematic.tsx",
       "frontend/components/optimizer.tsx",
       "frontend/components/pooled-experiment.tsx",
+      "frontend/components/profiles.tsx",
       "frontend/components/rlc-sensitivity.tsx",
       "frontend/components/run-evidence.tsx",
+      "frontend/components/runs.tsx",
       "frontend/components/secondary-pages.tsx",
       "frontend/components/settings-verification.tsx",
       "frontend/components/setup-transition-planner.tsx",
+      "frontend/components/trial-calibrator.tsx",
       "frontend/components/trial-decision-evidence.tsx",
       "frontend/components/trial-evaluator.tsx",
       "frontend/components/trial-quality.tsx",
+      "frontend/components/ui.tsx",
       "frontend/components/workspace.tsx",
       "frontend/lib/api.ts",
+      "frontend/lib/generator-model.ts",
+      "frontend/lib/inventory.ts",
+      "frontend/lib/motion.ts",
+      "frontend/lib/series.ts",
       "frontend/lib/trial-waveform.ts",
       "frontend/next-env.d.ts",
       "frontend/next.config.ts",
       "frontend/package-lock.json",
       "frontend/package.json",
       "frontend/postcss.config.mjs",
-      "frontend/tsconfig.json"
+      "frontend/public/fonts/Barlow-Italic.woff2",
+      "frontend/public/fonts/Barlow-Medium.woff2",
+      "frontend/public/fonts/Barlow-Regular.woff2",
+      "frontend/public/fonts/Barlow-SemiBold.woff2",
+      "frontend/public/fonts/BarlowCondensed-Bold.woff2",
+      "frontend/public/fonts/BarlowCondensed-Medium.woff2",
+      "frontend/public/fonts/BarlowCondensed-SemiBold.woff2",
+      "frontend/public/fonts/OFL-Barlow.txt",
+      "frontend/tests/run-unit-tests.mjs",
+      "frontend/tsconfig.json",
+      "frontend/vendor/three/LICENSE",
+      "frontend/vendor/three/three.module.min.d.ts",
+      "frontend/vendor/three/three.module.min.js"
     ],
     "routes": [
       "/",
@@ -72,7 +101,8 @@
       "/search-quality/",
       "/trial-calibrator/"
     ],
-    "visual_review_this_update": "No website preview or screenshot, per owner request. Historical browser evidence has its original scope."
+    "visual_review_this_update": "Functional browser/DOM checks only; no screenshot or visual-layout audit.",
+    "unit_tests_passed": 10
   },
   "browser": {
     "tested_at": "2026-10-01",
@@ -724,7 +754,17 @@
         "errors": 0,
         "skipped": 0
       }
+    },
+    {
+      "record": "artifacts/qa/october7_independent_verification.json",
+      "recorded_at_utc": "2026-10-07T13:48:54.928682+00:00",
+      "backend": {
+        "tests": 337,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      }
     }
   ],
-  "current_verification_record": "artifacts/qa/october7_independent_verification.json"
+  "current_verification_record": "artifacts/qa/october8_redesign_retention_review.json"
 }

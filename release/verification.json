@@ -1,30 +1,36 @@
 {
-  "verified_at_utc": "2026-10-07T13:56:07.741471+00:00",
+  "verified_at_utc": "2026-10-08T01:09:26.776216+00:00",
   "status": "passed",
   "archive": "release/ImpulseTwin_AI_Local_PoC.zip",
-  "archive_sha256": "8ef0aa41f553c906f9be56e950d1389c45dee8c906d1a5024bad8dc40b319533",
-  "archive_bytes": 20151977,
-  "manifest_file_count": 714,
+  "archive_sha256": "8ea19b126229a49432c749ce91a3002f912c303860380d14ae05b9ab3282b9f0",
+  "archive_bytes": 21472316,
+  "manifest_file_count": 760,
   "all_archive_and_workspace_hashes_match": true,
+  "new_font_threejs_and_test_sources_included": [
+    "frontend/vendor/three/three.module.min.js",
+    "frontend/vendor/three/LICENSE",
+    "frontend/public/fonts/Barlow-Regular.woff2",
+    "frontend/public/fonts/OFL-Barlow.txt",
+    "frontend/tests/run-unit-tests.mjs"
+  ],
   "extracted_release_fresh_database_offline_smoke": {
     "status": "PASS",
     "fresh_database": true,
     "external_network_denied": true,
-    "local_assets": 23,
+    "local_assets": 29,
     "saved_recommendation": true
   },
-  "current_automated_verification_record": "artifacts/qa/october7_independent_verification.json",
+  "current_automated_verification_record": "artifacts/qa/october8_redesign_retention_review.json",
   "backend_tests": 337,
+  "frontend_unit_tests": 10,
   "cloud_deployed": false,
-  "website_preview": false,
-  "scope": "All archive and workspace bytes match the manifest; extracted fresh-database smoke denies external network in-process. Numerical verification6/6 remains distinct from saved workbook test5/6 and measured physical accuracy. No disconnected-machine/browser review claimed.",
-  "raw_data_git_line_endings_preserved": true,
-  "extracted_smoke_verified_archive_sha256": "79dc98607d8da9cb8f6ac40b47c5d5ee1e574a25ceb9ffdfa12cd2085d8a185c",
+  "scope": "Current static redesign, font/3D source and tests included. Archive manifest and extracted app checked without external network; scientific results and backend retain original bytes. Browser checks used an isolated temp database. No measured physical accuracy or hardware rendering performance claim.",
+  "extracted_smoke_verified_archive_sha256": "2f4e741ed4c45696fbf1cc19519b04b4b094a21db1e7af25840d4e77335f48c6",
   "metadata_only_repack_after_smoke": {
     "changed_files": [
       ".gitattributes"
     ],
     "all_other_application_data_and_document_bytes_identical": true,
-    "reason": "Preserve generated CSV CRLF bytes and recognize CR as a line terminator in whitespace checks."
+    "reason": "Preserve the original bundled font license whitespace."
   }
 }

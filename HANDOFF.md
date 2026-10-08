@@ -1,5 +1,11 @@
 # Continue ImpulseTwin AI
 
+## Verified Mac build and retention review — 8 October 2026
+
+The redesign now has a successful Node 22 production webpack export and typecheck, with 10 frontend unit tests and 337 backend tests passing. All 11 pages load; functional browser checks cover both impulse solves, candidate switching, stale-input labeling, sensitivity, Judge Mode generated feedback, run restore/reload, comparisons, setup transitions and 2D/3D switching. No browser console errors were observed. Backend/configuration/model/source/result files match the pre-redesign version; accuracy values and evidence distinctions remain unchanged. See `artifacts/qa/october8_redesign_retention_review.json` for scope and limitations.
+
+The new `frontend/out` is included in this handoff. The packaging helper now includes `frontend/public`, `frontend/vendor` and `frontend/tests`, fixing missing fonts, licensed 3D source and tests in source handoffs. The release ZIP is rebuilt with the redesign; its manifest and extracted fresh-database, external-network-denied smoke pass. Historical redesign-session limitations below retain their original scope. Live user history was not used for browser fixtures. No merge, deployment or model changes occurred.
+
 ## Frontend redesign — 8 October 2026
 
 The owner requested a full frontend redesign. It is on `codex/frontend-redesign`, based on `codex/switching-crest-review` at `64209d1`. Read `docs/frontend_redesign.md`. Only `frontend/` source and assets, that document and `artifacts/qa/october8_frontend_redesign.json` changed. Backend, configuration, models, supplied sources and evidence are untouched.

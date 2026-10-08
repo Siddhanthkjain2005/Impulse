@@ -11,7 +11,7 @@ def package():
     qa=ROOT/'artifacts/qa_summary.json'
     if not qa.exists() or not json.loads(qa.read_text()).get('backend_tests_passed'):
         raise SystemExit('Record successful QA before packaging.')
-    directories=['backend','config','data','docs','reports','scripts','tests','frontend/app','frontend/components','frontend/lib','frontend/out','artifacts/models','artifacts/experiments','artifacts/qa','artifacts/hardening','artifacts/release_checks','artifacts/search_quality','artifacts/external_data','artifacts/independent_simulation']
+    directories=['backend','config','data','docs','reports','scripts','tests','frontend/app','frontend/components','frontend/lib','frontend/public','frontend/vendor','frontend/tests','frontend/out','artifacts/models','artifacts/experiments','artifacts/qa','artifacts/hardening','artifacts/release_checks','artifacts/search_quality','artifacts/external_data','artifacts/independent_simulation']
     singles=['README.md','HANDOFF.md','PROJECT_STATE.md','AGENTS.md','OPTIMIZATION_REPORT.md','Makefile','requirements.txt','requirements-experiments.txt','pytest.ini','Start_ImpulseTwin.command','Dockerfile','.dockerignore','.gitignore','.gitattributes',
         'POWERNEXT_Track1_Astra_Winning_Master_Prompt.md','PowerNext_AI_Track1_Briefing_Transcript.md',
         'frontend/package.json','frontend/package-lock.json','frontend/tsconfig.json','frontend/next.config.ts','frontend/postcss.config.mjs','frontend/next-env.d.ts',
